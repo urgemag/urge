@@ -164,6 +164,7 @@ class General:
                     break
 
         uploaded_file.save(location_not_href)
+        General().image_resizer_using_pil(location_not_href,500)
 
         return {"path": location_not_href, "href": href, "Result": True}
 

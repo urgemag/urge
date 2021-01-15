@@ -119,7 +119,7 @@ def add_day_essential_main_data_admin():
             with open(location_image, "wb") as file:
                 file.write(uploaded_image_bytes)
 
-            General().image_resizer_using_imgp(location_image, 850)
+            General().image_resizer_using_imgp(location_image, 700)
             General().image_optimizer_using_imgp(location_image)
 
             href = "/static//assets/images/days_of_course/" + file_name
