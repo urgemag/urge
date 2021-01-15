@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block title %} پنل شخصی موفقیت اِرج - خرید دوره {% endblock %} {% block main_css %}
+<link href="/static//assets/css/style_of_main_page.css" rel="stylesheet" /> {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
+<li class="breadcrumb-item"><a href="/Course/{{course.Slug}}"> {{course.Name}} </a></li>
+<li class="breadcrumb-item active" aria-current="page"> گزارش خرید </li>
+{% endblock %} {% block body %}
+<div class="row row-cards">
+    <div class="col-lg-12 col-md-12 col-sm-12 bootstrap snippets">
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card ">
+            <div class="card-header ">
+                <h3 class="card-title">گزارش خرید</h3>
+            </div>
+
+            <div class="card-body">
+                <div class="text-wrap">
+                    <div class="">
+                        <div class="alert alert-danger" role="alert">ظاهرا در پروسه خرید دوره <b>{{course.Name}}</b> مشکلی پیش آمده است.</div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered align-items-center">
+                        <tbody>
+                            <tr>
+                                <td>نام دوره</td>
+                                <td class="text-right">{{course.Name}}</td>
+                            </tr>
+                            <tr>
+                                <td><span>زمان دوره</span></td>
+                                <td class="text-right"><span>{{course.Length}} روز</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>کد رهگیری خرید</span></td>
+                                <td class="text-right"><span>{{code}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <form class="text-center mt-0">
+                    <a href="/Course/{{course.Slug}}" class="btn btn-success mt-2"> برگشتن به صفحه دوره <i class="fa fa-arrow-circle-right"></i></a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

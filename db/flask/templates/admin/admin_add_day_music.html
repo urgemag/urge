@@ -1,0 +1,168 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - اضافه کردن موزیک روز {% endblock %} {% block additional_in_head %}
+<link href="/static//assets/plugins/fileuploads/css/dropify.css" rel="stylesheet"> {% endblock %} {% block additional_in_script %}
+<script src="/static//assets/plugins/fileuploads/js/dropify.js"></script>
+<script src="/static//assets/plugins/fileuploads/js/dropify-demo.js"></script>
+
+
+{% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Add/Day"> اضافه کردن روز </a></li>
+<li class="breadcrumb-item active" aria-current="page"> موزیک </li>
+{% endblock %} {% block body %}
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="card">
+                <form id='submit_form' method="POST" enctype="multipart/form-data">
+
+                    <div class="card-header">
+                        <h3 class="mb-0 card-title">اضافه کردن موزیک روز دوره</h3>
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                        <h3 style="text-align: center; color: {{message.Color}} ">{{message.Result}}</h3>
+                        {% endfor %} {% endif %} {% endwith %}
+
+                        <div class=" row ">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">دوره</label>
+                                        <select name='slug' class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                                                <optgroup label="اسم دوره " >
+
+                                                                {% for Course in Courses %}
+                                                                    <option value="{{Course.Slug}}">{{Course.Name}}</option>
+                                                                {% endfor %}
+
+                                                                </optgroup>
+
+                                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">روز</label>
+                                        <input type="number" min="1" class="form-control" name="day" placeholder="شماره روز دوره " required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group mb-0">
+                                    <label style=" display: contents; " class="form-label">توضیحات موزیک</label>
+
+                                    <p style="color: #ff0000; display: contents; "> * </p>
+
+                                    <textarea required="required" style="margin-top:10px;" class="form-control" name="description" rows="2 " placeholder="اطلاعات و توضیحات موزیک ها"></textarea>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" id="muiscs">
+
+
+
+                            <div class="music-sample" id="music-sample" style="display: contents;">
+
+                                <div class="col-xl-4 col-lg-12 col-md-12" style=" max-width: 50%; margin-top: 20px;">
+                                    <div class="card shadow">
+                                        <div class="card-header">
+                                            <h3 style=" display: contents; " class="mb-0 card-title">آپلود موزیک</h3>
+                                            <p style="color: #ff0000; display: contents; "> * </p>
+                                            </label>
+                                        </div>
+                                        <div class="card-body">
+                                            <input type="file" name="music" class="dropify" accept=".mp3" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-xl-4 col-lg-12 col-md-12" style=" max-width: 25%; margin-top: 20px;">
+                                    <div class="card shadow">
+                                        <div class="card-header" style="border-right: none !important;">
+                                            <h3 style=" display: contents;" class="mb-0 card-title">آپلود کاور</h3>
+                                            <p style="color: #ff0000; display: contents; "> * </p>
+                                            </label>
+                                        </div>
+                                        <div class="card-body">
+                                            <input type="file" name="cover" class="dropify" accept=".jpg,.jpeg,.webp,.png" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 " style="margin-top: 60px;max-width: 25%;">
+                                    <div class="form-group ">
+                                        <div class="form-group ">
+                                            <label class="form-label ">نام<p style="color: #ff0000; display: contents; "> * </p></label>
+                                            <input type="text" class="form-control" name="music_name" placeholder="اسم موزیک">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div id="price_show" class="form-group ">
+                                        <label class="form-label ">خالق اثر<p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <input type="text" class="form-control" name="creator" placeholder="خواننده یا آهنگساز">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="col-md-12 ">
+                            <button onclick="addmusic()" style="margin-top: 30px; margin-right: 5px" type="button" class="btn btn-warning btn-sm mb-1">اضافه کردن</button>
+                            <button onclick="removemusic()" style="margin-top: 30px; margin-right: 5px" type="button" class="btn btn-info btn-sm mb-1">حذف کردن</button>
+                        </div>
+
+
+                    </div>
+
+
+                    <script>
+                        function addmusic() {
+
+                            //var countquotes = document.getElementsByClassName("music").length + 1;
+                            const div = document.createElement('div');
+
+                            div.style = "display: contents;"
+                            div.className = "music"
+                            node = document.getElementById("music-sample")
+
+                            div.innerHTML = node.innerHTML;
+
+                            document.getElementById('muiscs').appendChild(div);
+                        }
+
+                        function removemusic() {
+                            var musics = document.getElementsByClassName("music");
+                            if (musics.length != 0) {
+                                musics[musics.length - 1].remove();
+                            }
+                        }
+                    </script>
+
+
+                    <button type="submit " class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

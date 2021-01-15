@@ -1,0 +1,165 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - اضافه کردن دوره {% endblock %} {% block additional_in_head %}
+<link href="/static//assets/plugins/fileuploads/css/dropify.css" rel="stylesheet"> {% endblock %} {% block additional_in_script %}
+
+<script src="/static//assets/plugins/fileuploads/js/dropify.js"></script>
+<script src="/static//assets/plugins/fileuploads/js/dropify-demo.js"></script>
+
+
+{% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> اضافه کردن دوره </li>
+{% endblock %} {% block body %}
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="card">
+                <form id='submit_form' method="POST" enctype="multipart/form-data">
+
+                    <div class="card-header">
+                        <h3 class="mb-0 card-title">اضافه کردن دوره</h3>
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                        <h3 style="
+                                                text-align: center;
+                                                color: {{message.Color}} ">{{message.Result}}</h3>
+                        {% endfor %} {% endif %} {% endwith %}
+
+                        <div class=" row ">
+                            <div class="col-md-6 ">
+                                <div class="form-group ">
+                                    <label class="form-label ">اسم دوره <p style="color: #ff0000; display: contents; "> * </p></label>
+                                    <input type="text" class="form-control " name="name" placeholder="اسم دوره به فارسی ">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="form-group ">
+                                    <label class="form-label ">اسم دوره به انگلیسی<p style="color: #ff0000; display: contents; "> * </p></label>
+                                    <input type="text " class="form-control " name="slug" placeholder="نام دوره به انگلیسی ">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <div class="form-group mb-0 ">
+                                    <label style=" display: contents; " class="form-label">خلاصه کوچکی از دوره</label>
+                                    <p style="color: #ff0000; display: contents; "> * </p>
+                                    </label>
+                                    <textarea minlength="130" maxlength="140 " class="form-control" name="description" rows="2 " placeholder="خلاصه ای از دوره برای نمایش در صفحه دوره ها "></textarea>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-xl-4 col-lg-12 col-md-12" style=" max-width: 50%; margin-top: 20px;">
+                                <div class="card shadow">
+                                    <div class="card-header">
+                                        <h3 style=" display: contents; " class="mb-0 card-title">آپلود کاور</h3>
+                                        <p style="color: #ff0000; display: contents; "> * </p>
+                                        </label>
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="file" name="cover" class="dropify" accept=".jpg,.jpeg,.webp,.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-4 " style="margin-top: 60px;max-width: 25%;">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">هزینه</label>
+                                        <select name="price-status" onchange="pricecheck() " id="price" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                                                <optgroup label="هزینه ">
+                                                                    <option value="None-Free">دارای هزینه</option>
+                                                                    <option value="Free">رایگان</option>
+                                                                </optgroup>
+                                                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+
+                                    <label style=" display: contents; " class="form-label ">طول دوره<p style="color: #ff0000; display: contents; "> * </p></label>
+                                    <input type="number" min="1" class="form-control" name="len" placeholder="تعداد روزهای دوره ">
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="form-label ">رُبان</label>
+                                    <input type="text" class="form-control" name="robbin" placeholder="ربان دوره ">
+                                </div>
+                            </div>
+                            <div class="col-md-4 " style="margin-top: 60px;max-width: 25%;">
+
+                                <div id="price_show" class="form-group ">
+                                    <label class="form-label ">قیمت<p style="color: #ff0000; display: contents; "> * </p></label>
+                                    <input type="text" class="form-control" name="price" placeholder="499,000 ">
+                                </div>
+                                <script>
+                                    function pricecheck() {
+                                        var x = document.getElementById("price");
+                                        var i = x.selectedIndex;
+                                        if (x.options[i].value === "None-Free") {
+                                            document.getElementById("price_show").style.display = "block";
+                                        } else {
+                                            document.getElementById("price_show").style.display = "none";
+
+                                        }
+                                    }
+
+                                    function sooncheck() {
+                                        var x = document.getElementById("status_course");
+                                        var i = x.selectedIndex;
+                                        if (x.options[i].value === "Soon") {
+                                            document.getElementById("date_give").style.display = "block";
+                                        } else {
+                                            document.getElementById("date_give").style.display = "none";
+
+                                        }
+                                    }
+                                </script>
+
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">وضعیت دوره</label>
+                                        <select id="status_course" onchange="sooncheck()" name="soon" class="form-control select2 select2-hidden-accessible" data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                                                <optgroup label="وضعیت ">
+                                                                    <option value="Soon">به زودی</option>
+                                                                    <option value="Not-Soon">آماده</option>
+                                                                </optgroup>
+                                                            </select>
+                                    </div>
+                                </div>
+
+                                <div id="date_give" class="form-group ">
+                                    <label class="form-label ">چند روز تا بازشدن<p style="color: #ff0000; display: contents; "> * </p></label>
+                                    <input type="number" min="1" class="form-control" name="date_open" placeholder="5 ">
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <button type="submit " class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- row end --         {{courses|safe}}>
+							</div>
+							<!-- row end -->
+
+
+    </div>
+    <!-- col end -->
+</div>{% endblock %}

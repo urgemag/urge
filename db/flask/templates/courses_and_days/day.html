@@ -1,0 +1,261 @@
+{% extends "base.html" %} {% block title %}روز {{day.Day}} از دوره {{details.Name}}{% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
+<li class="breadcrumb-item"><a href="/Course/{{day.Slug}}"> {{course.Name}} </a></li>
+<li class="breadcrumb-item active" aria-current="page">روز {{day.Day}}</li>
+{% endblock %} {% block additional_in_head %}
+<style>
+    .plyr__progress input {
+        direction: ltr !important;
+    }
+    
+    .plyr__volume input {
+        direction: ltr !important;
+    }
+    
+    .plyr__menu__value {
+        padding-right: 15px;
+    }
+    
+    .plyr__control>span {
+        padding-right: 5px;
+    }
+    
+    .plyr--video {
+        width: 100%;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const player = Plyr.setup('.js-player');
+    });
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+<link rel="stylesheet" href="/static/assets/css/plyr.css" />
+<script src="/static/assets/js/plyr.js"></script>
+
+{% endblock %} {% block body %}
+
+<div class="row row-cards">
+    <div class="col-lg-8 col-xl-8" style="max-width: 63.666667%;">
+        <div class="card">
+            <div class="card-body single-productslide" id='text_main'>
+
+                {% if day.Text %} {{day.Text|safe}} {% endif %}
+            </div>
+
+            <script>
+                elms = document.getElementById("text_main").getElementsByTagName("img");
+                for (i = 0; i < elms.length; i++) {
+                    elms[i].setAttribute("class", "day-image");
+                }
+            </script>
+        </div>
+        {% if day.To_Do %}
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">تمارین</h3>
+                <div class="card-options">
+                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="#" class="card-options-remove" data-toggle="card-remove"></a>
+                </div>
+            </div>
+            <div class="card-body">
+                {{day.To_Do|safe}}
+            </div>
+            <div class="card-footer">
+                پایان روز {{day.Day}}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    <div class="col-lg-5 col-xl-5" style="max-width: 36%;">
+
+
+
+        <div class="card">
+            <div class="card-status card-status-left bg-primary br-bl-7 br-tl-7"></div>
+            <div class="card-header">
+                <h3 class="card-title">روز {{day.Day}}</h3>
+                <div class="card-options">
+                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                </div>
+            </div>
+            {% if day.Description %}
+            <div class="card-body">
+                {{day.Description}}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if day.Musics %}
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    موزیک ها
+                </h3>
+            </div>
+            <div class="card-body">
+                {{day.Musics_Description}}
+            </div>
+            <div style="font-family: 'iranyekan';" id="aplayer"></div>
+            <script>
+                new APlayer({
+                    container: document.getElementById('aplayer'),
+                    mini: false,
+                    autoplay: false,
+                    theme: '#FADFA3',
+                    loop: 'all',
+                    order: 'random',
+                    preload: 'auto',
+                    volume: 0.7,
+                    mutex: true,
+                    listFolded: false,
+                    listMaxHeight: 90,
+                    lrcType: 3,
+                    audio: JSON.parse('{{ day.Musics | tojson | safe}}'),
+                });
+            </script>
+
+        </div>
+        {% endif %} {% if day.Quotes[0] %}
+        <div class="card text-white bg-gradient-primary">
+            <div class="card-body">
+                <p class="card-text">{{day.Quotes[0]}}</p>
+            </div>
+        </div>
+        {% endif %} {% if day.Movie_Links %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">فیلم پیشنهادی انگیزشی</h3>
+                <div class="card-options">
+                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                </div>
+            </div>
+            <img src="{{day.Movie_Cover}}" alt="">
+            <div class="card-body">
+                {{day.Movie_Text|safe}}</div>
+            <table class="table card-table border">
+                <tbody>
+                    <tr>
+                        {% for Link in day.Movie_Links %}
+                        <td style="padding-left: 10px !important;padding-right: 10px !important;"><a href="{{Link.Link}}"><button type="button" class="btn btn-info btn-block" style="/* border-left: outset; */">کیفیت {{Link.Quality}}</button></a></td>
+                        {% endfor %}
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %} {% if day.Quotes[1] %}
+        <div class="card text-white bg-gradient-info">
+            <div class="card-body">
+                <p class="card-text">{{day.Quotes[1]}}</p>
+            </div>
+        </div>
+        {% endif %} {% if day.Animation_Link %}
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <form class="shop__filter card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            انیمیشن کوتاه
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        {{day.Animation_Description}}
+                    </div>
+                    <div class="card-body" style="padding: 0rem 0.25rem;">
+                        <div class="row gutters-xs">
+                            <video poster="https://pi.tedcdn.com/r/pl.tedcdn.com/social/ted-logo-fb.png?v=wAff13s?" class="js-player">
+                                                    {% for single_video in day.Animation_Link %}
+                                                    <source src="{{single_video.Link}}" type="video/mp4" size="{{single_video.Quality}}">
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endif %} {% if day.Quotes[2] %}
+                            <div class="card text-white bg-gradient-success">
+                                <div class="card-body">
+                                    <p class="card-text">{{day.Quotes[2]}}</p>
+                                </div>
+                            </div>
+                            {% endif %} {% if day.Ted_Video %}
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <form class="shop__filter card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                ویدیو تد
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            {{day.Ted_Video_Description}}
+                                        </div>
+                                        <h4>{{Ted_Video}}</h4>
+                                        <div class="card-body" style="padding: 0rem 0.25rem;">
+                                            <div class="row gutters-xs">
+                                                <video class="js-player" poster="https://pi.tedcdn.com/r/pl.tedcdn.com/social/ted-logo-fb.png?v=wAff13s?">
+                                                    {% for single_video in day.Ted_Video %}
+                                                        <source src="{{single_video.Link}}" type="video/mp4" size="{{single_video.Quality}}">
+                                                    {% endfor %}
+
+                                                  </video>
+                        </div>
+
+
+                    </div>
+
+            </div>
+        </div>
+        {% endif %}
+
+
+
+        <!-- row end -->
+        {% if day.Quotes[3] %}
+        <div class="card text-white bg-gradient-warning">
+            <div class="card-body">
+                <p class="card-text">{{day.Quotes[3]}}</p>
+            </div>
+        </div>
+        {% endif %} {% if day.Podcast %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    پادکست پیشنهادی
+                </h3>
+            </div>
+            <div class="card-body">
+                {{day.Podcast_Description}}
+            </div>
+            <div class="card-body" style="padding: 0rem 0.25rem;">
+                <div style="font-family: 'iranyekan';" id="aplayer3"></div>
+
+                <script>
+                    new APlayer({
+                        container: document.getElementById('aplayer3'),
+                        audio: [JSON.parse('{{ day.Podcast | tojson | safe}}')]
+                    });
+                </script>
+            </div>
+        </div>
+        {% endif %} {% if day.Quotes[4] %}
+        <div class="card text-white bg-gradient-success">
+            <div class="card-body">
+                <p class="card-text">{{day.Quotes[4]}}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

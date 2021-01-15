@@ -1,0 +1,8 @@
+flask
+pillow
+flask_recaptcha
+pymongo
+filetype
+gunicorn
+suds-py3
+requests

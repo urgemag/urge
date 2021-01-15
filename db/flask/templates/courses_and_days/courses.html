@@ -1,0 +1,141 @@
+{% extends "base.html" %} {% block title %} پنل شخصی موفقیت اِرج - دوره ها {% endblock %} {% block breadcrumb %}
+
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item active" aria-current="page">دوره ها </li>
+{% endblock %} {% block main_css %}
+<script src="/static/sweetalert/sweetalert2@10.js"></script>
+<link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
+
+{% block body %}
+<script>
+    function available_soon(days_till) {
+        Swal.fire({
+            icon: 'error',
+            title: 'به زودی',
+            text: 'این دوره  ' + days_till + ' روز دیگر باز میشود.',
+        })
+    }
+</script>
+<style>
+    .course_img {
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transition: 1.2s ease-in-out;
+        -o-transition: 1.2s ease-in-out;
+    }
+    .course_img:hover {
+        -webkit-transform: scale(1.05);
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transform: scale(1.05);
+        -moz-transition: 1.2s ease-in-out;
+        -o-transform: scale(1.05);
+        -o-transition: 1.2s ease-in-out;
+    }
+</style>
+
+<!-- row -->
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-12">
+        <div class="row">
+
+            {% for course in courses %}
+            <div class="col-md-12 col-lg-6 col-md-4 col-xl-3 ">
+                <div class="card overflow-hidden">
+
+                    {% if course["Robbin"] and course["Robbin"] != " " and course["Robbin"] != "" and course["Robbin"] != None and course.Slug not in accesses %}
+                    <div class="ribbone">
+                        <span class="ribbon1"><span style="border-radius: 30px;padding-top: 13px;">{{course["Robbin"]}}</span>
+                        </span>
+                    </div>
+                    {% elif course.Slug in accesses %}
+                    <div class="ribbone">
+                        <span class="ribbon1"><span style="background: #00d49d; border-radius: 30px;padding-top: 13px;">دسترسی کامل</span>
+                        </span>
+                    </div>
+                    {% endif %} {% if days_till_now
+                    < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')">
+                        {% else %}
+                        <a href="/Course/{{course.Slug}}">
+
+                        {% endif %}
+                        <img class="course_img" src='{{course.Cover}}' alt="image">
+                    </a>
+                        <div class="card-body" style="background-color: white">
+
+                            <h5 class="card-title mb-3" style="display: contents;">{{course.Name}}</h5>
+                            {% if days_till_now
+                            < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')" style="display:inline-block; margin-right: 13px;background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);-webkit-text-fill-color: transparent;-webkit-background-clip: text;-moz-background-clip: text;-webkit-text-fill-color: transparent;-moz-text-fill-color: transparent;"><i class="zmdi zmdi-label"></i> بازگشایی تا {{ course["Published_Date"] - days_till_now }} روز دیگر </a>
+                            {% elif course.Slug in accesses %}
+                            <a class="" style="display:inline-block; margin-right: 13px;background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);-webkit-text-fill-color: transparent;-webkit-background-clip: text;-moz-background-clip: text;-webkit-text-fill-color: transparent;-moz-text-fill-color: transparent;"><i class="zmdi zmdi-label"></i> دسترسی کامل </a>
+                            
+                                {% elif course.Free or course.Now_Price == 0 %}
+                                <a class="" style="display:inline-block; margin-right: 13px;background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);-webkit-text-fill-color: transparent;-webkit-background-clip: text;-moz-background-clip: text;-webkit-text-fill-color: transparent;-moz-text-fill-color: transparent;"><i class="zmdi zmdi-label"></i> رایگان </a>
+                                {% endif %}
+                                <p class="card-text">{{course.Description}}</p>
+
+
+
+                                {% if days_till_now
+                                < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')" class="btn btn-success" style="
+                                                                display: block;
+                                                                color: #3e3e3e;
+                                                                background: #f1f1f140;
+                                                                border-color: #f1f1f15c;
+                                                                margin-top: -6px;
+                                                                margin-bottom: 14px;
+                                                                border-radius: 50px;
+                                                        ">بازگشایی تا {{ course["Published_Date"] - days_till_now }} روز دیگر</a>
+
+                                                        {% elif course.Slug in accesses %} <a class="btn btn-success" style="
+                                                        display: block;
+                                                        color: #3e3e3e;
+                                                        background: #f1f1f140;
+                                                        border-color: #f1f1f15c;
+                                                        margin-top: -6px;
+                                                        margin-bottom: 14px;
+                                                        border-radius: 50px;
+                                                "> دسترسی کامل</a>
+                        
+                                    {% elif course.Free or course.Now_Price == 0 %} <a class="btn btn-success" style="
+                                                    display: block;
+                                                    color: #3e3e3e;
+                                                    background: #f1f1f140;
+                                                    border-color: #f1f1f15c;
+                                                    margin-top: -6px;
+                                                    margin-bottom: 14px;
+                                                    border-radius: 50px;
+                                            "> رایگان </a>{% elif course.Slug not in accesses %}
+                                    <a class="btn btn-success" style="
+																		display: block;
+																		color: #3e3e3e;
+																		background: #f1f1f140;
+																		border-color: #f1f1f15c;
+																		margin-top: -6px;
+																		margin-bottom: 14px;
+																		border-radius: 50px;
+																	"> {{ price_beautifier(course.Now_Price) }} تومان </a> {% else %} <a class="btn btn-success" style="
+                                                                    display: block;
+                                                                    color: #3e3e3e;
+                                                                    background: #f1f1f140;
+                                                                    border-color: #f1f1f15c;
+                                                                    margin-top: -6px;
+                                                                    margin-bottom: 14px;
+                                                                    border-radius: 50px;
+                                                                "> دسترسی کامل </a>{% endif %} {% if days_till_now
+                                    < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')" class="btn btn-info" style="color: white;"> مشاهده بیشتر و خرید تا {{ course["Published_Date"] - days_till_now }} روز دیگر </a> {% else %} <a href="/Course/{{course.Slug}}" class="btn btn-info"> مشاهده بیشتر</a> {% endif %} 
+                                    {% if (course.Free or course.Now_Price== 0 ) and not course.Soon and course.Slug not in accesses %}
+
+                                        <a href="/Course/{{course.Slug}}/start" class="btn btn-success"> شروع </a> {% elif not course.Soon %} {% if course.Slug not in accesses %}
+                                        <a href="/Course/{{course.Slug}}/buy" class="btn btn-success"> خرید </a> {% endif %} {% endif %}
+
+
+                        </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

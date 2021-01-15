@@ -1,0 +1,72 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - حذف روز {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> حذف کردن روز </li>
+{% endblock %} {% block body %}
+
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="card">
+                <form id='submit_form' method="post">
+
+                    <div class="card-header">
+                        <h3 class="mb-0 card-title">حذف روز</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="col-md-12 ">
+                                <h3 style="margin-top: 25px; text-align: center;color: #000;">دوره و روز برای <b style="color: red;">حذف کردن</b></h3>
+                            </div>
+                            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                            <div class="col-md-12 ">
+
+                                <h3 style="
+                                                    text-align: center;
+                                                    padding-top: 40px;
+                                                    color: {{message.Color}} ">{{message.Result}}</h3>
+                            </div>
+
+                            {% endfor %} {% endif %} {% endwith %}
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">دوره</label>
+                                        <select name='slug' class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                                            <optgroup label="اسم دوره " >
+
+                                                            {% for Course in Courses %}
+                                                                <option value="{{Course.Slug}}">{{Course.Name}}</option>
+                                                            {% endfor %}
+
+                                                            </optgroup>
+
+                                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">روز</label>
+                                        <input type="number" min="1" class="form-control" name="day" placeholder="شماره روز دوره " required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary " style="width: 100%;">بزن بحذفیم!</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

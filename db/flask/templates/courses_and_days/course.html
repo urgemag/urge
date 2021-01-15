@@ -1,0 +1,372 @@
+{% extends "base.html" %} {% block title %} دوره {{course.Name}} - پنل موفقیت اِرج {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
+<li class="breadcrumb-item active" aria-current="page">دوره {{course.Name}}</li>
+{% endblock %} {% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" />
+<script src="/static/sweetalert/sweetalert2@10.js"></script>
+<style>
+    .no_access:hover {
+        background-color: #424242 !important;
+        border-color: #424242 !important;
+    }
+    .grayscale_access {
+        -webkit-filter: grayscale(0%);
+        -webkit-transition: .4s ease-in-out;
+        -moz-filter: grayscale(0%); 
+        -moz-transition: .4s ease-in-out;
+        -o-filter: grayscale(0%); 
+        -o-transition: .4s ease-in-out;
+    }
+    .grayscale_access:hover {
+        -webkit-filter: grayscale(100%);
+        -webkit-transition: .4s ease-in-out;
+        -moz-filter: grayscale(100%);
+        -moz-transition: .4s ease-in-out;
+        -o-filter: grayscale(100%);
+        -o-transition: .4s ease-in-out;
+    }
+    .day_img {
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transition: 1.2s ease-in-out;
+        -o-transition: 1.2s ease-in-out;
+    }
+    .day_img:hover {
+        -webkit-transform: scale(1.05);
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transform: scale(1.05);
+        -moz-transition: 1.2s ease-in-out;
+        -o-transform: scale(1.05);
+        -o-transition: 1.2s ease-in-out;
+    }
+</style>
+{% endblock %} {% block header_left %}
+<a class="btn btn-light mt-4 mt-sm-0" href="/Course/{{course.Slug}}/info"><i class="fe fe-help-circle mr-1 mt-1"></i>
+    اطلاعات دوره
+</a> {% if course.Now_Price != 0 and course.Free != True and course.Slug not in accesses %}
+<a class="btn btn-success mt-4 mt-sm-0" href="/Course/{{course.Slug}}/buy"><i class="fe fe-plus mr-1 mt-1"></i> خرید
+</a>{% else %}<a id="courses" style="background-color: #00d49d; border-color: #00d49d" class="btn btn-success mt-4 mt-sm-0" href="/Courses"><i class="fe fe-plus mr-1 mt-1"></i> دوره ها
+</a> {% endif %} {% endblock %} {% if course.Now_Price != 0 and course.Free != True and course.Slug not in accesses %}{% block instead_of_blog_header %}
+<a id="courses" style="
+    height: 100%;
+    margin-top: 0px !important;
+    background-color: #0085b6;
+    border-color: #0085b6;
+  " class="btn btn-success mt-4 mt-sm-0" href="/Courses"><i class="fa fa-bank mr-1 mt-1"></i> دوره ها
+</a> {% endblock %}{% endif %} 
+
+{% block body %}
+
+<!-- row -->
+{% if course.Slug in accesses %}
+<div class="text-wrap" style="text-align: center">
+    <div class="">
+        <div class="alert alert-success" role="alert">
+            شما دسترسی کامل به دوره <b>{{course.Name}}</b> را دارید.
+        </div>
+    </div>
+</div>
+{% endif %}
+<script>
+    function not_access_alert(slug) {
+        Swal.fire({
+            icon: "error",
+            title: "دسترسی",
+            text: "شما به این دوره دسترسی ندارید.",
+            footer: "<a href=/Course/" +
+                slug +
+                "/buy >میتوانید از اینجا دوره را خریداری کنید</a>",
+        });
+    }
+    function bought_but_not_access_alert(days_till_access) {
+        Swal.fire({
+            icon: "error",
+            title: "دسترسی",
+            html: "<b>دسترسی در "+days_till_access+" روز دیگر باز میشود.</b>",
+            footer:"<p style='text-align:center;'>متاسفانه شما به این روز از دوره دسترسی ندارید,<br> زیرا محتواها روز به روز باز میشنود.</p>"
+        });
+        
+    }
+    
+</script>
+<div class="row row-cards">
+
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12">
+        <a href="/Course/{{course.Slug}}/info">
+            <div class="card card-counter bg-gradient-pink">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fa fa-quote-right mt-3 mb-0 text-white-transparent"></i>
+                        </div>
+                        <div class="col-8 text-center" style="max-width: 100%; flex: 0 0 75%; text-align-last: center">
+                            <div class="mt-4 mb-0 text-white">
+                                <a href="/Course/{{course.Slug}}/info">
+                                    <h3 class="mb-0" style="font-weight: 900 !important; color: #fff">
+                                        {{course.Name}}
+                                    </h3>
+                                </a>
+                                <a href="/Course/{{course.Slug}}/info">
+                                    <p style="color: #fff" class="text-white mt-1">نام دوره</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+        <div class="card card-counter bg-gradient-warning">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mt-4 mb-0 text-white">
+                            <a href="/Course/{{course.Slug}}/info">
+                                <h3 style="color: #fff" class="mb-0">{{course.Length}} روز</h3>
+                            </a>
+                            <a href="/Course/{{course.Slug}}/info">
+                                <p style="color: #fff" class="text-white mt-1">مدت دوره</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <i class="fa fa-calendar mt-3 mb-0 text-white-transparent"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+    <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+        <div class="card card-counter bg-gradient-success">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mt-4 mb-0 text-white">
+                            {% if course.Free == true or course.Now_Price==0 %}
+                            <h3 class="mb-0">رایگان</h3>
+                            {% else %}
+                            <h3 class="mb-0">
+                                {{ price_beautifier(course.Now_Price) }} تومان
+                            </h3>
+                            {% endif %}
+
+                            <p class="text-white mt-1">هزینه دوره</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <i class="fa fa-money mt-3 mb-0 text-white-transparent"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+</div>
+<div class="row">
+    {% if course.Slug not in accesses and (course.Free == false or course.Now_Price !=0) %}
+    <div class="col-md-6 col-lg-4 col-md-4 col-xl-3">
+        <div class="card overflow-hidden">
+            
+            <a href="/Course/{{course.Slug}}/buy">
+                <img class="day_img" src="https://cdn.dribbble.com/users/677086/screenshots/3785687/pay_succeed.png?compress=1&resize=800x600" alt="image" />
+            </a>
+            <div class="card-body" style="background: #8ee1d7;
+            color: #344a46;
+            background-image: linear-gradient(#8ee1d7, #c6ece8);">
+                <h5 class="card-title mb-3" style="display: inline-block">
+                    خرید دوره
+                </h5>
+
+                <a class="" style="
+            margin-right: 13px;
+            background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+          "><i class="zmdi zmdi-label"></i> خرید
+                </a>
+
+                <p class="card-text">{{course.Description}}</p>
+
+                <a href="/Course/{{course.Slug}}/info" class="btn btn-primary">
+                    اطلاعات بیشتر
+                </a>
+                <a href="/Course/{{course.Slug}}/buy" class="btn btn-success">
+                    خرید
+                </a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if course.Slug not in accesses and (course.Free == true or course.Now_Price ==0) %}
+<div class="col-md-6 col-lg-4 col-md-4 col-xl-3">
+    <div class="card overflow-hidden">
+        
+        <a href="/Course/{{course.Slug}}/buy">
+            <img class="day_img" src="https://cdn.dribbble.com/users/677086/screenshots/3784639/scan_qr.png?compress=1&resize=800x600" alt="image" />
+        </a>
+        <div class="card-body" style="background: #8ee1d7;
+        color: #344a46;
+        background-image: linear-gradient(#8ee1d7, #c6ece8);">
+            <h5 class="card-title mb-3" style="display: inline-block">
+                شروع دوره
+            </h5>
+
+            <a class="" style="
+        margin-right: 13px;
+        background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+      "><i class="zmdi zmdi-label"></i> شروع
+            </a>
+
+            <p class="card-text">{{course.Description}}</p>
+
+            <a href="/Course/{{course.Slug}}/info" class="btn btn-primary">
+                اطلاعات بیشتر
+            </a>
+            <a href="/Course/{{course.Slug}}/buy" class="btn btn-success">
+                شروع
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+    {% if intro %}
+
+    <div class="col-md-6 col-lg-4 col-md-4 col-xl-3">
+        <div class="card overflow-hidden">
+            <a href="/Course/{{course.Slug}}/info"><img class="day_img" src="{{course.Cover}}" alt="image">
+            </a>
+            <div class="card-body" style="background-color: white">
+            <h5 class="card-title mb-3" style="display: inline-block">
+                اطلاعات دوره
+            </h5>
+                <a class="" style="
+            display: inline-block;
+            margin-right: 13px;
+            background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+            font-weight: 400;
+          "><i class="zmdi zmdi-label"></i> روز 0
+                </a> 
+
+                <p class="card-text">{{course.Description}}</p>
+                <a href="/Course/{{course.Slug}}/info" class="btn btn-primary">اطلاعات بیشتر</a>
+            </div>
+        </div>
+    </div>
+    
+    {% endif %} 
+    {% for day in days %} 
+    {% if day.Name and day.Cover and day.Description and day.Free != None %}
+    <div class="col-md-6 col-lg-4 col-md-4 col-xl-3">
+        {% if course.Slug in accesses and (accesses[day.Slug]-1+ day.Day|int -days_till_now) > 0 %}
+        <div class="card overflow-hidden grayscale_access">
+            {% else %}
+        <div class="card overflow-hidden">
+
+            {% endif %}
+        {% if day.Slug in accesses and day.Day == days_till_now-accesses[day.Slug]+1 %}
+            <div class="ribbone">
+                <span class="ribbon1"><span style="border-radius: 30px;padding-top: 13px;">برای امروز</span>
+                </span>
+            </div>
+            {% endif %}
+            {% if course.Slug in accesses and (accesses[day.Slug]-1+ day.Day|int -days_till_now) > 0 %}
+            <a onclick="bought_but_not_access_alert('{{accesses[day.Slug]-1 + day.Day|int -days_till_now}}')"><img src="{{day.Cover}}" alt="image" />
+            
+            {% elif course.Slug in accesses or day.Free == True %}
+            <a href="/Course/{{day.Slug}}/{{day.Day}}"><img class="day_img" src="{{day.Cover}}" alt="image" />
+            </a>
+
+            {% else %}
+
+            <a onclick="not_access_alert('{{day.Slug}}')"><img class="day_img" src="{{day.Cover}}" alt="image" />
+            </a>
+
+            {% endif %}
+
+            {% if day.Slug in accesses and day.Day == days_till_now-accesses[day.Slug]+1 %}
+            <div class="card-body" style="
+            background-image: linear-gradient(to top, #e4e4e4 0%, white 100%);" >
+            {% else %}
+            <div class="card-body" style="background-color: white" >
+            {% endif %} 
+            {% if course.Slug in accesses and (accesses[day.Slug]-1+day.Day|int-days_till_now) > 0 %}
+            <i class="ion-locked mr-1 mt-1"></i>
+                <h5 class="card-title mb-3" style="display: inline-block">
+                    روز {{day.Day}}
+                </h5>
+            {% else %}
+            <h5 class="card-title mb-3" style="display: inline-block">
+                روز {{day.Day}}
+            </h5>
+            {% endif %}
+                <h5 class="card-title mb-3" style="display: contents;font-size: 0.9rem;">
+                    : {{day.Name}}
+                </h5>
+
+                {% if day.Free == True and day.Slug not in accesses %}
+                <a class="" style="
+            display: inline-block;
+            margin-right: 13px;
+            background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+          "><i class="zmdi zmdi-label"></i> رایگان
+                </a> {% elif day.Slug in accesses and day.Day == days_till_now-accesses[day.Slug]+1 %}
+                <a class="" style="
+            display: inline-block;
+            margin-right: 13px;
+            background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+            font-weight: 400;
+          "><i class="zmdi zmdi-label"></i> برای امروز
+                </a> {% endif %}
+
+                <p class="card-text">{{day.Description}}</p>
+                {% if course.Slug in accesses and (accesses[day.Slug]-1+day.Day|int-days_till_now) == 0 %}
+                <a style="font-weight: 400 !important;" href="/Course/{{day.Slug}}/{{day.Day}}" class="btn btn-primary">بزن بریم!</a>
+                {% elif course.Slug in accesses and (accesses[day.Slug]-1+day.Day|int-days_till_now) > 0 %}
+                <button style="font-weight: 400 !important; background-color: #585858; border-color: #585858;" onclick="bought_but_not_access_alert('{{accesses[day.Slug]-1 + day.Day|int -days_till_now}}')" class="btn btn-primary no_access">
+                    <i class="fe fe-lock mr-1 mt-1"></i> مشاهده بیشتر
+                </button>
+                {% elif course.Slug in accesses or day.Free %}
+                <a href="/Course/{{day.Slug}}/{{day.Day}}" class="btn btn-primary">
+                    مشاهده بیشتر</a> 
+                    {% else %}
+                <button onclick="not_access_alert('{{day.Slug}}')" class="btn btn-primary">
+                    مشاهده بیشتر
+                </button> {% endif %} {% if day.Free == True %} {% if course.Slug not in accesses and course.Free != True %}
+                <a href="/Course/{{day.Slug}}/{{day.Day}}" class="btn btn-light mt-4 mt-sm-0"><i
+                        class="fa fa-unlock-alt"></i> دمو
+                </a> {% endif %} {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %} {% endfor %}
+</div>
+
+{% endblock %}

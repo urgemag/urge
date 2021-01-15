@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/static//assets/images/brand/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="/static//assets/images/brand/favicon.ico" />
+
+    <!-- Title -->
+    <title>{% block title %}{% endblock %}</title>
+
+
+
+    <!--Bootstrap.min css-->
+    <link rel="stylesheet" href="/static//assets/plugins/bootstrap/css/bootstrap.min.css">
+
+    <!-- Dashboard css -->
+    {% block main_css %}
+    <link href="/static//assets/css/style.css" rel="stylesheet" /> {% endblock %}
+
+    <!-- Custom scroll bar css-->
+    <link href="/static//assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+    <!-- Sidemenu css -->
+    <link href="/static//assets/plugins/toggle-sidebar/full-sidemenu.css" rel="stylesheet" />
+
+    <!--Daterangepicker css-->
+    <link href="/static//assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- Sidebar Accordions css -->
+    <link href="/static//assets/plugins/accordion1/css/easy-responsive-tabs.css" rel="stylesheet">
+
+    <!-- Rightsidebar css -->
+    <link href="/static//assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
+    <!---Font icons css-->
+    <link href="/static//assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+    <link href="/static//assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+    <link href="/static//assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+
+    <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <link href="/static//assets/rtl.css" rel="stylesheet"> {% block additional_in_head %} {% endblock %}
+
+    <body class="app sidebar-mini rtl">
+
+        <!--Global-Loader-->
+
+        <div class="page">
+            <div class="page-main">
+
+                <!--app-header-->
+                <div class="app-header header d-flex">
+                    <div class="container-fluid">
+                        <div class="d-flex">
+                            <a class="header-brand" href="/">
+                                <img src="/static//assets/images/brand/logo.png" class="header-brand-img main-logo" alt="Hogo logo">
+                                <img src="/static//assets/images/brand/icon.png" class="header-brand-img icon-logo" alt="Hogo logo">
+                            </a>
+                            <!-- logo-->
+                            <ul class="nav navbar-nav horizontal-nav header-nav">
+                                <li class="mega-dropdown nav-item">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fe fe-grid mr-2"></i> دسترسی سریع <i class="fa fa-angle-down ml-1"></i>
+                                    </a>
+                                    <ul class="dropdown-menu mega-dropdown-menu container row p-5">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="">
+                                                        <div class="card-body p-0 relative">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <h4 aclss="mb-3"> دسترسی سریع </h4>
+                                                    ‍ <a class="dropdown-item pl-0 pr-0" href="/AboutUs"><i class="fa fa-angle-double-right text-muted mr-1"></i> درباره ما </a>
+                                                    <a class="dropdown-item pl-0 pr-0" href="/Courses"><i class="fa fa-angle-double-right text-muted mr-1"></i> دوره ها </a>
+                                                    <a class="dropdown-item pl-0 pr-0" href="/Profile"><i class="fa fa-angle-double-right text-muted mr-1"></i> پروفایل </a>
+
+                                                </div>
+                                                <div class="col-2">
+                                                    <h4 class="mb-3"> </h4>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+
+                                                    <a class="dropdown-item pl-0 pr-0" href="https://urge.ir/"><i class="fa fa-angle-double-right text-muted mr-1"></i> مقالات </a>
+                                                    <a class="dropdown-item pl-0 pr-0" href="/MotivationWall"><i class="fa fa-angle-double-right text-muted mr-1"></i> صفحه انگیزه </a>
+                                                    <a class="dropdown-item pl-0 pr-0" href="ProfileSetting"><i class="fa fa-angle-double-right text-muted mr-1"></i> ویرایش مشخصات </a>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <ul class="nav header-nav">
+
+                            </ul>
+                            <div class="d-flex order-lg-2 ml-auto header-rightmenu">
+                                <div class="dropdown">
+                                    <a class="nav-link icon full-screen-link" id="fullscreen-button">
+                                        <i class="fe fe-maximize-2"></i>
+                                    </a>
+                                </div>
+                                <!-- full-screen -->
+                                <div class="dropdown header-notify">
+                                    <a class="nav-link icon" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fe fe-bell "></i>
+                                        <span class="pulse bg-success"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
+                                        <a href="#" class="dropdown-item text-center">4 اطلاعیه جدید</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item d-flex pb-3">
+                                            <div class="notifyimg bg-green">
+                                                <i class="fe fe-mail"></i>
+                                            </div>
+                                            <div>
+                                                <strong> پیام ارسال شد. </strong>
+                                                <div class="small text-muted">12 دقیقه قبل </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item d-flex pb-3">
+                                            <div class="notifyimg bg-pink">
+                                                <i class="fe fe-shopping-cart"></i>
+                                            </div>
+                                            <div>
+                                                <strong> سفارش قرار داده شده </strong>
+                                                <div class="small text-muted">2 ساعت قبل </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item d-flex pb-3">
+                                            <div class="notifyimg bg-blue">
+                                                <i class="fe fe-calendar"></i>
+                                            </div>
+                                            <div>
+                                                <strong> رویداد آغاز شده </strong>
+                                                <div class="small text-muted">1 ساعت قبل </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item d-flex pb-3">
+                                            <div class="notifyimg bg-orange">
+                                                <i class="fe fe-monitor"></i>
+                                            </div>
+                                            <div>
+                                                <strong> راه اندازی مجدد شما </strong>
+                                                <div class="small text-muted">2 روز قبل </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item text-center">مشاهده تمام اعلان ها</a>
+                                    </div>
+                                </div>
+                                <!-- notifications -->
+                                <div class="dropdown header-user">
+                                    <a class="nav-link leading-none siderbar-link" data-toggle="sidebar-right" data-target=".sidebar-right">
+                                        <span class="mr-3 d-none d-lg-block ">
+											<span class="text-gray-white"><span class="ml-2">  ادمین  </span></span>
+                                        </span>
+                                        <span class="avatar avatar-md brround"><img src="/static//assets/images/users/avatars/admin.png" alt="Profile-img" class="avatar avatar-md brround"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        <div class="header-user text-center mt-4 pb-4">
+                                            <span class="avatar avatar-xxl brround"><img src="/static//assets/images/users/avatars/admin.png" alt="Profile-img" class="avatar avatar-xxl brround"></span>
+                                            <a href="#" class="dropdown-item text-center font-weight-semibold user h3 mb-0"> ادمین </a>
+                                            <small> طراح وب </small>
+                                        </div>
+                                        <a class="dropdown-item" href="https://urge.ir/">
+                                            <i class="dropdown-icon mdi mdi-approval "></i> وبسایت اِرج
+                                        </a>
+                                        <a class="dropdown-item" href="/Courses">
+                                            <i class="dropdown-icon  mdi mdi-wunderlist"></i> دوره های موفقیت
+                                        </a>
+                                        <div class="card-body border-top">
+                                            <div class="row">
+                                                <div class="col-6 text-center">
+                                                    <a class="" href=""><i class="dropdown-icon mdi mdi-logout-variant fs-30 m-0 leading-tight"></i></a>
+                                                    <div> خروج </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- profile -->
+                                <div class="dropdown">
+                                    <a class="nav-link icon siderbar-link" data-toggle="sidebar-right" data-target=".sidebar-right">
+                                        <i class="fe fe-more-horizontal"></i>
+                                    </a>
+                                </div>
+                                <!-- Right-siebar-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--app-header end-->
+
+                <!-- Sidebar menu-->
+                <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+                <aside class="app-sidebar toggle-sidebar">
+                    <div class="app-sidebar__user pb-0">
+                        <div class="user-body">
+                            <span class="avatar avatar-xxl brround text-center cover-image" data-image-src="/static//assets/images/users/avatars/admin.png"></span>
+                        </div>
+                        <div class="user-info">
+                            <a href="#" class="ml-2"><span class="text-dark app-sidebar__user-name font-weight-semibold">ادمین</span><br>
+
+							</a>
+                        </div>
+                    </div>
+
+                    <div class="tab-menu-heading siderbar-tabs border-0  p-0">
+                        <div class="tabs-menu ">
+                            <!-- Tabs -->
+                            <ul class="nav panel-tabs">
+                                <li class=""><a href="/" class="active" data-toggle="tab"><i class="fa fa-home fs-17"></i></a></li>
+
+
+
+
+
+                                <li><a href="/LogOut" title="logout"><i class="fa fa-power-off fs-17"></i></a></li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body tabs-menu-body side-tab-body p-0 border-0 ">
+                        <div class="tab-content">
+                            <div class="tab-pane active " id="index1">
+                                <ul class="side-menu toggle-menu">
+                                    <li>
+                                        <a class="side-menu__item" href="#"><i class="side-menu__icon typcn typcn-device-desktop"></i><span class="side-menu__label"> داشبورد </span></a>
+                                    </li>
+
+                                    <li class="slide">
+                                        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label"> برنامه ها </span><i class="angle fa fa-angle-right"></i></a>
+                                        <ul class="slide-menu">
+                                            <li><a href="/Courses" class="slide-item"> دوره ها </a></li>
+                                            <li><a href="https://urge.ir/" class="slide-item">  مقالات </a></li>
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="slide">
+                                        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-cog-outline"></i><span class="side-menu__label"> تنظیمات </span><i class="angle fa fa-angle-right"></i></a>
+                                        <ul class="slide-menu">
+                                            <li><a href="/Profile" class="slide-item"> پروفایل </a></li>
+                                            <li><a href="/ProfileSetting" class="slide-item"> ویرایش مشخصات </a></li>
+
+                                            <li><a href="mailservices" class="slide-item"> صندوق پیام ها </a></li>
+
+                                            <li><a href="/faq" class="slide-item"> سؤالات متداول </a></li>
+
+
+                                            <li><a href="/LogOut" class="slide-item"> خارج شدن </a></li>
+
+
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </aside>
+                <!--sidemenu end-->
+                <!-- app-content-->
+                <div class="app-content  my-3 my-md-5 toggle-content">
+                    <div class="side-app">
+                        <div class="bg-white p-3 header-secondary row">
+                            <div class="col">
+
+                                <div class="d-flex">
+
+                                    <a class="btn btn-danger" href="https://urge.ir/" style="
+									background-color: #d22082;
+									border-color: #d22082;
+								margin-right: 5px;
+
+								"><i class="fa fa-bank" style="
+										font-size: 14px;
+									"></i>         بلاگ              </a>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col col-auto">
+                                <a class="btn btn-light mt-4 mt-sm-0" href="/Help"><i class="fe fe-help-circle mr-1 mt-1"></i> راهنمایی </a>
+                                <a class="btn btn-success mt-4 mt-sm-0" href="/Courses"><i class="fe fe-plus mr-1 mt-1"></i> دوره ها </a>
+                            </div>
+                        </div>
+                        <!-- page-header -->
+                        <div class="page-header">
+
+                            <ol class="breadcrumb">
+
+                                {% block breadcrumb %} {% endblock %}
+
+                            </ol>
+
+                        </div>
+
+
+                        {% block body %}{% endblock %}
+
+                        <!-- Right-sidebar-->
+
+                        <div class="sidebar sidebar-right sidebar-animate ">
+                            <div class="tab-menu-heading siderbar-tabs border-0 ">
+                                <div class="tabs-menu ">
+                                    <!-- Tabs -->
+                                    <ul class="nav panel-tabs ">
+                                        <li class=" "><a href="#tab " class="active " data-toggle="tab "> پروفایل </a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel-body tabs-menu-body side-tab-body p-0 border-0 ">
+                                <div class="tab-content border-top ">
+                                    <div class="tab-pane active " id="tab ">
+                                        <div class="card-body p-0 ">
+                                            <div class="header-user text-center mt-4 pb-4 ">
+                                                <div class="card-body ">
+
+                                                </div>
+                                            </div>
+
+                                            <a class="dropdown-item border-top " href="https://urge.ir/ ">
+                                                <i class="dropdown-icon mdi mdi-approval "></i> وبسایت اِرج
+                                            </a>
+                                            <a class="dropdown-item border-top " href="Courses ">
+                                                <i class="dropdown-icon mdi mdi-wunderlist "></i> دوره های موفقیت
+                                            </a>
+                                            <div class="card-body border-top ">
+                                                <div class="row ">
+                                                    <div class="col-4 text-center ">
+                                                        <a class=" " href="ProfileSetting "><i class="dropdown-icon mdi mdi-tune fs-30 m-0 leading-tight "></i></a>
+                                                        <div> تنظیمات </div>
+                                                    </div>
+                                                    <div class="col-4 text-center ">
+                                                        <a class=" " href="LogOut "><i class="dropdown-icon mdi mdi-logout-variant fs-30 m-0 leading-tight "></i></a>
+                                                        <div> خروج </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- End Rightsidebar-->
+
+                        <!--footer-->
+                        <footer class="footer ">
+                            <div class="container ">
+                                <div class="row align-items-center flex-row-reverse ">
+                                    <div class="col-lg-12 col-sm-12 text-center ">
+                                        کپی رایت © 2020 <a href="https://panel.urge.ir "> پنل </a> . طراحی شده توسط <a href="https://www.urge.ir/ "> اِرج</a> همه حقوق محفوظ است.
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                        <!-- End Footer-->
+
+                    </div>
+                    <!-- End app-content-->
+                </div>
+            </div>
+            <!-- End Page -->
+
+            <!-- Back to top -->
+            <a href="#top " id="back-to-top "><i class="fa fa-angle-up "></i></a>
+
+            <!-- Jquery js-->
+            <script src="/static//assets/js/vendors/jquery-3.2.1.min.js "></script>
+
+            <!--Bootstrap.min js-->
+            <script src="/static//assets/plugins/bootstrap/popper.min.js "></script>
+            <script src="/static//assets/plugins/bootstrap/js/bootstrap.min.js "></script>
+
+            <script src="/static//assets/plugins/toggle-sidebar/sidemenu.js "></script>
+
+            <!-- Sidebar Accordions js -->
+            <script src="/static//assets/plugins/accordion1/js/easyResponsiveTabs.js "></script>
+
+            <!-- Custom scroll bar js-->
+            <script src="/static//assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js "></script>
+
+            <!-- Rightsidebar js -->
+            <script src="/static//assets/plugins/sidebar/sidebar.js "></script>
+
+            <!-- Custom js-->
+            <script src="/static//assets/js/custom.js "></script>
+            {% block additional_in_script %} {% endblock %}
+
+
+    </body>
+
+</html>

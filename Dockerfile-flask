@@ -1,0 +1,17 @@
+FROM python:3.8
+
+
+COPY db/flask /app
+WORKDIR /app
+
+RUN pip3 install -U setuptools
+RUN apt-get update -y
+RUN apt-get install -y libssl-dev libffi-dev 
+RUN apt-get install -y libxml2-dev libxslt1-dev zlib1g-dev 
+RUN apt-get install -y imgp
+RUN pip3 install -r requirements.txt
+RUN chmod 777 -R static
+
+CMD ["gunicorn","--bind","0.0.0.0:8080","--chdir","/app","wsgi:app"]
+#CMD ["python3","main.py"]
+#CMD ["python3"]

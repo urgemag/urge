@@ -1,0 +1,150 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - اضافه کردن انیمیشن کوتاه {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Add/Day"> اضافه کردن روز </a></li>
+<li class="breadcrumb-item active" aria-current="page"> انیمیشن کوتاه </li>
+
+{% endblock %} {% block body %}
+
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="card">
+                <form id='submit_form' method="POST" enctype="multipart/form-data">
+
+                    <div class="card-header">
+                        <h3 class="mb-0 card-title">اضافه کردن انیمیشن کوتاه</h3>
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                        <h3 style="text-align: center; color: {{message.Color}} ">{{message.Result}}</h3>
+                        {% endfor %} {% endif %} {% endwith %}
+
+                        <div class="row" style="margin-block-end: 30px;">
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">دوره</label>
+                                        <select name='slug' class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                                                <optgroup label="اسم دوره " >
+
+                                                                {% for Course in Courses %}
+                                                                    <option value="{{Course.Slug}}">{{Course.Name}}</option>
+                                                                {% endfor %}
+
+                                                                </optgroup>
+
+                                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">روز</label>
+                                        <input type="number" min="1" class="form-control" name="day" placeholder="شماره روز دوره " required="required">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group mb-0">
+                                    <label style=" display: contents; " class="form-label">توضیحات انیمیشن کوتاه</label>
+
+                                    <p style="color: #ff0000; display: contents; "> * </p>
+
+                                    <textarea required="required" style="margin-top:10px;" class="form-control" name="description" rows="2 " placeholder="اطلاعات و توضیحات انیمیشن کوتاه"></textarea>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" id="animations">
+
+
+
+                            <div class="animation-sample" id="animation-sample" style=" display: contents; margin-top: 20px;">
+
+                                <div class="col-md-4 " style="margin-top: 20x;max-width: 25%;">
+                                    <div class="form-group ">
+                                        <div class="form-group ">
+                                            <label class="form-label ">کیفیت ویدیوی لینک<p style="color: #ff0000; display: contents; "> * </p></label>
+                                            <input required="required" type="number" min="1" class="form-control" name="animation_quality" placeholder="کیفیت">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 " style="max-width: 75%;">
+                                    <div class="form-group ">
+                                        <div class="form-group ">
+                                            <label class="form-label ">URL<p style="color: #ff0000; display: contents; "> * </p></label>
+                                            <input required="required" style="direction: ltr !important; font-family: monospace !important;" type="url" class="form-control" name="animation_url" placeholder="URL">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="col-md-12 ">
+                            <button onclick="addanimation()" style="margin-top: 30px; margin-right: 5px" type="button" class="btn btn-warning btn-sm mb-1">اضافه کردن</button>
+                            <button onclick="removeanimation()" style="margin-top: 30px; margin-right: 5px" type="button" class="btn btn-info btn-sm mb-1">حذف کردن</button>
+                        </div>
+
+
+                    </div>
+
+
+                    <script>
+                        function addanimation() {
+
+                            //var countquotes = document.getElementsByClassName("music").length + 1;
+                            const div = document.createElement('div');
+
+                            div.style = "display: contents;"
+                            div.className = "animation"
+                            node = document.getElementById("animation-sample")
+
+                            div.innerHTML = node.innerHTML;
+
+                            document.getElementById('animations').appendChild(div);
+                        }
+
+                        function removeanimation() {
+                            var musics = document.getElementsByClassName("animation");
+                            if (musics.length != 0) {
+                                musics[musics.length - 1].remove();
+                            }
+                        }
+                    </script>
+
+
+
+                    <button type="submit " class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <!-- col end -->
+</div>
+
+{% endblock %}

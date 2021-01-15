@@ -1,0 +1,30 @@
+Categorize images directories. e.g.  /covers  /courses   /days   /...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Extra :
+    show Little-Tasks.txt in a page, an always function

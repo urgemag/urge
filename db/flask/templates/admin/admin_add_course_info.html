@@ -1,0 +1,346 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - اضافه کردن اطلاعات دوره {% endblock %} {% block additional_in_head %}
+<script src="/static//CK-standard/ckeditor.js"></script>
+{% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> اضافه کردن اطلاعات دوره </li>
+{% endblock %} {% block body %}
+
+
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="card">
+                <form id='submit_form' method="POST" enctype="multipart/form-data">
+
+
+                    <div class="card-header">
+
+                        <h3 id="main_title" class="mb-0 card-title">اضافه کردن اطلاعات دوره</h3>
+
+
+                        <div class="card-options d-none d-sm-block">
+
+
+                            <div onclick="show_preview()" id="show_preview_button">
+                                <a class="btn btn-app btn-secondary mr-2 mt-1 mb-1">
+                                    <i class="fa fa-adjust" style="
+                                                        margin-left: 3px;
+                                                        vertical-align: -1px;
+                                                    "></i> دیدن پیش نمایش
+                                </a>
+                            </div>
+
+                            <div onclick="show_editor()" id="show_editor_button" style="display: none;">
+                                <a class="btn btn-app btn-secondary mr-2 mt-1 mb-1">
+                                    <i class="fa fa-adjust" style="
+                                                        margin-left: 3px;
+                                                        vertical-align: -1px;
+                                                        
+                                                    "></i> برگشتن به ادیتور
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <script>
+                        function show_preview() {
+                            document.getElementById("show_preview_button").style.display = "none";
+                            document.getElementById("show_editor_button").style.display = "block";
+
+                            document.getElementById("editor_show").style.display = "none";
+                            document.getElementById("preview_info").style.display = "contents";
+                            document.getElementById("main_title").innerHTML = "پیش نمایش دوره";
+
+                            document.getElementById("submit_button").style.display = "none";
+
+
+                        }
+
+                        function show_editor() {
+                            document.getElementById("show_preview_button").style.display = "block";
+                            document.getElementById("show_editor_button").style.display = "none";
+
+                            document.getElementById("preview_info").style.display = "none";
+                            document.getElementById("editor_show").style.display = "contents";
+                            document.getElementById("main_title").innerHTML = "اضافه کردن اطلاعات دوره";
+
+                            document.getElementById("submit_button").style.display = "block";
+
+
+                        }
+                    </script>
+
+
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                        <h3 style="
+                                                text-align: center;
+                                                color: {{message.Color}} ">{{message.Result}}</h3>
+                        {% endfor %} {% endif %} {% endwith %}
+
+                        <div class="form-group">
+                            <label class="form-label">انتخاب دوره</label>
+                            <select name='slug' class="form-control select2-show-search">
+                                                {% for category in Courses %}
+                                                {% if Courses[category] !=[] %}
+
+                                                    <optgroup label='{{category}}' >
+                                                        {% for course in Courses[category] %}
+                                                            <option value={{course.Slug}}>{{course.Name}}</option>
+                                                        {% endfor %}
+                                                    </optgroup>
+                                                {% endif %}
+
+                                                {% endfor %}
+                                                </select>
+                        </div>
+
+                        <div class="row ">
+
+
+                            <div class="row " id=editor_show style='display:contents'>
+                                <div class="col-md-12 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">درباره این دوره <p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea onchange="intro() " href="/static//CK-standard/config.js " required="required " id="intro " class="ckeditor " name="intro"></textarea>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">ویژگی های دوره<p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea onchange="speciality() " href="/static//CK-standard/config.js " required="required " id="speciality " class="ckeditor " name="speciality"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">اهمیت دوره <p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea href="/static//CK-standard/config.js " id='importance' required="required " class="ckeditor " name="importance"></textarea>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">چرا این دوره <p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea href="/static//CK-standard/config.js " id='why' required="required " class="ckeditor " name="why"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">زمان دوره <p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea href="/static//CK-standard/config.js " id='len' required="required " class="ckeditor " name="length"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">قیمت <p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea href="/static//CK-standard/config.js " id='price' required="required " class="ckeditor " name="price"></textarea>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-12 ">
+                                    <div class="form-group ">
+                                        <label class="form-label ">حرف آخر <p style="color: #ff0000; display: contents; "> * </p></label>
+                                        <textarea href="/static//CK-standard/config.js " id='last_word' required="required " class="ckeditor " name="last_word"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row " id='preview_info' style='display:none'>
+
+                                <div class="col-md-12 ">
+                                    <div class="card ">
+                                        <div class="card-header ">
+                                            <h3 class="card-title ">دوره</h3>
+                                            <div class="card-options ">
+                                                <a href="# " class="card-options-collapse " data-toggle="card-collapse "><i class="fe fe-chevron-up "></i></a>
+                                                <a href="# " class="card-options-remove " data-toggle="card-remove "><i class="fe fe-x "></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div id='intro_preview'></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 col-lg-4 " style=" flex: 0 0 50%; max-width: 50%; ">
+                                    <div class="card text-white bg-gradient-primary ">
+                                        <div class="card-body ">
+                                            <h4 class="card-title ">ویژگی های دوره</h4>
+                                            <div id='speciality_preview'></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 col-lg-4 " style=" flex: 0 0 50%; max-width: 50%; ">
+                                    <div class="card text-white bg-gradient-info ">
+                                        <div class="card-body ">
+                                            <h4 class="card-title ">اهمیت دوره</h4>
+                                            <div id='importance_preview'></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 ">
+                                    <div class="card ">
+                                        <div class="card-header ">
+                                            <h3 class="card-title ">چرا این دوره ؟</h3>
+                                            <div class="card-options ">
+                                                <a href="# " class="card-options-collapse " data-toggle="card-collapse "><i class="fe fe-chevron-up "></i></a>
+                                                <a href="# " class="card-options-remove " data-toggle="card-remove "><i class="fe fe-x "></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div id='why_preview'></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- col end -->
+
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 " style=" flex: 0 0 50%; max-width: 50%; ">
+                                    <div class="card service ">
+                                        <div class="card-body ">
+                                            <div class="item-box text-center ">
+                                                <div class=" text-center text-danger mb-4 "><i class="si si-clock "></i></div>
+                                                <div class="item-box-wrap ">
+                                                    <h5 class="mb-2 font-weight-semibold ">زمان دوره</h5>
+                                                    <div id='len_preview'></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3 " style=" flex: 0 0 50%; max-width: 50%; ">
+                                    <div class="card service ">
+                                        <div class="card-body ">
+                                            <div class="item-box text-center ">
+                                                <div class=" text-center text-primary mb-4 "><i class="fa fa-money "></i></div>
+                                                <div class="item-box-wrap ">
+                                                    <h5 class="mb-2 font-weight-semibold ">هزینه دوره</h5>
+                                                    <div id='price_preview'></div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 ">
+
+                                    <div class="card ">
+                                        <div class="card-status card-status-left bg-primary br-bl-7 br-tl-7 "></div>
+                                        <div class="card-header ">
+                                            <h3 class="card-title ">حرف آخر ...</h3>
+                                            <div class="card-options ">
+                                                <a href="# " class="card-options-collapse " data-toggle="card-collapse "><i class="fe fe-chevron-up "></i></a>
+                                                <a href="# " class="card-options-remove " data-toggle="card-remove "><i class="fe fe-x "></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <div id='last_word_preview'></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('intro', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("intro_preview ").innerHTML = CKEDITOR.instances.intro.getData();
+                                    }
+                                }
+                            });
+                        </script>
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('speciality', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("speciality_preview ").innerHTML = CKEDITOR.instances.speciality.getData();
+                                    }
+                                }
+                            });
+                        </script>
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('importance', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("importance_preview ").innerHTML = CKEDITOR.instances.importance.getData();
+                                    }
+                                }
+                            });
+                        </script>
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('why', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("why_preview ").innerHTML = CKEDITOR.instances.why.getData();
+                                    }
+                                }
+                            });
+                        </script>
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('len', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("len_preview ").innerHTML = CKEDITOR.instances.len.getData();
+                                    }
+                                }
+                            });
+                        </script>
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('price', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("price_preview ").innerHTML = CKEDITOR.instances.price.getData();
+                                    }
+                                }
+                            });
+                        </script>
+                        <script type="text/javascript ">
+                            CKEDITOR.replace('last_word', {
+                                on: {
+                                    change: function() {
+                                        document.getElementById("last_word_preview ").innerHTML = CKEDITOR.instances.last_word.getData();
+                                    }
+                                }
+                            });
+                        </script>
+
+                        <button id="submit_button " type="submit " class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
+                </form>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- row end -->
+
+
+    </div>
+    <!-- col end -->
+</div>{% endblock %}

@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- Favicon -->
+		<link rel="icon" href="/static//assets/images/brand/favicon.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" type="image/x-icon" href="/static//assets/images/brand/favicon.ico" />
+
+		<!-- Title -->
+		<title> ویرایش پروفایل - پنل موفقیت اِرج </title>
+
+
+		<!--Bootstrap.min css-->
+		<link rel="stylesheet" href="/static//assets/plugins/bootstrap/css/bootstrap.min.css">
+
+		<!-- Dashboard css -->
+		<link href="/static//assets/css/style.css" rel="stylesheet" />
+
+		<!-- Custom scroll bar css-->
+		<link href="/static//assets/plugins/scroll-bar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+		<!-- Sidemenu css -->
+		<link href="/static//assets/plugins/toggle-sidebar/full-sidemenu.css" rel="stylesheet" />
+
+		<!--Daterangepicker css-->
+		<link href="/static//assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+		<!-- Sidebar Accordions css -->
+		<link href="/static//assets/plugins/accordion1/css/easy-responsive-tabs.css" rel="stylesheet">
+
+		<!-- Rightsidebar css -->
+		<link href="/static//assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
+		<!---Font icons css-->
+		<link href="/static//assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+		<link href="/static//assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+		<link  href="/static//assets/fonts/fonts/font-awesome.min.css" rel="stylesheet">
+
+		<link  href="/static//assets/rtl.css" rel="stylesheet"></head>
+	<body class="app sidebar-mini rtl">
+
+		<!--Global-Loader-->
+		<div class="page">
+			<div class="page-main">
+
+				<!--app-header-->
+				<div class="app-header header d-flex">
+					<div class="container-fluid">
+						<div class="d-flex">
+						    <a class="header-brand" href="/">
+								<img src="/static//assets/images/brand/logo.png" class="header-brand-img main-logo" alt="Hogo logo">
+								<img src="/static//assets/images/brand/icon.png" class="header-brand-img icon-logo" alt="Hogo logo">
+							</a><!-- logo-->
+                            <ul class="nav navbar-nav horizontal-nav header-nav">
+								<li class="mega-dropdown nav-item">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+										<i class="fe fe-grid mr-2"></i> دسترسی سریع <i class="fa fa-angle-down ml-1"></i>
+									</a>
+									<ul class="dropdown-menu mega-dropdown-menu container row p-5">
+										<li>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="">
+														<div class="card-body p-0 relative">
+
+														</div>
+													</div>
+												</div>
+												<div class="col-2">
+													<h4  class="mb-3"> دسترسی سریع </h4>
+‍													 <a class="dropdown-item pl-0 pr-0" href="AboutUs"><i class="fa fa-angle-double-right text-muted mr-1"></i> درباره ما </a>
+													<a class="dropdown-item pl-0 pr-0" href="Courses"><i class="fa fa-angle-double-right text-muted mr-1"></i> دوره ها </a>
+													<a class="dropdown-item pl-0 pr-0" href="Profile"><i class="fa fa-angle-double-right text-muted mr-1"></i> پروفایل </a>
+
+												</div>
+												<div class="col-2">
+													<h4  class="mb-3"> </h4>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+                                                    <a class="" href="#"><i class=""></i>       </a>
+
+													<a class="dropdown-item pl-0 pr-0" href="https://urge.ir/"><i class="fa fa-angle-double-right text-muted mr-1"></i> مقالات </a>
+													<a class="dropdown-item pl-0 pr-0" href="/MotivationWall"><i class="fa fa-angle-double-right text-muted mr-1"></i> صفحه انگیزه </a>
+													<a class="dropdown-item pl-0 pr-0" href="ProfileSetting"><i class="fa fa-angle-double-right text-muted mr-1"></i> ویرایش مشخصات </a>
+
+												</div>
+												
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							
+							<ul class="nav header-nav">
+								
+							</ul>
+							<div class="d-flex order-lg-2 ml-auto header-rightmenu">
+								<div class="dropdown">
+									<a  class="nav-link icon full-screen-link" id="fullscreen-button">
+										<i class="fe fe-maximize-2"></i>
+									</a>
+								</div><!-- full-screen -->
+								<div class="dropdown header-notify">
+									<a class="nav-link icon" data-toggle="dropdown" aria-expanded="false">
+										<i class="fe fe-bell "></i>
+										<span class="pulse bg-success"></span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
+										<a href="#" class="dropdown-item text-center">4 اطلاعیه جدید</a>
+										<div class="dropdown-divider"></div>
+										<a href="#" class="dropdown-item d-flex pb-3">
+											<div class="notifyimg bg-green">
+												<i class="fe fe-mail"></i>
+											</div>
+											<div>
+												<strong> پیام ارسال شد. </strong>
+												<div class="small text-muted">12 دقیقه قبل </div>
+											</div>
+										</a>
+										<a href="#" class="dropdown-item d-flex pb-3">
+											<div class="notifyimg bg-pink">
+												<i class="fe fe-shopping-cart"></i>
+											</div>
+											<div>
+												<strong> سفارش قرار داده شده </strong>
+												<div class="small text-muted">2  ساعت قبل </div>
+											</div>
+										</a>
+										<a href="#" class="dropdown-item d-flex pb-3">
+											<div class="notifyimg bg-blue">
+												<i class="fe fe-calendar"></i>
+											</div>
+											<div>
+												<strong> رویداد آغاز شده </strong>
+												<div class="small text-muted">1  ساعت قبل </div>
+											</div>
+										</a>
+										<a href="#" class="dropdown-item d-flex pb-3">
+											<div class="notifyimg bg-orange">
+												<i class="fe fe-monitor"></i>
+											</div>
+											<div>
+												<strong> راه اندازی مجدد شما </strong>
+												<div class="small text-muted">2  روز قبل </div>
+											</div>
+										</a>
+										<div class="dropdown-divider"></div>
+										<a href="#" class="dropdown-item text-center">مشاهده تمام اعلان ها</a>
+									</div>
+								</div><!-- notifications -->
+								<div class="dropdown header-user">
+									<a class="nav-link leading-none siderbar-link"  data-toggle="sidebar-right" data-target=".sidebar-right">
+										<span class="mr-3 d-none d-lg-block ">
+											<span class="text-gray-white"><span class="ml-2"> آلیسون </span></span>
+										</span>
+										<span class="avatar avatar-md brround"><img src="/static//assets/images/users/female/33.png" alt="Profile-img" class="avatar avatar-md brround"></span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<div class="header-user text-center mt-4 pb-4">
+											<span class="avatar avatar-xxl brround"><img src="/static//assets/images/users/female/33.png" alt="Profile-img" class="avatar avatar-xxl brround"></span>
+											<a href="#" class="dropdown-item text-center font-weight-semibold user h3 mb-0"> آلیسون </a>
+											<small> طراح وب </small>
+										</div>
+										<a class="dropdown-item" href="https://urge.ir/">
+											<i class="dropdown-icon mdi mdi-approval "></i> وبسایت اِرج
+										</a>
+										<a class="dropdown-item" href="Courses">
+											<i class="dropdown-icon  mdi mdi-wunderlist"></i> دوره های موفقیت
+										</a>
+										<div class="card-body border-top">
+											<div class="row">
+												<div class="col-6 text-center">
+													<a class="" href=""><i class="dropdown-icon mdi mdi-logout-variant fs-30 m-0 leading-tight"></i></a>
+													<div> خروج </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div><!-- profile -->
+								<div class="dropdown">
+									<a  class="nav-link icon siderbar-link" data-toggle="sidebar-right" data-target=".sidebar-right">
+										<i class="fe fe-more-horizontal"></i>
+									</a>
+								</div><!-- Right-siebar-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--app-header end-->
+
+				<!-- Sidebar menu-->
+				<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+				<aside class="app-sidebar toggle-sidebar">
+					<div class="app-sidebar__user pb-0">
+						<div class="user-body">
+							<span class="avatar avatar-xxl brround text-center cover-image" data-image-src="/static//assets/images/users/female/33.png"></span>
+						</div>
+						<div class="user-info">
+							<a href="#" class="ml-2"><span class="text-dark app-sidebar__user-name font-weight-semibold">جنا ساید</span><br>
+								<span class="text-muted app-sidebar__user-name text-sm"> طراح وب </span>
+							</a>
+						</div>
+					</div>
+
+					<div class="tab-menu-heading siderbar-tabs border-0  p-0">
+						<div class="tabs-menu ">
+							<!-- Tabs -->
+							<ul class="nav panel-tabs">
+								<li class=""><a href="/" class="active" data-toggle="tab"><i class="fa fa-home fs-17"></i></a></li>
+
+
+
+
+								<li><a href="login.html" title="logout"><i class="fa fa-power-off fs-17"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel-body tabs-menu-body side-tab-body p-0 border-0 ">
+						<div class="tab-content">
+							<div class="tab-pane active " id="index1">
+								<ul class="side-menu toggle-menu">
+									<li>
+										<a class="side-menu__item"  href="#"><i class="side-menu__icon typcn typcn-device-desktop"></i><span class="side-menu__label"> داشبورد </span></a>
+                                    </li>
+                                
+									<li class="slide">
+										<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label"> برنامه ها </span><i class="angle fa fa-angle-right"></i></a>
+										<ul class="slide-menu">
+											<li><a href="Courses" class="slide-item"> دوره ها </a></li>
+											<li><a href="https://urge.ir/" class="slide-item">  مقالات </a></li>
+
+										</ul>
+									</li>
+									
+									<li class="slide">
+										<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-cog-outline"></i><span class="side-menu__label"> تنظیمات </span><i class="angle fa fa-angle-right"></i></a>
+										<ul class="slide-menu">
+											<li><a href="Profile" class="slide-item"> پروفایل </a></li>
+											<li><a href="ProfileSetting" class="slide-item"> ویرایش مشخصات </a></li>
+
+											<li><a href="mailservices" class="slide-item"> صندوق پیام ها </a></li>
+											
+											<li><a href="faq" class="slide-item"> سؤالات متداول </a></li>
+
+											<li><a href="LogOut" class="slide-item"> خارج شدن </a></li>
+										</ul>
+									</li>
+									
+								</ul>
+							</div>
+
+							
+						</div>
+					</div>
+				</aside>
+				<!--sidemenu end-->
+
+                <!-- app-content-->
+				<div class="app-content  my-3 my-md-5 toggle-content">
+					<div class="side-app">
+						<div class="bg-white p-3 header-secondary row">
+							<div class="col">
+								<div class="d-flex">
+									<a class="btn btn-danger" href="BuyCourses"><i class="fe fe-rotate-cw mr-1 mt-1"></i> ارتقاء </a>
+								</div>
+
+							</div>
+							<div class="col col-auto">
+								<a class="btn btn-light mt-4 mt-sm-0" href="Help"><i class="fe fe-help-circle mr-1 mt-1"></i> راهنمایی </a>
+								<a class="btn btn-success mt-4 mt-sm-0" href="Courses"><i class="fe fe-plus mr-1 mt-1"></i> دوره ها </a>
+							</div>
+						</div>
+					    <!-- page-header -->
+						<div class="page-header">
+
+						</div>
+						<!-- End page-header -->
+
+						<!-- row -->
+						<div class="row">
+							<div class="col-lg-12 col-xl-4 col-md-12 col-sm-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">پروفایل من</h3>
+										<div class="card-options">
+											<a href="/Profile" class="btn btn-primary btn-sm"><i class="si si-eye mr-1"></i> مشاهده پروفایل</a>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="text-center">
+											<div class="userprofile ">
+												<div class="userpic  brround"> <img src="/static//assets/images/users/female/5.jpg" alt="" class="userpicimg"> </div>
+												<h3 class="username mb-2"> آلیسون </h3>
+												<p class="mb-1">طراح وب</p>
+												
+												
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								
+							</div>
+							<div class="col-lg-12 col-xl-8 col-md-12 col-sm-12">
+								<div class="card">
+									<form class="login-form mt-4" action="EditProfileFormPost" method="post">
+
+									<div class="card-header">
+									    <h3 class="card-title"> ویرایش پروفایل</h3>
+									</div>
+									<div class="card-body">
+										<div class="row">
+											<div class="col-lg-6 col-md-12">
+												<div class="form-group">
+													<label for="exampleInputname">نام</label>
+													<input name="first_name" type="text" class="form-control" id="exampleInputname" placeholder="علیرضا">
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-12">
+												<div class="form-group">
+													<label for="exampleInputname1">نام خانوادگی</label>
+													<input name="last_name" type="text" class="form-control" id="exampleInputname1" placeholder="نام خانوادگی">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputnumber">شماره تلفن</label>
+											<input name="phone_number" type="number" minlength='11' maxlength='11' class="form-control" id="exampleInputnumber" value="09197275112">
+										</div>
+										<div class="form-group">
+											<label class="form-label">درباره من</label>
+											<textarea name="summary" class="form-control" rows="6">خلاصه از بیوگرافی شما ...</textarea>
+										</div>
+										<div class="form-group">
+											<label class="form-label">بیوگرافی من</label>
+											<textarea name="bio" class="form-control" rows="6">بیوگرافی شما ...</textarea>
+										</div>
+										<div class="form-group">
+											<label class="form-label"> وب سایت </label>
+											<input name="web_site" class="form-control" placeholder="https://Revisto.ir">
+										</div>
+										<div class="form-group">
+											<label class="form-label">تاریخ تولد شما</label>
+											<div class="row">
+												<div class="col-md-4">
+													<select name="day" class="form-control">
+														<option value="0">روز تولد شما</option>
+														<option value="1">01</option>
+														<option value="2">02</option>
+														<option value="3">03</option>
+														<option value="4">04</option>
+														<option value="5">05</option>
+														<option value="6">06</option>
+														<option value="7">07</option>
+														<option value="8">08</option>
+														<option value="9">09</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+														<option value="13">13</option>
+														<option value="14">14</option>
+														<option value="15">15</option>
+														<option value="16">16</option>
+														<option value="17">17</option>
+														<option value="18">18</option>
+														<option value="19">19</option>
+														<option value="20">20</option>
+														<option value="21">21</option>
+														<option value="22">22</option>
+														<option value="23">23</option>
+														<option value="24">24</option>
+														<option value="25">25</option>
+														<option value="26">26</option>
+														<option value="27">27</option>
+														<option value="28">28</option>
+														<option value="29">29</option>
+														<option value="30">30</option>
+														<option value="31">31</option>
+													</select>
+												</div>
+												<div class="col-md-4">
+													<select name="month" class="form-control" >
+														<option value="0">ماه تولد شما</option>
+
+														<option value="1">فروردین</option>
+														<option value="2">اردیبهشت</option>
+														<option value="3">خرداد</option>
+												
+														<option value="4">تیر</option>
+														<option value="5">مرداد</option>
+														<option value="6">شهریور</option>
+												
+														<option value="7">مهر</option>
+														<option value="8">آبان</option>
+														<option value="9">آذر</option>
+												
+														<option value="10">دی</option>
+														<option value="11">بهمن</option>
+														<option value="12">اسفند</option>
+													</select>
+												</div>
+												<div class="col-md-4">
+													<select class="form-control">
+														<option name="year" value="0"> سال تولد شما</option>
+															<option value="1395">1395</option>
+															<option value="1394">1394</option>
+															<option value="1393">1393</option>
+															<option value="1392">1392</option>
+															<option value="1391">1391</option>
+															<option value="1390">1390</option>
+															<option value="1389">1389</option>
+															<option value="1388">1388</option>
+															<option value="1387">1387</option>
+															<option value="1386">1386</option>
+															<option value="1385">1385</option>
+															<option value="1384">1384</option>
+															<option value="1383">1383</option>
+															<option value="1382">1382</option>
+															<option value="1381">1381</option>
+															<option value="1380">1380</option>
+															<option value="1379">1379</option>
+															<option value="1378">1378</option>
+															<option value="1377">1377</option>
+															<option value="1376">1376</option>
+															<option value="1375">1375</option>
+															<option value="1374">1374</option>
+															<option value="1373">1373</option>
+															<option value="1372">1372</option>
+															<option value="1371">1371</option>
+															<option value="1370">1370</option>
+															<option value="1369">1369</option>
+															<option value="1368">1368</option>
+															<option value="1367">1367</option>
+															<option value="1366">1366</option>
+															<option value="1365">1365</option>
+															<option value="1364">1364</option>
+															<option value="1363">1363</option>
+															<option value="1362">1362</option>
+															<option value="1361">1361</option>
+															<option value="1360">1360</option>
+															<option value="1359">1359</option>
+															<option value="1358">1358</option>
+															<option value="1357">1357</option>
+															<option value="1356">1356</option>
+															<option value="1355">1355</option>
+															<option value="1354">1354</option>
+															<option value="1353">1353</option>
+															<option value="1352">1352</option>
+															<option value="1351">1351</option>
+															<option value="1350">1350</option>
+															<option value="1349">1349</option>
+															<option value="1348">1348</option>
+															<option value="1347">1347</option>
+															<option value="1346">1346</option>
+															<option value="1345">1345</option>
+															<option value="1344">1344</option>
+															<option value="1343">1343</option>
+															<option value="1342">1342</option>
+															<option value="1341">1341</option>
+															<option value="1340">1340</option>
+															<option value="1339">1339</option>
+															<option value="1338">1338</option>
+															<option value="1337">1337</option>
+															<option value="1336">1336</option>
+															<option value="1335">1335</option>
+															<option value="1334">1334</option>
+															<option value="1333">1333</option>
+															<option value="1332">1332</option>
+															<option value="1331">1331</option>
+															<option value="1330">1330</option>
+															<option value="1329">1329</option>
+															<option value="1328">1328</option>
+															<option value="1327">1327</option>
+															<option value="1326">1326</option>
+															<option value="1325">1325</option>
+															<option value="1324">1324</option>
+															<option value="1323">1323</option>
+															<option value="1322">1322</option>
+															<option value="1321">1321</option>
+															<option value="1320">1320</option>
+															<option value="1319">1319</option>
+															<option value="1318">1318</option>
+															<option value="1317">1317</option>
+															<option value="1316">1316</option>
+															<option value="1315">1315</option>
+															<option value="1314">1314</option>
+															<option value="1313">1313</option>
+															<option value="1312">1312</option>
+															<option value="1311">1311</option>
+															<option value="1310">1310</option>
+															<option value="1309">1309</option>
+															<option value="1308">1308</option>
+															<option value="1307">1307</option>
+															<option value="1306">1306</option>
+															<option value="1305">1305</option>
+															<option value="1304">1304</option>
+															<option value="1303">1303</option>
+															<option value="1302">1302</option>
+															<option value="1301">1301</option>
+															<option value="1300">1300</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group mb-0 mt-5">
+											<div class="row">
+												
+												<div class="col-xl-6 col-lg-12 col-md-12">
+													<div class="form-group">
+														<label>تغییر پسوورد</label>
+														<input name="old_password" type="password" class="form-control" placeholder="پسوورد حال حاضر">
+													</div>
+													<div class="form-group">
+
+														<input name="new_password" type="password" class="form-control" placeholder="پسوورد جدید">
+													</div>
+													<div class="form-group mb-0">
+
+														<input name="new_password_confirm" type="password" class="form-control" placeholder="تایید پسوورد جدید">
+													</div>
+												</div>
+											</div>
+										</div>
+									
+									</div>
+									<div class="card-footer text-right">
+										<button type="submit" class="btn btn-success mt-1">ثبت</button>
+										<a href="/Profile" class="btn btn-warning mt-1">کنسل</a>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- row end -->
+
+					</div>
+
+					<!-- Right-sidebar-->
+					<div class="sidebar sidebar-right sidebar-animate">
+						<div class="tab-menu-heading siderbar-tabs border-0">
+							<div class="tabs-menu ">
+								<!-- Tabs -->
+								<ul class="nav panel-tabs">
+									<li class=""><a href="#tab"  class="active" data-toggle="tab"> پروفایل </a></li>
+
+									<li><a href="#tab2" data-toggle="tab"> فعالیت </a></li>
+									
+								</ul>
+							</div>
+						</div>
+						<div class="panel-body tabs-menu-body side-tab-body p-0 border-0 ">
+							<div class="tab-content border-top">
+								<div class="tab-pane active " id="tab">
+									<div class="card-body p-0">
+										<div class="header-user text-center mt-4 pb-4">
+											<span class="avatar avatar-xxl brround"><img src="/static//assets/images/users/female/33.png" alt="Profile-img" class="avatar avatar-xxl brround"></span>
+											<div class="dropdown-item text-center font-weight-semibold user h3 mb-0"> آلیسون </div>
+											<small> طراح وب </small>
+											<div class="card-body">
+
+											</div>
+										</div>
+                                        
+										<a class="dropdown-item  border-top" href="https://urge.ir/">
+											<i class="dropdown-icon mdi mdi-approval "></i> وبسایت اِرج
+										</a>
+										<a class="dropdown-item border-top" href="Courses">
+											<i class="dropdown-icon  mdi mdi-wunderlist"></i> دوره های موفقیت
+										</a>
+										<div class="card-body border-top">
+											<div class="row">
+												<div class="col-4 text-center">
+													<a class="" href="ProfileSetting"><i class="dropdown-icon mdi mdi-tune fs-30 m-0 leading-tight"></i></a>
+													<div> تنظیمات </div>
+												</div>
+												<div class="col-4 text-center">
+													<a class="" href="LogOut"><i class="dropdown-icon mdi mdi-logout-variant fs-30 m-0 leading-tight"></i></a>
+													<div> خروج </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="tab-pane  " id="tab2">
+									<div class="list d-flex align-items-center border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-primary brround avatar-md">CH</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>وب سایت جدید ایجاد شده است</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">30 دقیقه قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-danger brround avatar-md">N</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>آماده شدن برای پروژه بعدی</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">2 ساعت قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-info brround avatar-md">S</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>زمان بحث لایو را تعیین کنید</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">3 ساعت قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-warning brround avatar-md">K</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>Team Review meeting at yesterday at 3:00 pm</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">4 ساعت قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-success brround avatar-md">R</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>آماده شدن برای ارائه</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">1 روز قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center  border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-pink brround avatar-md">MS</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>آماده شدن برای ارائه</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">1 روز قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center border-bottom p-4">
+										<div class="">
+											<span class="avatar bg-purple brround avatar-md">L</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>آماده شدن برای ارائه</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">45 دقیقه قبل</small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="list d-flex align-items-center p-4">
+										<div class="">
+											<span class="avatar bg-blue brround avatar-md">U</span>
+										</div>
+										<div class="wrapper w-100 ml-3">
+											<p class="mb-0 d-flex">
+												<b>آماده شدن برای ارائه</b>
+											</p>
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex align-items-center">
+													<i class="mdi mdi-clock text-muted mr-1"></i>
+													<small class="text-muted ml-auto">2 روز قبل </small>
+													<p class="mb-0"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+					<!--footer-->
+					<footer class="footer">
+						<div class="container">
+							<div class="row align-items-center flex-row-reverse">
+								<div class="col-lg-12 col-sm-12   text-center">
+									کپی رایت © 2020 <a href="https://panel.urge.ir"> پنل </a> . طراحی شده توسط <a href="https://www.urge.ir/"> اِرج</a> همه حقوق محفوظ است.
+								</div>
+							</div>
+						</div>
+					</footer>
+					<!-- End Footer-->
+
+					<!-- modal -->
+					<div class="modal  bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel2">Enter Project Details</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="card-body">
+									<form>
+										<div class="form-group">
+											<label for="listname">Project name</label>
+											<input type="text" class="form-control" name="listname" id="listname" placeholder="Enter your listname">
+										</div>
+										<div class="form-group">
+											<label for="listname"> بخش مدیریت </label>
+											<select name="Language" id="select-Language" class="form-control custom-select">
+												<option value="ph" data-data="">PHP</option>
+												<option value="aj" data-data="">Angular js</option>
+												<option value="jv" data-data="">Java</option>
+												<option value="nt" data-data="" selected="">.Net</option>
+												<option value="py" data-data="" >Phython</option>
+												<option value="js" data-data="" >Javascript</option>
+												<option value="ui" data-data="" >UI Design</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label > مهلت تحویل </label>
+											<input type="Date" name="Date" class="form-control">
+										</div>
+										<div class="form-group">
+											<label for="listname"> اعضای تیم </label>
+											<input type="text" class="form-control" name="listname" id="listname2" placeholder="How many Team memebers?">
+										</div>
+										<div class="form-group">
+											<label for="listname">Description</label>
+											<textarea class="form-control" name="example-textarea-input" rows="3" placeholder="text here.."></textarea>
+										</div>
+										<div class="form-group">
+											<label>Add a list item</label>
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" name="example-file-input-custom">
+												<label class="custom-file-label">Choose file</label>
+											</div>
+										</div>
+										<div class="form-group text-center">
+											<button type="submit" class="btn btn-block bg-info text-white">Update</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- modal end -->
+
+				</div>
+				<!-- End app-content-->
+			</div>
+		</div>
+		<!-- End Page -->
+
+		<!-- Back to top -->
+		<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+		<!-- Jquery js-->
+		<script src="/static//assets/js/vendors/jquery-3.2.1.min.js"></script>
+
+		<!--Bootstrap.min js-->
+		<script src="/static//assets/plugins/bootstrap/popper.min.js"></script>
+		<script src="/static//assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--Jquery Sparkline js-->
+		<script src="/static//assets/js/vendors/jquery.sparkline.min.js"></script>
+
+		<!-- Chart Circle js-->
+		<script src="/static//assets/js/vendors/circle-progress.min.js"></script>
+
+		<!-- Star Rating js-->
+		<script src="/static//assets/plugins/rating/jquery.rating-stars.js"></script>
+
+		<!--Moment js-->
+		<script src="/static//assets/plugins/moment/moment.min.js"></script>
+
+		<!-- Daterangepicker js-->
+		<script src="/static//assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+		<!--Side-menu js-->
+		<script src="/static//assets/plugins/toggle-sidebar/sidemenu.js"></script>
+
+		<!--Time Counter js-->
+		<script src="/static//assets/plugins/counters/jquery.missofis-countdown.js"></script>
+		<script src="/static//assets/plugins/counters/counter.js"></script>
+
+		<!-- Sidebar Accordions js -->
+		<script src="/static//assets/plugins/accordion1/js/easyResponsiveTabs.js"></script>
+
+		<!-- Custom scroll bar js-->
+		<script src="/static//assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+		<!-- Rightsidebar js -->
+		<script src="/static//assets/plugins/sidebar/sidebar.js"></script>
+
+		<!-- ECharts js -->
+		<script src="/static//assets/plugins/echarts/echarts.js"></script>
+
+		<!-- Custom-charts js-->
+		<script src="/static//assets/js/index4.js"></script>
+
+		<!-- Custom js-->
+		<script src="/static//assets/js/custom.js"></script>
+
+	</body>
+</html>

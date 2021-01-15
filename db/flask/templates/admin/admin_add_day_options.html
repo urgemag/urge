@@ -1,0 +1,144 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - اضافه کردن روز {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> اضافه کردن روز جدید </li>
+
+{% endblock %} {% block body %}
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Essential">
+                        <img src="/static//assets/images/admin_options/main.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">دیتاهای اصلی روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Essential" class="btn btn-info" style="
+                                                background-color: #d07fdb;
+                                                border-color: #d07fdb;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Text">
+                        <img src="/static//assets/images/admin_options/text.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">متن اصلی روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Text" class="btn btn-info" style="
+                                                background-color: #01aa9e;
+                                                border-color: #01aa9e;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Todo">
+                        <img src="/static//assets/images/admin_options/todo.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">تمارین روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Todo" class="btn btn-info" style="
+                                                background-color: #735ce2;
+                                                border-color: #735ce2;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Quotes">
+                        <img src="/static//assets/images/admin_options/quotes.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">نقل قول های روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Quotes" class="btn btn-info" style="
+                                                background-color: #a17cc1;
+                                                border-color: #a17cc1;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Music">
+                        <img src="/static//assets/images/admin_options/music.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">موزیک روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Music" class="btn btn-info" style="
+                                                background-color: #3e95f2;
+                                                border-color: #3e95f2;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Ted">
+                        <img src="/static//assets/images/admin_options/ted.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">ویدیو تد روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Ted" class="btn btn-info" style="
+                                                background-color: #e74739;
+                                                border-color: #e54537;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Animation">
+                        <img src="/static//assets/images/admin_options/animation.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">انیمیشن کوتاه روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Animation" class="btn btn-info" style="
+                                                background-color: #e9c259;
+                                                border-color: #e9c259;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Movie">
+                        <img src="/static//assets/images/admin_options/movie.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">فیلم روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Movie" class="btn btn-info" style="
+                                                background-color: #56757a;
+                                                border-color: #58767b;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add/Day/Podcast">
+                        <img src="/static//assets/images/admin_options/podcast.jpg" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">پادکست روزی از دوره</h5>
+                        <a href="/Admin/Add/Day/Podcast" class="btn btn-info" style="
+                                                background-color: #9197eb;
+                                                border-color: #9197eb;
+                                            "> اضافه کردن </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

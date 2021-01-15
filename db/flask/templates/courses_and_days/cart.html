@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %} پنل شخصی موفقیت اِرج - خرید دوره {% endblock %} {% block main_css %}
+<link href="/static//assets/css/style_of_main_page.css" rel="stylesheet" />
+<script src="/static/sweetalert/sweetalert2@10.js"></script>{% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
+<li class="breadcrumb-item"><a href="/Course/{{course.Slug}}"> {{course.Name}} </a></li>
+<li class="breadcrumb-item active" aria-current="page"> خرید </li>
+{% endblock %} {% block body %}
+<script>
+    function have_to_login() {
+        Swal.fire({
+            icon: 'error',
+            title: 'اکانت',
+            text: 'برای ادامه فرایند خرید،‎ لطفا وارد حسابتان شوید.',
+            footer: '<p><a href=/SignUp>ثبت نام</a>               <a href=/LogIn>ورود</a></p>'
+
+        })
+    }
+</script>
+<div class="row row-cards">
+    <div class="col-lg-12 col-md-12 col-sm-12 bootstrap snippets">
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card ">
+            <div class="card-header ">
+                <h3 class="card-title">خرید شما</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered align-items-center">
+                        <tbody>
+                            <tr>
+                                <td>نام دوره</td>
+                                <td class="text-right">{{course.Name}}</td>
+                            </tr>
+                            <tr>
+                                <td><span>زمان دوره</span></td>
+                                <td class="text-right"><span>{{course.Length}} روز</span></td>
+                            </tr>
+                            <tr>
+                                <td><span>قیمت نهایی</span></td>
+                                <td>
+                                    <h2 class="price text-right mb-0">{{ price_beautifier(course.Now_Price) }} تومان</h2>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <form class="text-center mt-0">
+                    {% if g.is_signed_in == false %}
+                    <a onclick="have_to_login()" style="color: #fff;" class="btn btn-success mt-2"> تکمیل خرید <i class="fa fa-arrow-circle-right"></i></a> {% else %}
+                    <a href="/Course/{{course.Slug}}/buy/redirect" style="color: #fff;" class="btn btn-success mt-2"> تکمیل خرید <i class="fa fa-arrow-circle-right"></i></a> {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

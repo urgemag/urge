@@ -1,0 +1,381 @@
+{% extends "base.html" %} {% block title %}پنل شخصی موفقیت اِرج - داشبورد{% endblock %}
+ {% block main_css %}
+<link href="/static//assets/css/style_of_main_page.css" rel="stylesheet" />
+<link href="/static//intro/introjs.min.css" rel="stylesheet" />
+<link href="/static//intro/introjs-rtl.min.css" rel="stylesheet" />
+<script src="/static//intro/intro.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<style>
+    .introjs-tooltiptext {
+        text-align: right;
+        font-family: 'iranyekan';
+        font-weight: 500;
+    }
+    
+    .introjs-button {
+        text-align: right;
+        font-family: 'iranyekan';
+        font-weight: 500;
+    }
+    
+    .index-card {
+        min-height: 94% !important;
+    }
+    
+    .center-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+{% block page_header_style %} style="margin: 0rem 0 0rem;" {% endblock %}
+{% block home_active_button %}
+<li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
+{% endblock %}
+ {% block body %}
+<script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://forbes400.herokuapp.com/api/forbes400/getAllBillionaires?limit=10";
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var top_ten_data = JSON.parse(this.responseText);
+            items = ["rank", "personName", "age", "countryOfCitizenship", "state", "city", "source", "finalWorth"];
+            for (rank = 0; rank < 10; rank++) {
+                top_ten_data[rank]["age"] = Math.floor((new Date()).getFullYear() - (new Date(top_ten_data[rank]["birthDate"])).getFullYear()) - 1
+                top_ten_data[rank]["finalWorth"] = top_ten_data[rank]["finalWorth"] + "M"
+
+                for (item_count = 0; item_count < 8; item_count++) {
+                    item = items[item_count]
+                    console.log()
+                    document.getElementById("top_ten_" + rank + "_" + item).innerHTML = top_ten_data[rank][item];
+                }
+            }
+        }
+    };
+
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+</script>
+
+<div class="row">
+    {% if details["User"]==False %}
+    <div class="col-md-12 col-xl-3 col-lg-4">
+        <div class="card card-aside">
+            <a href="/LogIn" class="card-aside-column cover-image" data-image-src="https://cdn.dribbble.com/users/1484654/screenshots/12018680/media/ac0d0439ca6e4ec05904c365ecf5bee6.jpg?compress=1&resize=800x600" style="background: url(&quot;https://cdn.dribbble.com/users/1604504/screenshots/8015392/media/9d52e6b78eb59afba2164910936fbee8.png?compress=1&resize=1000x750&quot;) center center;"></a>
+            <div class="card-body d-flex flex-column" style="padding: 0.5rem 1.5rem;">
+                <h4 style=" padding-top: 10px; margin-bottom: 5px; "><a href="#">وارد اکانت تان شوید</a></h4>
+                <a href="/LogIn" style="-ms-transform: scale(0.9); -webkit-transform: scale(0.9); transform: scale(0.9);" class=" mt-3 btn btn-md btn-secondary">ورود</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 col-xl-6 col-lg-4">
+        <div class="card text-center bg-gradient-primary text-white">
+            <div class="card-body">
+                <h4>خانواده چند هزار نفری <b>اِرج</b></h4>
+
+                <div><i class="si si-plus text-white"></i> <span class="text-white"></span> به علاوه شما</div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 col-xl-3 col-lg-4">
+        <div class="card card-aside">
+            <div class="card-body d-flex flex-column" style="padding: 0.5rem 1.5rem;">
+                <h4 style=" padding-top: 10px; margin-bottom: 5px; "><a href="#">ثبت نام کنید</a></h4>
+                <a href="/SignUp" style="-ms-transform: scale(0.9); -webkit-transform: scale(0.9); transform: scale(0.9);" class=" mt-3 btn btn-md btn-primary">ثبت نام</a>
+            </div>
+            <a href="/SignUp" class="card-aside-column cover-image" data-image-src="https://cdn.dribbble.com/users/1488946/screenshots/5321350/__.jpg?compress=1&resize=800x600" style="background: url(&&quot;) center center;"></a>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-sm-12 col-lg-12 col-xl-6">
+
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 col-xl-6">
+                <div class="card index-card" style="
+                                min-height: 303px;
+                            ">
+                    <a href="#"><img class="card-img-top br-tl-7 br-tr-7" src="/static//assets/images/photos/6.jpg" alt="img"></a>
+                    <div class="card-body d-flex flex-column">
+                        <small class="text-muted mb-1">مقاله رندوم</small>
+                        <h4><a href="#">موضوع و اسم مقاله</a></h4>
+                        <div class="text-muted"></div>
+                        <a href="" class=" mt-3 btn btn-sm btn-primary">بزن بریم!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6 col-xl-6">
+                <div id="courses_bigger_button" class="card index-card bg-gradient-primary">
+                    <div class="card-body text-center p-6 center-div">
+                        <div class="sale-wideget">
+                            <div class="text-white h3 mb-5">بخش ویژه</div>
+                            <span class="bg-white-transparent icon-service text-white">
+														<i class="si si-rocket  fs-2"></i>
+													</span>
+                            <div class="text-white h1 fs-3 mt-4 mb-2">{{number_of_courses}}</div>
+                            <h5 class="text-white fs-20">دوره مختلف</h5>
+                            <p class="text-white">دوره های موفقیت میتونن مسیر موفقیت رو برای ما فراهم سازند. </p>
+                            <a href="/Courses" class="btn btn-danger text-white">برو به فروشگاه</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-12 col-xl-6">
+        <div class="card index-card">
+            <div class="card-header custom-header">
+                <div>
+                    <h3 class="card-title">دوره های موفقیت</h3>
+                    <h6 class="card-subtitle">برترین دوره های اِرج</h6>
+                </div>
+                <div class="card-options">
+
+
+                </div>
+            </div>
+
+
+            <div class="card-body pt-3 pb-3" style="min-height: 200px;">
+                <div class="memberblock mb-0">
+                    <div class="row ">
+                        {% for course in top_courses %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-1 pr-1 m-t-5 m-b-5" style="margin-right: 3%; margin-left: 3%;max-width: 43%;">
+                            <a style="border-radius: 14px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" href="Course/{{course.Slug}}" class="member"> <img src="{{course.Cover}}" alt="">
+                                <div class="memmbername"> {{course.Name}} </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-md-12 col-lg-4">
+        <div class="card text-white bg-gradient-success">
+            <div class="card-body">
+                <p class="card-text">{{quotes[0]}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-4">
+        <div class="card text-white bg-gradient-primary">
+            <div class="card-body">
+                <p class="card-text">{{quotes[1]}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-4">
+        <div class="card text-white bg-gradient-info">
+            <div class="card-body">
+                <p class="card-text">{{quotes[2]}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+</div>
+<div class="row">
+    <div class="col-xl-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header custom-header">
+                <div>
+                    <h3 class="card-title">10 انسان ثروتمند جهان</h3>
+                    <h6 class="card-subtitle">لیستی از ثروتمندترین های جهان</h6>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table border table-bordered text-nowrap mb-0">
+                        <thead>
+                            <tr>
+                                <th>رَنک</th>
+                                <th>اسم</th>
+                                <th>سن</th>
+                                <th>کشور</th>
+                                <th>ایالت</th>
+                                <th>شهر</th>
+                                <th>شرکت</th>
+                                <th>دارایی</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for person in range (10) %}
+                            <tr>
+                                <td id="top_ten_{{person}}_rank" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_personName" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_age" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_countryOfCitizenship" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_state" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_city" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_source" style="text-align: center;" ></td>
+                                <td id="top_ten_{{person}}_finalWorth" style="text-align: center;"></td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12 m-b-3">
+        <div class="card">
+            <div class="">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="facebook p-4 br-tr-7 br-tl-7">
+                            <div class="text-center text-white social">
+                                <a style="
+                                                            font-weight: 800;
+                                                            color: #fff;
+                                                            font-size: 30px;
+                                                        " href="https://urge.ir/">سایت</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12 m-b-3">
+        <div class="card">
+            <div class="">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="twitter p-4 br-tr-7 br-tl-7">
+                            <div class="text-center text-white social">
+                                <a class="fa fa-twitter" href="https://twitter.com/urge_ir" style="
+                                                            color: #fff;
+                                                            font-size: 44px;
+                                                        "></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12 m-b-3">
+        <div class="card">
+            <div class="">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="linkedin p-4 br-tr-7 br-tl-7">
+                            <div href="https://virgool.io/@urge" class="text-center text-white social">
+                                <a style="
+                                                            font-weight: 800;
+                                                            color: #fff;
+                                                            font-size: 30px;
+                                                        " href="https://virgool.io/@urge">ویرگول</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-12 m-b-3">
+        <div class="card">
+            <div class="">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="instagram p-4 br-tr-7 br-tl-7">
+                            <div class="text-center text-white social">
+                                <a class="fa fa-instagram" href="https://www.instagram.com/urge_ir/" style="
+                                                            color: #fff;
+                                                            font-size: 44px;
+                                                        "></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- row end -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header custom-header">
+        <div>
+            <h3 class="card-title">آخرین اخبار</h3>
+            <h6 class="card-subtitle">مرور کلیه اطلاعات</h6>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="latest-timeline">
+            <ul class="timeline mb-0">
+                <li class="mt-0">
+                    <a target="_blank" href="#" class="font-weight-semibold text-default fs-17">Sed ut perspiciatis iste natus</a>
+                    <a href="#" class="float-right">روز سوم</a>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua nisi ut aliquip. </p>
+                </li>
+                <li>
+                    <a href="#" class="font-weight-semibold text-default fs-17">Nam libero tempore, cum soluta</a>
+                    <a href="#" class="float-right">روز سوم</a>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua nisi ut aliquip. </p>
+                </li>
+                <li>
+                    <a href="#" class="font-weight-semibold text-default fs-17">Excepteur sint occaecat cupidatat</a>
+                    <a href="#" class="float-right">روز سوم</a>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua nisi ut aliquip.</p>
+                </li>
+                <li class="mb-0">
+                    <a href="#" class="font-weight-semibold text-default fs-17">Neque porro quisquam est</a>
+                    <a href="#" class="float-right">روز سوم</a>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua nisi ut aliquip . </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function starthelp() {
+        introJs().setOptions({
+            steps: [{
+                intro: "سلااااام! به پنل اِرج خیلی خیلی خوش اومدی."
+            }, {
+                element: document.getElementById('signup'),
+                intro: "شما میتونید از اینجا ثبت نام کنید."
+            }, {
+                element: document.getElementById('login'),
+                intro: "اگر هم قبلا ثبت نام کردید و عضوی از خانواده اِرج هستید, از اینجا میتونید لاگین کنید."
+            }, {
+                element: document.getElementById('courses_bigger_button'),
+                intro: "اگر میخواید دوره هارو نگاه کنید, از اینجا اقدام کنید."
+            }]
+        }).start();
+    }
+</script>
+{% if g.first_visit %}
+<script>
+    starthelp()
+</script>
+<script>
+    top_ten()
+</script>
+
+{% endif %} {% endblock %}

@@ -1,0 +1,138 @@
+{% extends "base.html" %} {% block title %} معرفی دوره {{course.Name}} - پنل اِرج{% endblock %} {% block breadcrumb %}
+
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
+<li class="breadcrumb-item"><a href="/Course/{{course.Slug}}"> {{course.Name}} </a></li>
+<li class="breadcrumb-item active" aria-current="page">معرفی</li>
+{% endblock %} {% block body %}
+<!-- row -->
+<div class="row ">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">دوره {{course.Name}}</h3>
+                <div class="card-options">
+                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                </div>
+            </div>
+            <div class="card-body">
+                {{course.Intro.introduction|safe}}
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+
+
+
+
+    <div class="col-md-12 col-lg-4" style="
+                                    flex: 0 0 50%;
+                                    max-width: 50%;
+                                ">
+        <div class="card text-white bg-gradient-primary">
+            <div class="card-body">
+                <h4 class="card-title">ویژگی های دوره</h4>
+                <p class="card-text">{{course.Intro.speciality|safe}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 col-lg-4" style="
+                                    flex: 0 0 50%;
+                                    max-width: 50%;
+                                ">
+        <div class="card text-white bg-gradient-info">
+            <div class="card-body">
+                <h4 class="card-title">اهمیت دوره</h4>
+                <p class="card-text">{{course.Intro.importance|safe}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header ">
+                <h3 class="card-title">چرا این دوره ؟</h3>
+                <div class="card-options">
+                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                </div>
+            </div>
+            <div class="card-body">
+                {{course.Intro.why|safe}}
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3" style="
+                                    flex: 0 0 50%;
+                                    max-width: 50%;
+                                ">
+        <div class="card service">
+            <div class="card-body">
+                <div class="item-box text-center">
+                    <div class=" text-center text-danger mb-4"><i class="si si-clock"></i></div>
+                    <div class="item-box-wrap">
+                        <h5 class="mb-2 font-weight-semibold">زمان دوره</h5>
+                        <p class="text-default mb-0">{{course.Intro.length|safe}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-3" style="
+                                    flex: 0 0 50%;
+                                    max-width: 50%;
+                                ">
+        <div class="card service">
+            <div class="card-body">
+                <div class="item-box text-center">
+                    <div class=" text-center text-primary mb-4"><i class="fa fa-money"></i></div>
+                    <div class="item-box-wrap">
+                        <h5 class="mb-2 font-weight-semibold">هزینه دوره</h5>
+                        <p class="text-default mb-0">{{course.Intro.price|safe}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-status card-status-left bg-primary br-bl-7 br-tl-7"></div>
+            <div class="card-header">
+                <h3 class="card-title">حرف آخر ...</h3>
+                <div class="card-options">
+                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                </div>
+            </div>
+            <div class="card-body">
+                {{course.Intro.last_words|safe}}
+            </div>
+        </div>
+    </div>
+
+    <!-- col end -->
+
+    <!-- col end -->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body border">
+                <div class="terms text-center">
+                    <a href='/Course/{{course.Slug}}' class="btn btn-primary text-white">صفحه دوره</a>
+                    <a href='/Course/{{course.Slug}}/buy' class="btn btn-secondary text-white">خرید</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+</div>
+{% endblock %}
