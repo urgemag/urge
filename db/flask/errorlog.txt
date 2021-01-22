@@ -1,0 +1,78 @@
+Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 37, in decorated
+    return f(*args, **kwargs)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 46, in index
+    raise ValueError('A very specific bad thing happened.')
+ValueError: A very specific bad thing happened.
+Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 37, in decorated
+    return f(*args, **kwargs)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 46, in index
+    raise ValueError('A very specific bad thing happened.')
+ValueError: A very specific bad thing happened.
+-----Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 37, in decorated
+    return f(*args, **kwargs)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 46, in index
+    raise ValueError('A very specific bad thing happened.')
+ValueError: A very specific bad thing happened.
+-----
+
+Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/rev/.local/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 37, in decorated
+    return f(*args, **kwargs)
+  File "/home/rev/Desktop/Urge Panel/Main/db/flask/views/basic.py", line 46, in index
+    raise ValueError('A very specific bad thing happened.')
+ValueError: A very specific bad thing happened.

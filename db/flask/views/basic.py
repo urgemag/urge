@@ -43,11 +43,12 @@ def first_visit(f):
 @first_visit
 def index():
     ***REMOVED*** The Dashboard - Also Check if not a member , redirect to /SignUp page. ***REMOVED***
+    raise ValueError('A very specific bad thing happened.')
     return render_template(
         "basic/main.html", 
         details=PageDetails(session).index_data(),
         number_of_courses = PageDetails().number_of_courses(),
-        top_courses = PageDetails().top_3_expensive_courses(),
+        top_courses = PageDetails().top_3_expensive_coursess(),
         quotes = PageDetails().random_quotes()
         )
     

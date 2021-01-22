@@ -74,7 +74,50 @@
 <body class="app sidebar-mini rtl">
 
     <!--Global-Loader-->
+<style>
 
+    .responsive_main_urge_logo {
+        height: auto;
+        line-height: 2rem;
+        padding-top: 0.4rem !important;
+        vertical-align: middle;
+        background: #ffffff;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 12px;
+        width: 275px;
+        margin-right: -23px;
+
+    }
+    .icon-logo{
+        height: auto;
+        line-height: 2rem;
+        margin-top: 0.4rem !important;
+        vertical-align: middle;
+        width: 3rem;
+        margin: 0 auto;
+    }
+    @media screen and (max-width: 990px) {
+        .responsive_main_urge_logo {
+
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .responsive_main_urge_logo {
+            padding-right: 1.5rem;
+            width: 230px ;
+            margin-top: 1px;
+
+        }
+    }
+    @media screen and (min-width: 992px) {
+        .responsivity_fast_access {
+            margin-right:5rem;
+
+        }
+    }
+
+</style>
 
     <div id="main" class="page">
         <div class="page-main">
@@ -84,11 +127,11 @@
                 <div class="container-fluid">
                     <div class="d-flex">
                         <a class="header-brand" href="/">
-                            <img src="/static//assets/images/brand/logo.png" class="header-brand-img main-logo" alt="Hogo logo">
+                            <img src="/static//assets/images/brand/logo.png" class="header-brand-img main-logo responsive_main_urge_logo" alt="Hogo logo">
                             <img src="/static//assets/images/brand/icon.png" class="header-brand-img icon-logo" alt="Hogo logo">
                         </a>
                         <!-- logo-->
-                        <ul class="nav navbar-nav horizontal-nav header-nav">
+                        <ul class="nav navbar-nav horizontal-nav header-nav responsivity_fast_access">
                             <li class="mega-dropdown nav-item">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="fe fe-grid mr-2"></i> دسترسی سریع <i class="fa fa-angle-down ml-1"></i>
