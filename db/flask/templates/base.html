@@ -81,13 +81,15 @@
         line-height: 2rem;
         padding-top: 0.4rem !important;
         vertical-align: middle;
+        margin-right: -3.75rem;
+        padding-right: 0.5rem;
+        width: 6.7rem;
         background: #ffffff;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-left: 0.5rem;
         padding-bottom: 12px;
-        width: 275px;
-        margin-right: -23px;
+        transform: scale(2.33);
 
+        transform-origin: top right;
     }
     .icon-logo{
         height: auto;
@@ -99,14 +101,36 @@
     }
     @media screen and (max-width: 990px) {
         .responsive_main_urge_logo {
+            height: auto;
+            line-height: 2rem;
+            padding-top: 0.4rem !important;
+            vertical-align: middle;
+            margin-right: -3rem;
+            padding-right: 0.5rem;
+            width: 6.7rem;
+            background: #ffffff;
+            padding-left: 7px;
+            padding-bottom: 2px;
+            transform: scale(2.62);
+            transform-origin: top right;
 
         }
     }
     @media screen and (max-width: 767px) {
         .responsive_main_urge_logo {
+            height: auto;
+            line-height: 2rem;
+            padding-top: 0rem !important;
+            vertical-align: middle;
+            margin-right: -3rem;
             padding-right: 1.5rem;
-            width: 230px ;
-            margin-top: 1px;
+            width: 6.7rem;
+            background: #ffffff;
+            padding-left: 7px;
+            padding-bottom: 2px;
+            transform: scale(2.4);
+            transform-origin: top right;
+            margin-top: -9px;
 
         }
     }
@@ -127,11 +151,11 @@
                 <div class="container-fluid">
                     <div class="d-flex">
                         <a class="header-brand" href="/">
-                            <img src="/static//assets/images/brand/logo.png" class="header-brand-img main-logo responsive_main_urge_logo" alt="Hogo logo">
-                            <img src="/static//assets/images/brand/icon.png" class="header-brand-img icon-logo" alt="Hogo logo">
+                            <img id="full-header" src="/static//assets/images/brand/logo.png" class="header-brand-img main-logo responsive_main_urge_logo" alt="Hogo logo">
+                            <img id="min-header" src="/static//assets/images/brand/icon.png" class="header-brand-img icon-logo" alt="Hogo logo">
                         </a>
                         <!-- logo-->
-                        <ul class="nav navbar-nav horizontal-nav header-nav responsivity_fast_access">
+                        <ul class="nav navbar-nav horizontal-nav header-nav responsivity_fast_access" style="    margin-right: 6rem;">
                             <li class="mega-dropdown nav-item">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="fe fe-grid mr-2"></i> دسترسی سریع <i class="fa fa-angle-down ml-1"></i>
@@ -636,6 +660,27 @@
     <script src="/static//assets/plugins/rating/jquery.rating-stars.js"></script>
     <!-- Custom js-->
     <script src="/static//assets/js/custom.js"></script>
+<script>
+    normal =  true
+    var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutationRecord) {
+        console.log('style changed!');
+        normal = !normal
+        if (normal == true){
+            document.getElementById("min-header").style = "display:none"
+            document.getElementById("full-header").style = "display:inline"
+
+        }
+        else{
+            document.getElementById("full-header").style = "display:none"
+            document.getElementById("min-header").style = "display: block; width: 10px; transform: scale(7); margin-right: -12px; transform-origin: top right; margin-top: 45px !important; padding-left: 1px; padding-right: 1px; background: #fFF;"
+        }
+    });    
+});
+
+var target = document.getElementById('mCSB_1_scrollbar_vertical');
+observer.observe(target, { attributes : true, attributeFilter : ['style'] });
+</script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@ from flask import Blueprint
 errors = Blueprint("errors", __name__)
 
 
-@errors.errorhandler(500)
+@errors.errorhandler(404)
 def not_found(e):
     ***REMOVED*** The 404 not found page. ***REMOVED***
 

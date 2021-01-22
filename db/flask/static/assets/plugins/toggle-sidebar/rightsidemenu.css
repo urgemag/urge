@@ -685,6 +685,7 @@
     width: 70px;
     overflow: hidden;
   }
+
   .sidebar-mini.sidenav-toggled .app-sidebar:hover {
     overflow: visible;
   }

@@ -782,3 +782,53 @@ def add_course_info_admin():
         "admin/admin_add_course_info.html",
         Courses=PageDetails().get_all_courses_info_categorized_by_info_existence(),
     )
+
+
+@admin_add.route("/Admin/Add/Post", methods=["POST", "GET"])
+@check_is_admin()
+def add_post_blog_admin():
+    ***REMOVED*** The Add a Post for blog Page as an admin. ***REMOVED***
+
+    if request.method == "POST":
+
+        def form_handler(request):
+
+            if request.form.get("slug") == "":
+                return {"Result": False, "Message": "نام انگلیسی دوره را وارد کنید."}
+            if request.form.get("day") == "":
+                return {"Result": False, "Message": "روز دوره را وارد کنید."}
+            if request.form.get("text") == "":
+                return {"Result": False, "Message": "متن اصلی را وارد کنید."}
+
+            try:
+                int(request.form.get("day"))
+            except ValueError:
+                return {"Result": False, "Message": "روز دوره باید عدد باشد."}
+
+            if Database().get_courses_data_from_db(request.form.get("slug")) is False:
+                return {"Result": False, "Message": "همچین دوره ای وجود ندارد."}
+
+            message = Database().add_day_text_data_to_db(
+                course_name_slug=request.form.get("slug"),
+                day_num=request.form.get("day"),
+                text=request.form.get("text"),
+            )
+            return message
+
+        message = form_handler(request)
+        if message is True:
+            message = {"Color": "green", "Result": "با موفقیت اضافه شد."}
+        else:
+            if message["Result"] is False:
+                message["Color"] = "red"
+            else:
+                message["Color"] = "green"
+            message["Result"] = message["Message"]
+
+        flash(message)
+        return redirect(url_for("admin_add.add_day_text_data_admin"))
+
+    return render_template(
+        "admin/admin_add_day_text.html",
+        Courses=Database().get_all_slug_and_names_of_courses_from_db(),
+    )
