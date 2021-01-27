@@ -152,7 +152,7 @@ def add_day_essential_main_data_admin():
         Courses=Database().get_all_slug_and_names_of_courses_from_db(),
     )
 
-
+import re
 @admin_add.route("/Admin/Add/Day/Text", methods=["POST", "GET"])
 @check_is_admin()
 def add_day_text_data_admin():
@@ -161,26 +161,44 @@ def add_day_text_data_admin():
     if request.method == "POST":
 
         def form_handler(request):
+            text = request.form.get("text")
+            day = request.form.get("day")
+            slug = request.form.get("slug")
 
-            if request.form.get("slug") == "":
+            if slug == "":
                 return {"Result": False, "Message": "نام انگلیسی دوره را وارد کنید."}
             if request.form.get("day") == "":
                 return {"Result": False, "Message": "روز دوره را وارد کنید."}
-            if request.form.get("text") == "":
+            if text == "":
                 return {"Result": False, "Message": "متن اصلی را وارد کنید."}
 
             try:
-                int(request.form.get("day"))
+                int(day)
             except ValueError:
                 return {"Result": False, "Message": "روز دوره باید عدد باشد."}
 
-            if Database().get_courses_data_from_db(request.form.get("slug")) is False:
+            if Database().get_courses_data_from_db(slug) is False:
                 return {"Result": False, "Message": "همچین دوره ای وجود ندارد."}
 
+            links_images = re.findall("src=[\"\'](.*?)[\"\']", text)
+
+            if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day}".format(slug=slug,day=day)) is False:
+                General().setup_course_folder(slug)
+
+            for link in links_images:
+                file_path = General().href_to_path(link)
+                file_name = (file_path.split("/"))[-1]
+                new_file_path = "static/assets/courses/{slug}/days/{day_number}/{file_name}".format(slug=slug,day_number=day, file_name=file_name)
+                new_file_href = "/static//assets/courses/{slug}/days/{day_number}/{file_name}".format(slug=slug,day_number=day, file_name=file_name)
+                General().move_file_path(file_path, new_file_path)
+                text = text.replace(link, new_file_href)
+
+
+
             message = Database().add_day_text_data_to_db(
-                course_name_slug=request.form.get("slug"),
-                day_num=request.form.get("day"),
-                text=request.form.get("text"),
+                course_name_slug=slug,
+                day_num=day,
+                text=text,
             )
             return message
 
@@ -674,18 +692,19 @@ def add_course_admin():
         def form_course(request):
             if request.form.get("slug") == "":
                 return {"Message": "نام انگلیسی دوره را وارد کنید."}
+            slug = request.form.get("slug").replace(" ","_")
             try:
                 uploaded_file = request.files["cover"]
             except:
                 print("hrer")
                 return {"Message": "تصویر را آپلود کنید."}
             if (
-                Database().get_courses_data_from_db(request.form.get("slug")) != ""
+                Database().get_courses_data_from_db(slug) != ""
                 and uploaded_file.filename == ""
             ):
                 return {"Message": "تصویر را آپلود کنید."}
             result_pic = General().save_picture_of_course(
-                request.form.get("slug"), uploaded_file
+                slug, uploaded_file
             )
             if result_pic["Result"] is False:
                 return result_pic
@@ -721,7 +740,7 @@ def add_course_admin():
 
             message = Database().add_course_data_to_db(
                 name=request.form.get("name"),
-                slug=request.form.get("slug"),
+                slug=slug,
                 description=request.form.get("description"),
                 intro=None,
                 image_href=result_pic["href"],
@@ -730,7 +749,7 @@ def add_course_admin():
                 robbin=request.form.get("robbin"),
                 free=free,
                 soon=soon,
-                published_date=General().days_passed_till_now()+days_till_open
+                days_till_publish=days_till_open
             )
             if message is not True:
                 General().remove_file(result_pic["path"])
@@ -756,9 +775,6 @@ def add_course_info_admin():
     ***REMOVED*** The Add Course information Page as an admin. ***REMOVED***
 
     if request.method == "POST":
-        print("-------------")
-        print(request.form.get("slug"))
-        print("-------------")
         message = Database().add_course_info_to_db(
             slug=request.form.get("slug"),
             introduction=request.form.get("intro"),
@@ -792,25 +808,36 @@ def add_post_blog_admin():
     if request.method == "POST":
 
         def form_handler(request):
-
-            if request.form.get("slug") == "":
+            if request.form.get("name_persian") == "":
+                return {"Result": False, "Message": "نام فارسی دوره را وارد کنید."}
+            if request.form.get("name_eng") == "":
                 return {"Result": False, "Message": "نام انگلیسی دوره را وارد کنید."}
-            if request.form.get("day") == "":
-                return {"Result": False, "Message": "روز دوره را وارد کنید."}
             if request.form.get("text") == "":
                 return {"Result": False, "Message": "متن اصلی را وارد کنید."}
+            uploaded_file = request.files["cover"]
+            if uploaded_file.filename == "":
+                return {"Message": "تصویر را آپلود کنید."}
 
-            try:
-                int(request.form.get("day"))
-            except ValueError:
-                return {"Result": False, "Message": "روز دوره باید عدد باشد."}
+            english_name = (request.form.get("name_eng").replace(" ","-")).replace("_","-")
+            uploaded_image = request.files.get("cover")
+            uploaded_image_bytes = uploaded_image.read()
 
-            if Database().get_courses_data_from_db(request.form.get("slug")) is False:
-                return {"Result": False, "Message": "همچین دوره ای وجود ندارد."}
 
-            message = Database().add_day_text_data_to_db(
-                course_name_slug=request.form.get("slug"),
-                day_num=request.form.get("day"),
+            format_file = General().format_recognizer(uploaded_image_bytes)
+            file_name = "blog-cover_" + english_name + "." + format_file
+            location_image = "static/assets/images/blog/view_pic/" + file_name
+            location_image_href = "/static//assets/images/blog/view_pic/" + file_name
+            with open(location_image, "wb") as file:
+                file.write(uploaded_image_bytes)
+
+            General().image_resizer_using_imgp(location_image, 1500)
+            General().image_optimizer_using_imgp(location_image)
+
+
+            message = Database().add_post_blog_to_db(
+                persian_name=request.form.get("name_persian"),
+                eng_name=english_name,
+                cover_href=location_image_href,
                 text=request.form.get("text"),
             )
             return message
@@ -826,9 +853,8 @@ def add_post_blog_admin():
             message["Result"] = message["Message"]
 
         flash(message)
-        return redirect(url_for("admin_add.add_day_text_data_admin"))
+        return redirect(url_for("admin_add.add_post_blog_admin"))
 
     return render_template(
-        "admin/admin_add_day_text.html",
-        Courses=Database().get_all_slug_and_names_of_courses_from_db(),
+        "admin/admin_add_post.html",
     )

@@ -1,4 +1,4 @@
-from flask import Blueprint, session, redirect, render_template, request, flash, url_for
+from flask import Blueprint, session, redirect, render_template, request, flash, url_for, abort
 from models import PageDetails, Database,Authentication
 from functools import wraps
 
@@ -519,4 +519,40 @@ def remove_day_movie_data_admin():
     return render_template(
         "admin/admin_remove_day_movie.html",
         Courses=Database().get_all_slug_and_names_of_courses_from_db(),
+    )
+
+@admin_remove.route("/Admin/Remove/Post/<slug_post>", methods=["POST", "GET"])
+@check_is_admin()
+def remove_post_blog_admin(slug_post):
+    ***REMOVED*** The remove a Post for blog Page as an admin. ***REMOVED***
+    post = Database().get_blog_post_data_from_db(slug_post)
+    if post is False:
+        abort(404)
+        
+    if request.method == "POST":
+        def form_handler(request):
+            if request.form.get("confirmation") == "True":
+                message = Database().delete_post_blog_data_from_db(slug_post)
+            else:
+                message = {"Result": False, "Message": "حذف تایید نشده است."}
+                
+            return message
+
+        message = form_handler(request)
+        if message is True:
+            message = {"Color": "green", "Result": "با موفقیت ویرایش شد."}
+        else:
+            if message["Result"] is False:
+                message["Color"] = "red"
+            else:
+                message["Color"] = "green"
+            message["Result"] = message["Message"]
+
+        flash(message)
+        return redirect(url_for("admin_edit.post_blog_options_admin"))
+
+
+    return render_template(
+        "admin/admin_remove_post.html",
+        post=post
     )

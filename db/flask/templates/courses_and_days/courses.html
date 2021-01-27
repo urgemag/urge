@@ -38,6 +38,7 @@
         <div class="row">
 
             {% for course in courses %}
+
             <div class="col-md-12 col-lg-6 col-md-4 col-xl-3 ">
                 <div class="card overflow-hidden">
 
@@ -52,7 +53,7 @@
                         </span>
                     </div>
                     {% endif %} {% if days_till_now
-                    < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')">
+                    < convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open %} <a onclick="available_soon('{{convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }}')">
                         {% else %}
                         <a href="/Course/{{course.Slug}}">
 
@@ -62,8 +63,7 @@
                         <div class="card-body" style="background-color: white">
 
                             <h5 class="card-title mb-3" style="display: contents;">{{course.Name}}</h5>
-                            {% if days_till_now
-                            < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')" style="display:inline-block; margin-right: 13px;background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);-webkit-text-fill-color: transparent;-webkit-background-clip: text;-moz-background-clip: text;-webkit-text-fill-color: transparent;-moz-text-fill-color: transparent;"><i class="zmdi zmdi-label"></i> بازگشایی تا {{ course["Published_Date"] - days_till_now }} روز دیگر </a>
+                            {% if days_till_now < (convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open) %} <a onclick="available_soon('{{convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }}')" style="display:inline-block; margin-right: 13px;background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);-webkit-text-fill-color: transparent;-webkit-background-clip: text;-moz-background-clip: text;-webkit-text-fill-color: transparent;-moz-text-fill-color: transparent;"><i class="zmdi zmdi-label"></i> بازگشایی تا {{ convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }} روز دیگر </a>
                             {% elif course.Slug in accesses %}
                             <a class="" style="display:inline-block; margin-right: 13px;background: -webkit-linear-gradient(45deg, #3e4b5a, #485563);-webkit-text-fill-color: transparent;-webkit-background-clip: text;-moz-background-clip: text;-webkit-text-fill-color: transparent;-moz-text-fill-color: transparent;"><i class="zmdi zmdi-label"></i> دسترسی کامل </a>
                             
@@ -74,16 +74,12 @@
 
 
 
-                                {% if days_till_now
-                                < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')" class="btn btn-success" style="
+                                {% if days_till_now < (convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open) %} <a onclick="available_soon('{{convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }}')" class="btn btn-light" style="
                                                                 display: block;
-                                                                color: #3e3e3e;
-                                                                background: #f1f1f140;
-                                                                border-color: #f1f1f15c;
                                                                 margin-top: -6px;
                                                                 margin-bottom: 14px;
                                                                 border-radius: 50px;
-                                                        ">بازگشایی تا {{ course["Published_Date"] - days_till_now }} روز دیگر</a>
+                                                        ">بازگشایی تا {{ convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }} روز دیگر</a>
 
                                                         {% elif course.Slug in accesses %} <a class="btn btn-success" style="
                                                         display: block;
@@ -104,24 +100,18 @@
                                                     margin-bottom: 14px;
                                                     border-radius: 50px;
                                             "> رایگان </a>{% elif course.Slug not in accesses %}
-                                    <a class="btn btn-success" style="
+                                    <a class="btn btn-light" style="
 																		display: block;
-																		color: #3e3e3e;
-																		background: #f1f1f140;
-																		border-color: #f1f1f15c;
 																		margin-top: -6px;
 																		margin-bottom: 14px;
 																		border-radius: 50px;
-																	"> {{ price_beautifier(course.Now_Price) }} تومان </a> {% else %} <a class="btn btn-success" style="
+																	"> {{ price_beautifier(course.Now_Price) }} تومان </a> {% else %} <a class="btn btn-light" style="
                                                                     display: block;
-                                                                    color: #3e3e3e;
-                                                                    background: #f1f1f140;
-                                                                    border-color: #f1f1f15c;
                                                                     margin-top: -6px;
                                                                     margin-bottom: 14px;
                                                                     border-radius: 50px;
                                                                 "> دسترسی کامل </a>{% endif %} {% if days_till_now
-                                    < course[ "Published_Date"] %} <a onclick="available_soon('{{course.Published_Date - days_till_now }}')" class="btn btn-info" style="color: white;"> مشاهده بیشتر و خرید تا {{ course["Published_Date"] - days_till_now }} روز دیگر </a> {% else %} <a href="/Course/{{course.Slug}}" class="btn btn-info"> مشاهده بیشتر</a> {% endif %} 
+                                    < convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open %} <a onclick="available_soon('{{convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }}')" class="btn btn-info" style="color: white;"> مشاهده بیشتر و خرید تا {{ convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }} روز دیگر </a> {% else %} <a href="/Course/{{course.Slug}}" class="btn btn-info"> مشاهده بیشتر</a> {% endif %} 
                                     {% if (course.Free or course.Now_Price== 0 ) and not course.Soon and course.Slug not in accesses %}
 
                                         <a href="/Course/{{course.Slug}}/start" class="btn btn-success"> شروع </a> {% elif not course.Soon %} {% if course.Slug not in accesses %}
@@ -136,6 +126,20 @@
         </div>
 
 
+    </div>
+    <div class="card-body">
+        <ul class="pagination" style="place-content: center;">
+            <li class="page-item page-prev {% if now_page == 1 %}disabled{% endif %}">
+                <a class="page-link" href="?page={{now_page-1}}" tabindex="-1">قبلی</a>
+            </li>
+            {% for page in pagination %}
+            <li class="page-item {% if page == now_page %}active{% endif %}"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+            {% endfor %}
+            <li class="page-item page-next {% if now_page == last_page or last_page==0 %}disabled{% endif %}">
+                <a class="page-link" href="?page={{now_page+1}}">بعدی</a>
+            </li>
+        </ul>
+        <!-- pagination-wrapper -->
     </div>
 </div>
 {% endblock %}

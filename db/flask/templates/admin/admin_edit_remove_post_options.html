@@ -1,0 +1,76 @@
+{% extends "admin_base.html" %} {% block title %} پنل شخصی ادمین موفقیت اِرج - بلاگ {% endblock %} {% block breadcrumb %}
+
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> پست بلاگ </li>
+{% endblock %} {% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
+{% block instead_of_blog_header %}
+<a class="btn btn-primary" href="/" style="
+margin-right: 5px;    height: 100%;
+"><i class="fa fa-home" style="
+    font-size: 14px;
+"></i>        خانه               </a>
+{% endblock %}
+{% block body %}
+
+<style>
+    .course_img {
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transition: 1.2s ease-in-out;
+        -o-transition: 1.2s ease-in-out;
+    }
+    .course_img:hover {
+        -webkit-transform: scale(1.05);
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transform: scale(1.05);
+        -moz-transition: 1.2s ease-in-out;
+        -o-transform: scale(1.05);
+        -o-transition: 1.2s ease-in-out;
+    }
+</style>
+
+<!-- row -->
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-12">
+        <div class="row">
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="col-md-12 ">
+
+                <h3 style="
+                                    text-align: center;
+                                    padding-top: 40px;
+                                    color: {{message.Color}} ">{{message.Result}}</h3>
+            </div>
+
+            {% endfor %} {% endif %} {% endwith %}
+            {% for post in posts %}
+
+<div class="col-sm-6 col-xl-4">
+    <div class="card">
+        <a href="/blog/{{post.English_Name}}"><img class="card-img-top" src="{{post.Cover}}" alt="img"></a>
+        <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center pb-5 mt-auto">
+                <div><img src="https://cdn.dribbble.com/users/1663335/screenshots/14772147/media/ca4ac668405c702ec65f1ca45583eda1.jpg?compress=1&resize=150x150" alt="img" class="avatar brround avatar-md mr-3"></div>
+                <div>
+                    <a href="" class="text-default font-weight-semibold">فاطمه فراهانی</a>
+\
+                    <small class="d-block text-muted">{{status_date_published_post_blog(post.First_Created_TimeStamp)}}</small>
+                </div>
+
+            </div>
+            <h4><a href="/blog/{{post.English_Name}}">{{post.Persian_Name}}</a></h4>
+            <div class="text-muted">{{html_to_text((post.Text)[0:200])[:128]}}...</div>
+            <a href="/blog/{{post.English_Name}}" class=" mt-3 btn btn-md btn-primary">بیشتر بخوانید</a>
+            <a style="margin-top:10px" href="/Admin/Edit/Post/{{post.English_Name}}" class=" mt btn btn-md btn-success">ادیت</a>
+            <a style="margin-top:10px" href="/Admin/Remove/Post/{{post.English_Name}}" class=" mt btn btn-md btn-danger">حذف</a>
+        </div>
+    </div>
+</div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

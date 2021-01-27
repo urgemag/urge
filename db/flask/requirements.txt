@@ -6,3 +6,4 @@ filetype
 gunicorn
 suds-py3
 requests
+jdatetime

@@ -1,0 +1,49 @@
+{% extends "admin_base.html" %} {% block title %} پنل شخصی ادمین موفقیت اِرج - بلاگ {% endblock %} {% block breadcrumb %}
+
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Remove/Post"> حذف پست ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> {{post.Persian_Name}} </li>
+{% endblock %} {% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
+{% block instead_of_blog_header %}
+<a class="btn btn-primary" href="/" style="
+margin-right: 5px;    height: 100%;
+"><i class="fa fa-home" style="
+    font-size: 14px;
+"></i>        خانه               </a>
+{% endblock %}
+{% block body %}
+<div class="row row-cards">
+    <div class="col-lg-12 col-md-12 col-sm-12 bootstrap snippets">
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card ">
+            <div class="card-header ">
+                <h3 class="card-title">حذف پست</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered align-items-center">
+                        <tbody>
+                            <tr>
+                                <td>نام فارسی پست</td>
+                                <td class="text-right">{{post.Persian_Name}}</td>
+                            </tr>
+                            <tr>
+                                <td>نام انگلیسی پست</td>
+                                <td class="text-right">{{post.English_Name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    <form action="/Admin/Remove/Post/{{post.English_Name}}" method="post">
+                        <input name="confirmation" style="display: none;" value="True">
+                        <button type="submit" style="color: #fff;" class="btn btn-danger mt-2"> حذف پست از بلاگ <i class="fa fa-arrow-circle-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

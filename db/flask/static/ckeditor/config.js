@@ -10,5 +10,4 @@ CKEDITOR.editorConfig = function(config) {
     config.uiColor = '#f9f9f9';
     config.extraPlugins = 'filebrowser';
 
-
 };
