@@ -5,7 +5,7 @@ import random
 import pymongo
 import re
 from math import ceil
-from os import mkdir, path, remove, system, rename
+from os import mkdir, path, remove, system, rename, getcwd
 from PIL import Image
 import filetype
 import setting
@@ -16,6 +16,7 @@ from pprint import pprint
 from datetime import *
 import html2text
 import jdatetime
+import send2trash
 # it uses << imgp >> too
 
 
@@ -50,6 +51,15 @@ class General:
 
     def check_existence_of_a_file(self, file_path):
         return path.exists(file_path)
+
+    def remove_file_to_trash(self, file_path):
+        pwd = getcwd()
+        try:
+            send2trash.send2trash('{pwd}/{file_path}'.format(pwd=pwd, file_path=file_path))
+        except:
+            pass
+        return True
+        
 
 
     def setup_course_folder(self, slug):
@@ -226,8 +236,8 @@ class General:
 
         format_file = General().format_recognizer(image_bytes)
         file_name = "days_of_course_{hash_image}.{format_image}".format(hash_image=hash_image,format_image=format_file)
-        location_image = "static/assets/courses/ck/{file_name}".format(file_name=file_name)
-        location_image_href = "/static//assets/courses/ck/{file_name}".format(file_name=file_name)
+        location_image = "static/assets/images/ck_cache/{file_name}".format(file_name=file_name)
+        location_image_href = "/static//assets/images/ck_cache/{file_name}".format(file_name=file_name)
 
 
         with open(location_image, "wb") as file:

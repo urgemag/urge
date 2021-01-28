@@ -1,5 +1,5 @@
 from flask import Blueprint, session, redirect, render_template, request, flash, url_for, abort
-from models import PageDetails, Database,Authentication
+from models import PageDetails, Database,Authentication, General
 from functools import wraps
 
 admin_remove = Blueprint("admin_remove", __name__)
@@ -108,6 +108,9 @@ def remove_course_admin():
 
             for course in remove_ones: 
                 Database().delete_courses_data_from_db(course)
+                General().remove_file_to_trash("static/assets/images/blog/{slug}/".format(slug=course))
+
+                
             return True
 
         message = form_handler(request)
@@ -535,12 +538,12 @@ def remove_post_blog_admin(slug_post):
                 message = Database().delete_post_blog_data_from_db(slug_post)
             else:
                 message = {"Result": False, "Message": "حذف تایید نشده است."}
-                
+            General().remove_file_to_trash("static/assets/images/blog/{slug}/".format(slug=slug_post))
             return message
 
         message = form_handler(request)
         if message is True:
-            message = {"Color": "green", "Result": "با موفقیت ویرایش شد."}
+            message = {"Color": "green", "Result": "با موفقیت حذف شد."}
         else:
             if message["Result"] is False:
                 message["Color"] = "red"

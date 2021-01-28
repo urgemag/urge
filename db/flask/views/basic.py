@@ -158,8 +158,9 @@ def upload_blog_pic_ck():
         hash_image = General().sha256_hash_bytes(uploaded_image_bytes)
 
         format_file = General().format_recognizer(uploaded_image_bytes)
-        file_name = "day_of_course_" + str(hash_image) + "." + format_file
-        location_image = "static/assets/images/blog/inside_pics/" + file_name
+        file_name = "post_blog_" + str(hash_image) + "." + format_file
+        location_image = "static/assets/images/ck_cache/" + file_name
+        location_image_href = "/static//assets/images/ck_cache/" + file_name
 
         with open(location_image, "wb") as file:
             file.write(uploaded_image_bytes)
@@ -171,7 +172,7 @@ def upload_blog_pic_ck():
         return {
             "uploaded": 1,
             "fileName": file_name,
-            "url": "/static//assets/images/blog/inside_pics/" + file_name,
+            "url": location_image_href,
             "width": width,
             "height": height,
         }

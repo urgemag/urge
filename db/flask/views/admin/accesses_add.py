@@ -74,7 +74,9 @@ def add_day_essential_main_data_admin():
     if request.method == "POST":
 
         def form_handler(request):
-
+            slug = request.form.get("slug")
+            day = request.form.get("day")
+            
             if request.form.get("slug") == "":
                 return {"Result": False, "Message": "نام انگلیسی دوره را وارد کنید."}
             if request.form.get("day") == "":
@@ -113,16 +115,19 @@ def add_day_essential_main_data_admin():
             hash_image = General().sha256_hash_bytes(uploaded_image_bytes)
 
             format_file = General().format_recognizer(uploaded_image_bytes)
-            file_name = "day_of_course_" + str(hash_image) + "." + format_file
-            location_image = "static/assets/images/days_of_course/" + file_name
-            location_image_href = "/static//assets/images/days_of_course/" + file_name
+            file_name = "cover_of_day_of_course_" + str(hash_image) + "." + format_file
+            
+            if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day}".format(slug=slug,day=day)) is False:
+                General().setup_course_folder(slug)
+
+            location_image = "static/assets/courses/{slug}/days/{day}/{file_name}".format(slug=slug,day=day, file_name=file_name)
+            location_image_href = "/static//assets/courses/{slug}/days/{day}/{file_name}".format(slug=slug,day=day, file_name=file_name)
             with open(location_image, "wb") as file:
                 file.write(uploaded_image_bytes)
 
             General().image_resizer_using_imgp(location_image, 700)
             General().image_optimizer_using_imgp(location_image)
 
-            href = "/static//assets/images/days_of_course/" + file_name
 
             message = Database().add_day_essential_data_to_db(
                 course_name_slug=request.form.get("slug"),
@@ -808,37 +813,49 @@ def add_post_blog_admin():
     if request.method == "POST":
 
         def form_handler(request):
+            text = request.form.get("text")
+            slug = (request.form.get("name_eng").replace(" ","-")).replace("_","-")
             if request.form.get("name_persian") == "":
                 return {"Result": False, "Message": "نام فارسی دوره را وارد کنید."}
-            if request.form.get("name_eng") == "":
+            if slug == "":
                 return {"Result": False, "Message": "نام انگلیسی دوره را وارد کنید."}
-            if request.form.get("text") == "":
+            if text == "":
                 return {"Result": False, "Message": "متن اصلی را وارد کنید."}
             uploaded_file = request.files["cover"]
             if uploaded_file.filename == "":
                 return {"Message": "تصویر را آپلود کنید."}
 
-            english_name = (request.form.get("name_eng").replace(" ","-")).replace("_","-")
+            english_name = slug
             uploaded_image = request.files.get("cover")
             uploaded_image_bytes = uploaded_image.read()
 
 
             format_file = General().format_recognizer(uploaded_image_bytes)
+            
+            General().setup_blog_post_folder(slug)
             file_name = "blog-cover_" + english_name + "." + format_file
-            location_image = "static/assets/images/blog/view_pic/" + file_name
-            location_image_href = "/static//assets/images/blog/view_pic/" + file_name
+            location_image = "static/assets/images/blog/{}/".format(slug) + file_name
+            location_image_href = "/static//assets/images/blog/{}/".format(slug) + file_name
             with open(location_image, "wb") as file:
                 file.write(uploaded_image_bytes)
 
             General().image_resizer_using_imgp(location_image, 1500)
             General().image_optimizer_using_imgp(location_image)
 
+            links_images = re.findall("src=[\"\'](.*?)[\"\']", text)
+            for link in links_images:
+                file_path = General().href_to_path(link)
+                file_name = (file_path.split("/"))[-1]
+                new_file_path = "static/assets/images/blog/{slug}/{file_name}".format(slug=slug, file_name=file_name)
+                new_file_href = "/static//assets/images/blog/{slug}/{file_name}".format(slug=slug, file_name=file_name)
+                General().move_file_path(file_path, new_file_path)
+                text = text.replace(link, new_file_href)
 
             message = Database().add_post_blog_to_db(
                 persian_name=request.form.get("name_persian"),
                 eng_name=english_name,
                 cover_href=location_image_href,
-                text=request.form.get("text"),
+                text=text,
             )
             return message
 

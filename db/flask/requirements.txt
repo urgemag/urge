@@ -7,3 +7,4 @@ gunicorn
 suds-py3
 requests
 jdatetime
+send2trash

@@ -39,6 +39,7 @@ def edit_post_blog_admin(slug_post):
     if request.method == "POST":
 
         def form_handler(request):
+            slug = request.form.get("name_eng")
             if request.form.get("name_persian") == "":
                 return {"Result": False, "Message": "نام فارسی دوره را وارد کنید."}
             if request.form.get("name_eng") == "":
@@ -48,12 +49,14 @@ def edit_post_blog_admin(slug_post):
             uploaded_file = request.files["cover"]
             if uploaded_file.filename != "":
 
+                english_name = slug
                 uploaded_image = request.files.get("cover")
                 uploaded_image_bytes = uploaded_image.read()
                 format_file = General().format_recognizer(uploaded_image_bytes)
-                file_name = "blog-cover_" + str(request.form.get("name_eng")) + "." + format_file
-                location_image = "static/assets/images/blog/view_pic/" + file_name
-                location_image_href = "/static//assets/images/blog/view_pic/" + file_name
+                General().setup_blog_post_folder(slug)
+                file_name = "blog-cover_" + english_name + "." + format_file
+                location_image = "static/assets/images/blog/{}/".format(slug) + file_name
+                location_image_href = "/static//assets/images/blog/{}/".format(slug) + file_name
                 with open(location_image, "wb") as file:
                     file.write(uploaded_image_bytes)
                 General().image_resizer_using_imgp(location_image, 1500)
