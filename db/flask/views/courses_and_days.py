@@ -11,6 +11,17 @@ MMERCHANT_ID =  setting.mmerchant_id
 ZARINPAL_WEBSERVICE = setting.zarinpal_webservice
 description = u'بخش پرداخت و خرید دوره از سایت انگیزشی Urge'
 
+def check_is_admin():
+    def _check_is_admin(f):
+        @wraps(f)
+        def __check_is_admin(*args, **kwargs):
+            result = f(*args, **kwargs)
+            if not Authentication(session).is_admin():
+                abort(401)
+            return result
+        return __check_is_admin
+    return _check_is_admin
+
 
 def log_in_auth(f):
     @wraps(f)
@@ -380,3 +391,34 @@ def sub_course(slug, day):
         course=PageDetails(session).course_page_info(slug)[0],
         day=PageDetails(session).sub_course_page_info_html(slug, day),
     )
+
+
+@courses_and_days.route("/uploader/ck/day&responseType=json", methods=["POST", "GET"])
+@check_is_admin()
+def upload_day_pic_ck():
+    ***REMOVED*** The Upload day Api. ***REMOVED***
+    if request.method == "POST":
+        #slug = request.args.get('slug')
+        #day = int(request.args.get('day'))
+        #if Database().get_courses_data_from_db(slug) is False:
+        #    abort(400)
+
+        uploaded_image = request.files.get("upload")
+        uploaded_image_bytes = uploaded_image.read()
+
+        saved_picture_data = General().save_picture_of_day_of_course_not_in_specific_location(uploaded_image_bytes)
+
+        location_image = saved_picture_data["image"]
+        file_name = saved_picture_data["file_name"]
+        location_image_href = saved_picture_data["href"]
+        
+        width, height = General().size_image_file(image_path=location_image)
+        return {
+            "uploaded": 1,
+            "fileName": file_name,
+            "url": location_image_href,
+            "width": width,
+            "height": height,
+        }
+
+    return ""

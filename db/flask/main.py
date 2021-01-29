@@ -3,6 +3,8 @@ from flask import Flask
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General
+from flask_cors import *
+
 # importing views
 from views.auths import auths
 from views.basic import basic
@@ -12,6 +14,8 @@ from views.user import user
 from views.admin.accesses_add import admin_add
 from views.admin.accesses_remove import admin_remove
 from views.admin.accesses_edit import admin_edit
+from views.blog import blog
+from views.music import music
 from flask_analytics import Analytics
 
 # end of importing views
@@ -32,7 +36,7 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
-
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 Analytics(app)
 app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'G-4QTVXWX8LF'
 
@@ -56,6 +60,6 @@ app.config.update(
 )
 recaptcha = ReCaptcha(app=app)
 # registering blueprints
-for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit):
+for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music):
     app.register_blueprint(blueprint)
 
