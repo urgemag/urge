@@ -62,8 +62,9 @@ class General:
         
 
 
-    def setup_course_folder(self, slug):
-        course_length_days = int(Database().get_courses_data_from_db(slug)["Length"])
+    def setup_course_folder(self, slug, course_length_days=None):
+        if course_length_days is None:
+            course_length_days = int(Database().get_courses_data_from_db(slug)["Length"])
         if General().check_existence_of_a_file("static/assets/courses/{slug}".format(slug=slug)) is False:
             mkdir("static/assets/courses/{slug}".format(slug=slug))
         if General().check_existence_of_a_file("static/assets/courses/{slug}/days".format(slug=slug)) is False:
@@ -192,9 +193,9 @@ class General:
         email_correct = email_seprated[0] + "@" + email_seprated[1]
         return email_correct
 
-    def save_picture_of_course(self, slug, uploaded_file):
+    def save_picture_of_course(self, slug, uploaded_file, course_length_days):
         if General().check_existence_of_a_file("static/assets/courses/{slug}".format(slug=slug)) is False:
-            General().setup_course_folder(slug)
+            General().setup_course_folder(slug, int(course_length_days))
 
         pic_format = ((uploaded_file.filename).split("."))[-1]
         pic_format = pic_format.lower()
@@ -202,7 +203,7 @@ class General:
             return {"Message": "فرمت فایل باید تصویر باشد.", "Result": False}
         path_main_course_picrue = "static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug, the_format=pic_format)
         href_main_course_picrue = "/static//assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug, the_format=pic_format)
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug)):
+        if General().check_existence_of_a_file("static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug, the_format=pic_format)):
             remove(path_main_course_picrue)
         uploaded_file.save(path_main_course_picrue)
         General().image_resizer_using_pil(path_main_course_picrue,1000)

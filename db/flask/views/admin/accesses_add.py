@@ -703,13 +703,18 @@ def add_course_admin():
             except:
                 print("hrer")
                 return {"Message": "تصویر را آپلود کنید."}
+            try:
+                length_of_course = int(request.form.get("len"))
+            except ValueError:
+                General().remove_file(result_pic["path"])
+                return {"Color": "red", "Message": "طول دوره باید عدد باشد."}
             if (
                 Database().get_courses_data_from_db(slug) != ""
                 and uploaded_file.filename == ""
             ):
                 return {"Message": "تصویر را آپلود کنید."}
             result_pic = General().save_picture_of_course(
-                slug, uploaded_file
+                slug, uploaded_file, length_of_course
             )
             if result_pic["Result"] is False:
                 return result_pic
@@ -724,11 +729,7 @@ def add_course_admin():
             else:
                 soon = False
 
-            try:
-                int(request.form.get("len"))
-            except ValueError:
-                General().remove_file(result_pic["path"])
-                return {"Color": "red", "Message": "طول دوره باید عدد باشد."}
+            
             try:
                 if request.form.get("soon") == "Soon":
                     days_till_open = int(request.form.get("date_open"))

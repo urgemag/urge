@@ -3,7 +3,6 @@ from flask import Flask
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General
-from flask_cors import *
 
 # importing views
 from views.auths import auths
@@ -36,7 +35,6 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
 Analytics(app)
 app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'G-4QTVXWX8LF'
 
