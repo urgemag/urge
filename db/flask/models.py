@@ -1981,5 +1981,7 @@ class PageDetails:
         
     def get_random_blog_post(self):
         all_blog_posts = Database().get_blog_posts_data_from_db()
+        if all_blog_posts == []:
+            return {}
         random_blog_post = random.choice(all_blog_posts)
         return random_blog_post
