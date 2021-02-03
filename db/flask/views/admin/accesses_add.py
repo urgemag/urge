@@ -706,7 +706,6 @@ def add_course_admin():
             try:
                 length_of_course = int(request.form.get("len"))
             except ValueError:
-                General().remove_file(result_pic["path"])
                 return {"Color": "red", "Message": "طول دوره باید عدد باشد."}
             if (
                 Database().get_courses_data_from_db(slug) != ""
@@ -875,4 +874,53 @@ def add_post_blog_admin():
 
     return render_template(
         "admin/admin_add_post.html",
+    )
+
+
+@admin_add.route("/Admin/Add/Music", methods=["POST", "GET"])
+@check_is_admin()
+def add_music_admin():
+    ***REMOVED*** The Add Music as an admin. ***REMOVED***
+
+    if request.method == "POST":
+
+        def form_handler(request):
+            cover = request.files.get("cover")
+            music = request.files.get("music")
+            creator = request.form.get("creator")
+            name = request.form.get("music_name")
+
+            if music.filename == "":
+                return {"Result": False, "Message": "موزیک را اپلود کنید."}
+
+            if cover.filename == "":
+                return {"Result": False, "Message": "کاور را اپلود کنید."}
+
+            if name == "" or creator == "":
+               return {"Result": False, "Message": "اطلاعات موزیک را وارد کنید."}
+
+            message = Database().add_music_data_to_db(
+                cover=cover,
+                music=music,
+                creator=creator,
+                name=name,
+            )
+
+            return message
+
+        message = form_handler(request)
+        if message is True:
+            message = {"Color": "green", "Result": "با موفقیت اضافه شد."}
+        else:
+            if message["Result"] is False:
+                message["Color"] = "red"
+            else:
+                message["Color"] = "green"
+            message["Result"] = message["Message"]
+
+        flash(message)
+        return redirect(url_for("admin_add.add_music_admin"))
+
+    return render_template(
+        "admin/admin_add_music.html",
     )

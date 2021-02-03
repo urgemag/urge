@@ -267,6 +267,47 @@ class General:
             "href": music_file_href,
         }
 
+
+    def save_music_cover(self, cover_bytes, music_path):
+
+        cover_name = music_path.split("/")[-1]
+        cover_name = cover_name.split(".")[0]
+
+        format_file = General().format_recognizer(cover_bytes)
+        file_name = "{cover_name}.{format_image}".format(cover_name=cover_name,format_image=format_file)
+        location_image = f"static/assets/musics/covers/{file_name}"
+        location_image_href = f"/static//assets/musics/covers/{file_name}"
+
+        if General().check_existence_of_a_file("static/assets/musics/covers/") is False:
+            mkdir("static/assets/musics/covers/")
+
+        with open(location_image, "wb") as file:
+            file.write(cover_bytes)
+
+        General().image_resizer_using_imgp(location_image, 1000)
+
+        return {"href": location_image_href, "path": location_image}
+
+    def save_music(self, music):
+
+        music_filename = music.filename
+        for character in music_filename:
+            if character in self.special_characters:
+                music_filename = music_filename.replace(character, "")
+        music_file_path = "static/assets/musics/{music_filename}".format(music_filename=music_filename)
+        music_file_href = "/static//assets/musics/{music_filename}".format(music_filename=music_filename)
+        
+        if General().check_existence_of_a_file("static/assets/musics/") is False:
+            mkdir("static/assets/musics/")
+
+        music.save(music_file_path)
+
+        return {
+            "href": music_file_href,
+            "path": music_file_path,
+        }
+
+
     def status_date_published_post_blog(self, timestamp):
         date = [int(x) for x in ((timestamp.split(" "))[0]).split("-")]
         delta_time = General().milliseconds_passed_till_now() - General().convert_timestamp(timestamp)[2]
@@ -536,6 +577,14 @@ class Database:
     def get_all_courses_data_from_db(self):
         ***REMOVED*** To get courses data from the DataBase***REMOVED***
         return self.database.courses.find({"Main_Data": True})
+
+    def get_all_musics_data_from_db(self):
+        ***REMOVED*** To get musics data from the DataBase***REMOVED***
+        all_posts = []
+        for post in self.database.musics.find():
+            all_posts.append(post)
+        all_posts.reverse()
+        return all_posts
 
     def get_all_slug_and_names_of_courses_from_db(self):
         ***REMOVED*** To get all accesses (slugs - name courses) data from the DataBase***REMOVED***
@@ -841,6 +890,16 @@ class Database:
             pass
         return True
 
+    def delete_music_data_from_db(self, music_name):
+        ***REMOVED*** To delete music data from the DataBase***REMOVED***
+        music_query = {"Music_Name": music_name}
+        music_data = self.database.musics.find_one(music_query)
+        if music_data is None:
+            return False
+        General().remove_file_to_trash(music_data["Cover"]["path"])
+        General().remove_file_to_trash(music_data["Music"]["path"])
+        self.database.musics.delete_one(music_query)
+        return True
 
     def add_course_info_to_db(
         self, slug, introduction, speciality, importance, why, length, price, last_words
@@ -1282,9 +1341,37 @@ class Database:
 
         return True
 
-    def add_day_ted_data_to_db(
-        self, course_name_slug, day_num, description, urls, qualities
-    ):
+
+
+    def add_music_data_to_db(self, cover, music, creator, name):
+        ***REMOVED*** To add musics data to a day of course in the DataBase***REMOVED***
+        music_path = General().save_music(music)
+        image_path = General().save_music_cover(cover_bytes=cover.read(), music_path=music_path["path"])
+        music_data = []
+        music_data.append(
+            {
+                "name": name,
+                "artist": creator,
+                "cover": image_path["href"],
+                "url": music_path["href"],
+                "theme": "#ebd0c2",
+            }
+        )
+
+        self.database.musics.insert_one(
+            {
+                "Music_Name": name,
+                "Creator": creator,
+                "Cover": image_path,
+                "Music": music_path,
+                "Music_Full_Data":music_data
+            }
+        )
+        return True
+
+
+
+    def add_day_ted_data_to_db(self, course_name_slug, day_num, description, urls, qualities):
         ***REMOVED*** To add ted videos data to a day of course in the DataBase***REMOVED***
         try:
             int(day_num)
@@ -1900,6 +1987,19 @@ class PageDetails:
         parts_raw = []
         for course in PageDetails().all_courses_page_info_html():
             parts_raw.append({"Slug":course["Slug"],"Name":course["Name"]})
+            
+        length_parts = len(parts_raw)
+        parts = [
+            parts_raw[0 : ceil(length_parts / 3)],
+            parts_raw[ceil(length_parts / 3) : (ceil(length_parts / 3)) * 2],
+            parts_raw[(ceil(length_parts / 3)) * 2 :],
+        ]
+        return parts
+
+    def all_music_data_name_creator_to_remove_in_admin_page(self):
+        parts_raw = []
+        for music in Database().get_all_musics_data_from_db():
+            parts_raw.append({"Creator":music["Creator"],"Music_Name":music["Music_Name"]})
             
         length_parts = len(parts_raw)
         parts = [

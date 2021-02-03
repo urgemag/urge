@@ -25,7 +25,7 @@ def musics_index():
     ***REMOVED*** The Music page ***REMOVED***
     posts_per_page = 2
     page = request.args.get("page")
-    posts = Database().get_blog_posts_data_from_db()
+    posts = Database().get_all_musics_data_from_db()
     last_page = len(posts)//posts_per_page
     if len(posts) - last_page*posts_per_page > 0:
         last_page+=1
@@ -45,8 +45,6 @@ def musics_index():
         "music/music_posts.html",
         details=PageDetails(session).index_data(),
         posts=limited_posts,
-        days_passed_till_now = General().days_passed_till_now(),
-        milliseconds_passed_till_now = General().milliseconds_passed_till_now(),
         now_page=page,
         last_page=last_page,
         pagination=General().pagination_designer(page,last_page)
