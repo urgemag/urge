@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% block title %} پنل شخصی موفقیت اِرج - بلاگ {% endblock %} {% block breadcrumb %}
+{% extends "base.html" %} {% block title %} پنل شخصی موفقیت اِرج - موزیک ها {% endblock %} {% block breadcrumb %}
 
 <li class="breadcrumb-item"><a href="/"> خانه </a></li>
-<li class="breadcrumb-item active" aria-current="page"> مقالات </li>
+<li class="breadcrumb-item active" aria-current="page"> موزیک ها </li>
 {% endblock %} {% block main_css %}
 <link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
 {% block instead_of_blog_header %}
@@ -12,7 +12,8 @@ margin-right: 5px;    height: 100%;
 "></i>   خانه       </a>
 {% endblock %}
 {% block body %}
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 <style>
     .course_img {
         -webkit-transition: 1.2s ease-in-out;
@@ -28,31 +29,41 @@ margin-right: 5px;    height: 100%;
         -o-transform: scale(1.05);
         -o-transition: 1.2s ease-in-out;
     }
+    .aplayer-body{
+        direction: ltr !important;
+    }
+    .external-music-layer{
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .card-img-top{
+        width: 97.5% !important;
+        height: 220px !important;
+    }
+    .aplayer-body{
+        width: 100% !important;
+        height: 100% !important;
+        
+    }
+    .aplayer-pic{
+        width: 100% !important;
+        height: 100% !important;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #fff;
+    }
+    .aplayer-button{
+        transform: scale(1.7);
+    }
+    .aplayer-pause{
+        right: 20px !important;
+        bottom: 20px !important;
+    }
+
 </style>
 
 <!-- row -->
-<div style="
-    background-image: url(https://cdn.dribbble.com/users/642609/screenshots/9541848/media/bfb25f1acddcc72c2c7ff676f593d23c.png?compress=1&amp;resize=1000x750);
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-">
-    <div class="xv-slide lslide active" data-bg-possition="top" style="
-    margin-bottom: 50px;
-    background-image: linear-gradient(#ffffff12 67%, #f0f3f7);
-    margin-right: 0px;
-    user-select: auto;">
 
-        <div class="wrapper has-bottom-gradient" style="user-select: auto;height: 236px;">
-            <div class="p-md-5 p-3" style="user-select: auto;">
-                <div class="row" style="user-select: auto;">
-
-                </div>
-            </div>
-        </div>
-        <div class="bottom-gradient" style="user-select: auto;"></div>
-    </div>
-</div>
 
 <div class="row row-cards">
     <div class="col-lg-12 col-xl-12">
@@ -88,20 +99,29 @@ margin-right: 5px;    height: 100%;
                 }
             </style>
             {% for post in posts %}
-
+            <script> musics = [] </script>
 
             <div class="col-sm-4 col-xl-2">
                 <div class="card">
 
-                    <div id="msdsdsusicbox" class="music-box" style="background-size: cover;background-image: url({{post.Cover.href}});">
+                    <div class="music-box" style="background-size: cover;">
                         <!-- <i class="fa fa-play"> !-->
-                            <div class="external-music-layer">
-                            <a href="/blog/{{post.English_Name}}">
+                            <div class="">
+                            <a>
+                                <div class="card-img-top" id="music_aplayer_{{loop.index}}"></div>
 
-
-                                <img class="card-img-top" style="opacity: 0;" src="{{post.Cover.href}}" alt="img">
-                                            
-
+                                    <script>
+                                        musics.push(new APlayer({
+                                            container: document.getElementById("music_aplayer_{{loop.index}}"),
+                                            mini: true,
+                                            audio: [{
+                                                name: '{{post.Music_Name}}',
+                                                artist: '{{post.Creator}}',
+                                                url: '{{post.Music.href}}',
+                                                cover: '{{post.Cover.href}}',
+                                            }]
+                                        }))
+                                    </script>
                                 <div style="background-image: #000;"></div>
                             </a></div>
                         </i>
@@ -114,6 +134,7 @@ margin-right: 5px;    height: 100%;
                             </div>
 
                         </div>
+                        <a href="{{post.Music.href}}" class="btn btn-primary" style="margin-top: 10px;" download=""> دانلود </a>
                     </div>
                 </div>
             </div>
@@ -138,4 +159,29 @@ margin-right: 5px;    height: 100%;
         <!-- pagination-wrapper -->
     </div>
 </div>
+
+<!--
+{% set musics_data = [] %}
+{% for post in posts %}
+{{ musics_data.append({
+    "name": post.Music_Name,
+    "artist": post.Creator,
+    "url": post.Music.href,
+    "cover": post.Cover.href,
+}) }}
+
+
+{% endfor %}
+
+
+<div style="font-family: 'iranyekan';" id="aplayer"></div>
+<script>
+const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    audio: JSON.parse('{{ musics_data | tojson | safe}}')
+});
+</script>
+-->
+
 {% endblock %}
