@@ -1,5 +1,5 @@
 ***REMOVED***The main***REMOVED***
-from flask import Flask
+from flask import Flask, g
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General
@@ -56,6 +56,7 @@ app.config.update(
         "RECAPTCHA_SECRET_KEY": setting.recaptcha_secret_key,
     }
 )
+g.tracking_id  = setting.tracking_id
 recaptcha = ReCaptcha(app=app)
 # registering blueprints
 for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music):
