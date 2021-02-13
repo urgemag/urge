@@ -15,6 +15,7 @@ from views.admin.accesses_remove import admin_remove
 from views.admin.accesses_edit import admin_edit
 from views.blog import blog
 from views.music import music
+from views.tools import tools
 from flask_analytics import Analytics
 
 # end of importing views
@@ -56,9 +57,8 @@ app.config.update(
         "RECAPTCHA_SECRET_KEY": setting.recaptcha_secret_key,
     }
 )
-g.tracking_id  = setting.tracking_id
 recaptcha = ReCaptcha(app=app)
 # registering blueprints
-for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music):
+for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music,tools):
     app.register_blueprint(blueprint)
 

@@ -924,3 +924,83 @@ def add_music_admin():
     return render_template(
         "admin/admin_add_music.html",
     )
+
+
+
+@admin_add.route("/Admin/Add/tool", methods=["POST", "GET"])
+@admin_add.route("/Admin/Add/Tool", methods=["POST", "GET"])
+@check_is_admin()
+def add_tool_admin():
+    ***REMOVED*** The Add Tool Page as an admin. ***REMOVED***
+
+    if request.method == "POST":
+
+        def form_course(request):
+            slug = request.form.get("slug").replace(" ","_")
+            if slug == "":
+                return {"Message": "نام انگلیسی را وارد کنید."}
+            try:
+                uploaded_file = request.files["cover"]
+            except:
+                print("hrer")
+                return {"Message": "تصویر را آپلود کنید."}
+            
+            if (
+                Database().get_courses_data_from_db(slug) != ""
+                and uploaded_file.filename == ""
+            ):
+                return {"Message": "تصویر را آپلود کنید."}
+            result_pic = General().save_picture_of_tool(slug, uploaded_file)
+            if result_pic["Result"] is False:
+                return result_pic
+            if request.form.get("price-status") == "Free":
+                price = "0"
+            else:
+                price = request.form.get("price")
+            if request.form.get("soon") == "Soon":
+                soon = True
+            else:
+                soon = False
+
+            
+            try:
+                if request.form.get("soon") == "Soon":
+                    days_till_open = int(request.form.get("date_open"))
+                else:
+                    days_till_open = 0
+            except ValueError:
+                General().remove_file(result_pic["path"])
+                return {"Color": "red", "Message": "فاصله زمانی تا باز شدن باید عدد باشد."}
+            try:
+                int(price.replace(",", ""))
+            except ValueError:
+                General().remove_file(result_pic["path"])
+                return {"Color": "red", "Message": "قیمت باید عدد باشد."}
+
+            message = Database().add_tool_to_db(
+                persian_name=request.form.get("name"),
+                slug=slug,
+                description=request.form.get("description"),
+                image_href=result_pic["href"],
+                now_price=int(price.replace(",", "")),
+                robbin=request.form.get("robbin"),
+                soon=soon,
+                price=price,
+                days_till_publish=days_till_open
+            )
+            if message is not True:
+                General().remove_file(result_pic["path"])
+            return message
+
+        message = form_course(request)
+        if message is True:
+            message = {"Color": "green", "Result": "با موفقیت اضافه شد."}
+        else:
+            message["Result"] = message["Message"]
+            message["Color"] = "red"
+        flash(message)
+        return redirect(url_for("admin_add.add_tool_admin"))
+
+    return render_template(
+        "admin/admin_add_tool.html",
+    )
