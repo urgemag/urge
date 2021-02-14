@@ -285,6 +285,24 @@ class General:
             )
         )
 
+    def open_json_file(self, json_path):
+        json_file = open(json_path)
+
+        json_data = json.load(json_file)
+
+        json_file.close()
+
+        return json_data
+
+    def valid_email(self, email):
+        ***REMOVED*** Check if an email is valid or not ***REMOVED***
+        return bool(
+            re.search(
+                r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$",
+                General().corect_form_of_email(email),
+            )
+        )
+
     def corect_form_of_email(self, email):
         ***REMOVED*** return Email without Dots and uppercases ***REMOVED***
         print(email)
@@ -354,7 +372,6 @@ class General:
             "href": href_main_course_picrue,
             "Result": True,
         }
-
 
     def save_picture_of_day_of_course(self, slug, day, image_bytes):
         if (
@@ -609,6 +626,9 @@ class General:
             return False
 
     def price_beautifier(self, price_couese):
+        if str(price_couese) == "":
+            return 0
+
         price = int(str(price_couese).replace(",", ""))
         List = []
         for i in str(price):
@@ -1089,16 +1109,30 @@ class Database:
         )
         return True
 
-    def get_tools_data_db(self):
+    def get_all_tools_data_db(self):
         ***REMOVED*** To get all tools data from the DataBase***REMOVED***
         all_posts = []
         for post in self.database.tools.find():
             all_posts.append(post)
         all_posts.reverse()
         return all_posts
-        
 
-    def add_tool_to_db(self, slug, price, image_href, persian_name, description, now_price, robbin, soon,days_till_publish):
+    def get_tool_data_db(self, slug):
+        ***REMOVED*** To get one tool data from the DataBase***REMOVED***
+        return self.database.tools.find_one({"Slug": slug})
+
+    def add_tool_to_db(
+        self,
+        slug,
+        price,
+        image_href,
+        persian_name,
+        description,
+        now_price,
+        robbin,
+        soon,
+        days_till_publish,
+    ):
         ***REMOVED*** To add a tool to the DataBase***REMOVED***
         self.database.tools.insert_one(
             {
@@ -1110,9 +1144,8 @@ class Database:
                 "Now_Price": now_price,
                 "Robbin": robbin,
                 "Soon": soon,
-                "Days_Till_Open":days_till_publish,
+                "Days_Till_Open": days_till_publish,
                 "First_Created_TimeStamp": General().timestamp(),
-                
             }
         )
         return True
@@ -2233,10 +2266,8 @@ class PageDetails:
 
     def all_tools_data_name_slug_to_remove_in_admin_page(self):
         parts_raw = []
-        for music in Database().get_tools_data_db():
-            parts_raw.append(
-                {"Name": music["Persian_Name"], "Slug": music["Slug"]}
-            )
+        for tool in Database().get_all_tools_data_db():
+            parts_raw.append({"Name": tool["Persian_Name"], "Slug": tool["Slug"]})
 
         length_parts = len(parts_raw)
         parts = [
@@ -2329,50 +2360,44 @@ class PageDetails:
         return random_blog_post
 
 
-class tools:
+class Tools:
     ***REMOVED*** All tools functions ***REMOVED***
 
-    def mbti_type_answer(self, answers: list):
-        if len(answers) != 60:
-            return False
-        url = "https://www.16personalities.com/fa/%D9%86%D8%AA%D8%A7%DB%8C%D8%AC-%D8%A2%D8%B2%D9%85%D9%88%D9%86"
-        answer_sheet_mbti = []
-        for answer in answers:
-            answer_sheet_mbti.append({"text":"", "answer":int(answer)})
-
-        body = {
-            "questions": answer_sheet_mbti,
-            "version": 0,
-            "gender": None,
-            "inviteCode": "",
-        }
-        response = requests.post(url, json=body)
-        if response.status_code != 200:
+    def mbti_type_answer(self, user_answer: list):
+        if len(user_answer) != 60:
             return False
 
-        #test_results_all_cookies = response.cookies
-        test_results_answer_url = response.text
-        test_results_answer_url = test_results_answer_url.replace(chr(92),"").replace('"',"")
-        #print (test_results_answer_url)
-        mbti_answer_type = (test_results_answer_url.split("-")[0]).split("/")[-1]
-        return (mbti_answer_type)
+        answer_sheet = General().open_json_file("static/tools/mbti.json")["answer_sheet"]
+        user_result_based_on_isfp = [0,0,0,0]
+        for answer_analyse in answer_sheet:
+            index = int(answer_analyse) - 1
+            user_answer_to_this_question = user_answer[index]
+            answer_sheet_to_this_question = answer_sheet[answer_analyse]
+            #print (answer_sheet_to_this_question)
+            order_sample_result = ["i","s","f","p"]
+            print (answer_sheet_to_this_question["plus"])
+            for index_sample_answer in range (4):
+                if answer_sheet_to_this_question["plus"] == order_sample_result[index_sample_answer]:
+                    user_result_based_on_isfp[index_sample_answer] += int(user_answer_to_this_question)
+                    break
+                elif answer_sheet_to_this_question["minus"] == order_sample_result[index_sample_answer]:
+                    user_result_based_on_isfp[index_sample_answer] -= int(user_answer_to_this_question)
+                    break
 
+        for parameter_index in range(len(user_result_based_on_isfp)):
+            parameter = user_result_based_on_isfp[parameter_index]
+            user_result_based_on_isfp[parameter_index] = parameter/36*100
 
-#print (tools().mbti_type_answer([0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
+        isfp_opposite = "entj"
+        isfp_default = "isfp"
+        user_mbti_type = []
+        for parameter_index in range(len(user_result_based_on_isfp)):
+            parameter = user_result_based_on_isfp[parameter_index]
+            if parameter < 0:
+                user_mbti_type.append(isfp_opposite[parameter_index])
+            else:
+                user_mbti_type.append(isfp_default[parameter_index])
 
-#default_answers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-#sides = {}
-#for i in range (60):
-#    clone_answers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-#    clone_answers[i] = 100
-#    plus_answer = tools().mbti_type_answer(clone_answers)
-#    clone_answers[i] = -100
-#    minus_answer = tools().mbti_type_answer(clone_answers)
-#    
-#    for index_part in range (4):
-#        if plus_answer[index_part] != minus_answer[index_part]:
-#            sides[str(i+1)] = {"plus":plus_answer[index_part],"minus":minus_answer[index_part]}
-#
-#    print (clone_answers)
-#    print (plus_answer, minus_answer)
-print (len({'1': {'plus': 'e', 'minus': 'i'}, '2': {'plus': 's', 'minus': 'n'}, '3': {'plus': 'p', 'minus': 'j'}, '5': {'plus': 'e', 'minus': 'i'}, '6': {'plus': 'n', 'minus': 's'}, '7': {'plus': 'f', 'minus': 't'}, '8': {'plus': 'p', 'minus': 'j'}, '9': {'plus': 'i', 'minus': 'e'}, '10': {'plus': 't', 'minus': 'f'}, '12': {'plus': 'p', 'minus': 'j'}, '13': {'plus': 'i', 'minus': 'e'}, '14': {'plus': 'n', 'minus': 's'}, '16': {'plus': 'p', 'minus': 'j'}, '17': {'plus': 'f', 'minus': 't'}, '19': {'plus': 'f', 'minus': 't'}, '20': {'plus': 'f', 'minus': 't'}, '21': {'plus': 'j', 'minus': 'p'}, '23': {'plus': 'e', 'minus': 'i'}, '24': {'plus': 'p', 'minus': 'j'}, '25': {'plus': 'n', 'minus': 's'}, '26': {'plus': 's', 'minus': 'n'}, '28': {'plus': 't', 'minus': 'f'}, '30': {'plus': 'n', 'minus': 's'}, '31': {'plus': 'i', 'minus': 'e'}, '32': {'plus': 'j', 'minus': 'p'}, '34': {'plus': 'i', 'minus': 'e'}, '35': {'plus': 's', 'minus': 'n'}, '36': {'plus': 'j', 'minus': 'p'}, '37': {'plus': 'e', 'minus': 'i'}, '38': {'plus': 't', 'minus': 'f'}, '39': {'plus': 's', 'minus': 'n'}, '40': {'plus': 'f', 'minus': 't'}, '41': {'plus': 'j', 'minus': 'p'}, '42': {'plus': 't', 'minus': 'f'}, '44': {'plus': 'p', 'minus': 'j'}, '45': {'plus': 'f', 'minus': 't'}, '46': {'plus': 't', 'minus': 'f'}, '47': {'plus': 'i', 'minus': 'e'}, '48': {'plus': 'j', 'minus': 'p'}, '50': {'plus': 's', 'minus': 'n'}, '51': {'plus': 'n', 'minus': 's'}, '52': {'plus': 'e', 'minus': 'i'}, '53': {'plus': 'n', 'minus': 's'}, '55': {'plus': 'e', 'minus': 'i'}, '56': {'plus': 'j', 'minus': 'p'}, '58': {'plus': 't', 'minus': 'f'}, '59': {'plus': 's', 'minus': 'n'}, '60': {'plus': 'i', 'minus': 'e'}}))
+        return {"final_type" : ("".join(user_mbti_type)).upper(),
+                "answer_based_on_isfp" : user_result_based_on_isfp
+            }

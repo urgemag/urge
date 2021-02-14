@@ -1,0 +1,199 @@
+{% extends "base.html" %} {% block title %} دوره {{tool.Name}} - پنل موفقیت اِرج {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/tools"> ابزار ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> {{tool.Persian_Name}}</li>
+{% endblock %} {% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" />
+<script src="/static/sweetalert/sweetalert2@10.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+<style>
+    .options-margin{
+    margin-right: 10px;
+    margin-left: 10px;
+    }
+
+    .custom-radio .custom-control-input:checked~.custom-control-label::before {
+        background-color: #565656;
+    }
+
+</style>
+{% if tool.Slug in accesses %}
+<div class="text-wrap" style="text-align: center">
+    <div class="">
+        <div class="alert alert-success" role="alert">
+            شما دسترسی کامل به دوره <b>{{tool.Name}}</b> را دارید.
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row row-cards">
+
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+        <a>
+            <div class="card card-counter bg-gradient-pink">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fa fa-quote-right mt-3 mb-0 text-white-transparent"></i>
+                        </div>
+                        <div class="col-8 text-center" style="max-width: 100%; flex: 0 0 75%; text-align-last: center">
+                            <div class="mt-4 mb-0 text-white">
+                                <a>
+                                    <h3 class="mb-0" style="font-weight: 900 !important; color: #fff">
+                                        {{tool.Persian_Name}}
+                                    </h3>
+                                </a>
+                                <a>
+                                    <p style="color: #fff" class="text-white mt-1">نام ابزار</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- col end -->
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <div class="card card-counter bg-gradient-success">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mt-4 mb-0 text-white">
+                            {% if tool.Free == true or tool.Now_Price==0 %}
+                            <h3 class="mb-0">رایگان</h3>
+                            {% else %}
+                            <h3 class="mb-0">
+                                {{ price_beautifier(tool.Now_Price) }} تومان
+                            </h3>
+                            {% endif %}
+
+                            <p class="text-white mt-1">هزینه ابزار</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <i class="fa fa-money mt-3 mb-0 text-white-transparent"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- col end -->
+</div>
+<div class="row">
+    {% if tool.Slug not in accesses and (tool.Free == false or tool.Now_Price !=0) %}
+    
+{% endif %}
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+        <form id='submit_form' method="POST">
+
+        {% for question in questions %}
+
+        <div class="card-body single-productslide" id='question_{{loop.index}}'>
+            <h4 id='question_text_{{loop.index}}' style="text-align: center;">{{question}}</h4>
+            <div class="custom-controls-stacked" style="margin-bottom: 25px; margin-top:25px; display: flex;place-content: center;">
+                <h4 style="margin-left: 20px;font-weight: initial !important;color: #029269;">موافقم</h4>
+                <label class="custom-control custom-radio options-margin" style="transform: scale(2);">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="3">
+                    <span class="custom-control-label"></span>
+                </label>
+                <label class="custom-control custom-radio options-margin" style="transform: scale(1.66);">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="2">
+                    <span class="custom-control-label"></span>
+                </label>
+                <label class="custom-control custom-radio options-margin" style="transform: scale(1.33);">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="1">
+                    <span class="custom-control-label"></span>
+                </label>
+                <label class="custom-control custom-radio options-margin">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="0">
+                    <span class="custom-control-label"></span>
+                </label>
+                <label class="custom-control custom-radio options-margin" style="transform: scale(1.33);">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="-1">
+                    <span class="custom-control-label"></span>
+                </label>
+                <label class="custom-control custom-radio options-margin" style="transform: scale(1.66);">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="-2">
+                    <span class="custom-control-label"></span>
+                </label>
+                <label class="custom-control custom-radio options-margin" style="transform: scale(2);">
+                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="-3">
+                    <span class="custom-control-label"></span>
+                </label>
+                <h4 style="margin-right: 5px;font-weight: initial !important;color: #af0000 ;">مخالفم</h4>
+            </div>
+        </div>
+
+        {% endfor %}
+
+        <a onclick="answers_check()" class="btn btn-success " style=" width: 100%; font-weight: bold !important; color:#fff">تمام!</a>
+        <a onclick="check_all()" class="btn btn-success " style=" width: 100%; font-weight: bold !important; color:#fff">چک ال!</a>
+    </form>
+
+
+
+    </div>
+</div>
+
+</div>
+<script>
+function check_all(){
+for (answer_index = 1; answer_index < 60+1; answer_index++) {
+
+    document.getElementsByName(answer_index)[Math.floor(Math.random()*7)].checked = true;
+}
+}
+
+function answers_check(){
+var problem_quesion_unanswered = false
+for (answer_index = 1; answer_index < 60+1; answer_index++) {
+        if (check_one_answer(answer_index) == false){
+            problem_quesion_unanswered = true
+            break
+        }
+        if (problem_quesion_unanswered == false){
+            document.getElementById('submit_form').submit();
+        }
+    }
+}
+function check_one_answer(index_answer){
+        checked_status = false;
+        for (option_index = 0; option_index < 7; option_index++) {
+
+            if (document.getElementsByName(index_answer)[option_index].checked == true){
+                checked_status = true
+            }
+
+        };
+        if (checked_status == false){
+            var element_q_scroll = document.querySelector("#question_"+index_answer);
+            var element_question_html = document.getElementById("question_"+index_answer).innerHTML;
+            element_q_scroll.scrollIntoView({behavior: 'smooth',block: 'center',inline: 'center'});
+            text_qustion = document.getElementById("question_text_"+index_answer).innerHTML
+            var element_star =  '<p style="color: #ff0000; display: contents; "> * </p>' 
+            var element_text_not_answered = '<h5 style="text-align: center; margin-bottom: 15px; color: #af0000 ;"> به این سوال جواب ندادید! </h5>'
+            if (!(element_question_html.includes(element_text_not_answered))){
+                document.getElementById("question_"+index_answer).innerHTML = element_text_not_answered+element_question_html 
+            }
+            if (!(text_qustion.includes(element_star))){
+                document.getElementById("question_text_"+index_answer).innerHTML = element_star+text_qustion 
+            } 
+
+            return false
+        }
+        else{
+            return true
+        };
+    };
+</script>
+{% endblock %}

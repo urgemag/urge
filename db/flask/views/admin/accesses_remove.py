@@ -620,7 +620,7 @@ def remove_tool_admin():
 
             remove_ones = []
             tool_names = []
-            for tool_name in Database().get_tools_data_db():
+            for tool_name in Database().get_all_tools_data_db():
                 tool_names.append(tool_name["Slug"])
             for part in tool_names:
                 if part == request.form.get(part):

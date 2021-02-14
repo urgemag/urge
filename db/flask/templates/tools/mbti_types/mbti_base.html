@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% block title %} پنل شخصی موفقیت اِرج - تیپ {{user_answer.final_type}} {% endblock %} 
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/tools">ابزار ها </a></li>
+<li class="breadcrumb-item"><a href="/tools/{{tool.Slug}}"> {{tool.Persian_Name}} </a></li>
+<li class="breadcrumb-item active" aria-current="page"> تیپ {{user_answer.final_type}} </li>
+{% endblock %} 
+{% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
+{% block body %}
+
+
+
+{% endblock %}
