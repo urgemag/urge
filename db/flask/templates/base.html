@@ -390,7 +390,7 @@
 
             <!-- Sidebar menu-->
             <div class="app-sidebar__overlay" id="sidebar" data-toggle="sidebar"></div>
-            <aside class="app-sidebar toggle-sidebar">
+            <aside id="side-bar" class="app-sidebar toggle-sidebar"  ="changer_style_sidebar()">
                 <div class="app-sidebar__user pb-0">
                     <div class="user-body">
                         <span class="avatar avatar-xxl brround text-center cover-image"
@@ -762,22 +762,24 @@
         normal = true
         var observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutationRecord) {
-                console.log('style changed!');
                 normal = !normal
                 if (normal == true) {
                     document.getElementById("min-header").style = "display:none"
                     document.getElementById("full-header").style = "display:inline"
-
                 }
                 else {
                     document.getElementById("full-header").style = "display:none"
                     document.getElementById("min-header").style = "display: block; width: 10px; transform: scale(7); margin-right: -12px; transform-origin: top right; margin-top: 45px !important; padding-left: 1px; padding-right: 1px; background: #fFF;"
                 }
             });
-        });
+        })
+        var target = document.getElementById('side-bar');
+        observer.observe(target, { attributes: true, attributeFilter: ['class'] });
 
-        var target = document.getElementById('mCSB_1_scrollbar_vertical');
-        observer.observe(target, { attributes: true, attributeFilter: ['style'] });
+
+
+
+
     </script>
 </body>
 
