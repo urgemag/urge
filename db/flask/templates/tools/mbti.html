@@ -164,11 +164,14 @@ var problem_quesion_unanswered = false
 for (answer_index = 1; answer_index < 60+1; answer_index++) {
         if (check_one_answer(answer_index) == false){
             problem_quesion_unanswered = true
+            console.log("----PROBLEM‌ HAPPENED-------")
             break
         }
-        if (problem_quesion_unanswered == false){
+        setTimeout(() => { if (problem_quesion_unanswered == false){
             document.getElementById('submit_form').submit();
-        }
+
+        }}, 1000);
+
     }
 }
 function check_one_answer(index_answer){
