@@ -103,31 +103,31 @@
             <div class="custom-controls-stacked" style="margin-bottom: 25px; margin-top:25px; display: flex;place-content: center;">
                 <h4 style="margin-left: 20px;font-weight: initial !important;color: #029269;">موافقم</h4>
                 <label class="custom-control custom-radio options-margin" style="transform: scale(2);">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="3">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="3">
                     <span class="custom-control-label"></span>
                 </label>
                 <label class="custom-control custom-radio options-margin" style="transform: scale(1.66);">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="2">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="2">
                     <span class="custom-control-label"></span>
                 </label>
                 <label class="custom-control custom-radio options-margin" style="transform: scale(1.33);">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="1">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="1">
                     <span class="custom-control-label"></span>
                 </label>
                 <label class="custom-control custom-radio options-margin">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="0">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="0">
                     <span class="custom-control-label"></span>
                 </label>
                 <label class="custom-control custom-radio options-margin" style="transform: scale(1.33);">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="-1">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="-1">
                     <span class="custom-control-label"></span>
                 </label>
                 <label class="custom-control custom-radio options-margin" style="transform: scale(1.66);">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="-2">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="-2">
                     <span class="custom-control-label"></span>
                 </label>
                 <label class="custom-control custom-radio options-margin" style="transform: scale(2);">
-                    <input type="radio" class="custom-control-input" name="{{loop.index}}" value="-3">
+                    <input type="radio" class="custom-control-input" onclick="go_to_next_question({{loop.index}})" name="{{loop.index}}" value="-3">
                     <span class="custom-control-label"></span>
                 </label>
                 <h4 style="margin-right: 5px;font-weight: initial !important;color: #af0000 ;">مخالفم</h4>
@@ -147,6 +147,11 @@
 
 </div>
 <script>
+function go_to_next_question(index_question){
+    var element_q_scroll = document.querySelector("#question_"+(index_question+1));
+    element_q_scroll.scrollIntoView({behavior: 'smooth',block: 'center',inline: 'center'});
+
+}
 function check_all(){
 for (answer_index = 1; answer_index < 60+1; answer_index++) {
 
