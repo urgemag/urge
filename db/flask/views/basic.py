@@ -40,6 +40,30 @@ def index():
         )
     
 
+@basic.route("/aboutus")
+@basic.route("/Aboutus")
+@basic.route("/AboutUs")
+@basic.route("/about_us")
+@basic.route("/About_us")
+@basic.route("/About_Us")
+@basic.route("/us")
+@basic.route("/Us")
+@basic.route("/Us")
+@basic.route("/urge")
+@basic.route("/Urge")
+def about_us():
+    ***REMOVED*** The about us page. ***REMOVED***
+
+    # Handle if signed in
+    if not Authentication(session).is_signed_in():
+        return redirect("/LogIn")
+
+    return render_template(
+        "basic/about_us.html",
+        details=PageDetails(session).index_data(),
+    )
+
+
 
 @basic.route("/MotivationWall")
 def motivational_sentences():

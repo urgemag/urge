@@ -2412,7 +2412,12 @@ class Tools:
             parameter_percent = user_result_based_on_isfp[parameter_index]
             if parameter_percent < 0:
                 parameter_percent*=-1
-            parameter_percent+=50
+            if parameter_percent < 50:
+                parameter_percent+=50
+            if parameter_percent==50:
+                parameter_percent+=1
+            if parameter_percent > 100:
+                parameter_percent = 100
             user_uniqe_percent_answers[persian_names_parameters[final_type[parameter_index]]] = parameter_percent
 
         return {"final_type" : final_type,

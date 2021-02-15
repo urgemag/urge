@@ -56,7 +56,6 @@ def mbti_test_tool():
             if answer is None:
                 return f"Quesion {answer_index} is not answered."
             all_answers.append(answer)
-    
         user_mbti_answer = Tools().mbti_type_answer(all_answers)
         return redirect(url_for("tools.mbti_types_page", mbti_type=user_mbti_answer["final_type"], answer_percent=user_mbti_answer["answer_percent"] ))
 
