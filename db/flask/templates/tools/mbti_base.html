@@ -1,0 +1,76 @@
+{% extends "base.html" %} 
+{% block title %} پنل شخصی موفقیت اِرج - تیپ {{user_answer.final_type}} {% endblock %} 
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/tools">ابزار ها </a></li>
+<li class="breadcrumb-item"><a href="/tools/{{tool.Slug}}"> {{tool.Persian_Name}} </a></li>
+<li class="breadcrumb-item active" aria-current="page"> تیپ {{user_answer.final_type}} </li>
+{% endblock %} 
+{% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
+
+{% block body %}
+<style>
+    .bg-mbti{
+        /* background-color: '{{user_mbti_data.Color}}' !important; */ 
+        color: #fff !important;
+    }
+    .progress-bar{
+        background: {{user_mbti_data.Color}}; 
+    }
+</style>
+<div class="row row-cards">
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+    <div class="card">
+
+        <div class="card-body">
+            
+            <img style="margin-bottom: 25px" src="{{user_mbti_data.Upside_Picture}}">
+            <div class="row row-cards" style="display: flex;"">
+            
+                {% if user_answer.answer_percent == None %}
+                <div class="col-md-12 col-lg-12 col-md-12 col-xl-12">
+                {% else %}
+                <div class="col-md-12 col-lg-6 col-md-6 col-xl-6">
+                {% endif %}
+                    <div class="card card-blog-overlay1 br-7" style="background: url('{{user_mbti_data.Background_Picture}}');background-repeat: no-repeat;background-position: top,center; ">
+                        <div class="card-body  text-white br-7">
+                            <h3 class="card-title text-white" style="margin-bottom: 15px;">تیپ شما : {{user_answer.final_type}}</h3>
+                            {{user_mbti_data.Description}}</div>
+                        <div class="card-footer  text-white z-index-10">
+                            {{user_mbti_data.Name}}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 col-lg-6 col-md-6 col-xl-6">
+
+
+                    <div class="card-body">
+{% if user_answer.answer_percent != None %}
+                        {% for parameter in user_answer.answer_percent %}
+                        {% set percent = user_answer.answer_percent[parameter] %}
+                        {{parameter}}
+                        <div class="progress progress-md mb-3" style="height: 1.5rem;">
+                            <div class="progress-bar bg-mbti w-50" style="background-color: {{user_mbti_data.Color}} !important; width:{{percent}}% !important;height: 1.5rem;font-size: .8rem; padding-top: 4px;">{{percent}}%</div>
+                        </div>
+
+                        {% endfor %}
+{% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            {{user_mbti_data.Article | safe}}
+
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

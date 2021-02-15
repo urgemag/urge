@@ -2373,9 +2373,7 @@ class Tools:
             index = int(answer_analyse) - 1
             user_answer_to_this_question = user_answer[index]
             answer_sheet_to_this_question = answer_sheet[answer_analyse]
-            #print (answer_sheet_to_this_question)
             order_sample_result = ["i","s","f","p"]
-            print (answer_sheet_to_this_question["plus"])
             for index_sample_answer in range (4):
                 if answer_sheet_to_this_question["plus"] == order_sample_result[index_sample_answer]:
                     user_result_based_on_isfp[index_sample_answer] += int(user_answer_to_this_question)
@@ -2386,7 +2384,7 @@ class Tools:
 
         for parameter_index in range(len(user_result_based_on_isfp)):
             parameter = user_result_based_on_isfp[parameter_index]
-            user_result_based_on_isfp[parameter_index] = parameter/36*100
+            user_result_based_on_isfp[parameter_index] = round(parameter/36*100)
 
         isfp_opposite = "entj"
         isfp_default = "isfp"
@@ -2397,7 +2395,27 @@ class Tools:
                 user_mbti_type.append(isfp_opposite[parameter_index])
             else:
                 user_mbti_type.append(isfp_default[parameter_index])
+        final_type = ("".join(user_mbti_type)).upper()
+        persian_names_parameters = {
+            "E" : "برونگرا",
+            "I" : "درونگرا",
+            "N" : "شهودی",
+            "S" : "حسی",
+            "T" : "منطقی",
+            "F" : "احساسی",
+            "P" : "ادراکی",
+            "J" : "قضاوتی"
 
-        return {"final_type" : ("".join(user_mbti_type)).upper(),
-                "answer_based_on_isfp" : user_result_based_on_isfp
+        }
+        user_uniqe_percent_answers = {}
+        for parameter_index in range(len(user_result_based_on_isfp)):
+            parameter_percent = user_result_based_on_isfp[parameter_index]
+            if parameter_percent < 0:
+                parameter_percent*=-1
+            parameter_percent+=50
+            user_uniqe_percent_answers[persian_names_parameters[final_type[parameter_index]]] = parameter_percent
+
+        return {"final_type" : final_type,
+                "answer_based_on_isfp" : user_result_based_on_isfp,
+                "answer_percent" : user_uniqe_percent_answers
             }

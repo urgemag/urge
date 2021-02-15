@@ -1,7 +1,7 @@
-from flask import Blueprint, session, redirect, render_template, request, abort, g, redirect
+from flask import Blueprint, session, redirect, render_template, request, abort, g, redirect, url_for
 from models import Authentication, Database, PageDetails, General,Tools
 from functools import wraps
-
+import ast
 tools = Blueprint("tools", __name__)
 
 @tools.route("/tools")
@@ -58,18 +58,42 @@ def mbti_test_tool():
             all_answers.append(answer)
     
         user_mbti_answer = Tools().mbti_type_answer(all_answers)
-        return render_template(
-            f"tools/mbti_types/mbti_{user_mbti_answer['final_type']}.html",
-            details=PageDetails(session).index_data(),
-            tool=Database().get_tool_data_db("16_personalities"),
-            questions = General().open_json_file("static/tools/mbti.json")["questions"],
-            user_answer = user_mbti_answer
-        )
+        return redirect(url_for("tools.mbti_types_page", mbti_type=user_mbti_answer["final_type"], answer_percent=user_mbti_answer["answer_percent"] ))
 
     return render_template(
         "tools/mbti.html",
         details=PageDetails(session).index_data(),
         tool=Database().get_tool_data_db("16_personalities"),
         questions = General().open_json_file("static/tools/mbti.json")["questions"]
+    )
+    
+
+
+
+@tools.route("/Tool/mbti/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/Tool/MBTI/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/Tool/16_personalities/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/tool/mbti/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/tool/MBTI/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/tool/16_personalities/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/tools/mbti/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/tools/MBTI/<mbti_type>" ,methods=["POST", "GET"])
+@tools.route("/tools/16_personalities/<mbti_type>" ,methods=["POST", "GET"])
+def mbti_types_page(mbti_type):
+    ***REMOVED*** The mbti type page. ***REMOVED***
+    user_mbti_type_upper = mbti_type.upper()
+    answer_percent = request.args.get("answer_percent")
+    if answer_percent is not None:
+        answer_percent = (ast.literal_eval(answer_percent))
+    if user_mbti_type_upper not in ['ESFJ','ESFP','ESTJ','ESTP','ENFJ','ENFP','ENTJ','ENTP','ISFJ','ISFP','ISTJ','ISTP','INFJ','INFP','INTJ','INTP']:
+        return redirect(url_for("tools.mbti_test_tool"))
+        
+    user_mbti_answer = {'final_type': f'{user_mbti_type_upper}', 'answer_percent': answer_percent}
+    return render_template(
+        f"tools/mbti_base.html",
+        details=PageDetails(session).index_data(),
+        tool=Database().get_tool_data_db("16_personalities"),
+        user_answer = user_mbti_answer,
+        user_mbti_data =  General().open_json_file("static/tools/mbti.json")["mbti_types"][user_mbti_answer["final_type"]]
     )
     
