@@ -95,6 +95,7 @@
     /* The progress container (grey background) */
     .progress-container {
       width: 100%;
+      margin-right: 250px;
       height: 15px;
       background: #ccc;
     }
@@ -123,7 +124,6 @@
         <div class="progress-container" style="
             margin-top: 32px;
             width: 100%;
-            margin-right: 250px;
             height: 15px;
             direction: ltr !important;
             background: #fff;">
@@ -188,7 +188,7 @@
                 background: #ffffff;
                 padding-left: 7px;
                 padding-bottom: 2px;
-                transform: scale(2.4);
+                transform: scale(2);
                 transform-origin: top right;
                 margin-top: -9px;
 
@@ -198,6 +198,13 @@
         @media screen and (min-width: 992px) {
             .responsivity_fast_access {
                 margin-right: 5rem;
+
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .progress-container {
+                margin-right: 0px;
 
             }
         }
