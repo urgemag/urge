@@ -697,7 +697,7 @@ def add_course_admin():
         def form_course(request):
             if request.form.get("slug") == "":
                 return {"Message": "نام انگلیسی دوره را وارد کنید."}
-            slug = request.form.get("slug").replace(" ","_")
+            slug = request.form.get("slug").replace(" ","-")
             try:
                 uploaded_file = request.files["cover"]
             except:
@@ -936,7 +936,7 @@ def add_tool_admin():
     if request.method == "POST":
 
         def form_course(request):
-            slug = request.form.get("slug").replace(" ","_")
+            slug = request.form.get("slug").replace(" ","-")
             if slug == "":
                 return {"Message": "نام انگلیسی را وارد کنید."}
             try:
