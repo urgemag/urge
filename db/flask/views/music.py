@@ -23,7 +23,7 @@ def check_is_admin():
 @music.route("/music")
 def musics_index():
     ***REMOVED*** The Music page ***REMOVED***
-    posts_per_page = 2
+    posts_per_page = 10
     page = request.args.get("page")
     posts = Database().get_all_musics_data_from_db()
     last_page = len(posts)//posts_per_page

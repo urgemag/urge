@@ -8,7 +8,7 @@ tools = Blueprint("tools", __name__)
 @tools.route("/tool")
 def tools_index():
     ***REMOVED*** The Tools page ***REMOVED***
-    posts_per_page = 2
+    posts_per_page = 9
     page = request.args.get("page")
     posts = Database().get_all_tools_data_db()
     last_page = len(posts)//posts_per_page
