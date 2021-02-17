@@ -21,7 +21,7 @@ def check_is_admin():
 @blog.route("/blog")
 def blog_index():
     ***REMOVED*** The Blog ***REMOVED***
-    posts_per_page = 2
+    posts_per_page = 9
     page = request.args.get("page")
     posts = Database().get_blog_posts_data_from_db()
     last_page = len(posts)//posts_per_page

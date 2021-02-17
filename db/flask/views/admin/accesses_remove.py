@@ -559,3 +559,95 @@ def remove_post_blog_admin(slug_post):
         "admin/admin_remove_post.html",
         post=post
     )
+
+
+@admin_remove.route("/Admin/Remove/Music", methods=["POST", "GET"])
+@check_is_admin()
+def remove_music_admin():
+    ***REMOVED*** The Remove Music as an admin. ***REMOVED***
+
+    if request.method == "POST":
+
+        def form_handler(request):
+            name = request.form.get("music_name")
+
+            remove_ones = []
+            music_names = []
+            for music_name in Database().get_all_musics_data_from_db():
+                music_names.append(music_name["Music_Name"])
+            for part in music_names:
+                if (part) == request.form.get(part):
+                    remove_ones.append(part)
+
+            for music_name in remove_ones: 
+                print (Database().delete_music_data_from_db(music_name))
+
+            message = True
+            return message
+
+        message = form_handler(request)
+
+        if message is True:
+            message = {"Color": "green", "Result": "با موفقیت حذف شد."}
+        else:
+            if message["Result"] is False:
+                message["Color"] = "red"
+            else:
+                message["Color"] = "green"
+            message["Result"] = message["Message"]
+
+        flash(message)
+        return redirect(url_for("admin_remove.remove_music_admin"))
+
+    Parts = PageDetails().all_music_data_name_creator_to_remove_in_admin_page()
+    return render_template(
+        "admin/admin_remove_musics.html",
+        Parts=Parts,
+    )
+
+
+
+@admin_remove.route("/Admin/Remove/Tool", methods=["POST", "GET"])
+@admin_remove.route("/Admin/Remove/tool", methods=["POST", "GET"])
+@check_is_admin()
+def remove_tool_admin():
+    ***REMOVED*** The Remove tool as an admin. ***REMOVED***
+
+    if request.method == "POST":
+
+        def form_handler(request):
+            name = request.form.get("tool_name")
+
+            remove_ones = []
+            tool_names = []
+            for tool_name in Database().get_all_tools_data_db():
+                tool_names.append(tool_name["Slug"])
+            for part in tool_names:
+                if part == request.form.get(part):
+                    remove_ones.append(part)
+
+            for tool_slug in remove_ones: 
+                Database().delete_tool_data_from_db(tool_slug)
+
+            message = True
+            return message
+
+        message = form_handler(request)
+
+        if message is True:
+            message = {"Color": "green", "Result": "با موفقیت حذف شد."}
+        else:
+            if message["Result"] is False:
+                message["Color"] = "red"
+            else:
+                message["Color"] = "green"
+            message["Result"] = message["Message"]
+
+        flash(message)
+        return redirect(url_for("admin_remove.remove_tool_admin"))
+
+    Parts = PageDetails().all_tools_data_name_slug_to_remove_in_admin_page()
+    return render_template(
+        "admin/admin_remove_tool.html",
+        Parts=Parts,
+    )

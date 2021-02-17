@@ -37,7 +37,7 @@ $(function(e){
 		swal({
 			title: title,
 			text: message,
-			imageUrl: 'assets/images/brand/logo.png'
+			imageUrl: 'assets/images/brand/logo.jpg'
 		});
 	});
 

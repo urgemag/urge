@@ -1,8 +1,10 @@
 {% extends "base.html" %} {% block title %} دوره {{course.Name}} - پنل موفقیت اِرج {% endblock %} {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="/"> خانه </a></li>
 <li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
-<li class="breadcrumb-item active" aria-current="page">دوره {{course.Name}}</li>
-{% endblock %} {% block main_css %}
+<li class="breadcrumb-item active" aria-current="page">{{course.Name}}</li>
+{% endblock %}
+{% block no_header %}{% endblock %}
+{% block main_css %}
 <link href="/static//assets/css/style_course.css" rel="stylesheet" />
 <script src="/static/sweetalert/sweetalert2@10.js"></script>
 <style>

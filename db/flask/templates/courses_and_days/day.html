@@ -32,8 +32,13 @@
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
-<link rel="stylesheet" href="/static/assets/css/plyr.css" />
-<script src="/static/assets/js/plyr.js"></script>
+
+<!-- <link rel="stylesheet" href="/static//assets/css/plyr.css" />
+<script src="/static//assets/js/plyr.js"></script>  -->
+
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css" />
+<script src="https://cdn.plyr.io/3.6.4/plyr.polyfilled.js"></script>
+
 
 {% endblock %} {% block body %}
 
@@ -119,10 +124,10 @@
                     mutex: true,
                     listFolded: false,
                     listMaxHeight: 90,
-                    lrcType: 3,
                     audio: JSON.parse('{{ day.Musics | tojson | safe}}'),
                 });
             </script>
+            
 
         </div>
         {% endif %} {% if day.Quotes[0] %}

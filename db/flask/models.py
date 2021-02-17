@@ -11,12 +11,13 @@ import filetype
 import setting
 import requests
 import ast
-import json 
+import json
 from pprint import pprint
 from datetime import *
 import html2text
 import jdatetime
 import send2trash
+
 # it uses << imgp >> too
 
 
@@ -24,7 +25,59 @@ class General:
     ***REMOVED*** These are the functions which will be used in others and they are general ! ***REMOVED***
 
     def __init__(self):
-        self.special_characters = ['!', ' ', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '/', ':', ';', '=', '?', '@', '[', ']', "'", '!', '#', '$', '&', "'", '(', ')', '*', '+', ',', '/', ':', ';', '=', '?', '@', '[', ']', '%', '<', '>', '^', '_', '`', '{', '|', '}', '~', '£', '円']
+        self.special_characters = [
+            "!",
+            " ",
+            "#",
+            "$",
+            "%",
+            "&",
+            "'",
+            "(",
+            ")",
+            "*",
+            "+",
+            ",",
+            "/",
+            ":",
+            ";",
+            "=",
+            "?",
+            "@",
+            "[",
+            "]",
+            "'",
+            "!",
+            "#",
+            "$",
+            "&",
+            "'",
+            "(",
+            ")",
+            "*",
+            "+",
+            ",",
+            "/",
+            ":",
+            ";",
+            "=",
+            "?",
+            "@",
+            "[",
+            "]",
+            "%",
+            "<",
+            ">",
+            "^",
+            "_",
+            "`",
+            "{",
+            "|",
+            "}",
+            "~",
+            "£",
+            "円",
+        ]
 
     @classmethod
     def sha256_hash(cls, password):
@@ -38,7 +91,7 @@ class General:
         return result
 
     def move_file_path(cls, path_file, new_path_file):
-        rename(path_file,new_path_file)
+        rename(path_file, new_path_file)
         return True
 
     def href_to_path(cls, file_href):
@@ -48,65 +101,113 @@ class General:
 
         return file_path
 
-
     def check_existence_of_a_file(self, file_path):
         return path.exists(file_path)
 
     def remove_file_to_trash(self, file_path):
         pwd = getcwd()
         try:
-            send2trash.send2trash('{pwd}/{file_path}'.format(pwd=pwd, file_path=file_path))
+            send2trash.send2trash(
+                "{pwd}/{file_path}".format(pwd=pwd, file_path=file_path)
+            )
         except:
             pass
         return True
-        
-
 
     def setup_course_folder(self, slug, course_length_days=None):
         if course_length_days is None:
-            course_length_days = int(Database().get_courses_data_from_db(slug)["Length"])
-        if General().check_existence_of_a_file("static/assets/courses/{slug}".format(slug=slug)) is False:
+            course_length_days = int(
+                Database().get_courses_data_from_db(slug)["Length"]
+            )
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}".format(slug=slug)
+            )
+            is False
+        ):
             mkdir("static/assets/courses/{slug}".format(slug=slug))
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/days".format(slug=slug)) is False:
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}/days".format(slug=slug)
+            )
+            is False
+        ):
             mkdir("static/assets/courses/{slug}/days".format(slug=slug))
 
-        for day_number in range (1, int(course_length_days)+1):
-            if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day_number}".format(slug=slug,day_number=day_number)) is False:
-                mkdir("static/assets/courses/{slug}/days/{day_number}".format(slug=slug,day_number=day_number))
-            if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day_number}/music".format(slug=slug,day_number=day_number)) is False:
-                mkdir("static/assets/courses/{slug}/days/{day_number}/music".format(slug=slug,day_number=day_number))
-            if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day_number}/podcast".format(slug=slug,day_number=day_number)) is False:
-                mkdir("static/assets/courses/{slug}/days/{day_number}/podcast".format(slug=slug,day_number=day_number))
+        for day_number in range(1, int(course_length_days) + 1):
+            if (
+                General().check_existence_of_a_file(
+                    "static/assets/courses/{slug}/days/{day_number}".format(
+                        slug=slug, day_number=day_number
+                    )
+                )
+                is False
+            ):
+                mkdir(
+                    "static/assets/courses/{slug}/days/{day_number}".format(
+                        slug=slug, day_number=day_number
+                    )
+                )
+            if (
+                General().check_existence_of_a_file(
+                    "static/assets/courses/{slug}/days/{day_number}/music".format(
+                        slug=slug, day_number=day_number
+                    )
+                )
+                is False
+            ):
+                mkdir(
+                    "static/assets/courses/{slug}/days/{day_number}/music".format(
+                        slug=slug, day_number=day_number
+                    )
+                )
+            if (
+                General().check_existence_of_a_file(
+                    "static/assets/courses/{slug}/days/{day_number}/podcast".format(
+                        slug=slug, day_number=day_number
+                    )
+                )
+                is False
+            ):
+                mkdir(
+                    "static/assets/courses/{slug}/days/{day_number}/podcast".format(
+                        slug=slug, day_number=day_number
+                    )
+                )
 
     def setup_blog_post_folder(self, slug):
-        if General().check_existence_of_a_file("static/assets/images/blog/{slug}".format(slug=slug)) is False:
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/images/blog/{slug}".format(slug=slug)
+            )
+            is False
+        ):
             mkdir("static/assets/images/blog/{slug}".format(slug=slug))
 
-    def smart_description_preview_splitted_by_word(self,character, text):
-        
+    def smart_description_preview_splitted_by_word(self, character, text):
+
         while text[character] != " ":
-            character+=1
-        
+            character += 1
+
         return text[:character]
 
-
-    def pagination_designer(self,now_page, last_page, max_pages_in_pagination=5):
+    def pagination_designer(self, now_page, last_page, max_pages_in_pagination=5):
         pages_preview = [int(now_page)]
 
         for times in range(3):
             if len(pages_preview) >= max_pages_in_pagination:
                 break
-            for count_to_add_backward in range(1,3):
+            for count_to_add_backward in range(1, 3):
                 if len(pages_preview) >= max_pages_in_pagination:
                     break
-                if pages_preview[0]-1 > 0:
-                    pages_preview.insert(0,pages_preview[0]-1)
+                if pages_preview[0] - 1 > 0:
+                    pages_preview.insert(0, pages_preview[0] - 1)
 
-            for count_to_add_forward in range(1,3):
+            for count_to_add_forward in range(1, 3):
                 if len(pages_preview) >= max_pages_in_pagination:
                     break
-                if pages_preview[-1]+1 <= last_page:
-                    pages_preview.insert(len(pages_preview),pages_preview[-1]+1)
+                if pages_preview[-1] + 1 <= last_page:
+                    pages_preview.insert(len(pages_preview), pages_preview[-1] + 1)
         return pages_preview
 
     def format_recognizer(self, file):
@@ -117,7 +218,7 @@ class General:
         width, height = image.size
         return width, height
 
-    def html_to_text(self,html):
+    def html_to_text(self, html):
         html_to_text = html2text.HTML2Text()
         html_to_text.ignore_links = True
         return html_to_text.handle(html)
@@ -184,6 +285,24 @@ class General:
             )
         )
 
+    def open_json_file(self, json_path):
+        json_file = open(json_path)
+
+        json_data = json.load(json_file)
+
+        json_file.close()
+
+        return json_data
+
+    def valid_email(self, email):
+        ***REMOVED*** Check if an email is valid or not ***REMOVED***
+        return bool(
+            re.search(
+                r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$",
+                General().corect_form_of_email(email),
+            )
+        )
+
     def corect_form_of_email(self, email):
         ***REMOVED*** return Email without Dots and uppercases ***REMOVED***
         print(email)
@@ -194,60 +313,126 @@ class General:
         return email_correct
 
     def save_picture_of_course(self, slug, uploaded_file, course_length_days):
-        if General().check_existence_of_a_file("static/assets/courses/{slug}".format(slug=slug)) is False:
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}".format(slug=slug)
+            )
+            is False
+        ):
             General().setup_course_folder(slug, int(course_length_days))
 
         pic_format = ((uploaded_file.filename).split("."))[-1]
         pic_format = pic_format.lower()
         if pic_format not in ["jpg", "jpeg", "png", "webp"]:
             return {"Message": "فرمت فایل باید تصویر باشد.", "Result": False}
-        path_main_course_picrue = "static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug, the_format=pic_format)
-        href_main_course_picrue = "/static//assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug, the_format=pic_format)
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(slug=slug, the_format=pic_format)):
+        path_main_course_picrue = "static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(
+            slug=slug, the_format=pic_format
+        )
+        href_main_course_picrue = "/static//assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(
+            slug=slug, the_format=pic_format
+        )
+        if General().check_existence_of_a_file(
+            "static/assets/courses/{slug}/{slug}-course-picture_medium-size.{the_format}".format(
+                slug=slug, the_format=pic_format
+            )
+        ):
             remove(path_main_course_picrue)
         uploaded_file.save(path_main_course_picrue)
-        General().image_resizer_using_pil(path_main_course_picrue,1000)
+        General().image_resizer_using_pil(path_main_course_picrue, 1000)
 
-        return {"path": path_main_course_picrue, "href": href_main_course_picrue, "Result": True}
+        return {
+            "path": path_main_course_picrue,
+            "href": href_main_course_picrue,
+            "Result": True,
+        }
 
+    def save_picture_of_tool(self, slug, uploaded_file):
+
+        pic_format = ((uploaded_file.filename).split("."))[-1]
+        pic_format = pic_format.lower()
+        if pic_format not in ["jpg", "jpeg", "png", "webp"]:
+            return {"Message": "فرمت فایل باید تصویر باشد.", "Result": False}
+        path_main_course_picrue = "static/assets/tools/tool_{slug}.{the_format}".format(
+            slug=slug, the_format=pic_format
+        )
+        href_main_course_picrue = "/static//assets/tools/tool_{slug}.{the_format}".format(
+            slug=slug, the_format=pic_format
+        )
+        if General().check_existence_of_a_file(
+            "static/assets/tools/tool_{slug}.{the_format}".format(
+                slug=slug, the_format=pic_format
+            )
+        ):
+            remove(path_main_course_picrue)
+        uploaded_file.save(path_main_course_picrue)
+        General().image_resizer_using_pil(path_main_course_picrue, 1000)
+
+        return {
+            "path": path_main_course_picrue,
+            "href": href_main_course_picrue,
+            "Result": True,
+        }
 
     def save_picture_of_day_of_course(self, slug, day, image_bytes):
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day}".format(slug=slug, day=str(day))) is False:
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}/days/{day}".format(
+                    slug=slug, day=str(day)
+                )
+            )
+            is False
+        ):
             General().setup_course_folder(slug)
 
-       
         hash_image = General().sha256_hash_bytes(image_bytes)
 
         format_file = General().format_recognizer(image_bytes)
-        file_name = "days_of_course_{hash_image}.{format_image}".format(hash_image=hash_image,format_image=format_file)
-        location_image = "static/assets/courses/{slug}/days/{day}/{file_name}".format(slug=slug, day=day, file_name=file_name)
-        location_image_href = "/static//assets/courses/{slug}/days/{day}/{file_name}".format(slug=slug, day=day, file_name=file_name)
-
+        file_name = "days_of_course_{hash_image}.{format_image}".format(
+            hash_image=hash_image, format_image=format_file
+        )
+        location_image = "static/assets/courses/{slug}/days/{day}/{file_name}".format(
+            slug=slug, day=day, file_name=file_name
+        )
+        location_image_href = "/static//assets/courses/{slug}/days/{day}/{file_name}".format(
+            slug=slug, day=day, file_name=file_name
+        )
 
         with open(location_image, "wb") as file:
             file.write(image_bytes)
 
         General().image_resizer_using_imgp(location_image, 1000)
 
-        return {"href": location_image_href, "image": location_image, "file_name" : file_name }
+        return {
+            "href": location_image_href,
+            "image": location_image,
+            "file_name": file_name,
+        }
 
     def save_picture_of_day_of_course_not_in_specific_location(self, image_bytes):
-       
+
         hash_image = General().sha256_hash_bytes(image_bytes)
 
         format_file = General().format_recognizer(image_bytes)
-        file_name = "days_of_course_{hash_image}.{format_image}".format(hash_image=hash_image,format_image=format_file)
-        location_image = "static/assets/images/ck_cache/{file_name}".format(file_name=file_name)
-        location_image_href = "/static//assets/images/ck_cache/{file_name}".format(file_name=file_name)
-
+        file_name = "days_of_course_{hash_image}.{format_image}".format(
+            hash_image=hash_image, format_image=format_file
+        )
+        location_image = "static/assets/images/ck_cache/{file_name}".format(
+            file_name=file_name
+        )
+        location_image_href = "/static//assets/images/ck_cache/{file_name}".format(
+            file_name=file_name
+        )
 
         with open(location_image, "wb") as file:
             file.write(image_bytes)
 
         General().image_resizer_using_imgp(location_image, 1000)
 
-        return {"href": location_image_href, "image": location_image, "file_name" : file_name }
-
+        return {
+            "href": location_image_href,
+            "image": location_image,
+            "file_name": file_name,
+        }
 
     def save_music_of_day(self, slug, day, music):
 
@@ -255,10 +440,21 @@ class General:
         for character in music_filename:
             if character in self.special_characters:
                 music_filename = music_filename.replace(character, "")
-        music_file_path = "static/assets/courses/{slug}/days/{day}/music/{music_filename}".format(slug=str(slug), day=str(day),music_filename=music_filename)
-        music_file_href = "/static//assets/courses/{slug}/days/{day}/music/{music_filename}".format(slug=str(slug), day=str(day),music_filename=music_filename)
-        
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day}/music".format(slug=str(slug), day=str(day))) is False:
+        music_file_path = "static/assets/courses/{slug}/days/{day}/music/{music_filename}".format(
+            slug=str(slug), day=str(day), music_filename=music_filename
+        )
+        music_file_href = "/static//assets/courses/{slug}/days/{day}/music/{music_filename}".format(
+            slug=str(slug), day=str(day), music_filename=music_filename
+        )
+
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}/days/{day}/music".format(
+                    slug=str(slug), day=str(day)
+                )
+            )
+            is False
+        ):
             General().setup_course_folder(slug)
 
         music.save(music_file_path)
@@ -267,10 +463,58 @@ class General:
             "href": music_file_href,
         }
 
+    def save_music_cover(self, cover_bytes, music_path):
+
+        cover_name = music_path.split("/")[-1]
+        cover_name = cover_name.split(".")[0]
+
+        format_file = General().format_recognizer(cover_bytes)
+        file_name = "{cover_name}.{format_image}".format(
+            cover_name=cover_name, format_image=format_file
+        )
+        location_image = f"static/assets/musics/covers/{file_name}"
+        location_image_href = f"/static//assets/musics/covers/{file_name}"
+
+        if General().check_existence_of_a_file("static/assets/musics/covers/") is False:
+            mkdir("static/assets/musics/covers/")
+
+        with open(location_image, "wb") as file:
+            file.write(cover_bytes)
+
+        General().image_resizer_using_imgp(location_image, 1000)
+
+        return {"href": location_image_href, "path": location_image}
+
+    def save_music(self, music):
+
+        music_filename = music.filename
+        for character in music_filename:
+            if character in self.special_characters:
+                music_filename = music_filename.replace(character, "")
+        music_file_path = "static/assets/musics/{music_filename}".format(
+            music_filename=music_filename
+        )
+        music_file_href = "/static//assets/musics/{music_filename}".format(
+            music_filename=music_filename
+        )
+
+        if General().check_existence_of_a_file("static/assets/musics/") is False:
+            mkdir("static/assets/musics/")
+
+        music.save(music_file_path)
+
+        return {
+            "href": music_file_href,
+            "path": music_file_path,
+        }
+
     def status_date_published_post_blog(self, timestamp):
         date = [int(x) for x in ((timestamp.split(" "))[0]).split("-")]
-        delta_time = General().milliseconds_passed_till_now() - General().convert_timestamp(timestamp)[2]
-        delta_time_minutes = delta_time/1000/60
+        delta_time = (
+            General().milliseconds_passed_till_now()
+            - General().convert_timestamp(timestamp)[2]
+        )
+        delta_time_minutes = delta_time / 1000 / 60
         delta_time_minutes = int(delta_time_minutes)
         message = ""
 
@@ -278,32 +522,35 @@ class General:
             message = "ثانیه هایی پیش"
         elif delta_time_minutes < 10:
             message = "دقایقی پیش"
-        elif delta_time_minutes < 6*60:
+        elif delta_time_minutes < 6 * 60:
             message = "ساعاتی پیش"
-        elif delta_time_minutes < 1*24*60:
+        elif delta_time_minutes < 1 * 24 * 60:
             message = "امروز"
-        elif delta_time_minutes < 2*24*60:
+        elif delta_time_minutes < 2 * 24 * 60:
             message = "دیروز"
         else:
-            jdate = jdatetime.date.fromgregorian(day=date[0],month=date[1],year=date[2])
+            jdate = jdatetime.date.fromgregorian(
+                day=date[0], month=date[1], year=date[2]
+            )
             jdate = jdate.strftime("%d-%m-%Y")
             jdate = jdate.split("-")
             jmonths = {
-                1:"فروردین",
-                2:"اردیبهشت",
-                3:"خرداد",
-                4:"تیر",
-                5:"مرداد",
-                6:"شهریور",
-                7:"مهر",
-                8:"آبان",
-                9:"آذر",
-                10:"دی",
-                11:"بهمن",
-                12:"اسفند"
-
-            } 
-            message = "{day} {month} {year}".format(day=jdate[0],month=jmonths[int(jdate[1])],year=jdate[2])
+                1: "فروردین",
+                2: "اردیبهشت",
+                3: "خرداد",
+                4: "تیر",
+                5: "مرداد",
+                6: "شهریور",
+                7: "مهر",
+                8: "آبان",
+                9: "آذر",
+                10: "دی",
+                11: "بهمن",
+                12: "اسفند",
+            }
+            message = "{day} {month} {year}".format(
+                day=jdate[0], month=jmonths[int(jdate[1])], year=jdate[2]
+            )
 
         return message
 
@@ -312,11 +559,24 @@ class General:
         hash_image = General().sha256_hash_bytes(cover_bytes)
 
         format_file = General().format_recognizer(cover_bytes)
-        file_name = "music_cover_of_day_{hash_image}.{format_image}".format(hash_image=hash_image,format_image=format_file)
-        location_image = "static/assets/courses/{slug}/days/{day}/music/{file_name}".format(slug=slug, day=day, file_name=file_name)
-        location_image_href = "/static//assets/courses/{slug}/days/{day}/music/{file_name}".format(slug=slug, day=day, file_name=file_name)
+        file_name = "music_cover_of_day_{hash_image}.{format_image}".format(
+            hash_image=hash_image, format_image=format_file
+        )
+        location_image = "static/assets/courses/{slug}/days/{day}/music/{file_name}".format(
+            slug=slug, day=day, file_name=file_name
+        )
+        location_image_href = "/static//assets/courses/{slug}/days/{day}/music/{file_name}".format(
+            slug=slug, day=day, file_name=file_name
+        )
 
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day}/music".format(slug=slug, day=day)) is False:
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}/days/{day}/music".format(
+                    slug=slug, day=day
+                )
+            )
+            is False
+        ):
             General().setup_course_folder(slug)
 
         with open(location_image, "wb") as file:
@@ -331,12 +591,24 @@ class General:
         hash_image = General().sha256_hash_bytes(cover_bytes)
 
         format_file = General().format_recognizer(cover_bytes)
-        file_name = "podcast_cover_of_day_{hash_image}.{format_file}".format(hash_image=hash_image,format_file=format_file)
-        location_image = "static/assets/courses/{slug}/days/{day_number}/podcast/{file_name}".format(slug=slug,day_number=str(day),file_name=file_name)
-        location_image_href = "/static//assets/courses/{slug}/days/{day_number}/podcast/{file_name}".format(slug=slug,day_number=str(day),file_name=file_name)
-        
-        
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day_number}/podcast".format(slug=slug,day_number=str(day))) is False:
+        file_name = "podcast_cover_of_day_{hash_image}.{format_file}".format(
+            hash_image=hash_image, format_file=format_file
+        )
+        location_image = "static/assets/courses/{slug}/days/{day_number}/podcast/{file_name}".format(
+            slug=slug, day_number=str(day), file_name=file_name
+        )
+        location_image_href = "/static//assets/courses/{slug}/days/{day_number}/podcast/{file_name}".format(
+            slug=slug, day_number=str(day), file_name=file_name
+        )
+
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}/days/{day_number}/podcast".format(
+                    slug=slug, day_number=str(day)
+                )
+            )
+            is False
+        ):
             General().setup_course_folder(slug)
 
         with open(location_image, "wb") as file:
@@ -353,42 +625,54 @@ class General:
         except:
             return False
 
-    def price_beautifier(self,price_couese):
-        price=int(str(price_couese).replace(",", ""))
-        List=[]
-        for i in (str(price)):
+    def price_beautifier(self, price_couese):
+        if str(price_couese) == "":
+            return 0
+
+        price = int(str(price_couese).replace(",", ""))
+        List = []
+        for i in str(price):
             List.append(i)
-        for x in range ((len(str(price))-1)//3):
-            count = (x+1) * 3
-            List.insert(len(str(price))-count,",")
-        return ("".join(List))
+        for x in range((len(str(price)) - 1) // 3):
+            count = (x + 1) * 3
+            List.insert(len(str(price)) - count, ",")
+        return "".join(List)
 
     def days_passed_till_now(self):
         now_date = date.today()
         zero_date = date(1, 1, 1)
-        delta_date = now_date-zero_date
+        delta_date = now_date - zero_date
         return int(delta_date.days)
 
     def milliseconds_passed_till_now(self):
         return General().convert_timestamp(General().timestamp())[2]
 
-    def days_passed_till_specific_date(self,year,month,day):
-        specific_date = date(year,month,day)
+    def days_passed_till_specific_date(self, year, month, day):
+        specific_date = date(year, month, day)
         zero_date = date(1, 1, 1)
-        delta_date = specific_date-zero_date
+        delta_date = specific_date - zero_date
         return int(delta_date.days)
 
     def timestamp(self):
         return datetime.now().strftime("%d-%m-%Y %H:%M:%S:%f")
 
-    def convert_timestamp(self,timestamp):
-        date,time = timestamp.split(" ") 
+    def convert_timestamp(self, timestamp):
+        date, time = timestamp.split(" ")
         date_data_splitted = [int(x) for x in date.split("-")]
-        days_passed = General().days_passed_till_specific_date(date_data_splitted[2],date_data_splitted[1],date_data_splitted[0])
+        days_passed = General().days_passed_till_specific_date(
+            date_data_splitted[2], date_data_splitted[1], date_data_splitted[0]
+        )
         time_data_splitted = [int(x) for x in time.split(":")]
-        milliseconds_passed = time_data_splitted[0]*60*60*1000+time_data_splitted[1]*60*1000+time_data_splitted[2]*1000
-        sum_milliseconds_passed = milliseconds_passed+days_passed*24*60*60*1000
-        return days_passed, milliseconds_passed,sum_milliseconds_passed
+        milliseconds_passed = (
+            time_data_splitted[0] * 60 * 60 * 1000
+            + time_data_splitted[1] * 60 * 1000
+            + time_data_splitted[2] * 1000
+        )
+        sum_milliseconds_passed = (
+            milliseconds_passed + days_passed * 24 * 60 * 60 * 1000
+        )
+        return days_passed, milliseconds_passed, sum_milliseconds_passed
+
 
 class Authentication:
     ***REMOVED*** Authentications of the urge panel ! ***REMOVED***
@@ -426,10 +710,7 @@ class Authentication:
 
         # If There was no problem , Here We will sign the data up into the DataBase
         if Database().add_users_data_to_db(
-            email,
-            General().sha256_hash(password),
-            first_name,
-            last_name,
+            email, General().sha256_hash(password), first_name, last_name,
         ):
             return {
                 "result": True,
@@ -486,7 +767,7 @@ class Authentication:
         if self.session.get("logged_in"):
             return True
         return False
-    
+
     def is_admin(self):
         ***REMOVED*** check the cookies out to see if the account is admin or not. ***REMOVED***
         if Authentication(self.session).is_signed_in() and self.session.get("admin"):
@@ -537,6 +818,14 @@ class Database:
         ***REMOVED*** To get courses data from the DataBase***REMOVED***
         return self.database.courses.find({"Main_Data": True})
 
+    def get_all_musics_data_from_db(self):
+        ***REMOVED*** To get musics data from the DataBase***REMOVED***
+        all_posts = []
+        for post in self.database.musics.find():
+            all_posts.append(post)
+        all_posts.reverse()
+        return all_posts
+
     def get_all_slug_and_names_of_courses_from_db(self):
         ***REMOVED*** To get all accesses (slugs - name courses) data from the DataBase***REMOVED***
         courses = []
@@ -559,10 +848,10 @@ class Database:
         all_posts.reverse()
         return all_posts
 
-    def get_blog_post_data_from_db(self,english_name):
+    def get_blog_post_data_from_db(self, english_name):
         ***REMOVED*** To get blog posts data from the DataBase***REMOVED***
 
-        post = self.database.blog.find_one({"English_Name":english_name})
+        post = self.database.blog.find_one({"English_Name": english_name})
         if post is None:
             return False
         return post
@@ -790,15 +1079,11 @@ class Database:
                 "Length": length_of_course,
                 "Free": free,
                 "Soon": soon,
-                "Days_Till_Open":int(days_till_publish),
-                "First_Created_TimeStamp": General().timestamp()
-
+                "Days_Till_Open": int(days_till_publish),
+                "First_Created_TimeStamp": General().timestamp(),
             }
         )
-        for key, value in {
-            "Intro": intro,
-            "Robbin": robbin,
-        }.items():
+        for key, value in {"Intro": intro, "Robbin": robbin,}.items():
             if value is not None and value != "":
                 new_values = {"$set": {key: value}}
                 self.database.courses.update_one(
@@ -807,30 +1092,77 @@ class Database:
 
         return True
 
-
-    def get_payment_data(self,payment_id):
+    def get_payment_data(self, payment_id):
         ***REMOVED*** To get a payment data based on id from the DataBase***REMOVED***
         return self.database.payments.find_one({"ID": payment_id})
 
-
-    def add_payment_record_to_db(self,slug,price,buyer_email,payment_id):
+    def add_payment_record_to_db(self, slug, price, buyer_email, payment_id):
         ***REMOVED*** To add a payment record to the DataBase***REMOVED***
         self.database.payments.insert_one(
-            {"Slug": slug, "Buyer": buyer_email,"Price":price , "ID": payment_id,"Status":"Waiting"}
+            {
+                "Slug": slug,
+                "Buyer": buyer_email,
+                "Price": price,
+                "ID": payment_id,
+                "Status": "Waiting",
+            }
         )
         return True
 
+    def get_all_tools_data_db(self):
+        ***REMOVED*** To get all tools data from the DataBase***REMOVED***
+        all_posts = []
+        for post in self.database.tools.find():
+            all_posts.append(post)
+        all_posts.reverse()
+        return all_posts
 
-    def change_payment_status_to_success_in_db(self,payment_id):
+    def get_tool_data_db(self, slug):
+        ***REMOVED*** To get one tool data from the DataBase***REMOVED***
+        return self.database.tools.find_one({"Slug": slug})
+
+    def add_tool_to_db(
+        self,
+        slug,
+        price,
+        image_href,
+        persian_name,
+        description,
+        now_price,
+        robbin,
+        soon,
+        days_till_publish,
+    ):
+        ***REMOVED*** To add a tool to the DataBase***REMOVED***
+        self.database.tools.insert_one(
+            {
+                "Slug": slug,
+                "Persian_Name": persian_name,
+                "Price": price,
+                "Cover": image_href,
+                "Description": description,
+                "Now_Price": now_price,
+                "Robbin": robbin,
+                "Soon": soon,
+                "Days_Till_Open": days_till_publish,
+                "First_Created_TimeStamp": General().timestamp(),
+            }
+        )
+        return True
+
+    def change_payment_status_to_success_in_db(self, payment_id):
         ***REMOVED*** To change a payment status to Successful in the DataBase***REMOVED***
-        self.database.payments.update_one({"ID": payment_id}, {"$set": {"Status":"Successful"}})
+        self.database.payments.update_one(
+            {"ID": payment_id}, {"$set": {"Status": "Successful"}}
+        )
         return True
 
-    def change_payment_status_to_fail_in_db(self,payment_id):
+    def change_payment_status_to_fail_in_db(self, payment_id):
         ***REMOVED*** To change a payment status to Failed in the DataBase***REMOVED***
-        self.database.payments.update_one({"ID": payment_id}, {"$set": {"Status":"Failed"}})
+        self.database.payments.update_one(
+            {"ID": payment_id}, {"$set": {"Status": "Failed"}}
+        )
         return True
-
 
     def delete_payment_record_from_db(self, payment_id):
         ***REMOVED*** To add courses data to the DataBase***REMOVED***
@@ -841,6 +1173,26 @@ class Database:
             pass
         return True
 
+    def delete_music_data_from_db(self, music_name):
+        ***REMOVED*** To delete music data from the DataBase***REMOVED***
+        music_query = {"Music_Name": music_name}
+        music_data = self.database.musics.find_one(music_query)
+        if music_data is None:
+            return False
+        General().remove_file_to_trash(music_data["Cover"]["path"])
+        General().remove_file_to_trash(music_data["Music"]["path"])
+        self.database.musics.delete_one(music_query)
+        return True
+
+    def delete_tool_data_from_db(self, tool_slug):
+        ***REMOVED*** To delete tool data from the DataBase***REMOVED***
+        tool_query = {"Slug": tool_slug}
+        tool_data = self.database.tools.find_one(tool_query)
+        if tool_data is None:
+            return False
+        General().remove_file_to_trash(tool_data["Cover"])
+        self.database.tools.delete_one(tool_query)
+        return True
 
     def add_course_info_to_db(
         self, slug, introduction, speciality, importance, why, length, price, last_words
@@ -867,9 +1219,7 @@ class Database:
             if value is None or value == "":
                 return {"Result": False, "Message": "فیلد ها نمیتوانند خالی باشند"}
 
-        for key, value in {
-            "Intro": intro,
-        }.items():
+        for key, value in {"Intro": intro,}.items():
             if value is not None and value != "":
                 new_values = {"$set": {key: value}}
                 self.database.courses.update_one(my_query, new_values)
@@ -903,17 +1253,9 @@ class Database:
             int(day_num)
         except ValueError:
             return False
-        if (
-            self.database.courses.find_one(
-                {
-                    "Slug": slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
-            )
-            is not None
-            or (free is not False and free is not True)
-        ):
+        if self.database.courses.find_one(
+            {"Slug": slug, "Sub_Course": True, "Day": int(day_num),}
+        ) is not None or (free is not False and free is not True):
             return False
 
         self.database.courses.insert_one(
@@ -939,7 +1281,7 @@ class Database:
                 "Podcast": podcast,
                 "Podcast_Description": podcast_description,
                 "Free": free,
-                "First_Created_TimeStamp": General().timestamp()
+                "First_Created_TimeStamp": General().timestamp(),
             }
         )
         return True
@@ -953,11 +1295,7 @@ class Database:
 
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is not None
         ):
@@ -1002,11 +1340,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1053,11 +1387,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1085,39 +1415,43 @@ class Database:
         return True
 
     def add_post_blog_to_db(self, persian_name, eng_name, cover_href, text):
-            ***REMOVED*** To add post blog in the DataBase***REMOVED***
-            if self.database.blog.find_one({"English_Name": eng_name}) is not None:
-                return False
+        ***REMOVED*** To add post blog in the DataBase***REMOVED***
+        if self.database.blog.find_one({"English_Name": eng_name}) is not None:
+            return False
 
-            self.database.blog.insert_one(
-                {
-                    "Persian_Name": persian_name,
-                    "English_Name": eng_name,
-                    "Cover": cover_href,
-                    "Text": text,
-                    "First_Created_TimeStamp": General().timestamp(),
-                    "Millisecond_Passed": General().milliseconds_passed_till_now()
-                }
-            )
-            return True
+        self.database.blog.insert_one(
+            {
+                "Persian_Name": persian_name,
+                "English_Name": eng_name,
+                "Cover": cover_href,
+                "Text": text,
+                "First_Created_TimeStamp": General().timestamp(),
+                "Millisecond_Passed": General().milliseconds_passed_till_now(),
+            }
+        )
+        return True
 
+    def edit_post_blog_to_db(
+        self, old_enlish_name, persian_name, eng_name, cover_href, text
+    ):
+        ***REMOVED*** To add post blog in the DataBase***REMOVED***
+        if self.database.blog.find_one({"English_Name": old_enlish_name}) is None:
+            return False
 
-    def edit_post_blog_to_db(self,old_enlish_name ,persian_name, eng_name, cover_href, text):
-            ***REMOVED*** To add post blog in the DataBase***REMOVED***
-            if self.database.blog.find_one({"English_Name": old_enlish_name}) is None:
-                return False
-
-            self.database.blog.update_one({"English_Name": old_enlish_name},{"$set":
-                {
+        self.database.blog.update_one(
+            {"English_Name": old_enlish_name},
+            {
+                "$set": {
                     "Persian_Name": persian_name,
                     "English_Name": eng_name,
                     "Cover": cover_href,
                     "Text": text,
                     "Last_Updated_TimeStamp": General().timestamp(),
-                    "Millisecond_Passed": General().milliseconds_passed_till_now()
-                }}
-            )
-            return True
+                    "Millisecond_Passed": General().milliseconds_passed_till_now(),
+                }
+            },
+        )
+        return True
 
     def add_day_todo_data_to_db(self, course_name_slug, day_num, todo):
         ***REMOVED*** To add essential data to a day of course in the DataBase***REMOVED***
@@ -1129,11 +1463,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1170,11 +1500,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1213,11 +1539,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1253,7 +1575,9 @@ class Database:
             name = names[index]
             creator = creators[index]
             music_path = General().save_music_of_day(course_name_slug, day_num, music)
-            image_path = General().save_music_cover_of_day(course_name_slug, day_num,cover_bytes=cover.read())
+            image_path = General().save_music_cover_of_day(
+                course_name_slug, day_num, cover_bytes=cover.read()
+            )
             musics_data.append(
                 {
                     "name": name,
@@ -1282,6 +1606,34 @@ class Database:
 
         return True
 
+    def add_music_data_to_db(self, cover, music, creator, name):
+        ***REMOVED*** To add musics data to a day of course in the DataBase***REMOVED***
+        music_path = General().save_music(music)
+        image_path = General().save_music_cover(
+            cover_bytes=cover.read(), music_path=music_path["path"]
+        )
+        music_data = []
+        music_data.append(
+            {
+                "name": name,
+                "artist": creator,
+                "cover": image_path["href"],
+                "url": music_path["href"],
+                "theme": "#ebd0c2",
+            }
+        )
+
+        self.database.musics.insert_one(
+            {
+                "Music_Name": name,
+                "Creator": creator,
+                "Cover": image_path,
+                "Music": music_path,
+                "Music_Full_Data": music_data,
+            }
+        )
+        return True
+
     def add_day_ted_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities
     ):
@@ -1294,11 +1646,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1328,10 +1676,7 @@ class Database:
             url = urls[index]
             quality = qualities[index]
             teds_data.append(
-                {
-                    "Link": url,
-                    "Quality": quality,
-                }
+                {"Link": url, "Quality": quality,}
             )
 
         response_edit_of_day = Database().edit_day_of_course_data_to_db(
@@ -1364,11 +1709,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1399,10 +1740,7 @@ class Database:
             url = urls[index]
             quality = qualities[index]
             teds_data.append(
-                {
-                    "Link": url,
-                    "Quality": quality,
-                }
+                {"Link": url, "Quality": quality,}
             )
 
         response_edit_of_day = Database().edit_day_of_course_data_to_db(
@@ -1435,11 +1773,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1464,7 +1798,9 @@ class Database:
                 "Message": "همه اطلاعات رو وارد کنید و فیلدی رو خالی نزارید.",
             }
 
-        podcast_cover_path = General().save_podcast_cover_of_day(course_name_slug,day_num, cover_bytes=cover.read())
+        podcast_cover_path = General().save_podcast_cover_of_day(
+            course_name_slug, day_num, cover_bytes=cover.read()
+        )
 
         podcast_data = {
             "name": name,
@@ -1502,11 +1838,7 @@ class Database:
         overwrite = False
         if (
             self.database.courses.find_one(
-                {
-                    "Slug": course_name_slug,
-                    "Sub_Course": True,
-                    "Day": int(day_num),
-                }
+                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
             )
             is None
         ):
@@ -1539,10 +1871,21 @@ class Database:
 
         format_file = General().format_recognizer(uploaded_image_bytes)
         file_name = "movie_picture_of_course_" + str(hash_image) + "." + format_file
-        location_image = "static/assets/courses/{slug}/days/{day}/{filename}".format(slug=course_name_slug, day=str(day_num), file_name=file_name) 
-        location_image_href = "/static//assets/courses/{slug}/days/{day}/{filename}".format(slug=course_name_slug, day=str(day_num), file_name=file_name) 
-        
-        if General().check_existence_of_a_file("static/assets/courses/{slug}/days/{day}".format(slug=course_name_slug, day=str(day_num))) is False:
+        location_image = "static/assets/courses/{slug}/days/{day}/{filename}".format(
+            slug=course_name_slug, day=str(day_num), file_name=file_name
+        )
+        location_image_href = "/static//assets/courses/{slug}/days/{day}/{filename}".format(
+            slug=course_name_slug, day=str(day_num), file_name=file_name
+        )
+
+        if (
+            General().check_existence_of_a_file(
+                "static/assets/courses/{slug}/days/{day}".format(
+                    slug=course_name_slug, day=str(day_num)
+                )
+            )
+            is False
+        ):
             General().setup_course_folder(course_name_slug)
 
         with open(location_image, "wb") as file:
@@ -1555,10 +1898,7 @@ class Database:
             url = urls[index]
             quality = qualities[index]
             movie_data.append(
-                {
-                    "Link": url,
-                    "Quality": quality,
-                }
+                {"Link": url, "Quality": quality,}
             )
 
         response_edit_of_day = Database().edit_day_of_course_data_to_db(
@@ -1895,12 +2235,12 @@ class PageDetails:
             parts_raw[(ceil(length_parts / 3)) * 2 :],
         ]
         return parts
-    
+
     def all_course_data_slug_name_to_remove_in_admin_page(self):
         parts_raw = []
         for course in PageDetails().all_courses_page_info_html():
-            parts_raw.append({"Slug":course["Slug"],"Name":course["Name"]})
-            
+            parts_raw.append({"Slug": course["Slug"], "Name": course["Name"]})
+
         length_parts = len(parts_raw)
         parts = [
             parts_raw[0 : ceil(length_parts / 3)],
@@ -1909,6 +2249,33 @@ class PageDetails:
         ]
         return parts
 
+    def all_music_data_name_creator_to_remove_in_admin_page(self):
+        parts_raw = []
+        for music in Database().get_all_musics_data_from_db():
+            parts_raw.append(
+                {"Creator": music["Creator"], "Music_Name": music["Music_Name"]}
+            )
+
+        length_parts = len(parts_raw)
+        parts = [
+            parts_raw[0 : ceil(length_parts / 3)],
+            parts_raw[ceil(length_parts / 3) : (ceil(length_parts / 3)) * 2],
+            parts_raw[(ceil(length_parts / 3)) * 2 :],
+        ]
+        return parts
+
+    def all_tools_data_name_slug_to_remove_in_admin_page(self):
+        parts_raw = []
+        for tool in Database().get_all_tools_data_db():
+            parts_raw.append({"Name": tool["Persian_Name"], "Slug": tool["Slug"]})
+
+        length_parts = len(parts_raw)
+        parts = [
+            parts_raw[0 : ceil(length_parts / 3)],
+            parts_raw[ceil(length_parts / 3) : (ceil(length_parts / 3)) * 2],
+            parts_raw[(ceil(length_parts / 3)) * 2 :],
+        ]
+        return parts
 
     def all_accesses_admin_page(self):
         accesses_raw = Database().get_all_slug_and_names_of_courses_from_db()
@@ -1946,42 +2313,114 @@ class PageDetails:
     def number_of_courses(self):
         ***REMOVED*** To return count of courses that is needed at / page. ***REMOVED***
         return Database().get_all_courses_data_from_db().count()
-        
+
     def top_3_expensive_courses(self):
         ***REMOVED*** To return top 3 courses that are needed at / page. ***REMOVED***
-        courses = [] #.sort("Now_Price")
+        courses = []  # .sort("Now_Price")
         for course in Database().get_all_courses_data_from_db():
-            course["Now_Price"] = int(str(course["Now_Price"]).replace(',', ''))
-            if General().days_passed_till_now() >= General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]:
+            course["Now_Price"] = int(str(course["Now_Price"]).replace(",", ""))
+            if (
+                General().days_passed_till_now()
+                >= General().convert_timestamp(course["First_Created_TimeStamp"])[0]
+                + course["Days_Till_Open"]
+            ):
                 courses.append(course)
-        courses = sorted(courses, key=lambda k: k['Now_Price'])
+        courses = sorted(courses, key=lambda k: k["Now_Price"])
         courses.reverse()
         return courses[0:2]
-        
-    def random_quotes(self,count=3):
-        quotes = ['به تنهایی نمی‌توانم دنیا را تغییر بدهم اما می‌توانم سنگی را به آب بیندازم تا موج‌های بسیار خلق کند.',
-        'یگانه فردی که سرنوشت از شما خواهد ساخت همانی است که خودتان تصمیم می‌گیرید باشید.',
-        'رؤیاهای‌ خودتان را بسازید در غیر این صورت فرد دیگری شما را برای ساختن رؤیایش به کار خواهد گرفت.',
-        'سؤال این نیست که چه کسی به من اجازه خواهد داد؛ بلکه این است که چه کسی قرار است جلوی من را بگیرد.',
-        'اگر بهت گفتند نمی‌تونی کاری رو انجام بدی، فقط بهشون بخند! بعدا می‌فهمند که چرا بهشون خندیدی.',
-        'راه حل صحیح موفقیت این است که اشتیاق شما به پیروزی بیشتر از ترس شما از شکست باشد.',
-        'ما نسبت به آشکار ترین چیز ها نابینا هستیم و مشکل این جاست که نابینایی خود را هم نمی بینیم.',
-        'اگر امسال درمورد پارسال تان فکر می کنید و احساس حماقت ندارید پس به اندازه کافی پیشرفت نکرده اید.',
-        'نقطه مشترک تمام افراد موفق در این است که حد فاصل میان تصمیم و عمل را بسیار کوچک نگه می دارند.',
-        'اگر وقت زیادی را صرف فکر کردن راجع به موضوعی کنی ، هیچ وقت آن را به انجام نخواهی رساند.',
-        'شما با حفظ کردن قواعد راه رفتن را یاد نمی گیرید. بلکه با انجام دادن و زمین خوردن است که می آموزید.',
-        'شما با دنبال کردن قواعد ، راه رفتن را یاد نمی گیرید. با انجام دادن و شکست خوردن است که یاد می گیرید.',
-        'درد موقتیه ، فقط برای موفق شدن تحملش میکنید اما اگر تسلیم شوید ، شکست تا آخر عمرتان با شما خواهد بود.',]
-        chosen_quotes=[]
-        for quote_count in range (count):
+
+    def random_quotes(self, count=3):
+        quotes = [
+            "به تنهایی نمی‌توانم دنیا را تغییر بدهم اما می‌توانم سنگی را به آب بیندازم تا موج‌های بسیار خلق کند.",
+            "یگانه فردی که سرنوشت از شما خواهد ساخت همانی است که خودتان تصمیم می‌گیرید باشید.",
+            "رؤیاهای‌ خودتان را بسازید در غیر این صورت فرد دیگری شما را برای ساختن رؤیایش به کار خواهد گرفت.",
+            "سؤال این نیست که چه کسی به من اجازه خواهد داد؛ بلکه این است که چه کسی قرار است جلوی من را بگیرد.",
+            "اگر بهت گفتند نمی‌تونی کاری رو انجام بدی، فقط بهشون بخند! بعدا می‌فهمند که چرا بهشون خندیدی.",
+            "راه حل صحیح موفقیت این است که اشتیاق شما به پیروزی بیشتر از ترس شما از شکست باشد.",
+            "ما نسبت به آشکار ترین چیز ها نابینا هستیم و مشکل این جاست که نابینایی خود را هم نمی بینیم.",
+            "اگر امسال درمورد پارسال تان فکر می کنید و احساس حماقت ندارید پس به اندازه کافی پیشرفت نکرده اید.",
+            "نقطه مشترک تمام افراد موفق در این است که حد فاصل میان تصمیم و عمل را بسیار کوچک نگه می دارند.",
+            "اگر وقت زیادی را صرف فکر کردن راجع به موضوعی کنی ، هیچ وقت آن را به انجام نخواهی رساند.",
+            "شما با حفظ کردن قواعد راه رفتن را یاد نمی گیرید. بلکه با انجام دادن و زمین خوردن است که می آموزید.",
+            "شما با دنبال کردن قواعد ، راه رفتن را یاد نمی گیرید. با انجام دادن و شکست خوردن است که یاد می گیرید.",
+            "درد موقتیه ، فقط برای موفق شدن تحملش میکنید اما اگر تسلیم شوید ، شکست تا آخر عمرتان با شما خواهد بود.",
+        ]
+        chosen_quotes = []
+        for quote_count in range(count):
             chosen_single_quote = random.choice(quotes)
             chosen_quotes.append(chosen_single_quote)
             quotes.remove(chosen_single_quote)
         return chosen_quotes
-        
+
     def get_random_blog_post(self):
         all_blog_posts = Database().get_blog_posts_data_from_db()
         if all_blog_posts == []:
             return {}
         random_blog_post = random.choice(all_blog_posts)
         return random_blog_post
+
+
+class Tools:
+    ***REMOVED*** All tools functions ***REMOVED***
+
+    def mbti_type_answer(self, user_answer: list):
+        if len(user_answer) != 60:
+            return False
+
+        answer_sheet = General().open_json_file("static/tools/mbti.json")["answer_sheet"]
+        user_result_based_on_isfp = [0,0,0,0]
+        for answer_analyse in answer_sheet:
+            index = int(answer_analyse) - 1
+            user_answer_to_this_question = user_answer[index]
+            answer_sheet_to_this_question = answer_sheet[answer_analyse]
+            order_sample_result = ["i","s","f","p"]
+            for index_sample_answer in range (4):
+                if answer_sheet_to_this_question["plus"] == order_sample_result[index_sample_answer]:
+                    user_result_based_on_isfp[index_sample_answer] += int(user_answer_to_this_question)
+                    break
+                elif answer_sheet_to_this_question["minus"] == order_sample_result[index_sample_answer]:
+                    user_result_based_on_isfp[index_sample_answer] -= int(user_answer_to_this_question)
+                    break
+
+        for parameter_index in range(len(user_result_based_on_isfp)):
+            parameter = user_result_based_on_isfp[parameter_index]
+            user_result_based_on_isfp[parameter_index] = round(parameter/36*100)
+
+        isfp_opposite = "entj"
+        isfp_default = "isfp"
+        user_mbti_type = []
+        for parameter_index in range(len(user_result_based_on_isfp)):
+            parameter = user_result_based_on_isfp[parameter_index]
+            if parameter < 0:
+                user_mbti_type.append(isfp_opposite[parameter_index])
+            else:
+                user_mbti_type.append(isfp_default[parameter_index])
+        final_type = ("".join(user_mbti_type)).upper()
+        persian_names_parameters = {
+            "E" : "برونگرا",
+            "I" : "درونگرا",
+            "N" : "شهودی",
+            "S" : "حسی",
+            "T" : "منطقی",
+            "F" : "احساسی",
+            "P" : "ادراکی",
+            "J" : "قضاوتی"
+
+        }
+        user_uniqe_percent_answers = {}
+        for parameter_index in range(len(user_result_based_on_isfp)):
+            parameter_percent = user_result_based_on_isfp[parameter_index]
+            if parameter_percent < 0:
+                parameter_percent*=-1
+            if parameter_percent < 50:
+                parameter_percent+=50
+            if parameter_percent==50:
+                parameter_percent+=1
+            if parameter_percent > 100:
+                parameter_percent = 100
+            user_uniqe_percent_answers[persian_names_parameters[final_type[parameter_index]]] = parameter_percent
+
+        return {"final_type" : final_type,
+                "answer_based_on_isfp" : user_result_based_on_isfp,
+                "answer_percent" : user_uniqe_percent_answers
+            }

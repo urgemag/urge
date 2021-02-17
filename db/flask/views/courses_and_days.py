@@ -114,8 +114,6 @@ def one_course(slug):
         details=PageDetails(session).index_data(),
         accesses=Database().get_users_access_data_from_db(identity),
         days_till_now = General().days_passed_till_now()
-        
-        
     )
     
 @courses_and_days.route("/Course/<slug>/buy")
