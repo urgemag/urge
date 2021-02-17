@@ -62,7 +62,7 @@ def mbti_test_tool():
     return render_template(
         "tools/mbti.html",
         details=PageDetails(session).index_data(),
-        tool=Database().get_tool_data_db("16_personalities"),
+        tool=Database().get_tool_data_db("mbti"),
         questions = General().open_json_file("static/tools/mbti.json")["questions"]
     )
     
@@ -91,7 +91,7 @@ def mbti_types_page(mbti_type):
     return render_template(
         f"tools/mbti_base.html",
         details=PageDetails(session).index_data(),
-        tool=Database().get_tool_data_db("16_personalities"),
+        tool=Database().get_tool_data_db("mbti"),
         user_answer = user_mbti_answer,
         user_mbti_data =  General().open_json_file("static/tools/mbti.json")["mbti_types"][user_mbti_answer["final_type"]]
     )

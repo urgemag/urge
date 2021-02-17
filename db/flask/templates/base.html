@@ -56,15 +56,6 @@
     <link href="/static//assets/plugins/morris/morris.css" rel="stylesheet" />
     <!-- Sidemenu css -->
 
-    <!--Daterangepicker css-->
-    <link href="/static//assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
-
-    <!-- Rightsidebar css -->
-    <link href="/static//assets/plugins/sidebar/sidebar.css" rel="stylesheet">
-
-    <!-- Sidebar Accordions css -->
-    <link href="/static//assets/plugins/accordion1/css/easy-responsive-tabs.css" rel="stylesheet">
-
     <!-- Owl Theme css-->
     <link href="/static//assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
 
@@ -491,7 +482,14 @@
 								margin-right: 5px;    height: 100%;
 								"><i class="fa fa-bank" style="
 										font-size: 14px;
-                                    "></i>    بلاگ       </a> {% endblock %} {% if details["User"]==False %}
+                                    "></i>    بلاگ       </a> {% endblock %}
+                                    
+                                    {% block no_tool_header %}
+                                    <a class="btn btn-primary" href="/tools" style="
+                                    margin-right: 5px;    height: 100%;
+                                    "><i class="fa fa-flask" style="
+                                            font-size: 14px;
+                                        "></i>   ابزارها       </a> {% endblock %}{% if details["User"]==False %}
 
 
                                 <a class="btn btn-danger" id="signup" href="/SignUp" style="
@@ -616,60 +614,12 @@
         </div>
     </div>
     <!-- End Page -->
-
-    <!-- Back to top -->
-
-
-    <!--Bootstrap.min js-->
-    <script src="/static//assets/plugins/bootstrap/popper.min.js"></script>
-    <script src="/static//assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!--Jquery Sparkline js-->
-    <script src="/static//assets/js/vendors/jquery.sparkline.min.js"></script>
-
-    <!-- Chart Circle js-->
-    <script src="/static//assets/js/vendors/circle-progress.min.js"></script>
-
-    <!-- Star Rating js-->
-    <!--Moment js-->
-    <script src="/static//assets/plugins/moment/moment.min.js"></script>
-
-    <!-- Daterangepicker js-->
-    <script src="/static//assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-    <!--Side-menu js-->
-    <script src="/static//assets/plugins/toggle-sidebar/sidemenu.js"></script>
-
-    <!-- Sidebar Accordions js -->
-    <script src="/static//assets/plugins/accordion1/js/easyResponsiveTabs.js"></script>
-
-    <!--Time Counter js-->
-    <script src="/static//assets/plugins/counters/jquery.missofis-countdown.js"></script>
-    <script src="/static//assets/plugins/counters/counter.js"></script>
-
-    <!-- Custom scroll bar js-->
-
-    <!-- Rightsidebar js -->
-    <script src="/static//assets/plugins/sidebar/sidebar.js"></script>
-
-    <!-- ECharts js -->
-    <!--Morris  Charts js-->
-    <script src="/static//assets/plugins/morris/raphael-min.js"></script>
-    <script src="/static//assets/plugins/morris/morris.js"></script>
-
-    <!-- Custom-charts js-->
-    <script src="/static//assets/js/index5.js"></script>
-
-    <!-- Custom js-->
-    <script src="/static//assets/js/custom.js"></script>
-
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
-    <!-- Jquery js-->
+    <!-- Back to top -->
     <script src="/static//assets/js/vendors/jquery-3.2.1.min.js"></script>
 
     <!--Bootstrap.min js-->
-    <script src="/static//assets/plugins/bootstrap/popper.min.js"></script>
     <script src="/static//assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <!--Jquery Sparkline js-->
@@ -677,9 +627,6 @@
 
     <!-- Chart Circle js-->
     <script src="/static//assets/js/vendors/circle-progress.min.js"></script>
-
-    <!-- Star Rating js-->
-    <script src="/static//assets/plugins/rating/jquery.rating-stars.js"></script>
 
     <!--Moment js-->
     <script src="/static//assets/plugins/moment/moment.min.js"></script>
@@ -693,77 +640,26 @@
     <!-- Sidebar Accordions js -->
     <script src="/static//assets/plugins/accordion1/js/easyResponsiveTabs.js"></script>
 
-    <!-- Custom scroll bar js-->
-
-    <!--Owl Carousel js -->
-    <script src="/static//assets/plugins/owl-carousel/owl.carousel.js"></script>
-    <script src="/static//assets/plugins/owl-carousel/owl-main.js"></script>
+    <!--Time Counter js-->
+    <script src="/static//assets/plugins/counters/jquery.missofis-countdown.js"></script>
+    <script src="/static//assets/plugins/counters/counter.js"></script>
 
     <!-- Rightsidebar js -->
     <script src="/static//assets/plugins/sidebar/sidebar.js"></script>
 
-    <!-- Charts js-->
-
-    <!--Time Counter js-->
-    <script src="/static//assets/plugins/counters/jquery.missofis-countdown.js"></script>
-    <script src="/static//assets/plugins/counters/counter.js"></script>
-
     <!--Morris  Charts js-->
     <script src="/static//assets/plugins/morris/raphael-min.js"></script>
     <script src="/static//assets/plugins/morris/morris.js"></script>
-
-    <!-- Custom-charts js-->
-    <script src="/static//assets/js/index1.js"></script>
-    <script src="/static//assets/js/vendors/jquery-3.2.1.min.js"></script>
-
-    <!--Bootstrap.min js-->
-    <script src="/static//assets/plugins/bootstrap/popper.min.js"></script>
-    <script src="/static//assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!--Jquery Sparkline js-->
-    <script src="/static//assets/js/vendors/jquery.sparkline.min.js"></script>
-
-    <!-- Chart Circle js-->
-    <script src="/static//assets/js/vendors/circle-progress.min.js"></script>
-
-    <!-- Star Rating js-->
-
-    <!--Moment js-->
-    <script src="/static//assets/plugins/moment/moment.min.js"></script>
-
-    <!-- Daterangepicker js-->
-    <script src="/static//assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-    <!--Side-menu js-->
-    <script src="/static//assets/plugins/toggle-sidebar/sidemenu.js"></script>
-
-    <!-- Sidebar Accordions js -->
-    <script src="/static//assets/plugins/accordion1/js/easyResponsiveTabs.js"></script>
-
-    <!--Time Counter js-->
-    <script src="/static//assets/plugins/counters/jquery.missofis-countdown.js"></script>
-    <script src="/static//assets/plugins/counters/counter.js"></script>
 
     <!-- Custom scroll bar js-->
     <script src="/static//assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <!-- Rightsidebar js -->
-    <script src="/static//assets/plugins/sidebar/sidebar.js"></script>
-
-    <!-- ECharts js -->
-
-    <!--Morris  Charts js-->
-    <script src="/static//assets/plugins/morris/raphael-min.js"></script>
-    <script src="/static//assets/plugins/morris/morris.js"></script>
-
-    <!-- Custom-charts js-->
-    <script src="/static//assets/js/index5.js"></script>
-
     <!-- Custom js-->
-    <script src="/static//assets/js/custom.js"></script>
     <script src="/static//assets/plugins/rating/jquery.rating-stars.js"></script>
-    <!-- Custom js-->
-    <script src="/static//assets/js/custom.js"></script>
+    <script src="/static//assets/plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="/static//assets/plugins/owl-carousel/owl-main.js"></script>
+    <script src="/static//assets/plugins/chart/utils.js"></script>
+
     <script>
         normal = true
         var observer = new MutationObserver(function (mutations) {
@@ -781,12 +677,7 @@
         })
         var target = document.getElementById('side-bar');
         observer.observe(target, { attributes: true, attributeFilter: ['class'] });
-
-
-
-
-
     </script>
+    <script src="/static//assets/js/custom.js"></script>
 </body>
-
 </html>

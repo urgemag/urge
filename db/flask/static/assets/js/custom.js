@@ -110,36 +110,36 @@
 		return false;
 	});
 	
-	// ______________ Star Rating
-	var ratingOptions = {
-		selectors: {
-			starsSelector: '.rating-stars',
-			starSelector: '.rating-star',
-			starActiveClass: 'is--active',
-			starHoverClass: 'is--hover',
-			starNoHoverClass: 'is--no-hover',
-			targetFormElementSelector: '.rating-value'
-		}
-	};
-	$(".rating-stars").ratingStars(ratingOptions);
+	// // ______________ Star Rating
+	// var ratingOptions = {
+	// 	selectors: {
+	// 		starsSelector: '.rating-stars',
+	// 		starSelector: '.rating-star',
+	// 		starActiveClass: 'is--active',
+	// 		starHoverClass: 'is--hover',
+	// 		starNoHoverClass: 'is--no-hover',
+	// 		targetFormElementSelector: '.rating-value'
+	// 	}
+	// };
+	// $(".rating-stars").ratingStars(ratingOptions);
 	
 	// ______________ mCustomScrollbar
-	$(".vscroll").mCustomScrollbar();
-	$(".imagescroll").mCustomScrollbar({
-		axis: "x",
-		theme: "dark-3",
-		advanced: {
-			autoExpandHorizontalScroll: true
-		}
-	});
-	$(".app-sidebar").mCustomScrollbar({
-		theme: "minimal",
-		autoHideScrollbar: true,
-		scrollbarPosition: "outside"
-	});
-	$(".scroll-1").mCustomScrollbar({
-		theme: "dark"
-	});
+	// $(".vscroll").mCustomScrollbar();
+	// $(".imagescroll").mCustomScrollbar({
+	// 	axis: "x",
+	// 	theme: "dark-3",
+	// 	advanced: {
+	// 		autoExpandHorizontalScroll: true
+	// 	}
+	// });
+	// $(".app-sidebar").mCustomScrollbar({
+	// 	theme: "minimal",
+	// 	autoHideScrollbar: true,
+	// 	scrollbarPosition: "outside"
+	// });
+	// $(".scroll-1").mCustomScrollbar({
+	// 	theme: "dark"
+	// });
 	/* boYSIqMee+p4uAjskftSrErYaF9PDNDn+EGSzR9N2BspYI8=
 		feCz66HNQhyoUIndT6pXQpWta+PA3e1h3yExMyH1EsOo6f8PXnNPyHGLRfchOSF9WSX7exs= */
 	// ______________Chart-circle
