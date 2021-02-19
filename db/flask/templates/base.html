@@ -74,42 +74,44 @@
 
 <body class="app sidebar-mini rtl">
 
-    <style>
-        .header {
-      position: fixed;
-      top: 0;
-      z-index: 1;
-      width: 100%;
-      background-color: #f1f1f1;
-    }
-    
-    /* The progress container (grey background) */
-    .progress-container {
-      width: 100%;
-      margin-right: 250px;
-      height: 15px;
-      background: #ccc;
-    }
-    
-    /* The progress bar (scroll indicator) */
-    .progress-bar {
-      height: 15px;
-      background: #00d49d;
-      width: 0%;
-    }
-    </style>
-    <script>
-        window.onscroll = function() {myFunction()};
-    
-    function myFunction() {
-      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      var scrolled = (winScroll / height) * 100;
-      document.getElementById("myBar").style.width = scrolled + "%";
-    }
-    </script>
+  
 
 {% block no_header %}
+<style>
+    .header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  margin-right: 250px;
+  height: 15px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 15px;
+  background: #00d49d;
+  width: 0%;
+}
+</style>
+<script>
+    window.onscroll = function() {progressbar()};
+
+function progressbar() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+
     <div class="header">
         <h2>میزان پروسه</h2>
         <div class="progress-container" style="
