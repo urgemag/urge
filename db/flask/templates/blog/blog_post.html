@@ -5,6 +5,9 @@
 {% endblock %}
 {% block main_css %}
 <link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
+{% block change_element_body %}
+onresize="set_height()"
+{% endblock %}
 {% block additional_in_head %}
 <style>
     .plyr__progress input {
@@ -32,6 +35,7 @@
         const player = Plyr.setup('.js-player');
     });
 </script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 <link rel="stylesheet" href="/static/assets/css/plyr.css" />
@@ -106,9 +110,10 @@
     </div>
 
     {% endfor %} {% endif %} {% endwith %}
+
     <div class="card post">
     <div style="text-align: justify;">
-        <div style="background-size: 100%;background-image:url('{{post.Cover}}'); background-position: center -85px;">
+        <div id="blog-pic" style="background-size: cover;background-size: 100%;background-image:url('{{post.Cover}}'); background-position: center -85px;">
             <div class="view-picture-main"></div>
         </div>
 
@@ -175,6 +180,7 @@
             <h4><a href="/blog/{{recomendation_post.English_Name}}">{{recomendation_post.Persian_Name}}</a></h4>
             <div class="text-muted">{{html_to_text((recomendation_post.Text)[0:200])[:110]}}...</div>
             <a href="/blog/{{recomendation_post.English_Name}}" class=" mt-3 btn btn-md btn-secondary">بیشتر بخوانید</a>
+        
         </div>
     </div>
     {% endif %}
@@ -337,5 +343,20 @@
     </div>
 
 </div>
-
+<script>
+    function set_height(){
+    const pic_heigh = (document.getElementById('blog-pic').clientWidth * 0.75 )
+    if (pic_heigh -85 > 350){
+        document.getElementsByClassName('view-picture-main')[0].style.height = 350 + "px";
+    }
+    else if (pic_heigh > 230){
+        document.getElementsByClassName('view-picture-main')[0].style.height = pic_heigh + "px";
+        document.getElementById("blog-pic").style.backgroundPosition = "center, center";
+    }
+    else{
+        document.getElementsByClassName('view-picture-main')[0].style.height = pic_heigh-85 + "px";
+    }
+}
+set_height()
+</script>
 {% endblock %}

@@ -72,7 +72,7 @@
     <link href="/static//assets/rtl.css" rel="stylesheet">
 </head>
 
-<body class="app sidebar-mini rtl">
+<body {% block change_element_body %} {% endblock %} class="app sidebar-mini rtl">
 
   
 
@@ -139,7 +139,7 @@ function progressbar() {
             padding-left: 0.5rem;
             padding-bottom: 12px;
             transform: scale(2.33);
-
+            max-width: unset;
             transform-origin: top right;
         }
 
@@ -163,8 +163,9 @@ function progressbar() {
                 background: #ffffff;
                 padding-left: 7px;
                 padding-bottom: 2px;
-                transform: scale(2.54);
+                transform: scale(2.33);
                 transform-origin: top right;
+                margin-right: -15px; 
 
             }
         }
@@ -471,41 +472,45 @@ function progressbar() {
                 </div>
             </aside>
             <!--sidemenu end-->
-
+<style>
+    .upside-margin{
+        margin-top:10px ;
+    }
+</style>
             <!-- app-content-->
             <div class="app-content  my-3 my-md-5 toggle-content">
                 <div class="side-app">
                     <div class="bg-white p-3 header-secondary row">
                         <div class="col" style="padding-top: 7px;">
 
-                            <div class="d-flex">
+                            <div class="d-flex" style="flex-wrap: wrap; margin-top: -9px;">
                                 {% block instead_of_blog_header %}
-                                <a class="btn btn-primary" href="/blog" style="
-								margin-right: 5px;    height: 100%;
+                                <a class="upside-margin  btn btn-primary" href="/blog" style="
+								margin-right: 5px;    height: 100% ; min-width: 90px
 								"><i class="fa fa-bank" style="
 										font-size: 14px;
                                     "></i>    بلاگ       </a> {% endblock %}
                                     
                                     {% block no_tool_header %}
-                                    <a class="btn btn-primary" href="/tools" style="
-                                    margin-right: 5px;    height: 100%;
+                                    <a class="upside-margin btn btn-primary " href="/tools" style="
+                                    margin-right: 5px;    height: 100%; min-width: 90px;
                                     "><i class="fa fa-flask" style="
                                             font-size: 14px;
                                         "></i>   ابزارها       </a> {% endblock %}{% if details["User"]==False %}
 
 
-                                <a class="btn btn-danger" id="signup" href="/SignUp" style="
+                                <a class="upside-margin  btn btn-danger" id="signup" href="/SignUp" style="
 										background-color: #00b1bf;
 										border-color: #00b1bf;
-									margin-right: 5px;    height: 100%;
+									margin-right: 5px;    height: 100%;  min-width: 90px
 									"><i class="mdi mdi-account-plus" style="
 											font-size: 14px;
 										"></i> ثبت نام </a>
 
-                                <a class="btn btn-danger" id="login" href="/LogIn" style="
+                                <a class="upside-margin  btn btn-danger" id="login" href="/LogIn" style="
 									margin-right: 5px;    height: 100%;
 										background-color: #00b1bf;
-										border-color: #00b1bf;
+										border-color: #00b1bf;  min-width: 90px
 									"><i class="fa fa-sign-in"></i> وارد شوید </a> {% endif %} {% block extra_right_header %} {% endblock %}
                             </div>
 
