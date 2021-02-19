@@ -78,8 +78,8 @@ def info_course(slug):
     ***REMOVED*** The one Course info page. ***REMOVED***
 
     data = PageDetails().info_intro_course_page(slug)
-    if data is False:
-        abort(404)
+    if data is False or "Intro" not in data:
+        return redirect(url_for("courses_and_days.one_course", slug= slug))
     course = Database().get_courses_data_from_db(slug)
     published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
