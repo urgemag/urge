@@ -43,16 +43,16 @@
     }
 </style>
 {% endblock %} {% block header_left %}
-<a class="btn btn-light mt-4 mt-sm-0" href="/Course/{{course.Slug}}/info"><i class="fe fe-help-circle mr-1 mt-1"></i>
+<a class="btn btn-light" href="/Course/{{course.Slug}}/info"><i class="fe fe-help-circle mr-1 mt-1"></i>
     اطلاعات دوره
 </a> {% if course.Now_Price != 0 and course.Free != True and course.Slug not in accesses %}
-<a class="btn btn-success mt-4 mt-sm-0" href="/Course/{{course.Slug}}/buy"><i class="fe fe-plus mr-1 mt-1"></i> خرید
-</a>{% else %}<a id="courses" style="background-color: #00d49d; border-color: #00d49d" class="btn btn-success mt-4 mt-sm-0" href="/Courses"><i class="fe fe-plus mr-1 mt-1"></i> دوره ها
+<a class="btn btn-success" href="/Course/{{course.Slug}}/buy"><i class="fe fe-plus mr-1 mt-1"></i> خرید
+</a>{% else %}<a id="courses" style="background-color: #00d49d; border-color: #00d49d" class="btn btn-success" href="/Courses"><i class="fe fe-plus mr-1 mt-1"></i> دوره ها
 </a> {% endif %} {% endblock %} {% if course.Now_Price != 0 and course.Free != True and course.Slug not in accesses %}{% block instead_of_blog_header %}
 <a id="courses" style="
     height: 100%;
     margin-top: 0px !important;
-  " class="btn btn-primary mt-4 mt-sm-0" href="/Courses"><i class="fa fa-bank mr-1 mt-1"></i> دوره ها
+  " class="btn btn-primary" href="/Courses"><i class="fa fa-bank mr-1 mt-1"></i> دوره ها
 </a> {% endblock %}{% endif %} 
 
 {% block body %}
@@ -360,7 +360,7 @@
                 <button onclick="not_access_alert('{{day.Slug}}')" class="btn btn-primary">
                     مشاهده بیشتر
                 </button> {% endif %} {% if day.Free == True %} {% if course.Slug not in accesses and course.Free != True %}
-                <a href="/Course/{{day.Slug}}/{{day.Day}}" class="btn btn-light mt-4 mt-sm-0"><i
+                <a href="/Course/{{day.Slug}}/{{day.Day}}" class="btn btn-light"><i
                         class="fa fa-unlock-alt"></i> دمو
                 </a> {% endif %} {% endif %}
             </div>
