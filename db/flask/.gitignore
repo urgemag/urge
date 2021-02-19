@@ -1,9 +1,9 @@
 .env
-db/flask/static/assets/images/blog/
-db/flask/static/assets/courses/
-db/flask/static/assets/musics/
-db/flask/static/assets/tools/
-db/mongo/
+#db/flask/static/assets/images/blog/
+#db/flask/static/assets/courses/
+#db/flask/static/assets/musics/
+#db/flask/static/assets/tools/
+#db/mongo/
 db/flask/views/__pycache__/
 db/flask/__pycache__/
 db/flask/views/admin/__pycache__/
