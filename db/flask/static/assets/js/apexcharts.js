@@ -29049,7 +29049,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return this;
       },
       // Enable / disable build mode
-  ***REMOVED*** function build(_build) {
+      build: function build(_build) {
         this._build = !!_build;
         return this;
       },
