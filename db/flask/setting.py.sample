@@ -1,0 +1,51 @@
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+***REMOVED***
+
+
+***REMOVED***
+
+***REMOVED***
+
+***REMOVED***
+
+secret_key = b"SECRET‌ KEY"
+
+
+***REMOVED*** RECAPTCHA setting ***REMOVED***
+
+***REMOVED***
+***REMOVED***
+recaptcha_public_key = "RECAPTCHA PUBLIC"
+recaptcha_secret_key = "RECAPTCHA‌ SECRET"
+
+***REMOVED*** end of RECAPTCHA setting ***REMOVED***
+
+***REMOVED*** MONGODB setting ***REMOVED***
+
+***REMOVED***
+    mongodb_URI = "mongodb://USERNAME:PASSWORD@mongodb_container:27017/"
+***REMOVED***
+***REMOVED***
+
+
+***REMOVED*** end of MONGODB setting ***REMOVED***
+
+***REMOVED*** ZARINPAL setting ***REMOVED***
+
+mmerchant_id = "ZARIN‌ PAL mmerchant ID"
+***REMOVED***
+
+***REMOVED*** end of ZARINPAL setting ***REMOVED***
+
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
