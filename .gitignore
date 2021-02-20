@@ -7,6 +7,7 @@ db/flask/views/__pycache__/
 db/flask/__pycache__/
 db/flask/views/admin/__pycache__/
 db/flask/setting.py
-.env
 db/flask/static/assets/images/ck_cache/
 db/flask/log/
+db/flask/.env
+.env
