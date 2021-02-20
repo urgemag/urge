@@ -7,4 +7,4 @@ db/flask/views/__pycache__/
 db/flask/__pycache__/
 db/flask/views/admin/__pycache__/
 db/flask/setting.py
-docker-compose.yml
+.env
