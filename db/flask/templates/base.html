@@ -496,7 +496,17 @@ function progressbar() {
                                     margin-right: 5px;    height: 100%; min-width: 90px;
                                     "><i class="fa fa-flask" style="
                                             font-size: 14px;
-                                        "></i>   ابزارها       </a> {% endblock %}{% if details["User"]==False %}
+                                        "></i>   ابزارها       </a> {% endblock %}
+                                        
+                                        
+                                        {% block no_music_header %}
+                                        <a class="upside-margin btn btn-primary " href="/musics" style="
+                                        margin-right: 5px;    height: 100%; min-width: 90px;
+                                        "><i class="fa fa-music" style="
+                                                font-size: 14px;
+                                            "></i>   موزیک‌ ها       </a> {% endblock %}
+
+                                        {% if details["User"]==False %}
 
 
                                 <a class="upside-margin  btn btn-danger" id="signup" href="/SignUp" style="
