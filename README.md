@@ -63,6 +63,13 @@ DEBUG_MODE = <TRUE_OR_FALSE>
 PRODUCTION = <TRUE_OR_FALSE>
 ```
 
+3rd .env has the data for Google OAuth. fill it like this:
+```
+google_client_id = <GOOGLE_CLIEND_ID>
+google_client_secret = <GOOGLE_CLIEND_SECRET>
+
+```
+
 last one is a .py file which has many sensitive data in itsself. fill these parts like this:
 ```
 secret_key = <YOUR_RANDOM_SECRET_KEY>
@@ -72,6 +79,7 @@ recaptcha_secret_key = <PRIVATE_KEY_FOR_RECAPTCHA>
 
 mmerchant_id = <ZARIN_PAL_MMERCHANT_ID>
 ```
+
 
 ## Docker
 

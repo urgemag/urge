@@ -1,0 +1,18 @@
+.env
+db/flask/views/__pycache__/
+db/flask/__pycache__/
+db/flask/views/admin/__pycache__/
+
+
+
+cp -r /urge_panel/db/flask/static/assets/images/blog/*  db/flask/static/assets/images/blog/
+cp -r /urge_panel/db/flask/static/assets/courses/*  db/flask/static/assets/courses/
+cp -r /urge_panel/db/flask/static/assets/musics/*  db/flask/static/assets/musics/
+cp -r /urge_panel/db/flask/static/assets/tools/*  db/flask/static/assets/tools/
+cp -r /urge_panel/db/mongo/*  db/mongo/
+  
+
+
+
+
+

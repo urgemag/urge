@@ -36,6 +36,16 @@ recaptcha_secret_key = "RECAPTCHA‌ SECRET"
 
 ***REMOVED*** end of MONGODB setting ***REMOVED***
 
+
+***REMOVED*** OAuth setting ***REMOVED***
+
+google_client_id = "GOOGLE_CLIEND_ID"
+google_client_secret = "GOOGLE_CLIEND_SECRET"
+
+***REMOVED*** end of OAuth setting ***REMOVED***
+
+
+
 ***REMOVED*** ZARINPAL setting ***REMOVED***
 
 mmerchant_id = "ZARIN‌ PAL mmerchant ID"

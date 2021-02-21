@@ -22,16 +22,14 @@ blueprint = make_google_blueprint(
 app.register_blueprint(blueprint, url_prefix="/login")
 
 
-@app.route("/")
-def index():
-    return render_template("_.html")
-
-
 @app.route("/welcome")
 def welcome():
 
     resp = google.get("/oauth2/v2/userinfo")
-    assert resp.ok, resp.text
+    try:
+        assert resp.ok, resp.text
+    except AssertionError:
+        return "not signed in here"
     email = resp.json()["email"]
 
     return str(email)
@@ -45,7 +43,6 @@ def login():
     resp = google.get("/oauth2/v2/userinfo")
     assert resp.ok, resp.text
     email = resp.json()["email"]
-
     return str(email)
 
 

@@ -744,6 +744,12 @@ class Authentication:
             }
 
         return {"result": False, "message": " ایمیل یا پسوورد اشتباه است. "}
+    
+    def is_user_account_registered(self, email):
+        email = General().corect_form_of_email(email)
+        if Database().get_users_data_from_db(email) is False:
+            return False
+        return True
 
     def unique_username(self, username):
         ***REMOVED*** To check if the username is unique and not taken. ***REMOVED***
@@ -925,7 +931,9 @@ class Database:
         birth_day="",
         birth_month="",
         birth_year="",
-        Accesses=dict(),
+        registered_with="urge",
+        accesses=dict(),
+        cover=f"/static//assets/images/users/avatars/{random.randint(1, 30)}.png"
     ):
         ***REMOVED*** To add users data to the DataBase***REMOVED***
         message = False
@@ -940,8 +948,6 @@ class Database:
             message = "ایمیل قبلا ثبت شده است."
         elif password is None:
             message = "پسوورد را وارد کنید."
-        elif len(password) <= 8:
-            message = "پسوورد باید حداقل 8 کاراکتر باشد."
 
         if (birth_day is not None and birth_day != "") and message is False:
             try:
@@ -979,10 +985,9 @@ class Database:
                 "Password": password,
                 "First_Name": first_name,
                 "Last_Name": last_name,
-                "Accesses": Accesses,
-                "Profile_Photo": "/static//assets/images/users/avatars/{}.png".format(
-                    random.randint(1, 30)
-                ),
+                "Accesses": accesses,
+                "Profile_Photo": cover,
+                "Registered_With": registered_with
             }
         )
         for key, value in {
