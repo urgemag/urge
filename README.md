@@ -3,7 +3,7 @@
 
 Urge is a beautiful, cloud-enabled, flask-powered, motivational and inspirational website.
 
-## Features
+## ✨ Features
 
 - Dashboard
 - Blog
@@ -11,7 +11,7 @@ Urge is a beautiful, cloud-enabled, flask-powered, motivational and inspirationa
 - Tools (e.g. MBTI test)
 - Musics Part
 
-## Tech
+## 🚀 Tech
 
 Urge uses a number of open source projects to work properly:
 
@@ -27,7 +27,7 @@ Urge uses a number of open source projects to work properly:
 - [jQuery] - duh
 
 
-## Installation
+## ⚙️ Installation
 
 Urge only and only requires [Docker](https://www.docker.com/) to run.
 
@@ -93,7 +93,18 @@ default port is 1254 but if you changed it in .env file please look for 127.0.0.
 127.0.0.1:1254
 ```
 
-## License
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome.<br />
+Feel free to check [issues page](https://github.com/urgemag/urge/issues) if you want to contribute.<br /><br />
+
+
+## Show your support
+
+Please ⭐️ this repository if this project helped you!
+
+
+## 📝 License
 
 MIT
 
