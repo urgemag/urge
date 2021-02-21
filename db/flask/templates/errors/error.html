@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}پنل شخصی موفقیت اِرج - داشبورد{% endblock %}
+{% block no_header %}{% endblock %}
+{% block main_css %}
+<link href="/static//assets/css/style_of_main_page.css" rel="stylesheet" />
+<link href="/static//intro/introjs.min.css" rel="stylesheet" />
+<link href="/static//intro/introjs-rtl.min.css" rel="stylesheet" />
+<script src="/static//intro/intro.min.js"></script>
+
+<style>
+    .introjs-tooltiptext {
+        text-align: right;
+        font-family: 'iranyekan';
+        font-weight: 500;
+    }
+    
+    .introjs-button {
+        text-align: right;
+        font-family: 'iranyekan';
+        font-weight: 500;
+    }
+    
+    .index-card {
+        min-height: 94% !important;
+    }
+    
+    .center-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+{% block page_header_style %} style="margin: -2rem 0 0rem;" {% endblock %}
+{% block home_active_button %}
+<li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
+{% endblock %}
+ {% block body %}
+
+<div class="row">
+
+    <div class="col-md-12 col-xl-12 col-lg-12">
+            <div class="card-body" style="text-align-last: center;">
+                <img src="/static//assets/images/errors/{{error_code}}.jpg" style="width:auto; height:calc(70vh); ">
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -13,7 +13,7 @@ def profle():
         return redirect("/LogIn")
 
     return render_template(
-        "user/profile.html", datails=PageDetails(session).profile_page_info_html()
+        "user/profile.html", details=PageDetails(session).profile_page_info_html()
     )
 
 
@@ -26,7 +26,7 @@ def profle_setting():
         return redirect("/LogIn")
 
     return render_template(
-        "user/profile_setting.html", datails=PageDetails(session).profile_page_info_html()
+        "user/profile_setting.html", details=PageDetails(session).profile_page_info_html()
     )
 
 
@@ -66,5 +66,5 @@ def urge_mails():
         return redirect("/LogIn")
 
     return render_template(
-        "user/mail.html", datails=PageDetails(session).mail_page_info_html()
+        "user/mail.html", details=PageDetails(session).mail_page_info_html()
     )
