@@ -3,7 +3,7 @@
   $(function () {
     $.growl({
       title: "خوش آمدید",
-      message: "سلام من HOGO هستم"
+      message: "سلام من Urge هستم"
     });
 
 	 $('.error').click(function (event) {
