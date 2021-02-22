@@ -38,6 +38,8 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
+if setting.production is True:
+    request.environ['wsgi.url_scheme'] = "https"
 Analytics(app)
 app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'G-4QTVXWX8LF'
 
@@ -86,7 +88,6 @@ google_oauth_blueprint = make_google_blueprint(
     client_secret=client_secret,
     offline=True,
     scope=["profile", "email"],
-    base_url="https://urge.ir"
 
 )
 
@@ -163,7 +164,6 @@ def index():
 @app.route("/Sign-in/Google")
 @app.route("/Sign-In/Google")
 def google_login():
-    print (session["Data"])
     if not Authentication(session).is_signed_in():
         if not google.authorized:
             return redirect(url_for("google.login"))
