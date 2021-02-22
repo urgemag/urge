@@ -116,8 +116,8 @@
                                     < convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open %} <a onclick="available_soon('{{convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }}')" class="btn btn-info" style="color: white;"> مشاهده بیشتر و خرید تا {{ convert_timestamp(course.First_Created_TimeStamp)[0] + course.Days_Till_Open - days_till_now }} روز دیگر </a> {% else %} <a href="/Course/{{course.Slug}}" class="btn btn-info"> مشاهده بیشتر</a> {% endif %} 
                                     {% if (course.Free or course.Now_Price== 0 ) and not course.Soon and course.Slug not in accesses %}
 
-                                        <a href="/Course/{{course.Slug}}/start" class="btn btn-success"> شروع </a> {% elif not course.Soon %} {% if course.Slug not in accesses %}
-                                        <a href="/Course/{{course.Slug}}/buy" class="btn btn-success"> خرید </a> {% endif %} {% endif %}
+                                        <a href="/Course/{{course.Slug}}/start" class="btn btn-success"> شروع </a> {% elif course.Slug not in accesses %} 
+                                        <a href="/Course/{{course.Slug}}/buy" class="btn btn-success"> خرید </a> {% endif %}
 
 
                         </div>

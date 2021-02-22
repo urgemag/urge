@@ -1,10 +1,10 @@
 ***REMOVED***The main***REMOVED***
-from flask import Flask, g, session, url_for, redirect, render_template, request
+from flask import Flask, g, session, url_for, redirect, render_template
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General, Authentication, Database, PageDetails
 from flask_dance.contrib.google import make_google_blueprint, google
-from os import environ, system
+from os import environ
 
 # importing views
 from views.auths import auths
@@ -75,8 +75,6 @@ for blueprint in (auths,courses_and_days,errors,user,admin_add,admin_remove,admi
 
 
 # Things that need to be at main because they need >app< to be able to be ran 
-if setting.production == "true":
-    system('''sed -i 's/url_for(".authorized", _external=True)/(url_for(".authorized", _external=True)).replace("http","https")/g' /usr/local/lib/python3.8/site-packages/flask_dance/consumer/oauth2.py''')
 
 environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 environ["OAUTHLIB_RELAX_TOKEN_SCOPE"] = "1"
