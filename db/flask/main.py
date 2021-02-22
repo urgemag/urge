@@ -86,6 +86,8 @@ google_oauth_blueprint = make_google_blueprint(
     client_secret=client_secret,
     offline=True,
     scope=["profile", "email"],
+    base_url="https://urge.ir"
+
 )
 
 app.register_blueprint(google_oauth_blueprint, url_prefix="/login")
