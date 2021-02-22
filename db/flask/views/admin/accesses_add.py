@@ -723,10 +723,6 @@ def add_course_admin():
             else:
                 price = request.form.get("price")
                 free = False
-            if request.form.get("soon") == "Soon":
-                soon = True
-            else:
-                soon = False
 
             
             try:
@@ -753,7 +749,6 @@ def add_course_admin():
                 length_of_course=int(request.form.get("len")),
                 robbin=request.form.get("robbin"),
                 free=free,
-                soon=soon,
                 days_till_publish=days_till_open
             )
             if message is not True:
@@ -957,10 +952,6 @@ def add_tool_admin():
                 price = "0"
             else:
                 price = request.form.get("price")
-            if request.form.get("soon") == "Soon":
-                soon = True
-            else:
-                soon = False
 
             
             try:
@@ -984,7 +975,6 @@ def add_tool_admin():
                 image_href=result_pic["href"],
                 now_price=int(price.replace(",", "")),
                 robbin=request.form.get("robbin"),
-                soon=soon,
                 price=price,
                 days_till_publish=days_till_open
             )

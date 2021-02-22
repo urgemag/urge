@@ -114,10 +114,10 @@
                                                                     border-radius: 50px;
                                                                 "> دسترسی کامل </a>{% endif %} {% if days_till_now
                                     < convert_timestamp(post.First_Created_TimeStamp)[0] + post.Days_Till_Open %} <a onclick="available_soon('{{convert_timestamp(post.First_Created_TimeStamp)[0] + post.Days_Till_Open - days_till_now }}')" class="btn btn-info" style="color: white;"> مشاهده بیشتر و خرید تا {{ convert_timestamp(post.First_Created_TimeStamp)[0] + post.Days_Till_Open - days_till_now }} روز دیگر </a> {% else %} <a href="/tools/{{post.Slug}}" class="btn btn-info"> مشاهده بیشتر</a> {% endif %} 
-                                    {% if (post.Free or post.Now_Price== 0 ) and not post.Soon and post.Slug not in accesses %}
+                                    {% if (post.Free or post.Now_Price== 0 ) and post.Slug not in accesses %}
 
-                                        <a href="/tools/{{post.Slug}}/start" class="btn btn-success"> شروع </a> {% elif not post.Soon %} {% if post.Slug not in accesses %}
-                                        <a href="/tools/{{post.Slug}}/buy" class="btn btn-success"> خرید </a> {% endif %} {% endif %}
+                                        <a href="/tools/{{post.Slug}}/start" class="btn btn-success"> شروع </a> {% elif post.Slug not in accesses %}
+                                        <a href="/tools/{{post.Slug}}/buy" class="btn btn-success"> خرید </a> {% endif %}
 
 
                         </div>

@@ -362,7 +362,7 @@ def sub_course(slug, day):
        return redirect("/Course/{}".format(slug))
 
     # Check if data is FALSE or not
-    if course_data is False or course_data["Soon"] is True or day_data is False:
+    if course_data is False or day_data is False:
         abort(404)
 
     # Some days and courses in database might not have "Free" key, so we add them.
