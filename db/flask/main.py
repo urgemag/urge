@@ -1,5 +1,5 @@
 ***REMOVED***The main***REMOVED***
-from flask import Flask, g, session, url_for, redirect, render_template
+from flask import Flask, g, session, url_for, redirect, render_template, request
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General, Authentication, Database, PageDetails
@@ -38,7 +38,7 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
-if setting.production is True:
+if setting.production == "true":
     request.environ['wsgi.url_scheme'] = "https"
 Analytics(app)
 app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'G-4QTVXWX8LF'
