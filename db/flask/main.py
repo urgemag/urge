@@ -38,8 +38,7 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
-if setting.production == "true":
-    request.environ['wsgi.url_scheme'] = "https"
+
 Analytics(app)
 app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'G-4QTVXWX8LF'
 
@@ -164,6 +163,8 @@ def index():
 @app.route("/Sign-in/Google")
 @app.route("/Sign-In/Google")
 def google_login():
+    if setting.production == "true":
+        request.environ['wsgi.url_scheme'] = "https"
     if not Authentication(session).is_signed_in():
         if not google.authorized:
             return redirect(url_for("google.login"))
