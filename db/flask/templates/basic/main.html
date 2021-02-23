@@ -35,7 +35,7 @@
 <li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
 {% endblock %}
  {% block body %}
-<script>
+<!-- <script>
     var xmlhttp = new XMLHttpRequest();
     var url = "https://forbes400.herokuapp.com/api/forbes400/getAllBillionaires?limit=10";
 
@@ -59,7 +59,7 @@
 
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-</script>
+</script> -->
 
 <div class="row">
     {% if details["User"]==False %}
@@ -198,34 +198,133 @@
                 </div>
 
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table border table-bordered text-nowrap mb-0">
-                        <thead>
-                            <tr>
-                                <th>رَنک</th>
-                                <th>اسم</th>
-                                <th>سن</th>
-                                <th>کشور</th>
-                                <th>ایالت</th>
-                                <th>شهر</th>
-                                <th>شرکت</th>
-                                <th>دارایی</th>
+            <div class="card-body" style="user-select: auto;">
+                <div class="table-responsive" style="user-select: auto;">
+                    <table class="table border table-bordered text-nowrap mb-0" style="user-select: auto;">
+                        <thead style="user-select: auto;">
+                            <tr style="user-select: auto;">
+                                <th style="user-select: auto;">رَنک</th>
+                                <th style="user-select: auto;">اسم</th>
+                                <th style="user-select: auto;">سن</th>
+                                <th style="user-select: auto;">کشور</th>
+                                <th style="user-select: auto;">ایالت</th>
+                                <th style="user-select: auto;">شهر</th>
+                                <th style="user-select: auto;">شرکت</th>
+                                <th style="user-select: auto;">دارایی</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% for person in range (10) %}
-                            <tr>
-                                <td id="top_ten_{{person}}_rank" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_personName" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_age" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_countryOfCitizenship" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_state" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_city" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_source" style="text-align: center;" ></td>
-                                <td id="top_ten_{{person}}_finalWorth" style="text-align: center;"></td>
+                        <tbody style="user-select: auto;">
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_0_rank" style="text-align: center; user-select: auto;">1</td>
+                                <td id="top_ten_0_personName" style="text-align: center; user-select: auto;">Jeff Bezos</td>
+                                <td id="top_ten_0_age" style="text-align: center; user-select: auto;">56</td>
+                                <td id="top_ten_0_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_0_state" style="text-align: center; user-select: auto;">Washington</td>
+                                <td id="top_ten_0_city" style="text-align: center; user-select: auto;">Seattle</td>
+                                <td id="top_ten_0_source" style="text-align: center; user-select: auto;">Amazon</td>
+                                <td id="top_ten_0_finalWorth" style="text-align: center; user-select: auto;">185577.927M</td>
                             </tr>
-                            {% endfor %}
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_1_rank" style="text-align: center; user-select: auto;">2</td>
+                                <td id="top_ten_1_personName" style="text-align: center; user-select: auto;">Elon Musk</td>
+                                <td id="top_ten_1_age" style="text-align: center; user-select: auto;">49</td>
+                                <td id="top_ten_1_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_1_state" style="text-align: center; user-select: auto;">Texas</td>
+                                <td id="top_ten_1_city" style="text-align: center; user-select: auto;">Austin</td>
+                                <td id="top_ten_1_source" style="text-align: center; user-select: auto;">Tesla, SpaceX</td>
+                                <td id="top_ten_1_finalWorth" style="text-align: center; user-select: auto;">169149.344M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_2_rank" style="text-align: center; user-select: auto;">3</td>
+                                <td id="top_ten_2_personName" style="text-align: center; user-select: auto;">Bernard Arnault &amp; family</td>
+                                <td id="top_ten_2_age" style="text-align: center; user-select: auto;">71</td>
+                                <td id="top_ten_2_countryOfCitizenship" style="text-align: center; user-select: auto;">France</td>
+                                <td id="top_ten_2_state" style="text-align: center; user-select: auto;">undefined</td>
+                                <td id="top_ten_2_city" style="text-align: center; user-select: auto;">Paris</td>
+                                <td id="top_ten_2_source" style="text-align: center; user-select: auto;">LVMH</td>
+                                <td id="top_ten_2_finalWorth" style="text-align: center; user-select: auto;">157021.904M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_3_rank" style="text-align: center; user-select: auto;">4</td>
+                                <td id="top_ten_3_personName" style="text-align: center; user-select: auto;">Bill Gates</td>
+                                <td id="top_ten_3_age" style="text-align: center; user-select: auto;">65</td>
+                                <td id="top_ten_3_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_3_state" style="text-align: center; user-select: auto;">Washington</td>
+                                <td id="top_ten_3_city" style="text-align: center; user-select: auto;">Medina</td>
+                                <td id="top_ten_3_source" style="text-align: center; user-select: auto;">Microsoft</td>
+                                <td id="top_ten_3_finalWorth" style="text-align: center; user-select: auto;">122876.009M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_4_rank" style="text-align: center; user-select: auto;">5</td>
+                                <td id="top_ten_4_personName" style="text-align: center; user-select: auto;">Mark Zuckerberg</td>
+                                <td id="top_ten_4_age" style="text-align: center; user-select: auto;">36</td>
+                                <td id="top_ten_4_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_4_state" style="text-align: center; user-select: auto;">California</td>
+                                <td id="top_ten_4_city" style="text-align: center; user-select: auto;">Palo Alto</td>
+                                <td id="top_ten_4_source" style="text-align: center; user-select: auto;">Facebook</td>
+                                <td id="top_ten_4_finalWorth" style="text-align: center; user-select: auto;">95285.53M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_5_rank" style="text-align: center; user-select: auto;">6</td>
+                                <td id="top_ten_5_personName" style="text-align: center; user-select: auto;">Warren Buffett</td>
+                                <td id="top_ten_5_age" style="text-align: center; user-select: auto;">90</td>
+                                <td id="top_ten_5_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_5_state" style="text-align: center; user-select: auto;">Nebraska</td>
+                                <td id="top_ten_5_city" style="text-align: center; user-select: auto;">Omaha</td>
+                                <td id="top_ten_5_source" style="text-align: center; user-select: auto;">Berkshire Hathaway</td>
+                                <td id="top_ten_5_finalWorth" style="text-align: center; user-select: auto;">92915.159M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_6_rank" style="text-align: center; user-select: auto;">7</td>
+                                <td id="top_ten_6_personName" style="text-align: center; user-select: auto;">Larry Page</td>
+                                <td id="top_ten_6_age" style="text-align: center; user-select: auto;">47</td>
+                                <td id="top_ten_6_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_6_state" style="text-align: center; user-select: auto;">California</td>
+                                <td id="top_ten_6_city" style="text-align: center; user-select: auto;">Palo Alto</td>
+                                <td id="top_ten_6_source" style="text-align: center; user-select: auto;">Google</td>
+                                <td id="top_ten_6_finalWorth" style="text-align: center; user-select: auto;">89492.104M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_7_rank" style="text-align: center; user-select: auto;">8</td>
+                                <td id="top_ten_7_personName" style="text-align: center; user-select: auto;">Larry Ellison</td>
+                                <td id="top_ten_7_age" style="text-align: center; user-select: auto;">76</td>
+                                <td id="top_ten_7_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_7_state" style="text-align: center; user-select: auto;">Hawaii</td>
+                                <td id="top_ten_7_city" style="text-align: center; user-select: auto;">Lanai</td>
+                                <td id="top_ten_7_source" style="text-align: center; user-select: auto;">software</td>
+                                <td id="top_ten_7_finalWorth" style="text-align: center; user-select: auto;">88084.844M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_8_rank" style="text-align: center; user-select: auto;">9</td>
+                                <td id="top_ten_8_personName" style="text-align: center; user-select: auto;">Zhong Shanshan</td>
+                                <td id="top_ten_8_age" style="text-align: center; user-select: auto;">66</td>
+                                <td id="top_ten_8_countryOfCitizenship" style="text-align: center; user-select: auto;">China</td>
+                                <td id="top_ten_8_state" style="text-align: center; user-select: auto;">Zhejiang</td>
+                                <td id="top_ten_8_city" style="text-align: center; user-select: auto;">Hangzhou</td>
+                                <td id="top_ten_8_source" style="text-align: center; user-select: auto;">beverages, pharmaceuticals</td>
+                                <td id="top_ten_8_finalWorth" style="text-align: center; user-select: auto;">87812.535M</td>
+                            </tr>
+                            
+                            <tr style="user-select: auto;">
+                                <td id="top_ten_9_rank" style="text-align: center; user-select: auto;">10</td>
+                                <td id="top_ten_9_personName" style="text-align: center; user-select: auto;">Sergey Brin</td>
+                                <td id="top_ten_9_age" style="text-align: center; user-select: auto;">47</td>
+                                <td id="top_ten_9_countryOfCitizenship" style="text-align: center; user-select: auto;">United States</td>
+                                <td id="top_ten_9_state" style="text-align: center; user-select: auto;">California</td>
+                                <td id="top_ten_9_city" style="text-align: center; user-select: auto;">Los Altos</td>
+                                <td id="top_ten_9_source" style="text-align: center; user-select: auto;">Google</td>
+                                <td id="top_ten_9_finalWorth" style="text-align: center; user-select: auto;">86839.76M</td>
+                            </tr>
+                            
 
                         </tbody>
                     </table>
