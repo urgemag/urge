@@ -221,7 +221,7 @@ class General:
     def html_to_text(self, html):
         html_to_text = html2text.HTML2Text()
         html_to_text.ignore_links = True
-        return html_to_text.handle(html)
+        return html_to_text.handle(html).replace("#",'').replace("*",'')
 
     def image_resizer_using_pil(self, image_path, basewidth=1500):
 
