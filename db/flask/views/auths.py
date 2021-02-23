@@ -1,5 +1,5 @@
 import requests
-from flask import Blueprint, session, redirect, render_template, request, url_for
+from flask import Blueprint, session, redirect, render_template, request
 from models import Authentication
 import setting
 import json
@@ -8,7 +8,6 @@ auths = Blueprint("auths", __name__)
 
 
 @auths.route("/LogIn")
-@auths.route("/login")
 def login():
     ***REMOVED*** The LogIn Page - Send Form to /LogInFormPost . ***REMOVED***
 
@@ -63,7 +62,6 @@ def login_form():
 
 
 @auths.route("/SignUp")
-@auths.route("/signup")
 def signup():
     ***REMOVED*** The SignUp Page - Send Form to /SignUpFormPost . ***REMOVED***
 
@@ -111,11 +109,13 @@ def signup_form():
     session["Data"] = sign_up_data["session"]
     session.permanent = True
     session["logged_in"] = True
+
+        
+
     return redirect("/")
 
 
 @auths.route("/LogOut")
-@auths.route("/logout")
 def logout():
     ***REMOVED*** The LogOut submit Page - Send request to /SignUpFormPost . ***REMOVED***
 
@@ -124,3 +124,16 @@ def logout():
 
     return render_template("auths/logout.html")
 
+
+@auths.route("/LogOutRequest")
+def logout_form():
+    ***REMOVED*** The Logout request. ***REMOVED***
+
+    # Handle if signed in
+    if not Authentication(session).is_signed_in():
+        return redirect("/LogIn")
+
+    session["logged_in"] = False
+    session["admin"] = False
+
+    return redirect("/")

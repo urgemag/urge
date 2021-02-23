@@ -11,4 +11,3 @@ send2trash
 flask_analytics
 python-dotenv
 html2text
-flask_dance
