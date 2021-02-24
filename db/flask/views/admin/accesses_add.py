@@ -994,3 +994,12 @@ def add_tool_admin():
     return render_template(
         "admin/admin_add_tool.html",
     )
+
+
+@admin_add.route("/Admin/Generate/Post", methods=["POST", "GET"])
+@check_is_admin()
+def generate_post():
+
+    return render_template(
+        "admin/admin_merge_template_gen.html",
+    )
