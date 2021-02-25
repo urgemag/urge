@@ -1,8 +1,10 @@
-<html><head>
-    <meta charset="utf-8">
-</head>
+{% extends "admin_base.html" %} {% block title %} پنل شخصی ادمین موفقیت اِرج - ساخت پست اینستاگرام {% endblock %} {% block breadcrumb %}
 
-<body>
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> ساخت پست اینستاگرام </li>
+{% endblock %} 
+{% block body %}
 
     <style>
         @font-face {
@@ -67,19 +69,19 @@
 
         .main-image-page-intro {
             margin: auto;
-            height: 720px;
-            width: 720px;
+            height: 91%;
+            width: 91%;
             margin-top: 5%;
             background-position: center;
-            background-image: url('/static//1.webp');
-
+            background-image: url(/static//1.webp);
             border-top-left-radius: 0%;
             border-top-right-radius: 24%;
             border-bottom-right-radius: 24%;
             border-bottom-left-radius: 24%;
             background-size: cover;
-            box-shadow: rgb(149 157 165 / 27%) 0px 16px 48px;
+            box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px;
         }
+
 
         .p {
             font-family: kalameh;
@@ -131,20 +133,23 @@
             background-color: rgb(243, 243, 243);
             margin-left: -8px;
             margin-top: -8px;
+            text-align: right;
+            direction: ltr;
+            transform: scale(0.7);
         }
 
         .logo {
-            width: 150px;
-            height: 150px;
-            margin-top: 15px;
-            margin-left: 15px;
+            width: 21%;
+            height: 21%;
+            margin-top: 2%;
+            margin-left: 2%;
         }
 
         .title_text {
-            padding-right: 50px;
-            padding-left: 70px;
-            padding-top: 2px;
-            line-height: 116px;
+            padding-right: 12%;
+            padding-left: 8%;
+            padding-top: 19%;
+            line-height: 125%;
         }
         .text-post{
             background-color: #00000042;
@@ -166,7 +171,7 @@
     </style>
 
 
-
+<div>
     <div id="post" class="post">
         <div class="main-image-page-intro" style="display: flex;">
             <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
@@ -180,8 +185,8 @@
             </p>
         </div>
     </div>
-
-    <div class="post">
+</div>
+    <!-- <div class="post">
         <div class="main-image-page-intro" style="display: flex;background-image: url(https://cdn.dribbble.com/users/730155/screenshots/15127293/media/42e7eadc9ae47bf34dd627e776f5ed43.jpg?compress=1&amp;resize=1000x750);">
             <img style="align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
             
@@ -331,7 +336,7 @@
 
 
 
-    <div class="post">
+    <div id="ppp" class="post">
         <div class="main-image-page-intro" style="display: flex;background-image: url(https://cdn.dribbble.com/users/59947/screenshots/15084962/media/a57deba0874f256ddefdc17d39155385.jpg?compress=1&amp;resize=1000x750);">
             <img style="align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
             
@@ -355,15 +360,14 @@
                 &lt;- اسلاید بعدی
             </p>
         </div>
-    </div>
+    </div> -->
 
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script>
-            html2canvas( document.body, { logging: true, letterRendering: 1, allowTaint: false ,useCORS: true } ).then(canvas => {
-    document.body.appendChild(canvas)
+            html2canvas( document.getElementById("post"), { logging: true, letterRendering: 1 } ).then(canvas => {
+            document.body.appendChild(canvas)
 });
 </script>
-<button onclick="screenshot()">Take screenshot</button>
 
-</body></html>
+{% endblock %}
