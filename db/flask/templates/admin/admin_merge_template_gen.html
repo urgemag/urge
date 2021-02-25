@@ -4,9 +4,19 @@
 <li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
 <li class="breadcrumb-item active" aria-current="page"> ساخت پست اینستاگرام </li>
 {% endblock %} 
+{% block main_css %}
+<link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
 {% block body %}
 
     <style>
+        @media (min-width: 1890px){
+            .col-xll-6 {
+                -ms-flex: 0 0 50%;
+                flex: 0 0 50%;
+                max-width: 50%;
+                /* min-width: 800px; */
+            }
+        }
         @font-face {
             font-family: kalameh;
             src: url(/static//instagram_collection_maker/template//static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Regular.ttf);
@@ -79,7 +89,7 @@
             border-bottom-right-radius: 24%;
             border-bottom-left-radius: 24%;
             background-size: cover;
-            box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px;
+            /* box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px; */
         }
 
 
@@ -119,11 +129,12 @@
             font-size: 25px;
             padding-right: 50px;
             padding-left: 70px;
-            padding-top: 2px;
+            /* padding-top: 2px !important; */
             margin-top: -145px;
             margin-right: 50px;
-            font-family: 'yekan';
-            font-weight: bold;
+            font-family: 'yekan' !important;
+            font-weight: bold !important;
+            direction: rtl !important;
         }
 
         .post {
@@ -135,7 +146,7 @@
             margin-top: -8px;
             text-align: right;
             direction: ltr;
-            transform: scale(0.7);
+            margin: auto;
         }
 
         .logo {
@@ -168,21 +179,36 @@
             box-shadow: rgb(149 157 165 / 27%) 0px 0px 38px;
             height:max-content
         }
+
+        
     </style>
 
 
-<div>
-    <div id="post" class="post">
-        <div class="main-image-page-intro" style="display: flex;">
-            <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
-            <div class="text">
-                <p class="title_text"> روزتون رو با تکنیک<b> 20/20/20 </b>شروع کنید </p>
+<div class="row row-cards">
+    <div class="col-sm-12 col-lg-12 col-xll-6">
+        <div class="row">
+            <div class="card" style="background-color: #f3f3f3;">
+                
             </div>
         </div>
-        <div class="text">
-            <p class="next_slide">
-                &lt;- اسلاید بعدی
-            </p>
+    </div>
+    <div class="col-sm-12 col-lg-12 col-xll-6">
+        <div class="row">
+            <div class="card" style="background-color: #f3f3f3;">
+                <div id="post" class="post">
+                    <div class="main-image-page-intro" style="display: flex;">
+                        <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
+                        <div class="text">
+                            <p class="title_text"> روزتون رو با تکنیک<b> 20/20/20 </b>شروع کنید </p>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <p class="next_slide">
+                            &lt;- اسلاید بعدی
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
