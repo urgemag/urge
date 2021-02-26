@@ -1,193 +1,198 @@
-{% extends "admin_base.html" %} {% block title %} پنل شخصی ادمین موفقیت اِرج - ساخت پست اینستاگرام {% endblock %} {% block breadcrumb %}
+{% extends "admin_base.html" %} {% block title %} پنل شخصی ادمین موفقیت اِرج - ساخت پست اینستاگرام {% endblock %}
+{% block breadcrumb %}
 
 <li class="breadcrumb-item"><a href="/"> خانه </a></li>
 <li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
 <li class="breadcrumb-item active" aria-current="page"> ساخت پست اینستاگرام </li>
-{% endblock %} 
+{% endblock %}
 {% block main_css %}
 <link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
 {% block body %}
 
-    <style>
-        @media (min-width: 1890px){
-            .col-xll-6 {
-                -ms-flex: 0 0 50%;
-                flex: 0 0 50%;
-                max-width: 50%;
-                /* min-width: 800px; */
-            }
+<style>
+    @media (min-width: 1890px) {
+        .col-xll-6 {
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+            /* min-width: 800px; */
         }
-        @font-face {
-            font-family: kalameh;
-            src: url(/static//instagram_collection_maker/template//static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Regular.ttf);
-            font-weight: normal;
-        }
+    }
 
-        @font-face {
-            font-family: kalameh;
-            src: url(/static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Bold.ttf);
-            font-weight: bold;
-        }
+    @font-face {
+        font-family: kalameh;
+        src: url(/static//instagram_collection_maker/template//static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Regular.ttf);
+        font-weight: normal;
+    }
 
-        @font-face {
-            font-family: kalameh;
-            src: url(/static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Black.ttf);
-            font-weight: bolder;
-            font-weight: 900;
-        }
+    @font-face {
+        font-family: kalameh;
+        src: url(/static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Bold.ttf);
+        font-weight: bold;
+    }
 
-        @font-face {
-            font-family: kalameh;
-            src: url(/static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_thin.ttf);
-            font-weight: lighter;
-        }
+    @font-face {
+        font-family: kalameh;
+        src: url(/static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_Black.ttf);
+        font-weight: bolder;
+        font-weight: 900;
+    }
 
-
-
-
+    @font-face {
+        font-family: kalameh;
+        src: url(/static//instagram_collection_maker/template/fonts/Kalameh/KalamehWeb_thin.ttf);
+        font-weight: lighter;
+    }
 
 
 
-        @font-face {
-            font-family: yekan;
-            src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Regular.ttf);
-            font-weight: normal;
-        }
-
-        @font-face {
-            font-family: yekan;
-            src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Bold.ttf);
-            font-weight: bold;
-        }
-        @font-face {
-            font-family: yekan;
-            src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Black.ttf);
-            font-weight: bolder;
-        }
-        @font-face {
-            font-family: yekan;
-            src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_ExtraBlack.ttf);
-            font-weight: 900;
-        }
-
-        @font-face {
-            font-family: yekan;
-            src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Thin.ttf);
-            font-weight: lighter;
-        }
 
 
-        .main-image-page-intro {
-            margin: auto;
-            height: 91%;
-            width: 91%;
-            margin-top: 5%;
-            background-position: center;
-            background-image: url(/static//1.webp);
-            border-top-left-radius: 0%;
-            border-top-right-radius: 24%;
-            border-bottom-right-radius: 24%;
-            border-bottom-left-radius: 24%;
-            background-size: cover;
-            display: flex;
-            /* box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px; */
-        }
 
 
-        .p {
-            font-family: kalameh;
-            font-size: normal;
-        }
+    @font-face {
+        font-family: yekan;
+        src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Regular.ttf);
+        font-weight: normal;
+    }
 
-        b {
-            font-family: kalameh;
-            font-weight: 900;
-        }
+    @font-face {
+        font-family: yekan;
+        src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Bold.ttf);
+        font-weight: bold;
+    }
 
-        .bb {
-            font-family: kalameh;
-            font-weight: bolder;
-        }
+    @font-face {
+        font-family: yekan;
+        src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Black.ttf);
+        font-weight: bolder;
+    }
 
-        .text {
-            direction: rtl;
-            color: #fff;
-            font-size: 96px;
-            text-shadow: 2px 3px 20px rgba(0, 0, 0, 0.5);
-            width: 560px;
-        }
+    @font-face {
+        font-family: yekan;
+        src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_ExtraBlack.ttf);
+        font-weight: 900;
+    }
 
-        .slider{
-            width: auto;
-        }
-
-        .regular_text {
-            direction: rtl;
-            color: #fff;
-            font-size: 20px;
-            text-shadow: 2px 3px 20px rgba(0, 0, 0, 0.5);
-        }
+    @font-face {
+        font-family: yekan;
+        src: url(/static//instagram_collection_maker/template/fonts/Yekan/IRANYekanWeb_Thin.ttf);
+        font-weight: lighter;
+    }
 
 
-        .next_slide {
-            padding-top: 70px !important;
-            padding-right: 85px !important;
-            font-size: 25px;
-            padding-right: 50px;
-            padding-left: 70px;
-            /* padding-top: 2px !important; */
-            margin-top: -145px;
-            margin-right: 50px;
-            font-family: 'yekan' !important;
-            font-weight: bold !important;
-            direction: rtl !important;
-        }
+    .main-image-page-intro {
+        margin: auto;
+        height: 91%;
+        width: 91%;
+        margin-top: 5%;
+        background-position: center;
+        background-image: url(/static//1.webp);
+        border-top-left-radius: 0%;
+        border-top-right-radius: 24%;
+        border-bottom-right-radius: 24%;
+        border-bottom-left-radius: 24%;
+        background-size: cover;
+        display: flex;
+        /* box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px; */
+    }
 
-        .post {
-            width: 800px;
-            height: 800px;
-            display: table;
-            background-color: rgb(243, 243, 243);
-            margin-left: -8px;
-            margin-top: -8px;
-            text-align: right;
-            direction: ltr;
-            margin: auto;
-        }
 
-        .logo {
-            width: 21%;
-            height: 21%;
-            margin-top: 2%;
-            margin-left: 2%;
-        }
+    .p {
+        font-family: kalameh;
+        font-size: normal;
+    }
 
-        .title_text {
-            padding-right: 12%;
-            padding-left: 8%;
-            padding-top: 19%;
-            /* line-height: 125%; */
-        }
-        .text-post{
-            background-color: #00000042;
-            height: fit-content;
-            padding-bottom: 0px !important;
-            padding-top: 7px !important;
-            padding: 28px;
-            border-top-left-radius: 0px;
-            border-top-right-radius: 75px;
-            border-bottom-right-radius: 0px;
-            border-bottom-left-radius: 75px;
-            margin-top: 40px;
-            margin-right: 100px;
-            margin-left: -70px;
-            backdrop-filter: blur(5px);
-            box-shadow: rgb(149 157 165 / 27%) 0px 0px 38px;
-            height:max-content
-        }
+    b {
+        font-family: kalameh;
+        font-weight: 900;
+    }
 
-        
-    </style>
+    .bb {
+        font-family: kalameh;
+        font-weight: bolder;
+    }
+
+    .text {
+        direction: rtl;
+        color: #fff;
+        font-size: 96px;
+        text-shadow: 2px 3px 20px rgba(0, 0, 0, 0.5);
+        width: 560px;
+    }
+
+    .slider {
+        width: auto;
+    }
+
+    .regular_text {
+        direction: rtl;
+        color: #fff;
+        font-size: 20px;
+        text-shadow: 2px 3px 20px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .next_slide {
+        padding-top: 70px !important;
+        padding-right: 85px !important;
+        font-size: 25px;
+        padding-right: 50px;
+        padding-left: 70px;
+        /* padding-top: 2px !important; */
+        margin-top: -145px;
+        margin-right: 50px;
+        font-family: 'yekan' !important;
+        font-weight: bold !important;
+        direction: rtl !important;
+    }
+
+    .post {
+        width: 800px;
+        height: 800px;
+        display: table;
+        background-color: rgb(243, 243, 243);
+        margin-left: -8px;
+        margin-top: -8px;
+        text-align: right;
+        direction: ltr;
+        margin: auto;
+    }
+
+    .logo {
+        width: 21%;
+        height: 21%;
+        margin-top: 2%;
+        margin-left: 2%;
+    }
+
+    .title_text {
+        padding-right: 12%;
+        padding-left: 8%;
+        padding-top: 19%;
+        line-height: 125%;
+        direction: rtl;
+        text-align: right;
+    }
+
+    .text-post {
+        background-color: #00000042;
+        height: fit-content;
+        padding-bottom: 0px !important;
+        padding-top: 7px !important;
+        padding: 28px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 75px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 75px;
+        margin-top: 40px;
+        margin-right: 100px;
+        margin-left: -70px;
+        backdrop-filter: blur(5px);
+        box-shadow: rgb(149 157 165 / 27%) 0px 0px 38px;
+        height: max-content
+    }
+</style>
 
 
 <div class="row row-cards">
@@ -197,72 +202,79 @@
         <div class="row">
             <div class="card">
 
-                    <div class="card-header">
-                        <h3 class="mb-0 card-title">ساخت پست اینستاگرام</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="row" style="margin-block-end: 30px;">
-                            <div class="col-md-12 ">
+                <div class="card-header">
+                    <h3 class="mb-0 card-title">ساخت پست اینستاگرام</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row" style="margin-block-end: 30px;">
+                        <div class="col-md-12 ">
+                            <div class="form-group ">
                                 <div class="form-group ">
-                                    <div class="form-group ">
-                                        <label class="form-label ">URL تصویر<p style="color: #ff0000; display: contents; "> * </p></label>
-                                        <input oninput="changePicture()" required="required" id="picUrl" style="direction: ltr !important; font-family: monospace !important;" type="url" class="form-control" name="url" placeholder="URL">
-                                    </div>
+                                    <label class="form-label ">URL تصویر<p style="color: #ff0000; display: contents; ">
+                                            * </p></label>
+                                    <input oninput="changePicture()" required="required" id="picUrl"
+                                        style="direction: ltr !important; font-family: monospace !important;" type="url"
+                                        class="form-control" name="url" placeholder="URL">
                                 </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group mb-0">
-                                    <label style=" display: contents; " class="form-label">متن</label>
-                                    <p style="color: #ff0000; display: contents; "> * </p>
-                                    <textarea oninput="changeText()" id="description" required="required" style="margin-top:10px;" class="form-control" name="description" rows="2 " placeholder="متن داخل پست یا تایتل"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="margin-top: 30px;">
-                                <li class="list-group-item">
-                                    حذف بخش "اسلاید بعدی"
-                                    <div class="material-switch pull-right">
-                                        <input oninput="removeNextSlide()" id="someSwitchOptionWarning" name="removenextslide" type="checkbox">
-                                        <label for="someSwitchOptionWarning" class="label-warning"></label>
-                                    </div>
-                                </li>
                             </div>
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group mb-0">
+                                <label style=" display: contents; " class="form-label">متن</label>
+                                <p style="color: #ff0000; display: contents; "> * </p>
+                                <textarea oninput="changeText()" id="description" required="required"
+                                    style="margin-top:10px;" class="form-control" name="description" rows="2 "
+                                    placeholder="متن داخل پست یا تایتل"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="margin-top: 30px;">
+                            <li class="list-group-item">
+                                حذف بخش "اسلاید بعدی"
+                                <div class="material-switch pull-right">
+                                    <input oninput="removeNextSlide()" id="someSwitchOptionWarning"
+                                        name="removenextslide" type="checkbox">
+                                    <label for="someSwitchOptionWarning" class="label-warning"></label>
+                                </div>
+                            </li>
+                        </div>
                     </div>
+                </div>
 
-                    <script>
-                        function changeText() {
+                <script>
+                    function changeText() {
 
-                            const descriptionBar = document.getElementById("post");
+                        const descriptionBar = document.getElementById("post");
 
-                            description = document.getElementById("description").value
-                            console.log(description)
-                            descriptionBar.getElementsByClassName("title_text")[0].innerHTML = description
-                        }
+                        description = document.getElementById("description").value
+                        console.log(description)
+                        descriptionBar.getElementsByClassName("title_text")[0].innerHTML = description
+                    }
 
-                        function changePicture() {
+                    function changePicture() {
 
                         const urlPostElement = document.getElementById("post");
 
                         urlPicture = document.getElementById("picUrl").value
-                        console.log("url('"+urlPicture+"')'")
+                        console.log("url('" + urlPicture + "')'")
                         console.log(urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage)
-                        urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage = "url('"+urlPicture+"')"
-                        }
+                        urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage = "url('" + urlPicture + "')"
+                    }
 
-                        function removeNextSlide() {
-                            console.log(document.getElementsByName("removenextslide")[0].checked)
-                            if (document.getElementsByName("removenextslide")[0].checked){
+                    function removeNextSlide() {
+                        console.log(document.getElementsByName("removenextslide")[0].checked)
+                        if (document.getElementsByName("removenextslide")[0].checked) {
                             document.getElementsByClassName("text slider")[0].style.display = "none"
                         }
-                        else{
+                        else {
                             document.getElementsByClassName("text slider")[0].style.display = "revert"
                         }
-                        }
-                    </script>
+                    }
+                    console.log('{{templates.posts_templates | length}}');
+                </script>
 
 
-                    <button onclick="makepic()" class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
+                <button onclick="makepic()" class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
 
             </div>
 
@@ -272,28 +284,28 @@
     <div class="col-sm-12 col-lg-12 col-xll-6">
         <div class="row">
             <!-- <div class="card" style="background-color: #f3f3f3;"> -->
-                <div id="post" class="post" style="display: block !important;">
-                    <div class="main-image-page-intro" >
-                        <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
-                        <div class="text">
-                            <p class="title_text"> روزتون رو با تکنیک<b> 20/20/20 </b>شروع کنید </p>
-                        </div>
+            <div id="post" class="post" style="display: block !important;">
+                <div class="main-image-page-intro">
+                    <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
+                    <div class="text">
+                        <p class="title_text"> روزتون رو با تکنیک بیس بیست شروع کنید </p>
                     </div>
-                    <div class="text slider">
-                        <p class="next_slide">
-                            &lt;- اسلاید بعدی
-                        </p>
-                    </div>
+                </div>
+                <div class="text slider">
+                    <p class="next_slide">
+                        &lt;- اسلاید بعدی
+                    </p>
+                </div>
                 <!-- </div> -->
             </div>
         </div>
     </div>
 
-    
+
 </div>
 
 
-    <!-- <div class="post">
+<!-- <div class="post">
         <div class="main-image-page-intro" style="display: flex;background-image: url(https://cdn.dribbble.com/users/730155/screenshots/15127293/media/42e7eadc9ae47bf34dd627e776f5ed43.jpg?compress=1&amp;resize=1000x750);">
             <img style="align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
             
@@ -470,16 +482,17 @@
     </div> -->
 
 
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    <script>
-        function makepic(){
-                html2canvas( document.getElementById("post"), {scrollY: -window.scrollY, logging: true, letterRendering: 1 } ).then(canvas => {
-                const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-                const a = document.createElement("a");
-                a.setAttribute("download", `urge_instagram_post.png`);
-                a.setAttribute("href", image);
-                a.click();
-            });}
-</script> 
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script>
+    function makepic() {
+        html2canvas(document.getElementById("post"), { scrollY: -window.scrollY, logging: true, letterRendering: 1 }).then(canvas => {
+            const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            const a = document.createElement("a");
+            a.setAttribute("download", `urge_instagram_post.png`);
+            a.setAttribute("href", image);
+            a.click();
+        });
+    }
+</script>
 
 {% endblock %}

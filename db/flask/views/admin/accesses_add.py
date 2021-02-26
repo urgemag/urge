@@ -1002,4 +1002,5 @@ def generate_post():
 
     return render_template(
         "admin/admin_merge_template_gen.html",
+        templates=General().open_json_file("static/assets/instagram/posts.json")
     )
