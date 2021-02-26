@@ -179,7 +179,6 @@
         background-color: #00000042;
         height: fit-content;
         padding-bottom: 0px !important;
-        padding-top: 7px !important;
         padding: 28px;
         border-top-left-radius: 0px;
         border-top-right-radius: 75px;
@@ -211,7 +210,7 @@
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">تمپلیت</label>
-                                    <select oninput="changeTemplate()" name="slug" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                    <select oninput="changeTemplate()" id="template" name="template" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
                                         <optgroup label="اسم تمپلیت ">
                                              {% for template_name in templates.posts_templates %}
                                             <option value="{{template_name}}">{{template_name}}</option>
@@ -262,7 +261,10 @@
                         const descriptionBar = document.getElementById("post");
 
                         description = document.getElementById("description").value
-                        descriptionBar.getElementsByClassName("title_text")[0].innerHTML = description
+                        console.log(document.getElementById("templateElement").getElementsByTagName("p")[0].innerHTML)
+                        if (description != ""){
+                        document.getElementById("templateElement").getElementsByTagName("p")[0].innerHTML = description
+                    }
                     }
 
                     function changePicture() {
@@ -270,7 +272,9 @@
                         const urlPostElement = document.getElementById("post");
 
                         urlPicture = document.getElementById("picUrl").value
+                        if (urlPicture != ""){
                         urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage = "url('" + urlPicture + "')"
+                    }
                     }
 
                     function removeNextSlide() {
@@ -281,7 +285,12 @@
                             document.getElementsByClassName("text slider")[0].style.display = "revert"
                         }
                     }
-
+                    function changeTemplate(){
+                        document.getElementById("templateElement").remove()
+                        document.getElementsByClassName("main-image-page-intro")[0].innerHTML = document.getElementsByClassName("main-image-page-intro")[0].innerHTML + ({{templates.posts_templates | safe}}[document.getElementById("template").value])
+                        changeText()
+                        changePicture()
+                    }
                 </script>
 
 
@@ -297,9 +306,10 @@
             <!-- <div class="card" style="background-color: #f3f3f3;"> -->
             <div id="post" class="post" style="display: block !important;">
                 <div class="main-image-page-intro">
-                    <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
-                    <div class="text">
-                        <p class="title_text"> روزتون رو با تکنیک بیس بیست شروع کنید </p>
+                    <img style="align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
+
+                    <div id='templateElement' class="text">
+                        <p class="title_text"> با ما پست هاتونو بسازید! </p>
                     </div>
                 </div>
                 <div class="text slider">
