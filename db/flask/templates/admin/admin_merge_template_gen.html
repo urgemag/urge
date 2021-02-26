@@ -207,7 +207,22 @@
                 </div>
                 <div class="card-body">
                     <div class="row" style="margin-block-end: 30px;">
-                        <div class="col-md-12 ">
+                        <div class="col-md-4 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">تمپلیت</label>
+                                    <select name="slug" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                        <optgroup label="اسم تمپلیت ">
+                                             {% for template_name in templates.posts_templates %}
+                                            <option value="{{template_name}}">{{template_name}}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 ">
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">URL تصویر<p style="color: #ff0000; display: contents; ">
@@ -270,7 +285,6 @@
                             document.getElementsByClassName("text slider")[0].style.display = "revert"
                         }
                     }
-                    console.log('{{templates.posts_templates | length}}');
                 </script>
 
 
