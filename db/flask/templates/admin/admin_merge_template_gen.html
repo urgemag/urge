@@ -166,7 +166,7 @@
             padding-right: 12%;
             padding-left: 8%;
             padding-top: 19%;
-            line-height: 125%;
+            /* line-height: 125%; */
         }
         .text-post{
             background-color: #00000042;
@@ -196,10 +196,9 @@
 
         <div class="row">
             <div class="card">
-                <form id="submit_form" method="POST" enctype="multipart/form-data">
 
                     <div class="card-header">
-                        <h3 class="mb-0 card-title">اضافه کردن موزیک ویدیو تد</h3>
+                        <h3 class="mb-0 card-title">ساخت پست اینستاگرام</h3>
                     </div>
                     <div class="card-body">
                         <div class="row" style="margin-block-end: 30px;">
@@ -218,6 +217,15 @@
                                     <p style="color: #ff0000; display: contents; "> * </p>
                                     <textarea oninput="changeText()" id="description" required="required" style="margin-top:10px;" class="form-control" name="description" rows="2 " placeholder="متن داخل پست یا تایتل"></textarea>
                                 </div>
+                            </div>
+                            <div class="col-md-4" style="margin-top: 30px;">
+                                <li class="list-group-item">
+                                    حذف بخش "اسلاید بعدی"
+                                    <div class="material-switch pull-right">
+                                        <input oninput="removeNextSlide()" id="someSwitchOptionWarning" name="removenextslide" type="checkbox">
+                                        <label for="someSwitchOptionWarning" class="label-warning"></label>
+                                    </div>
+                                </li>
                             </div>
                         </div>
                     </div>
@@ -241,11 +249,20 @@
                         console.log(urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage)
                         urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage = "url('"+urlPicture+"')"
                         }
+
+                        function removeNextSlide() {
+                            console.log(document.getElementsByName("removenextslide")[0].checked)
+                            if (document.getElementsByName("removenextslide")[0].checked){
+                            document.getElementsByClassName("text slider")[0].style.display = "none"
+                        }
+                        else{
+                            document.getElementsByClassName("text slider")[0].style.display = "revert"
+                        }
+                        }
                     </script>
 
 
-                    <button type="submit " class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
-                </form>
+                    <button onclick="makepic()" class="btn btn-primary " style=" width: 100%; ">بزن بسازیم!</button>
 
             </div>
 
@@ -254,8 +271,8 @@
 
     <div class="col-sm-12 col-lg-12 col-xll-6">
         <div class="row">
-            <div class="card" style="background-color: #f3f3f3;">
-                <div id="post" class="post">
+            <!-- <div class="card" style="background-color: #f3f3f3;"> -->
+                <div id="post" class="post" style="display: block !important;">
                     <div class="main-image-page-intro" >
                         <img class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
                         <div class="text">
@@ -267,11 +284,15 @@
                             &lt;- اسلاید بعدی
                         </p>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </div>
+
+    
 </div>
+
+
     <!-- <div class="post">
         <div class="main-image-page-intro" style="display: flex;background-image: url(https://cdn.dribbble.com/users/730155/screenshots/15127293/media/42e7eadc9ae47bf34dd627e776f5ed43.jpg?compress=1&amp;resize=1000x750);">
             <img style="align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
@@ -449,11 +470,16 @@
     </div> -->
 
 
-    <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script>
-            html2canvas( document.getElementById("post"), { logging: true, letterRendering: 1 } ).then(canvas => {
-            document.body.appendChild(canvas)
-});
-</script> -->
+        function makepic(){
+                html2canvas( document.getElementById("post"), {scrollY: -window.scrollY, logging: true, letterRendering: 1 } ).then(canvas => {
+                const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                const a = document.createElement("a");
+                a.setAttribute("download", `urge_instagram_post.png`);
+                a.setAttribute("href", image);
+                a.click();
+            });}
+</script> 
 
 {% endblock %}
