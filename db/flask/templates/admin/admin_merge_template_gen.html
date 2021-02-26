@@ -211,7 +211,7 @@
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">تمپلیت</label>
-                                    <select name="slug" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                    <select oninput="changeTemplate()" name="slug" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
                                         <optgroup label="اسم تمپلیت ">
                                              {% for template_name in templates.posts_templates %}
                                             <option value="{{template_name}}">{{template_name}}</option>
@@ -262,7 +262,6 @@
                         const descriptionBar = document.getElementById("post");
 
                         description = document.getElementById("description").value
-                        console.log(description)
                         descriptionBar.getElementsByClassName("title_text")[0].innerHTML = description
                     }
 
@@ -271,13 +270,10 @@
                         const urlPostElement = document.getElementById("post");
 
                         urlPicture = document.getElementById("picUrl").value
-                        console.log("url('" + urlPicture + "')'")
-                        console.log(urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage)
                         urlPostElement.getElementsByClassName("main-image-page-intro")[0].style.backgroundImage = "url('" + urlPicture + "')"
                     }
 
                     function removeNextSlide() {
-                        console.log(document.getElementsByName("removenextslide")[0].checked)
                         if (document.getElementsByName("removenextslide")[0].checked) {
                             document.getElementsByClassName("text slider")[0].style.display = "none"
                         }
@@ -285,6 +281,7 @@
                             document.getElementsByClassName("text slider")[0].style.display = "revert"
                         }
                     }
+
                 </script>
 
 
