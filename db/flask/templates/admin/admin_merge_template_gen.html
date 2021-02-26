@@ -164,6 +164,7 @@
         height: 21%;
         margin-top: 2%;
         margin-left: 2%;
+        align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;
     }
 
     .title_text {
@@ -220,8 +221,21 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-8 ">
+                        <div class="col-md-4 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">محل لوگو</label>
+                                    <select oninput="changeLogoPosition()" id="logoPositionChooser" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                        <optgroup label="محل لوگو">
+                                             {% for logo_position in templates.logo_positions %}
+                                            <option value="{{logo_position}}">{{logo_position}}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">URL تصویر<p style="color: #ff0000; display: contents; ">
@@ -291,6 +305,9 @@
                         changeText()
                         changePicture()
                     }
+                    function changeLogoPosition(){
+                        document.getElementById("logoImage").style = ({{templates.logo_positions | safe}}[document.getElementById("logoPositionChooser").value])
+                    }
                 </script>
 
 
@@ -306,7 +323,7 @@
             <!-- <div class="card" style="background-color: #f3f3f3;"> -->
             <div id="post" class="post" style="display: block !important;">
                 <div class="main-image-page-intro">
-                    <img style="align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
+                    <img id="logoImage" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
 
                     <div id='templateElement' class="text">
                         <p class="title_text"> با ما پست هاتونو بسازید! </p>

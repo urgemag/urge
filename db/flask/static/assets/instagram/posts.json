@@ -8,5 +8,10 @@
         "پست کالکشن - متن وسط, کمی پایین":"<div id='templateElement' class='text-post' style=' margin-top: 39%; '> <p class='regular_text' style=' font-size: 29px; /* line-height: 34px; */ font-family: 'yekan'; font-weight: 600; text-align: justify; '><b>نحوه شروع کردن روزمون با پایان روزمون کاملا در ارتباطه.</b> خیلی از افراد سحر خیز هستن اما وقت\u200cشون رو صرف موارد نامربوط و غیر مبهم می\u200cکنن!</p> </div>",
         "پست کالکشن - متن وسط, پایین":"<div id='templateElement' class='text-post' style=' margin-top: 56%; '> <p class='regular_text' style=' font-size: 29px; /* line-height: 34px; */ font-family: 'yekan'; font-weight: 600; text-align: justify; '><b>نحوه شروع کردن روزمون با پایان روزمون کاملا در ارتباطه.</b> خیلی از افراد سحر خیز هستن اما وقت\u200cشون رو صرف موارد نامربوط و غیر مبهم می\u200cکنن!</p> </div>",
         "پست کالکشن - متن چپ, بالا":"<div id='templateElement' class='text-post' style=' margin-top: 10%; margin-left: 121px; margin-right: 70px; '> <p class='regular_text' style=' font-size: 29px; /* line-height: 34px; */ font-family: 'yekan'; font-weight: 600; text-align: justify; '><b>نحوه شروع کردن روزمون با پایان روزمون کاملا در ارتباطه.</b> خیلی از افراد سحر خیز هستن اما وقت\u200cشون رو صرف موارد نامربوط و غیر مبهم می\u200cکنن!</p> </div>"
+    },
+    "logo_positions": {
+        "پایین چپ":"",
+        "بالا چپ":"margin-top: -74%; border-bottom-left-radius: 0px; border-bottom-right-radius: 80px; padding-right: 10px; padding-bottom: 10px;",
+        "حذف":"opacity:0"
     }
 }
