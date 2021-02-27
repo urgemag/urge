@@ -2,6 +2,7 @@ db/flask/static/assets/images/blog
 db/flask/static/assets/courses
 db/flask/static/assets/musics/
 db/flask/static/assets/tools/
+db/flask/static/sitemap/
 db/mongo/
 db/flask/views/__pycache__/
 db/flask/__pycache__/
