@@ -4,19 +4,9 @@
 <li class="breadcrumb-item active" aria-current="page"> {{post.Persian_Name}} </li>
 {% endblock %}
 
-{% block add_extra_data_to_header %}
-<meta itemprop="name" content="مقاله قدرت تجسم خلاق از بلاگ اِرج">
-<meta itemprop="description" content="{{smart_description_preview_splitted_by_word(120,html_to_text((post.Text)[0:200]))}}...">
-<meta itemprop="image" content="{{post.Cover}}">
-<meta property="og:type" content="website">
-<meta property="og:title" content="مقاله {{post.Persian_Name}} از بلاگ اِرج">
-<meta property="og:description" content="{{smart_description_preview_splitted_by_word(120,html_to_text((post.Text)[0:200]))}}...">
-<meta property="og:image" content="{{post.Cover}}">
-<meta name="twitter:title" content="مقاله {{post.Persian_Name}} از بلاگ اِرج">
-<meta name="twitter:description" content="{{smart_description_preview_splitted_by_word(120,html_to_text((post.Text)[0:200]))}}...">
-<meta name="twitter:image" content="{{post.Cover}}">
-<meta name="description" content="{{smart_description_preview_splitted_by_word(120,html_to_text((post.Text)[0:200]))}}...">
-{% endblock %}
+
+{% block image_in_metatag %}{{post.Cover}}{% endblock %}
+{% block description_in_metatag %}{{smart_description_preview_splitted_by_word(120,html_to_text((post.Text)[0:200]))}}...{% endblock %}
 
 {% block main_css %}
 <link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
