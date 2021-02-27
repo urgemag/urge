@@ -94,7 +94,7 @@
         border-bottom-left-radius: 24%;
         background-size: cover;
         display: flex;
-        /* box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px; */
+         box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px; 
     }
 
     .black-cover{
@@ -259,6 +259,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">پوزیشن تصویر</label>
+                                    <input oninput="changePositionPic()" required="required" id="positionPic" type="number" class="form-control" placeholder="50%" min="0" max="100">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 ">
                             <div class="form-group ">
                                 <div class="form-group ">
@@ -290,6 +298,16 @@
                                 </div>
                             </li>
                         </div>
+                        <!-- <div class="col-md-4" style="margin-top: 30px;">
+                            <li class="list-group-item">
+                                سایه های سیاه
+                                <div class="material-switch pull-right">
+                                    <input oninput="changeShadowColor()" id="someSwitchOptionDefault"
+                                        name="isShadowColorBlack" type="checkbox" checked="true">
+                                    <label for="someSwitchOptionDefault" class="label-default"></label>
+                                </div>
+                            </li>
+                        </div> -->
                     </div>
                 </div>
 
@@ -336,6 +354,19 @@
                         document.getElementsByClassName("black-cover")[0].style.opacity = document.getElementById("blackOpacity").value / 100
 
                     }
+                    function changePositionPic(){
+                        document.getElementsByClassName("main-image-page-intro")[0].style.backgroundPosition = document.getElementById("positionPic").value + "%"
+                    }
+                //     function changeShadowColor(){
+                //         if (document.getElementsByName("isShadowColorBlack")[0].checked) {
+                //             <style>
+                //             .text-post{
+                //                 box-shadow :rgb(0 0 0 / 100%) 5px 5px 1px;
+                //             }
+                //                 </style>
+                //         text-post.setAttribute("box-shadow", "rgb(0 0 0 / 100%) 5px 5px 1px;")
+                //     }
+                // }
                 </script>
 
 
