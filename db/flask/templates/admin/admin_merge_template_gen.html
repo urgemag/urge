@@ -97,6 +97,21 @@
         /* box-shadow: rgb(0 0 0 / 15%) 0px 0px 40px; */
     }
 
+    .black-cover{
+        background-color: black;
+        margin: auto;
+        height: 727px;
+        width: 727px;
+        margin-top: 0%;
+        border-top-left-radius: 0%;
+        border-top-right-radius: 24%;
+        border-bottom-right-radius: 24%;
+        border-bottom-left-radius: 24%;
+        display: table;
+        opacity: 0.2;
+        position: absolute;
+    }
+
 
     .p {
         font-family: kalameh;
@@ -119,6 +134,7 @@
         font-size: 96px;
         text-shadow: 2px 3px 20px rgba(0, 0, 0, 0.5);
         width: 560px;
+        position: relative;
     }
 
     .slider {
@@ -164,7 +180,7 @@
         height: 21%;
         margin-top: 2%;
         margin-left: 2%;
-        align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(149 157 165 / 41%) 0px 7px 48px;/* border-radius: 50px; */border-bottom-left-radius: 86px;
+        align-self: center;margin-top: 70%;margin-left: 20px;opacity: 0.8;box-shadow: rgb(0 0 0 / 27%) 0px 0px 38px;/* border-radius: 50px; */border-bottom-left-radius: 86px;
     }
 
     .title_text {
@@ -189,7 +205,7 @@
         margin-right: 100px;
         margin-left: -70px;
         backdrop-filter: blur(5px);
-        box-shadow: rgb(149 157 165 / 27%) 0px 0px 38px;
+        box-shadow: rgb(0 0 0 / 27%) 0px 0px 38px;
         height: max-content
     }
 </style>
@@ -232,6 +248,14 @@
                                             {% endfor %}
                                         </optgroup>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">سیاه بودن بک</label>
+                                    <input oninput="changeBlack()" required="required" id="blackOpacity" type="number" class="form-control" placeholder="20" min="0" max="100">
                                 </div>
                             </div>
                         </div>
@@ -308,6 +332,10 @@
                     function changeLogoPosition(){
                         document.getElementById("logoImage").style = ({{templates.logo_positions | safe}}[document.getElementById("logoPositionChooser").value])
                     }
+                    function changeBlack(){
+                        document.getElementsByClassName("black-cover")[0].style.opacity = document.getElementById("blackOpacity").value / 100
+
+                    }
                 </script>
 
 
@@ -323,6 +351,7 @@
             <!-- <div class="card" style="background-color: #f3f3f3;"> -->
             <div id="post" class="post" style="display: block !important;">
                 <div class="main-image-page-intro">
+                    <div class="black-cover"></div>
                     <img id="logoImage" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
 
                     <div id='templateElement' class="text">
