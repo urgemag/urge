@@ -47,8 +47,8 @@ Let's take care of .env files...
 
 ```sh
 cp .env.sample .env
-cp db/flask/.env.sample db/flask/.env
-cp db/flask/setting.py.sample db/flask/setting.py
+cp flask/.env.sample flask/.env
+cp flask/setting.py.sample flask/setting.py
 ```
 1st .env file contains your docker-compose data. fill it like this:
 ```
