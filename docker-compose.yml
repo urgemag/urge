@@ -4,7 +4,7 @@ services:
     image: flask
     container_name: flask
     volumes:
-      - ./db/flask:/app
+      - ./flask:/app
     build:
       context: .
       dockerfile: Dockerfile-flask
