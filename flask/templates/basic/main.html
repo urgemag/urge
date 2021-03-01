@@ -437,13 +437,18 @@
             }]
         }).start();
     }
+    function startSurvey() {
+        introJs().setOptions({
+            steps: [{
+                intro: "سلااااام! به پنل اِرج خیلی خیلی خوش اومدی."
+            }]
+        }).start();
+    }
+    startSurvey()
 </script>
 {% if g.first_visit %}
 <script>
     starthelp()
-</script>
-<script>
-    top_ten()
 </script>
 
 {% endif %} {% endblock %}
