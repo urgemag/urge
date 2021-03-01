@@ -267,7 +267,7 @@
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">پوزیشن تصویر X</label>
-                                    <input oninput="changePositionPic()" required="required" id="positionPic" type="number" class="form-control" placeholder="50%" min="0" max="100">
+                                    <input oninput="changeXPositionPic()" required="required" id="positionXPic" type="number" class="form-control" placeholder="50%" min="0" max="100">
                                 </div>
                             </div>
                         </div>
@@ -275,7 +275,7 @@
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">پوزیشن تصویر Y</label>
-                                    <input oninput="changePositionPic()" required="required" id="positionPic" type="number" class="form-control" placeholder="50%" min="0" max="100">
+                                    <input oninput="changeYPositionPic()" required="required" id="positionYPic" type="number" class="form-control" placeholder="50%" min="0" max="100">
                                 </div>
                             </div>
                         </div>
@@ -366,8 +366,11 @@
                         document.getElementsByClassName("black-cover")[0].style.opacity = document.getElementById("blackOpacity").value / 100
 
                     }
-                    function changePositionPic(){
-                        document.getElementsByClassName("main-image-page-intro")[0].style.backgroundPosition = document.getElementById("positionPic").value + "%"
+                    function changeXPositionPic(){
+                        document.getElementsByClassName("main-image-page-intro")[0].style = "background-position-x: " + document.getElementById("positionXPic").value + "%"
+                    }
+                    function changeYPositionPic(){
+                        document.getElementsByClassName("main-image-page-intro")[0].style = "background-position-y: " + document.getElementById("positionYPic").value + "%"
                     }
                 //     function changeShadowColor(){
                 //         if (document.getElementsByName("isShadowColorBlack")[0].checked) {
