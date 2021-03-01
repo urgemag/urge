@@ -279,7 +279,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 ">
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">سایز عکس</label>
+                                    <input oninput="changeScalePic()" required="required" id="sizePic" type="number" class="form-control" placeholder="100%" min="1" max="300" value="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10 ">
                             <div class="form-group ">
                                 <div class="form-group ">
                                     <label class="form-label ">URL تصویر<p style="color: #ff0000; display: contents; ">
@@ -369,6 +377,10 @@
                     function changePositionPic(){
                         console.log(document.getElementById("positionXPic").value + "%" +" "+ document.getElementById("positionYPic").value + "%" )
                         document.getElementsByClassName("main-image-page-intro")[0].style.backgroundPosition = document.getElementById("positionXPic").value + "%" +" "+ document.getElementById("positionYPic").value + "%" 
+                    }
+                    function changeScalePic(){
+                        document.getElementsByClassName("main-image-page-intro")[0].style.backgroundSize = document.getElementById("sizePic").value + "%"
+
                     }
                 //     function changeShadowColor(){
                 //         if (document.getElementsByName("isShadowColorBlack")[0].checked) {
