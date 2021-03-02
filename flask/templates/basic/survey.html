@@ -1,0 +1,189 @@
+{% extends "base.html" %} {% block title %}پنل شخصی موفقیت اِرج - نظرسنجی{% endblock %}
+{% block no_header %}{% endblock %}
+{% block main_css %}
+<link href="/static//assets/css/style_of_main_page.css" rel="stylesheet" />
+<link href="/static//intro/introjs.min.css" rel="stylesheet" />
+<link href="/static//intro/introjs-rtl.min.css" rel="stylesheet" />
+<script src="/static//intro/intro.min.js"></script>
+
+<style>
+    .introjs-tooltiptext {
+        text-align: right;
+        font-family: 'iranyekan';
+        font-weight: 500;
+    }
+    
+    .introjs-button {
+        text-align: right;
+        font-family: 'iranyekan';
+        font-weight: 500;
+    }
+    
+    .index-card {
+        min-height: 94% !important;
+    }
+    
+    .center-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .survey-topic{
+        margin-top: 75%;
+        text-align: center;
+        font-weight: normal !important;
+        font-size: inherit;
+        background-color: #0000006b;
+        /* margin-block-end: 81px; */
+        height: 25%;
+        padding: 7px;
+        padding-top: 5%;
+        font-size: 18px;
+    }
+</style>
+{% endblock %}
+
+{% block image_in_metatag %}/static//assets/images/brand/logo.jpg{% endblock %}
+{% block description_in_metatag %}پنل و صفحه داشبورد وبسایت انگیزشی و الهام بخش ارج urge{% endblock %}
+
+{% block page_header_style %} style="margin: 0rem 0 0rem;" {% endblock %}
+{% block home_active_button %}
+<li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
+{% endblock %}
+ {% block body %}
+<!-- <script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://forbes400.herokuapp.com/api/forbes400/getAllBillionaires?limit=10";
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var top_ten_data = JSON.parse(this.responseText);
+            items = ["rank", "personName", "age", "countryOfCitizenship", "state", "city", "source", "finalWorth"];
+            for (rank = 0; rank < 10; rank++) {
+                top_ten_data[rank]["age"] = Math.floor((new Date()).getFullYear() - (new Date(top_ten_data[rank]["birthDate"])).getFullYear()) - 1
+                top_ten_data[rank]["finalWorth"] = top_ten_data[rank]["finalWorth"] + "M"
+
+                for (item_count = 0; item_count < 8; item_count++) {
+                    item = items[item_count]
+                    console.log()
+                    document.getElementById("top_ten_" + rank + "_" + item).innerHTML = top_ten_data[rank][item];
+                }
+            }
+        }
+    };
+
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+</script> -->
+
+<style>
+    .colorinput-color {
+    width: 12.75rem;
+    height: 12.75rem;
+    display: inline-block;
+    border: 1px solid rgba(107, 122, 144, 0.1);
+    color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.colorinput-color:before {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    height: 12.75rem;
+    width: 12.75rem;
+    transition: .3s opacity;
+    background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E) no-repeat center center/50% 50%;
+    background-color: #00000042;
+}
+
+</style>
+
+<div class="row">
+    <div class="col-sm-12 col-lg-12 col-xl-6">
+        <div class="row">
+            <form id='survey-form' method="POST">
+
+                <div class="col-sm-12 col-lg-12 col-xl-12">
+                    <div class="card index-card">
+                        <div class="form-group m-0">
+                            <div class="row gutters-xs" style="justify-content: center;">
+                                
+                                {% for topic in survey.topics %}
+                                {% set topic_image = survey.topics[topic] %}
+                                {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
+                                <div class="col-auto" style="margin: 6px;">
+                                    <label class="colorinput">
+                                        <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
+                                        <span style="   
+                                        background-image: url({{topic_image}});
+                                        background-size: cover;
+                                        background-position: center;" class="colorinput-color bg-{{random_color}}">
+                                        <p class="survey-topic">{{topic}}</p>
+                                    </span>
+                                    </label>
+                                </div>
+
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <a onclick="formData()" class="btn btn-success" style=" width: 100%; font-weight: bold !important; color:#fff">تمام!</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<script>
+    function formData(){
+
+        topics = JSON.parse('{{ survey.topics | tojson | safe}}')
+        topics_form = {}
+        for (var key in topics){
+            topics_form[key] = document.getElementsByName(key)[0].checked
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(topics_form));
+    }
+
+    function starthelp() {
+        introJs().setOptions({
+            steps: [{
+                intro: "سلااااام! به پنل اِرج خیلی خیلی خوش اومدی."
+            }, {
+                element: document.getElementById('signup'),
+                intro: "شما میتونید از اینجا ثبت نام کنید."
+            }, {
+                element: document.getElementById('login'),
+                intro: "اگر هم قبلا ثبت نام کردید و عضوی از خانواده اِرج هستید, از اینجا میتونید لاگین کنید."
+            }, {
+                element: document.getElementById('courses_bigger_button'),
+                intro: "اگر میخواید دوره هارو نگاه کنید, از اینجا اقدام کنید."
+            }]
+        }).start();
+    }
+    function startSurvey() {
+        introJs().setOptions({
+            steps: [{
+                html: '  <div class="row gutters-xs"> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="azure" class="colorinput-input" checked=""> <span class="colorinput-color bg-azure"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="indigo" class="colorinput-input"> <span class="colorinput-color bg-indigo"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="purple" class="colorinput-input"> <span class="colorinput-color bg-purple"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="pink" class="colorinput-input"> <span class="colorinput-color bg-pink"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="red" class="colorinput-input"> <span class="colorinput-color bg-red"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="orange" class="colorinput-input"> <span class="colorinput-color bg-orange"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="yellow" class="colorinput-input"> <span class="colorinput-color bg-yellow"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="lime" class="colorinput-input"> <span class="colorinput-color bg-lime"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="green" class="colorinput-input"> <span class="colorinput-color bg-green"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="teal" class="colorinput-input"> <span class="colorinput-color bg-teal"></span> </label> </div> </div>  '
+            }]
+        }).start();
+    }
+    // startSurvey()
+</script>
+{% if g.first_visit %}
+<script>
+    starthelp()
+</script>
+
+{% endif %} {% endblock %}
