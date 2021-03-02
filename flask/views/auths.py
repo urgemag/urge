@@ -1,5 +1,5 @@
 import requests
-from flask import Blueprint, session, redirect, render_template, request
+from flask import Blueprint, session, redirect, render_template, request, abort
 from models import Authentication
 import setting
 import json
@@ -36,7 +36,7 @@ def login_form():
 
     # Handle Wrong Form Data
     except KeyError:
-        return "Form Data is wrong"
+        abort(400)
 
     # Handle Wrong ReCaptcha
     if not google_response["success"]:
@@ -92,7 +92,7 @@ def signup_form():
 
     # Handle Wrong Form Data
     except KeyError:
-        return "Form Data is wrong"
+        abort(400)
 
     # Handle Wrong ReCaptcha
     if not google_response["success"]:
