@@ -146,14 +146,14 @@
                         </div>
 
                     </div>
-                    <a onclick="formData()" class="btn btn-success" style=" width: 100%; font-weight: bold !important; color:#fff">تمام!</a>
+                    <a onclick="submitFormSurvey()" class="btn btn-success" style=" width: 100%; font-weight: bold !important; color:#fff">تمام!</a>
                 </div>
             </form>
 
 </div>
 
 <script>
-    function formData(){
+    function submitFormSurvey(){
 
         topics = JSON.parse('{{ survey.topics | tojson | safe}}')
         topics_form = {}
