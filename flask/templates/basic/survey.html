@@ -40,6 +40,8 @@
         padding: 7px;
         padding-top: 5%;
         font-size: 18px;
+        border-bottom-right-radius: 24px;
+        border-bottom-left-radius: 24px
     }
     .gentle-act{
         -webkit-transition: 1.2s ease-in-out;
@@ -133,8 +135,10 @@
         <div class="col-sm-12 col-lg-12 col-xl-12">
 
             <div class="card index-card">
+                
                 <div class="form-group m-0">
-                    <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
+                    <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
+                    <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
                     <h3 style="
                     text-align-last: center;
                     margin-top: 12px;
@@ -151,6 +155,7 @@
                             <label class="colorinput">
                                 <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
                                 <span style="   
+                                        border-radius: 25px;
                                         background-image: url({{topic_image}});
                                         background-size: cover;
                                         background-position: center;" class="colorinput-color bg-{{random_color}}">
