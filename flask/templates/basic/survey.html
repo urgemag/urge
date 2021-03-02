@@ -12,23 +12,24 @@
         font-family: 'iranyekan';
         font-weight: 500;
     }
-    
+
     .introjs-button {
         text-align: right;
         font-family: 'iranyekan';
         font-weight: 500;
     }
-    
+
     .index-card {
         min-height: 94% !important;
     }
-    
+
     .center-div {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .survey-topic{
+
+    .survey-topic {
         margin-top: 75%;
         text-align: center;
         font-weight: normal !important;
@@ -50,7 +51,7 @@
 {% block home_active_button %}
 <li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
 {% endblock %}
- {% block body %}
+{% block body %}
 <!-- <script>
     var xmlhttp = new XMLHttpRequest();
     var url = "https://forbes400.herokuapp.com/api/forbes400/getAllBillionaires?limit=10";
@@ -79,35 +80,35 @@
 
 <style>
     .colorinput-color {
-    width: 12.75rem;
-    height: 12.75rem;
-    display: inline-block;
-    border: 1px solid rgba(107, 122, 144, 0.1);
-    color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
+        width: 12.75rem;
+        height: 12.75rem;
+        display: inline-block;
+        border: 1px solid rgba(107, 122, 144, 0.1);
+        color: #fff;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
 
-.colorinput-color:before {
-    content: '';
-    opacity: 0;
-    position: absolute;
-    top: 0rem;
-    left: 0rem;
-    height: 12.75rem;
-    width: 12.75rem;
-    transition: .3s opacity;
-    background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E) no-repeat center center/50% 50%;
-    background-color: #00000042;
-}
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
-}
+    .colorinput-color:before {
+        content: '';
+        opacity: 0;
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        height: 12.75rem;
+        width: 12.75rem;
+        transition: .3s opacity;
+        background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E) no-repeat center center/50% 50%;
+        background-color: #00000042;
+    }
 
+    .stop-scrolling {
+        height: 100%;
+        overflow: hidden;
+    }
 </style>
 <script>
     $('body').addClass("stop-scrolling")
-    $('body').bind('touchmove', function(e){e.preventDefault()})
+    $('body').bind('touchmove', function (e) { e.preventDefault() })
 
     $('body').removeClass("stop-scrolling")
     $('body').unbind('touchmove')
@@ -115,54 +116,56 @@
 <div style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
 
 </div>
-<div class="row" style="position: fixed; z-index: 1031;right: 0;left: 0%;top: 15%;max-width: 75; max-width: 950px;bottom: 0;margin: auto;">
-            <form id='survey-form' method="POST">
+<div class="row"
+    style="position: fixed; z-index: 1031;right: 0;left: 0%;top: 15%;max-width: 75; max-width: 950px;bottom: 0;margin: auto;">
+    <form id='survey-form' method="POST">
 
-                <div class="col-sm-12 col-lg-12 col-xl-12">
-                    <div class="card index-card">
-                        <div class="form-group m-0">
-                            <div class="row gutters-xs" style="justify-content: center;">
-                                
-                                {% for topic in survey.topics %}
-                                {% set topic_image = survey.topics[topic] %}
-                                {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
-                                <div class="col-auto" style="margin: 6px;">
-                                    <label class="colorinput">
-                                        <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
-                                        <span style="   
+        <div class="col-sm-12 col-lg-12 col-xl-12">
+            <div class="card index-card">
+                <div class="form-group m-0">
+                    <div class="row gutters-xs" style="justify-content: center;">
+
+                        {% for topic in survey.topics %}
+                        {% set topic_image = survey.topics[topic] %}
+                        {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
+                        <div class="col-auto" style="margin: 6px;">
+                            <label class="colorinput">
+                                <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
+                                <span style="   
                                         background-image: url({{topic_image}});
                                         background-size: cover;
                                         background-position: center;" class="colorinput-color bg-{{random_color}}">
-                                        <p class="survey-topic">{{topic}}</p>
-                                    </span>
-                                    </label>
-                                </div>
-
-
-                                {% endfor %}
-
-                            </div>
-
+                                    <p class="survey-topic">{{topic}}</p>
+                                </span>
+                            </label>
                         </div>
-                        <a onclick="submitFormSurvey()" class="btn btn-success" style=" width: 100%; font-weight: bold !important; color:#fff; margin-top: 30px; border-top-left-radius: 20px;border-top-right-radius: 20px;">تمام!</a>
+
+
+                        {% endfor %}
+
                     </div>
+
                 </div>
-            </form>
+                <a onclick="submitFormSurvey()" class="btn btn-success"
+                    style=" width: 100%; font-weight: bold !important; color:#fff; margin-top: 30px; border-top-left-radius: 20px;border-top-right-radius: 20px;">تمام!</a>
+            </div>
+        </div>
+    </form>
 
 </div>
 
 <script>
-    function submitFormSurvey(){
+    function submitFormSurvey() {
 
         topics = JSON.parse('{{ survey.topics | tojson | safe}}')
         topics_form = {}
-        for (var key in topics){
+        for (var key in topics) {
             topics_form[key] = document.getElementsByName(key)[0].checked
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/survey", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(topics_form));
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/survey", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(topics_form));
     }
 
     function starthelp() {
