@@ -2364,6 +2364,9 @@ class PageDetails:
         random_blog_post = random.choice(all_blog_posts)
         return random_blog_post
 
+    def get_survey_json_data(self):
+        return General().open_json_file("static/assets/survey/survey.json")
+
 
 class Tools:
     ***REMOVED*** All tools functions ***REMOVED***
