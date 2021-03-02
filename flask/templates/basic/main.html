@@ -103,47 +103,59 @@
 </style>
 
 <div class="row">
-
     <div class="col-sm-12 col-lg-12 col-xl-6">
-
-
         <div class="row">
-            <div class="col-sm-12 col-lg-12 col-xl-12">
-                <div class="card index-card">
-                    
+            <form id='survey-form' method="POST">
 
-                    <div class="form-group m-0">
-                        <div class="row gutters-xs" style="justify-content: center;">
-                            
-                            {% for topic in survey.topics %}
-                            {% set topic_image = survey.topics[topic] %}
-                            {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
-                            <div class="col-auto">
-                                <label class="colorinput">
-                                    <input name="color" type="checkbox" value="red" class="colorinput-input">
-                                    <span style="   
-                                    background-image: url({{topic_image}});
-                                    background-size: cover;
-                                    background-position: center;" class="colorinput-color bg-{{random_color}}">
-                                    <p class="survey-topic">{{topic}}</p>
-                                </span>
-                                </label>
+                <div class="col-sm-12 col-lg-12 col-xl-12">
+                    <div class="card index-card">
+                        <div class="form-group m-0">
+                            <div class="row gutters-xs" style="justify-content: center;">
+                                
+                                {% for topic in survey.topics %}
+                                {% set topic_image = survey.topics[topic] %}
+                                {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
+                                <div class="col-auto" style="margin: 6px;">
+                                    <label class="colorinput">
+                                        <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
+                                        <span style="   
+                                        background-image: url({{topic_image}});
+                                        background-size: cover;
+                                        background-position: center;" class="colorinput-color bg-{{random_color}}">
+                                        <p class="survey-topic">{{topic}}</p>
+                                    </span>
+                                    </label>
+                                </div>
+
+
+                                {% endfor %}
+
                             </div>
 
-
-                            {% endfor %}
-
                         </div>
+
                     </div>
-
-
+                    <a onclick="formData()" class="btn btn-success" style=" width: 100%; font-weight: bold !important; color:#fff">تمام!</a>
                 </div>
-            </div>
-           
+            </form>
+
         </div>
     </div>
 </div>
 <script>
+    function formData(){
+
+        topics = JSON.parse('{{ survey.topics | tojson | safe}}')
+        topics_form = {}
+        for (var key in topics){
+            topics_form[key] = document.getElementsByName(key)[0].checked
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(topics_form));
+    }
+
     function starthelp() {
         introJs().setOptions({
             steps: [{
