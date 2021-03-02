@@ -151,7 +151,7 @@
             topics_form[key] = document.getElementsByName(key)[0].checked
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/", true);
+    xhr.open("POST", "/survey", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(topics_form));
     }

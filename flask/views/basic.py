@@ -43,10 +43,18 @@ def index():
         random_blog_post = PageDetails().get_random_blog_post(),
         survey = PageDetails().get_survey_json_data()
         )
-    
-@basic.route("/survey")
+
+@basic.route("/survey",methods=["POST", "GET"])
 @first_visit
 def survey_topics():
+    if request.method == "POST":
+        request_args = request.get_json()
+        topics = PageDetails().get_survey_json_data()["topics"]
+        user_survey_answer = {}
+        for topic in topics:
+            user_survey_answer[topic] = request_args[topic]
+        return str(user_survey_answer)
+        
     return render_template(
         "basic/survey.html", 
         details=PageDetails(session).index_data(),
