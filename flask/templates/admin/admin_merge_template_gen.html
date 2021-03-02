@@ -287,6 +287,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">سایز فونت</label>
+                                    <input oninput="changeFontsize()" required="required" id="font-size" type="number" class="form-control" placeholder="100%" min="1" value="35">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-10 ">
                             <div class="form-group ">
                                 <div class="form-group ">
@@ -366,6 +374,9 @@
                         document.getElementsByClassName("main-image-page-intro")[0].innerHTML = document.getElementsByClassName("main-image-page-intro")[0].innerHTML + ({{templates.posts_templates | safe}}[document.getElementById("template").value])
                         changeText()
                         changePicture()
+                        changeLogoPosition()
+                        changeBlack()
+                        changeScalePic()
                     }
                     function changeLogoPosition(){
                         document.getElementById("logoImage").style = ({{templates.logo_positions | safe}}[document.getElementById("logoPositionChooser").value])
@@ -381,6 +392,9 @@
                     function changeScalePic(){
                         document.getElementsByClassName("main-image-page-intro")[0].style.backgroundSize = document.getElementById("sizePic").value + "%"
 
+                    }
+                    function changeFontsize(){
+                        document.getElementById("main-text").style.fontSize = document.getElementById("font-size").value + "px"
                     }
                 //     function changeShadowColor(){
                 //         if (document.getElementsByName("isShadowColorBlack")[0].checked) {
@@ -411,7 +425,7 @@
                     <img id="logoImage" class="logo" src="/static/instagram_collection_maker/template/logo/Logo.png">
 
                     <div id='templateElement' class="text">
-                        <p class="title_text"> با ما پست هاتونو بسازید! </p>
+                        <p id="main-text" class="title_text"> با ما پست هاتونو بسازید! </p>
                     </div>
                 </div>
                 <div class="text slider">
