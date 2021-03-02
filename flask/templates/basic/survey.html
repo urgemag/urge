@@ -53,6 +53,32 @@
         -moz-transition: 0.5s ease-in-out;
         -o-transition: 0.5s ease-in-out;
     }
+    @media (max-width: 688px) {
+    .auto-resizer{
+        transform: scale(0.75);
+        margin-right: -22px !important;
+        margin-left: -22px !important;
+        margin-top: -22px !important;
+        margin-bottom: -10px !important;
+    }
+    @media (max-width: 502px) {
+    .auto-resizer{
+        transform: scale(0.6);
+        margin-right: -37px !important;
+        margin-left: -37px !important;
+        margin-top: -37px !important;
+        margin-bottom: -25px !important;
+    }
+    @media (max-width: 442px) {
+    .survey-popup{
+        opacity: 0;
+    }
+    .black-cover{
+        opacity: 0;
+    }
+    }
+    
+
 </style>
 {% endblock %}
 
@@ -125,11 +151,11 @@
     $('body').removeClass("stop-scrolling")
     $('body').unbind('touchmove')
 </script>
-<div class="gentle-act" id="black-cover" style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
+<div class="gentle-act black-cover" id="black-cover" style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
 
 </div>
 
-<div id="survey-popup" class="row gentle-act-faster"
+<div id="survey-popup" class="survey-popup row gentle-act-faster"
     style="position: fixed; z-index: 1031;right: 0;left: 0%;top: 15%;max-width: 75; max-width: 950px;bottom: 0;margin: auto;">
     <form id='survey-form' method="POST">
         <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -151,7 +177,7 @@
                         {% for topic in survey.topics %}
                         {% set topic_image = survey.topics[topic] %}
                         {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
-                        <div class="col-auto" style="margin: 6px;">
+                        <div class="col-auto auto-resizer" style="margin: 6px;">
                             <label class="colorinput">
                                 <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
                                 <span style="   
