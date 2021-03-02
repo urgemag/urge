@@ -40,7 +40,8 @@ def index():
         number_of_courses = PageDetails().number_of_courses(),
         top_courses = PageDetails().top_3_expensive_courses(),
         quotes = PageDetails().random_quotes(),
-        random_blog_post = PageDetails().get_random_blog_post()
+        random_blog_post = PageDetails().get_random_blog_post(),
+        survey = PageDetails().get_survey_json_data()
         )
     
 

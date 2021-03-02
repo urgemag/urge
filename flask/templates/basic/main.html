@@ -114,46 +114,25 @@
 
                     <div class="form-group m-0">
                         <div class="row gutters-xs" style="justify-content: center;">
-                            <div class="col-auto">
-                                <label class="colorinput">
-                                    <input name="color" type="checkbox" value="red" class="colorinput-input">
-                                    <span style="   
-                                    background-image: url(https://cdn.dribbble.com/users/1301149/screenshots/3495067/icon2.png?compress=1&resize=800x600);
-                                    background-size: cover;
-                                    background-position: center;" class="colorinput-color bg-red">
-                                    <p class="survey-topic">هدف ریزی</p>
-                                </span>
-
-                                </label>
-                            </div>
                             
-
+                            {% for topic in survey.topics %}
+                            {% set topic_image = survey.topics[topic] %}
+                            {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
                             <div class="col-auto">
                                 <label class="colorinput">
                                     <input name="color" type="checkbox" value="red" class="colorinput-input">
                                     <span style="   
-                                    background-image: url(https://cdn.dribbble.com/users/1301149/screenshots/3495067/icon2.png?compress=1&resize=800x600);
+                                    background-image: url({{topic_image}});
                                     background-size: cover;
-                                    background-position: center;" class="colorinput-color bg-red">
-                                    <p class="survey-topic">هدف ریزی</p>
+                                    background-position: center;" class="colorinput-color bg-{{random_color}}">
+                                    <p class="survey-topic">{{topic}}</p>
                                 </span>
-
                                 </label>
                             </div>
 
 
-                            <div class="col-auto">
-                                <label class="colorinput">
-                                    <input name="color" type="checkbox" value="red" class="colorinput-input">
-                                    <span style="   
-                                    background-image: url(https://cdn.dribbble.com/users/1301149/screenshots/3495067/icon2.png?compress=1&resize=800x600);
-                                    background-size: cover;
-                                    background-position: center;" class="colorinput-color bg-red">
-                                    <p class="survey-topic">هدف ریزی</p>
-                                </span>
+                            {% endfor %}
 
-                                </label>
-                            </div>
                         </div>
                     </div>
 
