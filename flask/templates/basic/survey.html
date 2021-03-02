@@ -41,6 +41,16 @@
         padding-top: 5%;
         font-size: 18px;
     }
+    .gentle-act{
+        -webkit-transition: 1.2s ease-in-out;
+        -moz-transition: 1.2s ease-in-out;
+        -o-transition: 1.2s ease-in-out;
+    }
+    .gentle-act-faster{
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+    }
 </style>
 {% endblock %}
 
@@ -113,11 +123,11 @@
     $('body').removeClass("stop-scrolling")
     $('body').unbind('touchmove')
 </script>
-<div style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
+<div class="gentle-act" id="black-cover" style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
 
 </div>
 
-<div class="row"
+<div id="survey-popup" class="row gentle-act-faster"
     style="position: fixed; z-index: 1031;right: 0;left: 0%;top: 15%;max-width: 75; max-width: 950px;bottom: 0;margin: auto;">
     <form id='survey-form' method="POST">
         <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -175,8 +185,13 @@
         xhr.open("POST", "/survey", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(topics_form));
-    }
 
+        hidePopup()
+    }
+    function hidePopup(){
+        document.getElementById("survey-popup").style.opacity = "0"
+        document.getElementById("black-cover").style.opacity = "0"
+    }
     function starthelp() {
         introJs().setOptions({
             steps: [{
