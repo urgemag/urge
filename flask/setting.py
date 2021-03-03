@@ -6,7 +6,7 @@
 ***REMOVED***
 
 ***REMOVED***
-load_dotenv(dotenv_path="../../.env")
+***REMOVED***
 
 ***REMOVED***
 
