@@ -6,6 +6,42 @@
 <link href="/static//intro/introjs-rtl.min.css" rel="stylesheet" />
 <script src="/static//intro/intro.min.js"></script>
 
+{% endblock %}
+
+{% block image_in_metatag %}/static//assets/images/brand/logo.jpg{% endblock %}
+{% block description_in_metatag %}پنل و صفحه داشبورد وبسایت انگیزشی و الهام بخش ارج urge{% endblock %}
+
+{% block page_header_style %} style="margin: 0rem 0 0rem;" {% endblock %}
+{% block home_active_button %}
+<li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
+{% endblock %}
+{% block body %}
+<!-- <script>
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://forbes400.herokuapp.com/api/forbes400/getAllBillionaires?limit=10";
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var top_ten_data = JSON.parse(this.responseText);
+            items = ["rank", "personName", "age", "countryOfCitizenship", "state", "city", "source", "finalWorth"];
+            for (rank = 0; rank < 10; rank++) {
+                top_ten_data[rank]["age"] = Math.floor((new Date()).getFullYear() - (new Date(top_ten_data[rank]["birthDate"])).getFullYear()) - 1
+                top_ten_data[rank]["finalWorth"] = top_ten_data[rank]["finalWorth"] + "M"
+
+                for (item_count = 0; item_count < 8; item_count++) {
+                    item = items[item_count]
+                    console.log()
+                    document.getElementById("top_ten_" + rank + "_" + item).innerHTML = top_ten_data[rank][item];
+                }
+            }
+        }
+    };
+
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+</script> -->
+
 <style>
     .introjs-tooltiptext {
         text-align: right;
@@ -82,42 +118,6 @@
     
 
 </style>
-{% endblock %}
-
-{% block image_in_metatag %}/static//assets/images/brand/logo.jpg{% endblock %}
-{% block description_in_metatag %}پنل و صفحه داشبورد وبسایت انگیزشی و الهام بخش ارج urge{% endblock %}
-
-{% block page_header_style %} style="margin: 0rem 0 0rem;" {% endblock %}
-{% block home_active_button %}
-<li><a href="/" class="active" title="home"><i class="fa fa-home fs-17"></i></a></li>
-{% endblock %}
-{% block body %}
-<!-- <script>
-    var xmlhttp = new XMLHttpRequest();
-    var url = "https://forbes400.herokuapp.com/api/forbes400/getAllBillionaires?limit=10";
-
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var top_ten_data = JSON.parse(this.responseText);
-            items = ["rank", "personName", "age", "countryOfCitizenship", "state", "city", "source", "finalWorth"];
-            for (rank = 0; rank < 10; rank++) {
-                top_ten_data[rank]["age"] = Math.floor((new Date()).getFullYear() - (new Date(top_ten_data[rank]["birthDate"])).getFullYear()) - 1
-                top_ten_data[rank]["finalWorth"] = top_ten_data[rank]["finalWorth"] + "M"
-
-                for (item_count = 0; item_count < 8; item_count++) {
-                    item = items[item_count]
-                    console.log()
-                    document.getElementById("top_ten_" + rank + "_" + item).innerHTML = top_ten_data[rank][item];
-                }
-            }
-        }
-    };
-
-
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-</script> -->
-
 <style>
     .colorinput-color {
         width: 12.75rem;
