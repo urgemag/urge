@@ -43,35 +43,27 @@ def index():
         survey = PageDetails().get_survey_json_data()
         )
 
-@basic.route("/survey",methods=["POST", "GET"])
+@basic.route("/survey",methods=["POST"])
 @first_visit
 def survey_topics():
-    if request.method == "POST":
-        if session.get("logged_in"):
-            identity = session["Data"]["Email"]
-        else:
-            identity = "unknown"
-        user_ip_address = request.remote_addr
-        request_args = request.get_json()
-        topics = PageDetails().get_survey_json_data()["topics"]
-        user_survey_answer = {}
-        for topic in topics:
-            user_survey_answer[topic] = request_args[topic]
-        Database().add_user_survey_answer_to_db(
-            user_ip_address,
-            identity,
-            dumps(user_survey_answer)
-        )
-        Authentication(session).user_answered_survey()
-        return redirect("/")
+    if session.get("logged_in"):
+        identity = session["Data"]["Email"]
+    else:
+        identity = "unknown"
+    user_ip_address = request.remote_addr
+    request_args = request.get_json()
+    topics = PageDetails().get_survey_json_data()["topics"]
+    user_survey_answer = {}
+    for topic in topics:
+        user_survey_answer[topic] = request_args[topic]
+    Database().add_user_survey_answer_to_db(
+        user_ip_address,
+        identity,
+        dumps(user_survey_answer)
+    )
+    Authentication(session).user_answered_survey()
+    return redirect("/")
 
-    return render_template(
-        "basic/survey.html", 
-        number_of_courses = PageDetails().number_of_courses(),
-        top_courses = PageDetails().top_3_expensive_courses(),
-        quotes = PageDetails().random_quotes(),
-        random_blog_post = PageDetails().get_random_blog_post(),
-        )
     
 
 @basic.route("/aboutus")
