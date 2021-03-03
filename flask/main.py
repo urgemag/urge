@@ -60,6 +60,8 @@ app.config.update(
 recaptcha = ReCaptcha(app=app)
 def essential_user_details():
     g.details = PageDetails(session).index_data()
+def survey_data():
+    g.survey = PageDetails().get_survey_json_data()
 
 app.before_request(essential_user_details)
 # registering blueprints
