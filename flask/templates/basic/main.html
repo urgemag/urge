@@ -520,99 +520,101 @@
         overflow: hidden;
     }
 </style>
-<script>
-    $('body').addClass("stop-scrolling")
-    $('body').bind('touchmove', function (e) { e.preventDefault() })
+{% if g.survey %}
+    <script>
+        $('body').addClass("stop-scrolling")
+        $('body').bind('touchmove', function (e) { e.preventDefault() })
 
-</script>
-<div class="gentle-act black-cover" onclick="hidePopup()" id="black-cover" style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
+    </script>
+    <div class="gentle-act black-cover" onclick="hidePopup()" id="black-cover" style="position: fixed; z-index: 1030; left: 0;right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7);">
 
-</div>
+    </div>
 
-<div id="survey-popup" class="survey-popup row gentle-act-faster"
-    style="position: fixed; z-index: 1031;right: 0;left: 0%;top: 15%;max-width: 75; max-width: 950px;bottom: 0;margin: auto;">
-    <form id='survey-form' method="POST">
-        <div class="col-sm-12 col-lg-12 col-xl-12">
+    <div id="survey-popup" class="survey-popup row gentle-act-faster"
+        style="position: fixed; z-index: 1031;right: 0;left: 0%;top: 15%;max-width: 75; max-width: 950px;bottom: 0;margin: auto;">
+        <form id='survey-form' method="POST">
+            <div class="col-sm-12 col-lg-12 col-xl-12">
 
-            <div class="card index-card">
-                
-                <div class="form-group m-0">
-                    <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
-                    <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
-                    <h3 style="
-                    text-align-last: center;
-                    margin-top: 12px;
-                    margin-right: 35px;
-                    margin-bottom: 20px;
-                    margin-left: 35px;
-                "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
-                    <div class="row gutters-xs" style="justify-content: center;">
+                <div class="card index-card">
+                    
+                    <div class="form-group m-0">
+                        <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
+                        <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
+                        <h3 style="
+                        text-align-last: center;
+                        margin-top: 12px;
+                        margin-right: 35px;
+                        margin-bottom: 20px;
+                        margin-left: 35px;
+                    "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
+                        <div class="row gutters-xs" style="justify-content: center;">
 
-                        {% for topic in survey.topics %}
-                        {% set topic_image = survey.topics[topic] %}
-                        {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
-                        <div class="col-auto auto-resizer" style="margin: 6px;">
-                            <label class="colorinput">
-                                <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
-                                <span style="   
-                                        border-radius: 25px;
-                                        background-image: url({{topic_image}});
-                                        background-size: cover;
-                                        background-position: center;" class="colorinput-color bg-{{random_color}}">
-                                    <p class="survey-topic">{{topic}}</p>
-                                </span>
-                            </label>
+                            {% for topic in survey.topics %}
+                            {% set topic_image = survey.topics[topic] %}
+                            {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
+                            <div class="col-auto auto-resizer" style="margin: 6px;">
+                                <label class="colorinput">
+                                    <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
+                                    <span style="   
+                                            border-radius: 25px;
+                                            background-image: url({{topic_image}});
+                                            background-size: cover;
+                                            background-position: center;" class="colorinput-color bg-{{random_color}}">
+                                        <p class="survey-topic">{{topic}}</p>
+                                    </span>
+                                </label>
+                            </div>
+
+
+                            {% endfor %}
+
                         </div>
 
-
-                        {% endfor %}
-
                     </div>
-
+                    <a onclick="submitFormSurvey()" class="btn btn-success"
+                        style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
                 </div>
-                <a onclick="submitFormSurvey()" class="btn btn-success"
-                    style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
             </div>
-        </div>
-    </form>
+        </form>
 
-</div>
+    </div>
 
-<script>
-    function submitFormSurvey() {
+    <script>
+        function submitFormSurvey() {
 
-        topics = JSON.parse('{{ survey.topics | tojson | safe}}')
-        topics_form = {}
-        for (var key in topics) {
-            topics_form[key] = document.getElementsByName(key)[0].checked
+            topics = JSON.parse('{{ survey.topics | tojson | safe}}')
+            topics_form = {}
+            for (var key in topics) {
+                topics_form[key] = document.getElementsByName(key)[0].checked
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/survey", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(topics_form));
+
+            hidePopup()
         }
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/survey", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(topics_form));
+        function hidePopup(){
+            document.getElementById("survey-popup").style.opacity = "0"
+            document.getElementById("black-cover").style.opacity = "0"
+            $('body').removeClass("stop-scrolling")
+            $('body').unbind('touchmove')
+            var delayInMilliseconds = 1000;
+                setTimeout(function() {
+                    document.getElementById("black-cover").style.display = "None"
+                }, delayInMilliseconds);
 
-        hidePopup()
-    }
-    function hidePopup(){
-        document.getElementById("survey-popup").style.opacity = "0"
-        document.getElementById("black-cover").style.opacity = "0"
-        $('body').removeClass("stop-scrolling")
-        $('body').unbind('touchmove')
-        var delayInMilliseconds = 1000;
-            setTimeout(function() {
-                document.getElementById("black-cover").style.display = "None"
-            }, delayInMilliseconds);
-
-    }
-    function startSurvey() {
-        introJs().setOptions({
-            steps: [{
-                html: '  <div class="row gutters-xs"> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="azure" class="colorinput-input" checked=""> <span class="colorinput-color bg-azure"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="indigo" class="colorinput-input"> <span class="colorinput-color bg-indigo"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="purple" class="colorinput-input"> <span class="colorinput-color bg-purple"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="pink" class="colorinput-input"> <span class="colorinput-color bg-pink"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="red" class="colorinput-input"> <span class="colorinput-color bg-red"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="orange" class="colorinput-input"> <span class="colorinput-color bg-orange"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="yellow" class="colorinput-input"> <span class="colorinput-color bg-yellow"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="lime" class="colorinput-input"> <span class="colorinput-color bg-lime"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="green" class="colorinput-input"> <span class="colorinput-color bg-green"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="teal" class="colorinput-input"> <span class="colorinput-color bg-teal"></span> </label> </div> </div>  '
-            }]
-        }).start();
-    }
-    // startSurvey()
-</script>
+        }
+        function startSurvey() {
+            introJs().setOptions({
+                steps: [{
+                    html: '  <div class="row gutters-xs"> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="azure" class="colorinput-input" checked=""> <span class="colorinput-color bg-azure"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="indigo" class="colorinput-input"> <span class="colorinput-color bg-indigo"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="purple" class="colorinput-input"> <span class="colorinput-color bg-purple"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="pink" class="colorinput-input"> <span class="colorinput-color bg-pink"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="red" class="colorinput-input"> <span class="colorinput-color bg-red"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="orange" class="colorinput-input"> <span class="colorinput-color bg-orange"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="yellow" class="colorinput-input"> <span class="colorinput-color bg-yellow"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="lime" class="colorinput-input"> <span class="colorinput-color bg-lime"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="green" class="colorinput-input"> <span class="colorinput-color bg-green"></span> </label> </div> <div class="col-auto"> <label class="colorinput"> <input name="color" type="checkbox" value="teal" class="colorinput-input"> <span class="colorinput-color bg-teal"></span> </label> </div> </div>  '
+                }]
+            }).start();
+        }
+        // startSurvey()
+    </script>
+{% endif %}
 <script>
     function starthelp() {
         introJs().setOptions({
@@ -631,10 +633,10 @@
         }).start();
     }
 </script>
-{% if g.first_visit %}
+<!-- {% if g.first_visit %}
 <script>
     starthelp()
-</script>
+</script> -->
 <script>
     top_ten()
 </script>
