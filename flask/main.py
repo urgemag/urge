@@ -61,20 +61,23 @@ recaptcha = ReCaptcha(app=app)
 def essential_user_details():
     g.details = PageDetails(session).index_data()
 def survey_data():
-    try:
-        survey_data_session = session["survey"]
-    except KeyError:
-        survey_data_session = 0
-        session["survey"] = survey_data_session
-        g.survey = True
-    if type(survey_data_session) == int:
-        if survey_data_session % 1 == 0:
-            g.survey = True
-        else:
-            g.survey = False
-        session["survey"] += 1 
+    if Authentication(session).has_user_answered_survey() is True:
+        g.survey = False
     else:
-        session["survey"] = 1
+        try:
+            survey_data_session = session["survey"]
+        except KeyError:
+            survey_data_session = 0
+            session["survey"] = survey_data_session
+            g.survey = True
+        if type(survey_data_session) == int:
+            if survey_data_session % 6 == 0:
+                g.survey = True
+            else:
+                g.survey = False
+            session["survey"] += 1 
+        else:
+            session["survey"] = 1
         
     g.survey_data = PageDetails().get_survey_json_data()
 

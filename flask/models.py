@@ -779,8 +779,22 @@ class Authentication:
         if Authentication(self.session).is_signed_in() and self.session.get("admin"):
             return True
         return False
+    
+    def user_answered_survey(self):
+        try:
+            self.session["Data"]
+        except KeyError:
+            self.session["Data"] = {}
 
+        self.session["Data"]["survey_answered"] = True
+        return True
 
+    def has_user_answered_survey(self):
+        try:
+            if self.session["Data"]["survey_answered"] is True:
+                return True
+        except:
+            return False
 class Database:
     ***REMOVED*** Every functions that work with database ( MongoDB ) ! ***REMOVED***
 
@@ -1005,6 +1019,17 @@ class Database:
                     {"Email": General().corect_form_of_email(email)}, new_values
                 )
 
+        return True
+
+    def add_user_survey_answer_to_db(self, user_ip_address, user_identity, user_survey_answer):
+        print (type(user_survey_answer))
+        self.database.survey.insert_one(
+            {
+                "ip_address": user_ip_address,
+                "identity": user_identity,
+                "survey_answer": user_survey_answer,
+            }
+        )
         return True
 
     def add_users_access_data_to_db(self, email, course_name):
