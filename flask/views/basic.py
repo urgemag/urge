@@ -31,16 +31,20 @@ def survey(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         try:
-            session["Visits"]
+            survey_data_session = session["survey"]
         except KeyError:
-            session["Visits"] = {}
-
-        try:
-            session["Visits"]["survey"]
-            g.survey = False
-        except KeyError:
-            session["Visits"]["survey"] = True
+            survey_data_session = 0
+            session["survey"] = survey_data_session
             g.survey = True
+
+        if type(survey_data_session) == int:
+            if survey_data_session % 3 == 0:
+                g.survey = True
+            else:
+                g.survey = False
+            session["survey"] += 1 
+        else:
+            session["survey"] = 1
 
         return f(*args, **kwargs)
 
