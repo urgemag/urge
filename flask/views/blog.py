@@ -20,7 +20,7 @@ def check_is_admin():
 
 @blog.route("/blog")
 def blog_index():
-    ***REMOVED*** The Blog ***REMOVED***
+    """ The Blog """
     posts_per_page = 9
     page = request.args.get("page")
     posts = Database().get_blog_posts_data_from_db()
@@ -51,7 +51,7 @@ def blog_index():
     
 @blog.route("/blog/<english_name>")
 def blog_post(english_name):
-    ***REMOVED*** One post from Blog ***REMOVED***
+    """ One post from Blog """
     post = Database().get_blog_post_data_from_db(english_name)
     if post is False:
         abort(404)
@@ -68,7 +68,7 @@ def blog_post(english_name):
 @blog.route("/uploader/ck/blog&responseType=json", methods=["POST", "GET"])
 @check_is_admin()
 def upload_blog_pic_ck():
-    ***REMOVED*** The Upload blog Api. ***REMOVED***
+    """ The Upload blog Api. """
     if request.method == "POST":
 
         uploaded_image = request.files.get("upload")

@@ -6,7 +6,7 @@ user = Blueprint("user", __name__)
 
 @user.route("/Profile")
 def profle():
-    ***REMOVED*** The Profile page. ***REMOVED***
+    """ The Profile page. """
 
     # Handle if signed in
     if not Authentication(session).is_signed_in():
@@ -19,7 +19,7 @@ def profle():
 
 @user.route("/ProfileSetting")
 def profle_setting():
-    ***REMOVED*** The Profile setting page. ***REMOVED***
+    """ The Profile setting page. """
 
     # Handle if signed in
     if not Authentication(session).is_signed_in():
@@ -32,7 +32,7 @@ def profle_setting():
 
 @user.route("/ProfileSettingUpdate", methods=["POST"])
 def profile_change_form():
-    ***REMOVED*** The Profile Data update or change Form Post Api. ***REMOVED***
+    """ The Profile Data update or change Form Post Api. """
 
     # Handle Form Data
     name = request.form.get("name")
@@ -59,7 +59,7 @@ def profile_change_form():
 
 @user.route("/UrgeMails")
 def urge_mails():
-    ***REMOVED*** The Mail page. ***REMOVED***
+    """ The Mail page. """
 
     # Handle if signed in
     if not Authentication(session).is_signed_in():

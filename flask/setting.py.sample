@@ -1,51 +1,51 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+"""
+The personal data to be used in the project.
+"""
+from dotenv import load_dotenv
+from os import getenv
+from distutils import util
 
-***REMOVED***
+load_dotenv()
 
 
-***REMOVED***
+production = getenv("PRODUCTION")
 
-***REMOVED***
+template_folder = "templates"
 
-***REMOVED***
+static_folder = "static"
 
 secret_key = b"SECRET‌ KEY"
 
 
-***REMOVED*** RECAPTCHA setting ***REMOVED***
+""" RECAPTCHA setting """
 
-***REMOVED***
-***REMOVED***
+recaptcha_enabled = True
+recaptcha_theme = "dark"
 recaptcha_public_key = "RECAPTCHA PUBLIC"
 recaptcha_secret_key = "RECAPTCHA‌ SECRET"
 
-***REMOVED*** end of RECAPTCHA setting ***REMOVED***
+""" end of RECAPTCHA setting """
 
-***REMOVED*** MONGODB setting ***REMOVED***
+""" MONGODB setting """
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+if production == "true":
+    mongodb_URI = f"mongodb://{getenv('MONGO_INITDB_ROOT_USERNAME')}:{getenv('MONGO_INITDB_ROOT_PASSWORD')}@mongodb_container:27017/"
+elif production == "false":
+    mongodb_URI = "mongodb://localhost:27017/"
 
 
-***REMOVED*** end of MONGODB setting ***REMOVED***
+""" end of MONGODB setting """
 
-***REMOVED*** ZARINPAL setting ***REMOVED***
+""" ZARINPAL setting """
 
 mmerchant_id = "ZARIN‌ PAL mmerchant ID"
-***REMOVED***
+zarinpal_webservice = "https://www.zarinpal.com/pg/services/WebGate/wsdl"
 
-***REMOVED*** end of ZARINPAL setting ***REMOVED***
+""" end of ZARINPAL setting """
 
-***REMOVED***
+debug_mode = getenv("DEBUG_MODE")
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+if debug_mode == "true":
+    debug_mode = True
+elif debug_mode == "false":
+    debug_mode = False

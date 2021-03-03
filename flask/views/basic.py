@@ -33,7 +33,7 @@ def first_visit(f):
 @basic.route("/dashboard")
 @first_visit
 def index():
-    ***REMOVED*** The Dashboard ***REMOVED***
+    """ The Dashboard """
     return render_template(
         "basic/main.html", 
         number_of_courses = PageDetails().number_of_courses(),
@@ -90,7 +90,7 @@ def survey_topics():
 @basic.route("/Urge")
 @basic.route("/Urge")
 def about_us():
-    ***REMOVED*** The about us page. ***REMOVED***
+    """ The about us page. """
     return render_template(
         "basic/about_us.html",
     )
@@ -99,7 +99,7 @@ def about_us():
 
 @basic.route("/MotivationWall")
 def motivational_sentences():
-    ***REMOVED*** The motivational wall sentences page. ***REMOVED***
+    """ The motivational wall sentences page. """
 
     # Handle if signed in
     if not Authentication(session).is_signed_in():

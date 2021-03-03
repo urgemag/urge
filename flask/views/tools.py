@@ -7,7 +7,7 @@ tools = Blueprint("tools", __name__)
 @tools.route("/tools")
 @tools.route("/tool")
 def tools_index():
-    ***REMOVED*** The Tools page ***REMOVED***
+    """ The Tools page """
     posts_per_page = 9
     page = request.args.get("page")
     posts = Database().get_all_tools_data_db()
@@ -47,7 +47,7 @@ def tools_index():
 @tools.route("/tools/MBTI" ,methods=["POST", "GET"])
 @tools.route("/tools/16_personalities" ,methods=["POST", "GET"])
 def mbti_test_tool():
-    ***REMOVED*** The mbti 16personalities tool page. ***REMOVED***
+    """ The mbti 16personalities tool page. """
     if request.method == "POST":
         all_answers = []
         for answer_index in range(1,60+1):
@@ -77,7 +77,7 @@ def mbti_test_tool():
 @tools.route("/tools/MBTI/<mbti_type>" ,methods=["POST", "GET"])
 @tools.route("/tools/16_personalities/<mbti_type>" ,methods=["POST", "GET"])
 def mbti_types_page(mbti_type):
-    ***REMOVED*** The mbti type page. ***REMOVED***
+    """ The mbti type page. """
     user_mbti_type_upper = mbti_type.upper()
     answer_percent = request.args.get("answer_percent")
     if answer_percent is not None:

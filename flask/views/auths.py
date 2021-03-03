@@ -9,7 +9,7 @@ auths = Blueprint("auths", __name__)
 
 @auths.route("/LogIn")
 def login():
-    ***REMOVED*** The LogIn Page - Send Form to /LogInFormPost . ***REMOVED***
+    """ The LogIn Page - Send Form to /LogInFormPost . """
 
     if Authentication(session).is_signed_in():
         return redirect("/")
@@ -19,7 +19,7 @@ def login():
 
 @auths.route("/LogInFormPost", methods=["POST"])
 def login_form():
-    ***REMOVED*** The Login Data Form Post Api. ***REMOVED***
+    """ The Login Data Form Post Api. """
 
     try:
         recaptcha_request = requests.post(
@@ -63,7 +63,7 @@ def login_form():
 
 @auths.route("/SignUp")
 def signup():
-    ***REMOVED*** The SignUp Page - Send Form to /SignUpFormPost . ***REMOVED***
+    """ The SignUp Page - Send Form to /SignUpFormPost . """
 
     if Authentication(session).is_signed_in():
         return redirect("/")
@@ -73,7 +73,7 @@ def signup():
 
 @auths.route("/SignUpFormPost", methods=["POST"])
 def signup_form():
-    ***REMOVED*** The Login Data Form Post Api. ***REMOVED***
+    """ The Login Data Form Post Api. """
 
     try:
         recaptcha_request = requests.post(
@@ -117,7 +117,7 @@ def signup_form():
 
 @auths.route("/LogOut")
 def logout():
-    ***REMOVED*** The LogOut submit Page - Send request to /SignUpFormPost . ***REMOVED***
+    """ The LogOut submit Page - Send request to /SignUpFormPost . """
 
     if not Authentication(session).is_signed_in():
         return redirect("/")
@@ -127,7 +127,7 @@ def logout():
 
 @auths.route("/LogOutRequest")
 def logout_form():
-    ***REMOVED*** The Logout request. ***REMOVED***
+    """ The Logout request. """
 
     # Handle if signed in
     if not Authentication(session).is_signed_in():

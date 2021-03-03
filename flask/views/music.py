@@ -22,7 +22,7 @@ def check_is_admin():
 @music.route("/musics")
 @music.route("/music")
 def musics_index():
-    ***REMOVED*** The Music page ***REMOVED***
+    """ The Music page """
     posts_per_page = 10
     page = request.args.get("page")
     posts = Database().get_all_musics_data_from_db()

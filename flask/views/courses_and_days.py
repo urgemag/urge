@@ -35,7 +35,7 @@ def log_in_auth(f):
 
 @courses_and_days.route("/Courses")
 def all_courses():
-    ***REMOVED*** The Courses page. ***REMOVED***
+    """ The Courses page. """
     courses_per_page = 10
     courses = PageDetails(session).all_courses_page_info_html()
     courses.reverse()
@@ -74,7 +74,7 @@ def all_courses():
 
 @courses_and_days.route("/Course/<slug>/info")
 def info_course(slug):
-    ***REMOVED*** The one Course info page. ***REMOVED***
+    """ The one Course info page. """
 
     data = PageDetails().info_intro_course_page(slug)
     if data is False or "Intro" not in data:
@@ -91,7 +91,7 @@ def info_course(slug):
 
 @courses_and_days.route("/Course/<slug>")
 def one_course(slug):
-    ***REMOVED*** The one Course page. ***REMOVED***
+    """ The one Course page. """
     try:
         identity = session["Data"]["Email"]
     except KeyError:
@@ -116,7 +116,7 @@ def one_course(slug):
 @courses_and_days.route("/Course/<slug>/buy")
 @log_in_auth
 def cart(slug):
-    ***REMOVED*** The Course Buy page. ***REMOVED***
+    """ The Course Buy page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -141,7 +141,7 @@ def cart(slug):
 @courses_and_days.route("/Course/<slug>/start")
 @log_in_auth
 def start_free_course(slug):
-    ***REMOVED*** The free Course start page. ***REMOVED***
+    """ The free Course start page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -167,7 +167,7 @@ def start_free_course(slug):
     
 @courses_and_days.route("/Course/<slug>/buy/success")
 def success_page_course(slug):
-    ***REMOVED*** The Course Buy report success page. ***REMOVED***
+    """ The Course Buy report success page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -193,7 +193,7 @@ def success_page_course(slug):
     )
 @courses_and_days.route("/Course/<slug>/buy/fail")
 def fail_page_course(slug):
-    ***REMOVED*** The Course Buy report fail page. ***REMOVED***
+    """ The Course Buy report fail page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -221,7 +221,7 @@ def fail_page_course(slug):
     
 @courses_and_days.route("/Course/<slug>/start/success")
 def success_page_course_start(slug):
-    ***REMOVED*** The Course start success page. ***REMOVED***
+    """ The Course start success page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -246,7 +246,7 @@ def success_page_course_start(slug):
     
 @courses_and_days.route("/Course/<slug>/buy/redirect")
 def buy_course_redirect(slug):
-    ***REMOVED*** The Course redirect to zarinpall page. ***REMOVED***
+    """ The Course redirect to zarinpall page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -278,7 +278,7 @@ def buy_course_redirect(slug):
 
 @courses_and_days.route("/Course/<slug>/start/redirect")
 def start_course_redirect(slug):
-    ***REMOVED*** The Course redirect to start the free course page. ***REMOVED***
+    """ The Course redirect to start the free course page. """
     data = PageDetails().course_page_info(slug)
     if data is False:
         abort(404)
@@ -300,7 +300,7 @@ def start_course_redirect(slug):
 
 @courses_and_days.route("/Course/buy/callback/")
 def buy_callback():
-    ***REMOVED*** The Course callback page from zarinpall page. ***REMOVED***
+    """ The Course callback page from zarinpall page. """
     client = Client(ZARINPAL_WEBSERVICE)
     
     payment_data = Database().get_payment_data(str(request.args['Authority']))
@@ -329,7 +329,7 @@ def buy_callback():
 
 @courses_and_days.route("/Course/<slug>/<day>")
 def sub_course(slug, day):
-    ***REMOVED*** The one sub Course page. ***REMOVED***
+    """ The one sub Course page. """
     # Day is a number or not
     try:
         day = int(day)
@@ -384,7 +384,7 @@ def sub_course(slug, day):
 @courses_and_days.route("/uploader/ck/day&responseType=json", methods=["POST", "GET"])
 @check_is_admin()
 def upload_day_pic_ck():
-    ***REMOVED*** The Upload day Api. ***REMOVED***
+    """ The Upload day Api. """
     if request.method == "POST":
         #slug = request.args.get('slug')
         #day = int(request.args.get('day'))

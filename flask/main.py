@@ -1,4 +1,4 @@
-***REMOVED***The main***REMOVED***
+"""The main"""
 from flask import Flask, g, session, abort
 import setting
 from flask_recaptcha import ReCaptcha
