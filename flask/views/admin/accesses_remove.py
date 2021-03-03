@@ -4,19 +4,8 @@ from functools import wraps
 
 admin_remove = Blueprint("admin_remove", __name__)
 
-def check_is_admin():
-    def _check_is_admin(f):
-        @wraps(f)
-        def __check_is_admin(*args, **kwargs):
-            result = f(*args, **kwargs)
-            if not Authentication(session).is_admin():
-                return redirect("/yourenotadmin")
-            return result
-        return __check_is_admin
-    return _check_is_admin
-
 @admin_remove.route("/Admin/Remove/Day-Part", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_options_admin():
     ***REMOVED*** The Remove day options Page as an admin. ***REMOVED***
 
@@ -90,7 +79,7 @@ def remove_day_options_admin():
     )
 
 @admin_remove.route("/Admin/Remove/Course", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_course_admin():
     ***REMOVED*** The Remove day options Page as an admin. ***REMOVED***
 
@@ -135,7 +124,7 @@ def remove_course_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_full_day_admin():
     ***REMOVED*** The Remove Full Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -184,7 +173,7 @@ def remove_full_day_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Essential", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_essential_main_data_admin():
     ***REMOVED*** The Remove Essential Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -222,7 +211,7 @@ def remove_day_essential_main_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Text", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_text_data_admin():
     ***REMOVED*** The Remove Main Text Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -260,7 +249,7 @@ def remove_day_text_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Todo", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_todo_data_admin():
     ***REMOVED*** The Remove Todo-Excersices Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -298,7 +287,7 @@ def remove_day_todo_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Quotes", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_quotes_data_admin():
     ***REMOVED*** The Remove Quotes Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -336,7 +325,7 @@ def remove_day_quotes_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Music", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_music_data_admin():
     ***REMOVED*** The Remove Music Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -374,7 +363,7 @@ def remove_day_music_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Ted", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_ted_data_admin():
     ***REMOVED*** The Remove TED video Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -412,7 +401,7 @@ def remove_day_ted_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Animation", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_animation_data_admin():
     ***REMOVED*** The Remove short Animation film Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -450,7 +439,7 @@ def remove_day_animation_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Podcast", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_podcast_data_admin():
     ***REMOVED*** The Remove podcast Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -488,7 +477,7 @@ def remove_day_podcast_data_admin():
 
 
 @admin_remove.route("/Admin/Remove/Day/Movie", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_day_movie_data_admin():
     ***REMOVED*** The Remove Movie Day Page as an admin. ***REMOVED***
     if request.method == "POST":
@@ -525,7 +514,7 @@ def remove_day_movie_data_admin():
     )
 
 @admin_remove.route("/Admin/Remove/Post/<slug_post>", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_post_blog_admin(slug_post):
     ***REMOVED*** The remove a Post for blog Page as an admin. ***REMOVED***
     post = Database().get_blog_post_data_from_db(slug_post)
@@ -562,7 +551,7 @@ def remove_post_blog_admin(slug_post):
 
 
 @admin_remove.route("/Admin/Remove/Music", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_music_admin():
     ***REMOVED*** The Remove Music as an admin. ***REMOVED***
 
@@ -609,7 +598,7 @@ def remove_music_admin():
 
 @admin_remove.route("/Admin/Remove/Tool", methods=["POST", "GET"])
 @admin_remove.route("/Admin/Remove/tool", methods=["POST", "GET"])
-@check_is_admin()
+
 def remove_tool_admin():
     ***REMOVED*** The Remove tool as an admin. ***REMOVED***
 

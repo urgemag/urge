@@ -4,21 +4,9 @@ from functools import wraps
 
 admin_edit = Blueprint("admin_edit", __name__)
 
-def check_is_admin():
-    def _check_is_admin(f):
-        @wraps(f)
-        def __check_is_admin(*args, **kwargs):
-            result = f(*args, **kwargs)
-            if not Authentication(session).is_admin():
-                abort(401)
-            return result
-        return __check_is_admin
-    return _check_is_admin
-
-
 @admin_edit.route("/Admin/Edit/Post", methods=["POST", "GET"])
 @admin_edit.route("/Admin/Remove/Post", methods=["POST", "GET"])
-@check_is_admin()
+
 def post_blog_options_admin():
     ***REMOVED*** The edit/remove a Post for blog options Page as an admin. ***REMOVED***
 
@@ -30,7 +18,7 @@ def post_blog_options_admin():
 
 
 @admin_edit.route("/Admin/Edit/Post/<slug_post>", methods=["POST", "GET"])
-@check_is_admin()
+
 def edit_post_blog_admin(slug_post):
     ***REMOVED*** The edit a Post for blog Page as an admin. ***REMOVED***
     post = Database().get_blog_post_data_from_db(slug_post)

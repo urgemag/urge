@@ -4,19 +4,8 @@ from functools import wraps
 
 admin_add = Blueprint("admin_add", __name__)
 
-def check_is_admin():
-    def _check_is_admin(f):
-        @wraps(f)
-        def __check_is_admin(*args, **kwargs):
-            result = f(*args, **kwargs)
-            if not Authentication(session).is_admin():
-                abort(401)
-            return result
-        return __check_is_admin
-    return _check_is_admin
-
 @admin_add.route("/Admin/Add/User", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_user_admin():
     ***REMOVED*** The Add User Page as an admin. ***REMOVED***
 
@@ -57,7 +46,7 @@ def add_user_admin():
 
 
 @admin_add.route("/Admin/Add/Day", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_options_admin():
     ***REMOVED*** The Add options Page as an admin. ***REMOVED***
 
@@ -67,7 +56,7 @@ def add_day_options_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Essential", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_essential_main_data_admin():
     ***REMOVED*** The Add Essential Day Page as an admin. ***REMOVED***
 
@@ -159,7 +148,7 @@ def add_day_essential_main_data_admin():
 
 import re
 @admin_add.route("/Admin/Add/Day/Text", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_text_data_admin():
     ***REMOVED*** The Add Main Text Day Page as an admin. ***REMOVED***
 
@@ -227,7 +216,7 @@ def add_day_text_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Todo", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_todo_data_admin():
     ***REMOVED*** The Add Todo-Excersices Day Page as an admin. ***REMOVED***
 
@@ -277,7 +266,7 @@ def add_day_todo_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Quotes", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_quotes_data_admin():
     ***REMOVED*** The Add Quotes Day Page as an admin. ***REMOVED***
 
@@ -327,7 +316,7 @@ def add_day_quotes_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Music", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_music_data_admin():
     ***REMOVED*** The Add Music Day Page as an admin. ***REMOVED***
 
@@ -415,7 +404,7 @@ def add_day_music_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Ted", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_ted_data_admin():
     ***REMOVED*** The Add TED video Day Page as an admin. ***REMOVED***
 
@@ -482,7 +471,7 @@ def add_day_ted_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Animation", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_animation_data_admin():
     ***REMOVED*** The Add short Animation film Day Page as an admin. ***REMOVED***
 
@@ -552,7 +541,7 @@ def add_day_animation_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Podcast", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_podcast_data_admin():
     ***REMOVED*** The Add podcast Day Page as an admin. ***REMOVED***
 
@@ -616,7 +605,7 @@ def add_day_podcast_data_admin():
 
 
 @admin_add.route("/Admin/Add/Day/Movie", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_day_movie_data_admin():
     ***REMOVED*** The Add Movie Day Page as an admin. ***REMOVED***
 
@@ -688,7 +677,7 @@ def add_day_movie_data_admin():
 
 
 @admin_add.route("/Admin/Add/Course", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_course_admin():
     ***REMOVED*** The Add Course Page as an admin. ***REMOVED***
 
@@ -770,7 +759,7 @@ def add_course_admin():
 
 
 @admin_add.route("/Admin/Add/Course-Info", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_course_info_admin():
     ***REMOVED*** The Add Course information Page as an admin. ***REMOVED***
 
@@ -801,7 +790,7 @@ def add_course_info_admin():
 
 
 @admin_add.route("/Admin/Add/Post", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_post_blog_admin():
     ***REMOVED*** The Add a Post for blog Page as an admin. ***REMOVED***
 
@@ -873,7 +862,7 @@ def add_post_blog_admin():
 
 
 @admin_add.route("/Admin/Add/Music", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_music_admin():
     ***REMOVED*** The Add Music as an admin. ***REMOVED***
 
@@ -924,7 +913,7 @@ def add_music_admin():
 
 @admin_add.route("/Admin/Add/tool", methods=["POST", "GET"])
 @admin_add.route("/Admin/Add/Tool", methods=["POST", "GET"])
-@check_is_admin()
+
 def add_tool_admin():
     ***REMOVED*** The Add Tool Page as an admin. ***REMOVED***
 
@@ -997,7 +986,7 @@ def add_tool_admin():
 
 
 @admin_add.route("/Admin/Generate/Post", methods=["POST", "GET"])
-@check_is_admin()
+
 def generate_post():
 
     return render_template(

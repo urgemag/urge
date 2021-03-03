@@ -1,8 +1,8 @@
 ***REMOVED***The main***REMOVED***
-from flask import Flask, g, session
+from flask import Flask, g, session, abort
 import setting
 from flask_recaptcha import ReCaptcha
-from models import General, PageDetails
+from models import General, PageDetails, Authentication
 
 # importing views
 from views.auths import auths
@@ -63,6 +63,14 @@ def essential_user_details():
 def survey_data():
     g.survey = PageDetails().get_survey_json_data()
 
+def check_is_admin():
+    if not Authentication(session).is_admin():
+        abort(401)
+
+    
+admin_add.before_request(check_is_admin)
+admin_edit.before_request(check_is_admin)
+admin_remove.before_request(check_is_admin)
 app.before_request(essential_user_details)
 # registering blueprints
 for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music,tools):
