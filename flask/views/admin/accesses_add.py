@@ -990,6 +990,6 @@ def add_tool_admin():
 def generate_post():
 
     return render_template(
-        "admin/admin_merge_template_gen.html",
+        "admin/admin_generate_instagram_post.html",
         templates=General().open_json_file("static/assets/instagram/posts.json")
     )
