@@ -829,6 +829,11 @@ function progressbar() {
     function hidePopup(){
         document.getElementById("survey-popup").style.opacity = "0"
         document.getElementById("black-cover").style.opacity = "0"
+        var delayInMilliseconds = 1000;
+            setTimeout(function() {
+                document.getElementById("black-cover").style.display = "None"
+            }, delayInMilliseconds);
+
     }
     function starthelp() {
         introJs().setOptions({
