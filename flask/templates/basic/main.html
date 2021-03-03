@@ -604,6 +604,10 @@
                     document.getElementById("black-cover").style.display = "None"
                 }, delayInMilliseconds);
 
+                setTimeout(function() {
+                    document.getElementById("survey-popup").style.display = "None"
+                }, 500);
+
         }
         function startSurvey() {
             introJs().setOptions({
