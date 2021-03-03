@@ -26,38 +26,12 @@ def first_visit(f):
     return decorated
 
 
-
-def survey(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        try:
-            survey_data_session = session["survey"]
-        except KeyError:
-            survey_data_session = 0
-            session["survey"] = survey_data_session
-            g.survey = True
-
-        if type(survey_data_session) == int:
-            if survey_data_session % 3 == 0:
-                g.survey = True
-            else:
-                g.survey = False
-            session["survey"] += 1 
-        else:
-            session["survey"] = 1
-
-        return f(*args, **kwargs)
-
-    return decorated
-
-
 @basic.route("/")
 @basic.route("/Home")
 @basic.route("/home")
 @basic.route("/Dashboard")
 @basic.route("/dashboard")
 @first_visit
-@survey
 def index():
     ***REMOVED*** The Dashboard ***REMOVED***
     return render_template(
@@ -86,7 +60,6 @@ def survey_topics():
         top_courses = PageDetails().top_3_expensive_courses(),
         quotes = PageDetails().random_quotes(),
         random_blog_post = PageDetails().get_random_blog_post(),
-        survey = PageDetails().get_survey_json_data()
         )
     
 

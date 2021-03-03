@@ -61,7 +61,22 @@ recaptcha = ReCaptcha(app=app)
 def essential_user_details():
     g.details = PageDetails(session).index_data()
 def survey_data():
-    g.survey = PageDetails().get_survey_json_data()
+    try:
+        survey_data_session = session["survey"]
+    except KeyError:
+        survey_data_session = 0
+        session["survey"] = survey_data_session
+        g.survey = True
+    if type(survey_data_session) == int:
+        if survey_data_session % 1 == 0:
+            g.survey = True
+        else:
+            g.survey = False
+        session["survey"] += 1 
+    else:
+        session["survey"] = 1
+        
+    g.survey_data = PageDetails().get_survey_json_data()
 
 def check_is_admin():
     if not Authentication(session).is_admin():
@@ -72,6 +87,7 @@ admin_add.before_request(check_is_admin)
 admin_edit.before_request(check_is_admin)
 admin_remove.before_request(check_is_admin)
 app.before_request(essential_user_details)
+app.before_request(survey_data)
 # registering blueprints
 for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music,tools):
     app.register_blueprint(blueprint)
