@@ -569,7 +569,7 @@ def remove_music_admin():
                     remove_ones.append(part)
 
             for music_name in remove_ones: 
-                print (Database().delete_music_data_from_db(music_name))
+                Database().delete_music_data_from_db(music_name)
 
             message = True
             return message

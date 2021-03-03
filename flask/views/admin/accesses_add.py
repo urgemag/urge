@@ -690,7 +690,6 @@ def add_course_admin():
             try:
                 uploaded_file = request.files["cover"]
             except:
-                print("hrer")
                 return {"Message": "تصویر را آپلود کنید."}
             try:
                 length_of_course = int(request.form.get("len"))
@@ -774,7 +773,6 @@ def add_course_info_admin():
             price=request.form.get("price"),
             last_words=request.form.get("last_word"),
         )
-        print(message)
         if message is True:
             message = {"Color": "green", "Result": "با موفقیت اضافه شد."}
         else:
@@ -926,7 +924,6 @@ def add_tool_admin():
             try:
                 uploaded_file = request.files["cover"]
             except:
-                print("hrer")
                 return {"Message": "تصویر را آپلود کنید."}
             
             if (

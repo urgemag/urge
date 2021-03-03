@@ -305,7 +305,6 @@ class General:
 
     def corect_form_of_email(self, email):
         ***REMOVED*** return Email without Dots and uppercases ***REMOVED***
-        print(email)
         email_correct = email.lower()
         email_seprated = email_correct.split("@")
         email_seprated[0] = email_seprated[0].replace(".", "")
@@ -1022,7 +1021,6 @@ class Database:
         return True
 
     def add_user_survey_answer_to_db(self, user_ip_address, user_identity, user_survey_answer):
-        print (type(user_survey_answer))
         self.database.survey.insert_one(
             {
                 "ip_address": user_ip_address,
@@ -1395,7 +1393,6 @@ class Database:
             image_href=image_path,
             free=freeness,
         )
-        print(response_edit_of_day)
         if response_edit_of_day is False:
             return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
 
@@ -1573,10 +1570,8 @@ class Database:
             )
             is None
         ):
-            print(
-                Database().create_a_none_day_of_course_data_in_db(
-                    course_name_slug, day_num
-                )
+            Database().create_a_none_day_of_course_data_in_db(
+                course_name_slug, day_num
             )
         # varrivle , if overwrite or not
         else:
@@ -1680,10 +1675,8 @@ class Database:
             )
             is None
         ):
-            print(
-                Database().create_a_none_day_of_course_data_in_db(
-                    course_name_slug, day_num
-                )
+            Database().create_a_none_day_of_course_data_in_db(
+                course_name_slug, day_num
             )
         # varrivle , if overwrite or not
         else:
@@ -1743,10 +1736,9 @@ class Database:
             )
             is None
         ):
-            print(
-                Database().create_a_none_day_of_course_data_in_db(
-                    course_name_slug, day_num
-                )
+            
+            Database().create_a_none_day_of_course_data_in_db(
+                course_name_slug, day_num
             )
         # varrivle , if overwrite or not
         else:
@@ -1807,10 +1799,9 @@ class Database:
             )
             is None
         ):
-            print(
-                Database().create_a_none_day_of_course_data_in_db(
-                    course_name_slug, day_num
-                )
+            
+            Database().create_a_none_day_of_course_data_in_db(
+                course_name_slug, day_num
             )
         # varrivle , if overwrite or not
         else:
@@ -1872,10 +1863,8 @@ class Database:
             )
             is None
         ):
-            print(
-                Database().create_a_none_day_of_course_data_in_db(
-                    course_name_slug, day_num
-                )
+            Database().create_a_none_day_of_course_data_in_db(
+                course_name_slug, day_num
             )
 
         else:
@@ -2066,7 +2055,6 @@ class Database:
         if self.database.courses.find_one(my_query) is None or not (
             free is False or free is True or free == ""
         ):
-            print("here----------")
             return False
 
         for key, value in {

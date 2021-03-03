@@ -309,7 +309,6 @@ def buy_callback():
         result = client.service.PaymentVerification(MMERCHANT_ID,
                                                     request.args['Authority'],
                                                     int(str(payment_data["Price"]).replace(',', '')))
-        print (str(request.args['Authority']))
         if result.Status == 100 or result.Status == 101:
             Database().add_users_access_data_to_db(payment_data["Buyer"],payment_data["Slug"])
             Database().change_payment_status_to_success_in_db(str(request.args['Authority']))

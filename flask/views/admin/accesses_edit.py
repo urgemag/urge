@@ -73,7 +73,6 @@ def edit_post_blog_admin(slug_post):
             message["Result"] = message["Message"]
 
         flash(message)
-        print (message)
         if message_original is True:
             return redirect('/blog/{}'.format(eng_slug))
         else:
