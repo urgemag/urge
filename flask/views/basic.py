@@ -26,12 +26,34 @@ def first_visit(f):
     return decorated
 
 
+
+def survey(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        try:
+            session["Visits"]
+        except KeyError:
+            session["Visits"] = {}
+
+        try:
+            session["Visits"]["survey"]
+            g.survey = False
+        except KeyError:
+            session["Visits"]["survey"] = True
+            g.survey = True
+
+        return f(*args, **kwargs)
+
+    return decorated
+
+
 @basic.route("/")
 @basic.route("/Home")
 @basic.route("/home")
 @basic.route("/Dashboard")
 @basic.route("/dashboard")
 @first_visit
+@survey
 def index():
     ***REMOVED*** The Dashboard ***REMOVED***
     return render_template(
@@ -54,7 +76,7 @@ def survey_topics():
         for topic in topics:
             user_survey_answer[topic] = request_args[topic]
         return str(user_survey_answer)
-        
+
     return render_template(
         "basic/survey.html", 
         details=PageDetails(session).index_data(),
