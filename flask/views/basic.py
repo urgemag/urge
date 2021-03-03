@@ -62,7 +62,6 @@ def index():
     ***REMOVED*** The Dashboard ***REMOVED***
     return render_template(
         "basic/main.html", 
-        details=PageDetails(session).index_data(),
         number_of_courses = PageDetails().number_of_courses(),
         top_courses = PageDetails().top_3_expensive_courses(),
         quotes = PageDetails().random_quotes(),
@@ -83,7 +82,6 @@ def survey_topics():
 
     return render_template(
         "basic/survey.html", 
-        details=PageDetails(session).index_data(),
         number_of_courses = PageDetails().number_of_courses(),
         top_courses = PageDetails().top_3_expensive_courses(),
         quotes = PageDetails().random_quotes(),
@@ -119,7 +117,6 @@ def about_us():
     ***REMOVED*** The about us page. ***REMOVED***
     return render_template(
         "basic/about_us.html",
-        details=PageDetails(session).index_data(),
     )
 
 
@@ -134,6 +131,5 @@ def motivational_sentences():
 
     return render_template(
         "basic/motivationwall.html",
-        details=PageDetails(session).motivation_wall_page_info_html(),
     )
 

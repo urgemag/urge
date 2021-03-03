@@ -28,7 +28,6 @@ def tools_index():
         return redirect("?page={}".format(last_page))
     return render_template(
         "tools/tools_index.html",
-        details=PageDetails(session).index_data(),
         posts=limited_posts,
         now_page=page,
         last_page=last_page,
@@ -61,7 +60,6 @@ def mbti_test_tool():
 
     return render_template(
         "tools/mbti.html",
-        details=PageDetails(session).index_data(),
         tool=Database().get_tool_data_db("mbti"),
         questions = General().open_json_file("static/tools/mbti.json")["questions"]
     )
@@ -90,7 +88,6 @@ def mbti_types_page(mbti_type):
     user_mbti_answer = {'final_type': f'{user_mbti_type_upper}', 'answer_percent': answer_percent}
     return render_template(
         f"tools/mbti_base.html",
-        details=PageDetails(session).index_data(),
         tool=Database().get_tool_data_db("mbti"),
         user_answer = user_mbti_answer,
         user_mbti_data =  General().open_json_file("static/tools/mbti.json")["mbti_types"][user_mbti_answer["final_type"]]

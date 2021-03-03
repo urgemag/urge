@@ -41,7 +41,6 @@ def blog_index():
         return redirect("?page={}".format(last_page))
     return render_template(
         "blog/blog_posts.html", 
-        details=PageDetails(session).index_data(),
         posts=limited_posts,
         days_passed_till_now = General().days_passed_till_now(),
         milliseconds_passed_till_now = General().milliseconds_passed_till_now(),
@@ -58,7 +57,6 @@ def blog_post(english_name):
         abort(404)
     return render_template(
         "blog/blog_post.html", 
-        details=PageDetails(session).index_data(),
         posts=Database().get_blog_posts_data_from_db(),
         postss=Database().get_blog_posts_data_from_db(),
         days_passed_till_now = General().days_passed_till_now(),

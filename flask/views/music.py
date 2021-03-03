@@ -43,7 +43,6 @@ def musics_index():
         return redirect("?page={}".format(last_page))
     return render_template(
         "music/music_posts.html",
-        details=PageDetails(session).index_data(),
         posts=limited_posts,
         now_page=page,
         last_page=last_page,

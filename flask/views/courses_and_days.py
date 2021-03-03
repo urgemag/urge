@@ -63,7 +63,6 @@ def all_courses():
 
     return render_template(
         "courses_and_days/courses.html",
-        details=PageDetails(session).index_data(),
         courses=limited_courses,
         accesses=Database().get_users_access_data_from_db(identity),
         days_till_now = General().days_passed_till_now(),
@@ -87,7 +86,6 @@ def info_course(slug):
     return render_template(
         "courses_and_days/course_info.html",
         course=data,
-        details=PageDetails(session).index_data(),
     )
 
 
@@ -111,7 +109,6 @@ def one_course(slug):
         course=data[0],
         days=data[1],
         intro=data[2],
-        details=PageDetails(session).index_data(),
         accesses=Database().get_users_access_data_from_db(identity),
         days_till_now = General().days_passed_till_now()
     )
@@ -139,7 +136,6 @@ def cart(slug):
         course=data[0],
         days=data[1],
         intro=data[2],
-        details=PageDetails(session).index_data(),
     )
 
 @courses_and_days.route("/Course/<slug>/start")
@@ -167,7 +163,6 @@ def start_free_course(slug):
         course=data[0],
         days=data[1],
         intro=data[2],
-        details=PageDetails(session).index_data(),
     )
     
 @courses_and_days.route("/Course/<slug>/buy/success")
@@ -194,7 +189,6 @@ def success_page_course(slug):
         course=data[0],
         days=data[1],
         intro=data[2],
-        details=PageDetails(session).index_data(),
         code=code
     )
 @courses_and_days.route("/Course/<slug>/buy/fail")
@@ -221,7 +215,6 @@ def fail_page_course(slug):
         course=data[0],
         days=data[1],
         intro=data[2],
-        details=PageDetails(session).index_data(),
         code=code
         
     )
@@ -249,7 +242,6 @@ def success_page_course_start(slug):
         course=data[0],
         days=data[1],
         intro=data[2],
-        details=PageDetails(session).index_data(),
     )
     
 @courses_and_days.route("/Course/<slug>/buy/redirect")
@@ -385,7 +377,6 @@ def sub_course(slug, day):
 
     return render_template(
         "courses_and_days/day.html",
-        details=PageDetails(session).index_data(),
         course=PageDetails(session).course_page_info(slug)[0],
         day=PageDetails(session).sub_course_page_info_html(slug, day),
     )

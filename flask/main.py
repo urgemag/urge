@@ -1,8 +1,8 @@
 ***REMOVED***The main***REMOVED***
-from flask import Flask, g
+from flask import Flask, g, session
 import setting
 from flask_recaptcha import ReCaptcha
-from models import General
+from models import General, PageDetails
 
 # importing views
 from views.auths import auths
@@ -58,6 +58,10 @@ app.config.update(
     }
 )
 recaptcha = ReCaptcha(app=app)
+def essential_user_details():
+    g.details = PageDetails(session).index_data()
+
+app.before_request(essential_user_details)
 # registering blueprints
 for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music,tools):
     app.register_blueprint(blueprint)

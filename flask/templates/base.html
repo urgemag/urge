@@ -359,17 +359,17 @@ function progressbar() {
                                     data-target=".sidebar-right">
                                     <span class="mr-3 d-none d-lg-block ">
                                         <span class="text-gray-white"><span class="ml-2">
-                                                {{details["First_Name"]+" "+details["Last_Name"]}} </span></span>
+                                                {{g.details["First_Name"]+" "+g.details["Last_Name"]}} </span></span>
                                     </span>
-                                    <span class="avatar avatar-md brround"><img src="{{details.Profile_Photo}}"
+                                    <span class="avatar avatar-md brround"><img src="{{g.details.Profile_Photo}}"
                                             alt="Profile-img" class="avatar avatar-md brround"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <div class="header-user text-center mt-4 pb-4">
-                                        <span class="avatar avatar-xxl brround"><img src="{{details.Profile_Photo}}"
+                                        <span class="avatar avatar-xxl brround"><img src="{{g.details.Profile_Photo}}"
                                                 alt="Profile-img" class="avatar avatar-xxl brround"></span>
                                         <a href="#" class="dropdown-item text-center font-weight-semibold user h3 mb-0">
-                                            {{details["First_Name"]+" "+details["Last_Name"]}} </a>
+                                            {{g.details["First_Name"]+" "+g.details["Last_Name"]}} </a>
                                     </div>
                                     <a class="dropdown-item" href="/blog">
                                         <i class="dropdown-icon mdi mdi-approval "></i> بلاگ
@@ -409,11 +409,11 @@ function progressbar() {
                 <div class="app-sidebar__user pb-0">
                     <div class="user-body">
                         <span class="avatar avatar-xxl brround text-center cover-image"
-                            data-image-src="{{details.Profile_Photo}}" style="margin-top: 10px;"></span>
+                            data-image-src="{{g.details.Profile_Photo}}" style="margin-top: 10px;"></span>
                     </div>
                     <div class="user-info">
                         <a href="#" class="ml-2"><span
-                                class="text-dark app-sidebar__user-name font-weight-semibold">{{details["First_Name"]+" "+details["Last_Name"]}}</span><br>
+                                class="text-dark app-sidebar__user-name font-weight-semibold">{{g.details["First_Name"]+" "+g.details["Last_Name"]}}</span><br>
 
                         </a>
                     </div>
@@ -427,7 +427,7 @@ function progressbar() {
                             {% endblock %}
 
 
-                            {% if details["User"]==True %}
+                            {% if g.details["User"]==True %}
 
                             <li><a href="/LogOut" title="logout"><i class="fa fa-power-off fs-17"></i></a></li>
 
@@ -470,7 +470,7 @@ function progressbar() {
 
                                         <li><a href="/faq" class="slide-item"> سؤالات متداول </a></li>
 
-                                        {% if details["User"]==True %}
+                                        {% if g.details["User"]==True %}
 
                                         <li><a href="/LogOut" class="slide-item"> خارج شدن </a></li>
                                         {% endif %}
@@ -521,7 +521,7 @@ function progressbar() {
                                                 font-size: 14px;
                                             "></i>   موزیک‌ ها       </a> {% endblock %}
 
-                                        {% if details["User"]==False %}
+                                        {% if g.details["User"]==False %}
 
 
                                 <a class="upside-margin  btn btn-danger" id="signup" href="/SignUp" style="
