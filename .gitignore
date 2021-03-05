@@ -12,3 +12,4 @@ flask/static/assets/images/ck_cache
 flask/log
 flask/.env
 .env
+flask/.vscode/settings.json
