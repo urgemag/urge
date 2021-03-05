@@ -786,7 +786,7 @@ function progressbar() {
 
                             {% for topic in g.survey_data.topics %}
                             {% set topic_image = g.survey_data.topics[topic] %}
-                            {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
+                            <!-- {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %} -->
                             <div class="col-auto auto-resizer" style="margin: 6px;">
                                 <label class="colorinput">
                                     <input onclick="choseATopic()" name="{{topic}}" type="checkbox" value="{{topic}}" class="survey-topic-option colorinput-input">
@@ -796,7 +796,7 @@ function progressbar() {
                                             border-radius: 25px;
                                             background-image: url({{topic_image}});
                                             background-size: cover;
-                                            background-position: center;" class="colorinput-color bg-{{random_color}}">
+                                            background-position: center;" class="colorinput-color bg-blue"> <!-- {{random_color}} !-->
                                         <p class="survey-topic">{{topic}}</p>
                                     </span>
                                 </label>
