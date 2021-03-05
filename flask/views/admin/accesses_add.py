@@ -4,8 +4,13 @@ from functools import wraps
 
 admin_add = Blueprint("admin_add", __name__)
 
-@admin_add.route("/Admin/Add/User", methods=["POST", "GET"])
 
+@admin_add.route("/Admin", methods=["POST", "GET"])
+def admin_index():
+    return render_template("admin/admin_options.html")
+
+
+@admin_add.route("/Admin/Add/User", methods=["POST", "GET"])
 def add_user_admin():
     """ The Add User Page as an admin. """
 

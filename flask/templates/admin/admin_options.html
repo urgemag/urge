@@ -1,0 +1,77 @@
+{% extends "admin_base.html" %} {% block title %} اِرج ادمین - اضافه کردن روز {% endblock %} {% block breadcrumb %}
+<li class="breadcrumb-item"><a href="/"> خانه </a></li>
+<li class="breadcrumb-item"><a href="/Admin/Accesses"> دسترسی ها </a></li>
+<li class="breadcrumb-item active" aria-current="page"> اضافه کردن روز جدید </li>
+
+{% endblock %} {% block body %}
+
+<div class="row row-cards">
+    <div class="col-lg-12 col-xl-9">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Add">
+                        <img src="https://cdn.dribbble.com/users/1365063/screenshots/3858621/na_vody-04_kopie.jpg?compress=1&resize=800x600" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">اضافه کردن</h5>
+                        <a href="/Admin/Add" class="btn btn-info" style="
+                                                background-color: #d07fdb;
+                                                border-color: #d07fdb;
+                                            "> مشاهده گزینه ها </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Edit">
+                        <img src="https://cdn.dribbble.com/users/1339084/screenshots/6012375/edit-creditcard_4x.png?compress=1&resize=1000x750" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">ادیت کردن</h5>
+                        <a href="/Admin/Edit" class="btn btn-info" style="
+                                                background-color: #01aa9e;
+                                                border-color: #01aa9e;
+                                                "> مشاهده گزینه ها </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Remove">
+                        <img src="https://cdn.dribbble.com/users/129991/screenshots/4739382/delete.png?compress=1&resize=800x600" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">حذف کردن</h5>
+                        <a href="/Admin/Remove" class="btn btn-info" style="
+                                                background-color: #735ce2;
+                                                border-color: #735ce2;
+                                                "> مشاهده گزینه ها </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4 col-md-4 col-xl-4">
+                <div class="card overflow-hidden">
+                    <a href="/Admin/Instagram">
+                        <img src="https://cdn.dribbble.com/users/146798/screenshots/6145088/insta-love-dribbble_4x.jpg?compress=1&resize=1000x750" alt="image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">اینستاگرام</h5>
+                        <a href="/Admin/Instagram" class="btn btn-info" style="
+                                                background-color: #a17cc1;
+                                                border-color: #a17cc1;
+                                                "> مشاهده گزینه ها </a>
+
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
