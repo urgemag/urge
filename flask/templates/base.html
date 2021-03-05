@@ -770,9 +770,9 @@ function progressbar() {
         <form id='survey-form' method="POST">
             <div class="col-sm-12 col-lg-12 col-xl-12">
 
-                <div class="card index-card">
-                    
-                    <div class="form-group m-0">
+                <div class=" card index-card">
+                     
+                    <div id="firstSlideSurveyPopup" class="gentle-act-faster form-group m-0">
                         <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
                         <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
                         <h3 style="
@@ -781,8 +781,8 @@ function progressbar() {
                         margin-right: 35px;
                         margin-bottom: 20px;
                         margin-left: 35px;
-                    "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
-                        <div class="row gutters-xs" style="justify-content: center;">
+                        "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
+                        <div class="row gutters-xs" style="padding-bottom: 2rem;justify-content: center;">
 
                             {% for topic in g.survey_data.topics %}
                             {% set topic_image = g.survey_data.topics[topic] %}
@@ -808,8 +808,28 @@ function progressbar() {
                         </div>
 
                     </div>
-                    <a onclick="submitFormSurvey()" class="btn btn-success"
-                        style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
+
+
+                    <div id="secSlideSurveyPopup" style="display: None; opacity: 0;" class="gentle-act-faster form-group m-0">
+                        <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
+                        <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
+                        <h3 style="
+                        text-align-last: center;
+                        margin-top: 12px;
+                        margin-right: 35px;
+                        margin-bottom: 20px;
+                        margin-left: 35px;
+                        ">مرحله دوم  </h3>
+                        <div class="row gutters-xs" style="justify-content: center;">
+                            <a onclick="submitFormSurvey()" class="btn btn-success"style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
+
+ 
+
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
         </form>
@@ -858,7 +878,23 @@ function progressbar() {
             for(let i = 0;i < topic_elements.length; i++){
                 topic_elements[i].disabled = true
             }
+            goToQuestionPopup()
+        }
+        function goToQuestionPopup(){
+            setTimeout(function() {
+                document.getElementById("secSlideSurveyPopup").style.display = 'block';
+            }, 700);
+            setTimeout(function() {
+                document.getElementById("secSlideSurveyPopup").style.opacity=1
+            }, 800);
 
+            setTimeout(function() {
+                document.getElementById("firstSlideSurveyPopup").style.opacity=0
+            }, 200);
+        
+            setTimeout(function() {
+                document.getElementById("firstSlideSurveyPopup").style.display = 'None'
+            }, 700);
         }
         // startSurvey()
     </script>
