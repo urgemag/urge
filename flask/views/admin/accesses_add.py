@@ -9,6 +9,10 @@ admin_add = Blueprint("admin_add", __name__)
 def admin_index():
     return render_template("admin/admin_options.html")
 
+@admin_add.route("/Admin/Add", methods=["POST", "GET"])
+def admin_add_index():
+    return render_template("admin/admin_add_options.html")
+
 
 @admin_add.route("/Admin/Add/User", methods=["POST", "GET"])
 def add_user_admin():
