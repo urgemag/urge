@@ -744,13 +744,17 @@ function progressbar() {
             background-color: #00000042;
             border-radius: 24px;
         }
-    
+
         .stop-scrolling {
             height: 100%;
             overflow: hidden;
         }
     </style>
     
+
+
+
+
     {% if g.survey %}
     <script>
         $('body').addClass("stop-scrolling")
@@ -785,7 +789,7 @@ function progressbar() {
                             {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
                             <div class="col-auto auto-resizer" style="margin: 6px;">
                                 <label class="colorinput">
-                                    <input name="{{topic}}" type="checkbox" value="{{topic}}" class="colorinput-input">
+                                    <input onclick="choseATopic()" name="{{topic}}" type="checkbox" value="{{topic}}" class="survey-topic-option colorinput-input">
                                     <span style="   
                                             border-radius: 25px;
                                             background-image: url({{topic_image}});
@@ -847,9 +851,23 @@ function progressbar() {
                 }]
             }).start();
         }
+        function choseATopic(){
+            topic_elements = document.getElementsByClassName("survey-topic-option")
+            for(let i = 0;i < topic_elements.length; i++){
+                topic_elements[i].disabled = true
+            }
+
+        }
         // startSurvey()
     </script>
 {% endif %}
+
+
+
+
+
+
+
 
     <!-- End Page -->
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
