@@ -933,7 +933,7 @@ function progressbar() {
                 return false
             }
             document.getElementById("secSlideSurveyPopupSubText").innerText = "لطفا به سوالات زیر درمورد "+chosenOne+" پاسخ بدید."
-            document.getElementById("secSlideSurveyPopupText").innerText = "تایتل"
+            document.getElementById("secSlideSurveyPopupText").innerText = topics[chosenOne]["secound_questions"]["title"]
             
             optionElement = document.getElementById("allSecoundPopypOptions").innerHTML
             document.getElementById("allSecoundPopypOptions").innerHTML = ""
