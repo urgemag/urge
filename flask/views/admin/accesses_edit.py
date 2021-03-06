@@ -4,9 +4,12 @@ from functools import wraps
 
 admin_edit = Blueprint("admin_edit", __name__)
 
+@admin_edit.route("/Admin/Edit", methods=["GET"])
+def admin_edit_index():
+    return render_template("admin/admin_edit_options.html")
+
 @admin_edit.route("/Admin/Edit/Post", methods=["POST", "GET"])
 @admin_edit.route("/Admin/Remove/Post", methods=["POST", "GET"])
-
 def post_blog_options_admin():
     """ The edit/remove a Post for blog options Page as an admin. """
 
@@ -16,9 +19,7 @@ def post_blog_options_admin():
         days_passed_till_now = General().days_passed_till_now()
     )
 
-
 @admin_edit.route("/Admin/Edit/Post/<slug_post>", methods=["POST", "GET"])
-
 def edit_post_blog_admin(slug_post):
     """ The edit a Post for blog Page as an admin. """
     post = Database().get_blog_post_data_from_db(slug_post)
