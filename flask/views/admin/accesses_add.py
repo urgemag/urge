@@ -84,7 +84,7 @@ def add_day_essential_main_data_admin():
                 return {"Result": False, "Message": "روز دوره را وارد کنید."}
             if request.form.get("name_day") == "":
                 return {"Result": False, "Message": "اسم روز را وارد کنید."}
-            if request.form.get("description") == "":
+            if request.form.get("description-status") == "With-Description" and request.form.get("description") == "":
                 return {"Result": False, "Message": "توضیحات روز را وارد کنید."}
             if (
                 request.form.get("price-status") != "None-Free"
