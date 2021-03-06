@@ -785,7 +785,7 @@ function progressbar() {
                         <div class="row gutters-xs" style="padding-bottom: 2rem;justify-content: center;">
 
                             {% for topic in g.survey_data.questions %}
-                            {% set topic_image = g.survey_data.questions[topic] %}
+                            {% set topic_image = g.survey_data.questions[topic]['topic_image'] %}
                             <!-- {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %} -->
                             <div class="col-auto auto-resizer" style="margin: 6px;">
                                 <label class="colorinput">
