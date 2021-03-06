@@ -916,6 +916,8 @@ function progressbar() {
         var target = document.getElementById('side-bar');
         observer.observe(target, { attributes: true, attributeFilter: ['class'] });
     </script>
+    {% block add_extra_scripts %}
+    {% endblock %}
     <script src="/static//assets/js/custom.js"></script>
 </body>
 </html>

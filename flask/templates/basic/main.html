@@ -5,6 +5,8 @@
 <link href="/static//intro/introjs.min.css" rel="stylesheet" />
 <link href="/static//intro/introjs-rtl.min.css" rel="stylesheet" />
 <script src="/static//intro/intro.min.js"></script>
+<link href="/static//assets/plugins/notify/css/jquery.growl.css" rel="stylesheet" />
+<link href="/static//assets/plugins/notify/css/notifIt.css" rel="stylesheet" />
 
 <style>
     .introjs-tooltiptext {
@@ -414,7 +416,12 @@
         </div>
     </div>
 
-</div>
+
+    <div style="position: fixed;z-index: 1031;right: 0;left: 0%;max-width: 75%;bottom: 8px;margin: auto;height: 45px;text-align: center;" class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="float: right;">×</button>
+        <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> دوره <a href="/">صبح جادویی</a> کلی تخفیف خورده. بزن بریم چکش کنیم. </div>
+
+
+    </div>
 
 <script>
     function starthelp() {
@@ -442,4 +449,20 @@
     top_ten()
 </script>
 
-{% endif %} {% endblock %}
+{% endif %} 
+{% block add_extra_scripts %}
+<script src="/static//assets/plugins/notify/js/rainbow.js"></script>
+<script>
+(function () {
+  $(function () {
+    $.growl({
+      title: "خوش آمدید",
+      message: "سلام به اِرج | Urge خوش اومدید!"
+    });
+  });
+}).call(this);
+</script>
+<script src="/static//assets/plugins/notify/js/jquery.growl.js"></script>
+<script src="/static//assets/plugins/notify/js/notifIt.js"></script>
+{% endblock %}
+{% endblock %}
