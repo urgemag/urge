@@ -52,10 +52,12 @@ def survey_topics():
         identity = "unknown"
     user_ip_address = request.remote_addr
     request_args = request.get_json()
-    topics = PageDetails().get_survey_json_data()["topics"]
+    topics = PageDetails().get_survey_json_data()["questions"]
     user_survey_answer = {}
     for topic in topics:
         user_survey_answer[topic] = request_args[topic]
+    user_survey_answer["secound_questions"] = request_args["secound_questions"]
+    print (user_survey_answer)
     Database().add_user_survey_answer_to_db(
         user_ip_address,
         identity,

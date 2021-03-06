@@ -812,123 +812,36 @@ function progressbar() {
 
                     <div id="secSlideSurveyPopup" style="display: None; opacity: 0;" class="gentle-act-faster form-group m-0">
                         <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
-                        <h5 id="secSlideSurveyPopupSubText" style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
-                        <h3 id="secSlideSurveyPopupText" style="
-                        text-align-last: center;
-                        margin-top: 12px;
-                        margin-right: 35px;
-                        margin-bottom: 20px;
-                        margin-left: 35px;
-                        ">مرحله دوم  </h3>
+                        <h5 id="secSlideSurveyPopupSubText" style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;"></h5>
+                        <h3 id="secSlideSurveyPopupText" style="text-align-last: center;margin-top: 12px;margin-right: 35px;margin-bottom: 20px;margin-left: 35px;"></h3>
 
-<div class="col-lg-12" style="display: inline-flex;">
+                        <form id='survey-form' method="POST">
+                            <div class="col-sm-12 col-lg-12 col-xl-12">
 
-<div class="col-lg-6" style="margin-right: 7.5px;">
+                                <div class=" card index-card">
+                                    
+                                        <div id="allSecoundPopypOptions" class="row gutters-xs" style="padding-bottom: 0rem;justify-content: center;">
 
-    <div class="card">
-        <div class=" card-body">
-            <div class="form-group form-elements">
-                <div class="form-label">Radios</div>
-                <div class="custom-controls-stacked">
-                    <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="example-radios" value="option1">
-                        <span class="custom-control-label">Option 1</span>
-                    </label>
-                    <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="example-radios" value="option2">
-                        <span class="custom-control-label">Option 2</span>
-                    </label>
-                    <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="example-radios" value="option3">
-                        <span class="custom-control-label">Option Disabled</span>
-                    </label>
-                    <label class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" name="example-radios" value="option4">
-                        <span class="custom-control-label">Option Disabled Checked</span>
-                    </label>
-                </div>
-            </div>
 
-            <div class="form-group form-elements m-0">
-                <div class="form-label">Checkboxes</div>
-                <div class="custom-controls-stacked">
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1">
-                        <span class="custom-control-label">Option 1</span>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option2">
-                        <span class="custom-control-label">Option 2</span>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option3">
-                        <span class="custom-control-label">Option Disabled</span>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option4">
-                        <span class="custom-control-label">Option Disabled Checked</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                                            <div class="secSlideSurveyPopupOptions col-auto auto-resizer" style="margin: 6px;">
+                                                <label class="colorinput">
+                                                    <input name="اپشن" type="checkbox" value="اپشن" class="secSlideSurveyPopupOptionsInput secound-survey-topic-option colorinput-input">
+                                                    <span style="   
+                                                            background-repeat: no-repeat !important;
+                                                            background-color: #fff !important;
+                                                            border-radius: 25px;
+                                                            background-image: url(تصویر);
+                                                            background-size: cover;
+                                                            background-position: center;" class="secSlideSurveyPopupOptionsImage colorinput-color bg-blue"> <!-- {{random_color}} !-->
+                                                        <p class="secSlideSurveyPopupOptionsText survey-topic">اپشن</p>
+                                                    </span>
+                                                </label>
+                                            </div>
 
-    <div class="col-lg-6" style="margin-left: 7.5px;">
-    <div class="card">
-        <div class=" card-body">
-            <div class="form-group">
-                <div class="form-label">Toggle switch single</div>
-                <label class="custom-switch">
-                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="custom-switch-description">I agree with terms and conditions</span>
-                </label>
-                <div class="form-label">Toggle switch single Checked</div>
-                <label class="custom-switch">
-                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="custom-switch-description">I agree with terms and conditions</span>
-                </label>
-            </div>
-            <div class="form-group ">
-                <label class="form-label">Your skills</label>
-                <div class="selectgroup selectgroup-pills">
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="HTML" class="selectgroup-input" checked="">
-                        <span class="selectgroup-button">HTML</span>
-                    </label>
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="CSS" class="selectgroup-input">
-                        <span class="selectgroup-button">CSS</span>
-                    </label>
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="PHP" class="selectgroup-input">
-                        <span class="selectgroup-button">PHP</span>
-                    </label>
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="JavaScript" class="selectgroup-input">
-                        <span class="selectgroup-button">JavaScript</span>
-                    </label>
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="Angular" class="selectgroup-input">
-                        <span class="selectgroup-button">Angular</span>
-                    </label>
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="Java" class="selectgroup-input">
-                        <span class="selectgroup-button">Java</span>
-                    </label>
-                    <label class="selectgroup-item">
-                        <input type="checkbox" name="value" value="C++" class="selectgroup-input">
-                        <span class="selectgroup-button">C++</span>
-                    </label>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
-</div>
+
+
+                                        </div>
+
 
                         <div class="row gutters-xs" style="justify-content: center;">
                             <a onclick="submitFormSurvey()" class="btn btn-success"style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
@@ -948,17 +861,34 @@ function progressbar() {
 
     <script>
         function submitFormSurvey() {
-
+            chosenOne = null
             topics = JSON.parse('{{ g.survey_data.questions | tojson | safe}}')
             topics_form = {}
             for (var key in topics) {
                 topics_form[key] = document.getElementsByName(key)[0].checked
+                if (document.getElementsByName(key)[0].checked == true){
+                    chosenOne = key;
+                }
             }
+            if (chosenOne == null){
+                return false
+            }
+
             var xhr = new XMLHttpRequest();
+            topics_form["secound_questions"] = {}
+            secoundPopup = topics_form["secound_questions"]
+            secoundQuestions = JSON.parse('{{ g.survey_data.questions | tojson | safe}}')[chosenOne]["secound_questions"]["options"]
+
+            for (var key in secoundQuestions) {
+                elementsFoundByNameToFindAnswerOfQuestion = document.getElementsByName(key)
+                secoundPopup[key] = elementsFoundByNameToFindAnswerOfQuestion[elementsFoundByNameToFindAnswerOfQuestion.length - 1].checked
+            }
+
+
+
             xhr.open("POST", "/survey", true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(topics_form));
-
             hidePopup()
         }
         function hidePopup(){
@@ -1003,7 +933,26 @@ function progressbar() {
                 return false
             }
             document.getElementById("secSlideSurveyPopupSubText").innerText = "لطفا به سوالات زیر درمورد "+chosenOne+" پاسخ بدید."
-            document.getElementById("secSlideSurveyPopupText").innerText = "برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید."
+            document.getElementById("secSlideSurveyPopupText").innerText = "تایتل"
+            
+            optionElement = document.getElementById("allSecoundPopypOptions").innerHTML
+            document.getElementById("allSecoundPopypOptions").innerHTML = ""
+            indexQuestion = 0
+            for (question in topics[chosenOne]["secound_questions"]["options"]){
+                document.getElementById("allSecoundPopypOptions").innerHTML += optionElement
+
+                inputBox = document.getElementsByClassName("secSlideSurveyPopupOptionsInput")[indexQuestion]
+                imageOfOption = document.getElementsByClassName("secSlideSurveyPopupOptionsImage")[indexQuestion]
+                TextOfOption = document.getElementsByClassName("secSlideSurveyPopupOptionsText")[indexQuestion]
+                
+                inputBox.name = question
+                inputBox.value = question
+                TextOfOption.innerText = question
+                imageOfOption.style.backgroundImage = 'url('+topics[chosenOne]["secound_questions"]["options"][question]+')'
+
+                indexQuestion+=1
+            }
+            
             setTimeout(function() {
                 document.getElementById("secSlideSurveyPopup").style.display = 'block';
             }, 700);
