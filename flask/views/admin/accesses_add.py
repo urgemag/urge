@@ -13,6 +13,9 @@ def admin_index():
 def admin_add_index():
     return render_template("admin/admin_add_options.html")
 
+@admin_add.route("/Admin/Social", methods=["POST", "GET"])
+def admin_social_index():
+    return render_template("admin/admin_social_options.html")
 
 @admin_add.route("/Admin/Add/User", methods=["POST", "GET"])
 def add_user_admin():
