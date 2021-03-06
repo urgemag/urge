@@ -9,7 +9,7 @@ admin_remove = Blueprint("admin_remove", __name__)
 @admin_remove.route("/Admin/remove", methods=["POST", "GET"])
 @admin_remove.route("/Admin/Delete", methods=["POST", "GET"])
 @admin_remove.route("/Admin/delete", methods=["POST", "GET"])
-def remove_options():
+def admin_remove_index():
     return render_template("admin/admin_remove_options.html")
 
 
