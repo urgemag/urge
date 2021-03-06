@@ -784,8 +784,8 @@ function progressbar() {
                         "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
                         <div class="row gutters-xs" style="padding-bottom: 2rem;justify-content: center;">
 
-                            {% for topic in g.survey_data.topics %}
-                            {% set topic_image = g.survey_data.topics[topic] %}
+                            {% for topic in g.survey_data.questions %}
+                            {% set topic_image = g.survey_data.questions[topic] %}
                             <!-- {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %} -->
                             <div class="col-auto auto-resizer" style="margin: 6px;">
                                 <label class="colorinput">
@@ -949,7 +949,7 @@ function progressbar() {
     <script>
         function submitFormSurvey() {
 
-            topics = JSON.parse('{{ g.survey_data.topics | tojson | safe}}')
+            topics = JSON.parse('{{ g.survey_data.questions | tojson | safe}}')
             topics_form = {}
             for (var key in topics) {
                 topics_form[key] = document.getElementsByName(key)[0].checked
@@ -991,7 +991,7 @@ function progressbar() {
             goToQuestionPopup()
         }
         function goToQuestionPopup(){
-            topics = JSON.parse('{{ g.survey_data.topics | tojson | safe}}')
+            topics = JSON.parse('{{ g.survey_data.questions | tojson | safe}}')
             chosenOne = null
             for (var key in topics) {
                 if (document.getElementsByName(key)[0].checked == true){

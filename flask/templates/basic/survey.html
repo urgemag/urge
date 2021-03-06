@@ -177,8 +177,8 @@
                 "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
                     <div class="row gutters-xs" style="justify-content: center;">
 
-                        {% for topic in survey.topics %}
-                        {% set topic_image = survey.topics[topic] %}
+                        {% for topic in survey.questions %}
+                        {% set topic_image = survey.questions[topic] %}
                         {% set random_color = ['azure','indigo','purple','pink','red','orange','yellow','lime','green','teal']|random %}
                         <div class="col-auto auto-resizer" style="margin: 6px;">
                             <label class="colorinput">
@@ -210,7 +210,7 @@
 <script>
     function submitFormSurvey() {
 
-        topics = JSON.parse('{{ survey.topics | tojson | safe}}')
+        topics = JSON.parse('{{ survey.questions | tojson | safe}}')
         topics_form = {}
         for (var key in topics) {
             topics_form[key] = document.getElementsByName(key)[0].checked
