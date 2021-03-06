@@ -1,18 +1,6 @@
 {
     "questions": {
-        "بولت ژورنال":{ 
-            "topic_image" : "https://cdn.dribbble.com/users/749358/screenshots/6213508/dribble_book_4x.png?compress=1&resize=1000x750",
-            "secound_questions" : {
-                "title": "",
-                "options": {
-                    "1":"https://cdn.dribbble.com/users/440670/screenshots/15244462/media/b233e4aae0e0ce91c368d86454ac63f4.jpg?compress=1&resize=1000x750",
-                    "2":"",
-                    "3":""
-                }
-            } 
-        },
-        
-        "صبح جادویی":{   
+        "سحرخیزی":{   
             "topic_image" : "https://cdn.dribbble.com/users/5029209/screenshots/14400954/media/6ffd4ea2bb76da2380cd6ff37c97bf3e.png?compress=1&resize=1000x750",
             "secound_questions" : {
                 "title": "",
@@ -23,9 +11,21 @@
                 }
             } 
         },
+
+        "قانون جذب":{ 
+            "topic_image" : "https://cdn.dribbble.com/users/518045/screenshots/14127393/media/e21fe0b76fd93b87cbee371108503b99.png?compress=1&resize=1000x750",
+            "secound_questions" : {
+                "title": "",
+                "options": {
+                    "1":"https://cdn.dribbble.com/users/440670/screenshots/15244462/media/b233e4aae0e0ce91c368d86454ac63f4.jpg?compress=1&resize=1000x750",
+                    "2":"",
+                    "3":""
+                }
+            } 
+        },
         
-        "هوش هیجانی":{  
-            "topic_image" : "https://cdn.dribbble.com/users/322211/screenshots/14590572/media/0dd47e4c66192b9ab331b866c074c516.jpg?compress=1&resize=1000x750",
+        "هوش مالی":{  
+            "topic_image" : "https://cdn.dribbble.com/users/1626229/screenshots/10802257/media/75691f6399f58e18a48ca28e15abd756.jpg?compress=1&resize=1000x750",
             "secound_questions" : {
                 "title": "",
                 "options": {
@@ -36,8 +36,8 @@
             } 
         },
         
-        "کاریزما": {    
-            "topic_image" : "https://cdn.dribbble.com/users/1626229/screenshots/14871255/media/c9cbd16839f87ec9ee924c11212f2152.jpg?compress=1&resize=1000x750",
+        "کارافرینی": {    
+            "topic_image" : "https://cdn.dribbble.com/users/1626229/screenshots/15021591/media/cebadbe7c5df1565621cf205c17483ad.jpg?compress=1&resize=1000x750",
             "secound_questions" : {
                 "title": "",
                 "options": {
@@ -48,8 +48,8 @@
             } 
         },
         
-        "بهره‌وری":{      
-            "topic_image" : "https://cdn.dribbble.com/users/62525/screenshots/14686490/media/3788bfee553411b6b30008df2f3a0713.png?compress=1&resize=1000x750",
+        "برندسازی":{      
+            "topic_image" : "https://cdn.dribbble.com/users/2394977/screenshots/14645014/media/14d52d6a640b7aec85be9aeae29f0a56.jpg?compress=1&resize=1000x750",
             "secound_questions" : {
                 "title": "",
                 "options": {
@@ -60,8 +60,8 @@
             } 
         },
         
-        "تغییر عادت": {
-            "topic_image" : "https://cdn.dribbble.com/users/5529479/screenshots/12114762/media/d04db939cf5920c524f8e77db6c96d1c.jpg?compress=1&resize=1000x750",
+        "برنامه ریزی": {
+            "topic_image" : "https://cdn.dribbble.com/users/1137072/screenshots/11957131/media/8ba20e5cc46f423d05fb8907ddd7dcd0.png?compress=1&resize=1000x750",
             "secound_questions" : {
                 "title": "",
                 "options": {
