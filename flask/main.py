@@ -71,7 +71,7 @@ def survey_data():
             session["survey"] = survey_data_session
             g.survey = True
         if type(survey_data_session) == int:
-            if survey_data_session % 1 == 0:
+            if survey_data_session % 6 == 0:
                 g.survey = True
             else:
                 g.survey = False
