@@ -57,7 +57,6 @@ def survey_topics():
     for topic in topics:
         user_survey_answer[topic] = request_args[topic]
     user_survey_answer["secound_questions"] = request_args["secound_questions"]
-    print (user_survey_answer)
     Database().add_user_survey_answer_to_db(
         user_ip_address,
         identity,
