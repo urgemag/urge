@@ -4,14 +4,16 @@
 <head>
     {% block add_extra_data_to_header %}{% endblock %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-189099720-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    {% if g.production == True %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-189099720-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'UA-189099720-1');
-    </script>
+        gtag('config', 'UA-189099720-1');
+        </script>
+    {% endif %}
 
 
     <meta property="og:type" content="website">
@@ -578,7 +580,6 @@ function progressbar() {
                 <!--End side app-->
 
                 <!-- Right-sidebar-->
-
                 <div class="sidebar sidebar-right sidebar-animate">
                     <div class="tab-menu-heading siderbar-tabs border-0">
                         <div class="tabs-menu ">
@@ -777,6 +778,7 @@ function progressbar() {
                         margin-right: 35px;
                         margin-bottom: 20px;
                         margin-left: 35px;
+
                     "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
                         <div class="row gutters-xs" style="justify-content: center;">
 
