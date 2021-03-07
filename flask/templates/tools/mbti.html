@@ -88,6 +88,18 @@
     </div>
     <!-- col end -->
 </div>
+<style>
+    @media (max-width: 510px){
+        .question-bar{
+            transform: scale(0.9)
+        }
+    }
+    @media (max-width: 444px){
+        .question-bar{
+            transform: scale(0.8)
+        }
+    }
+</style>
 <div class="row">
     {% if tool.Slug not in accesses and (tool.Free == false or tool.Now_Price !=0) %}
     
@@ -100,7 +112,7 @@
 
         {% for question in questions %}
 
-        <div class="card-body single-productslide" id='question_{{loop.index}}'>
+        <div class="card-body single-productslide question-bar" id='question_{{loop.index}}'>
             <h4 id='question_text_{{loop.index}}' style="text-align: center;">{{question}}</h4>
             <div class="custom-controls-stacked" style="margin-bottom: 25px; margin-top:25px; display: flex;place-content: center;">
                 <h4 style="margin-left: 20px;font-weight: initial !important;color: #029269;">موافقم</h4>
