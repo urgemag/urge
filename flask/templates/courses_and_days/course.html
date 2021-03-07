@@ -272,7 +272,7 @@
     
     {% endif %} 
     {% for day in days %} 
-    {% if day.Name and day.Cover and day.Description and day.Free != None %}
+    {% if day.Name and day.Cover and day.Free != None %}
     <div class="col-md-6 col-lg-4 col-md-4 col-xl-3">
         {% if course.Slug in accesses and (accesses[day.Slug]-1+ day.Day|int -days_till_now) > 0 %}
         <div class="card overflow-hidden grayscale_access">
@@ -345,7 +345,7 @@
           "><i class="zmdi zmdi-label"></i> برای امروز
                 </a> {% endif %}
 
-                <p class="card-text">{{day.Description}}</p>
+                <p class="card-text" style="margin-bottom: -12px;">‌</p>
                 {% if course.Slug in accesses and (accesses[day.Slug]-1+day.Day|int-days_till_now) == 0 %}
                 <a style="font-weight: 400 !important;" href="/Course/{{day.Slug}}/{{day.Day}}" class="btn btn-primary">بزن بریم!</a>
                 {% elif course.Slug in accesses and (accesses[day.Slug]-1+day.Day|int-days_till_now) > 0 %}

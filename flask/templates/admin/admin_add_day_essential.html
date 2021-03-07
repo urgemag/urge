@@ -68,15 +68,14 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group ">
+                                <div class="form-group">
                                     <div class="form-group ">
                                         <label class="form-label ">روز</label>
-                                        <input type="number" min="1" class="form-control" name="day" placeholder="شماره روز دوره " required="required">
-
-
+                                        <input type="number" min="1" class="form-control" name="day" placeholder="شماره روز " required="required">
                                         </select>
                                     </div>
                                 </div>
+                               
 
 
                                 <div class="form-group ">
@@ -85,22 +84,31 @@
                                         <input maxlength="16" type="text" class="form-control" name="name_day" placeholder="اسم فارسی روز دوره " required="required">
                                     </div>
                                 </div>
-
+                                <div class="form-group " style="margin-top: 20px;">
+                                    <label class="form-label ">وجود توضیحات</label>
+                                    <select name="description-status" onchange="descriptionViewCheck() " id="description-status" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
+                                        <optgroup >
+                                            <option value="Without-Description">دارای توضیحات</option>
+                                            <option value="With-Description">بدون توضیحات</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
 
 
                             </div>
                             <div class="col-md-4" style="margin-top: 58px;max-width: 33%;">
-                                <label class="form-label">توضیحات</label>
-                                <textarea name="description" class="form-control" minlength="80" maxlength="95" name="bio" rows="4" placeholder="توضیحات روز" style="height: 42%;" required="required"></textarea>
-
+                                <div id="description">
+                                    <label class="form-label">توضیحات</label>
+                                    <textarea name="description" class="form-control" minlength="80" maxlength="95" name="bio" rows="4" placeholder="توضیحات روز" style="height: 42%;"></textarea>
+                                </div>
                                 <div class="form-group " style="margin-top: 20px;">
                                     <label class="form-label ">هزینه</label>
                                     <select name="price-status" onchange="pricecheck() " id="price" class="form-control select2 select2-hidden-accessible " data-placeholder="Choose one (with optgroup) " tabindex="-1 " aria-hidden="true ">
-                                                            <optgroup label="هزینه ">
-                                                                <option value="None-Free">دارای هزینه</option>
-                                                                <option value="Free">رایگان</option>
-                                                            </optgroup>
-                                                        </select>
+                                        <optgroup label="هزینه ">
+                                            <option value="None-Free">دارای هزینه</option>
+                                            <option value="Free">رایگان</option>
+                                        </optgroup>
+                                    </select>
 
 
                                 </div>
@@ -124,4 +132,21 @@
         </div>
 
     </div>
-</div>{% endblock %}
+</div>
+
+<script>
+
+    function descriptionViewCheck(){
+        statusDescription = document.getElementsByName("description-status")[0].value
+        if (statusDescription == "Without-Description") {
+            document.getElementById("description").style.display = "block";
+        } else {
+            document.getElementById("description").style.display = "none";
+
+        }
+
+    }
+
+</script>
+
+{% endblock %}

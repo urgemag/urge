@@ -4,14 +4,16 @@
 <head>
     {% block add_extra_data_to_header %}{% endblock %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-189099720-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    {% if g.production == True %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-189099720-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'UA-189099720-1');
-    </script>
+        gtag('config', 'UA-189099720-1');
+        </script>
+    {% endif %}
 
 
     <meta property="og:type" content="website">
@@ -521,6 +523,14 @@ function progressbar() {
                                                 font-size: 14px;
                                             "></i>   موزیک‌ ها       </a> {% endblock %}
 
+                                        {% if g.is_admin %}
+                                        <a class="upside-margin btn btn-primary " href="/Admin" style="
+                                        margin-right: 5px;    height: 100%; min-width: 90px;
+                                        "><i class="fa fa-cog" style="
+                                                font-size: 14px;
+                                            "></i>   ادمین       </a> 
+                                        {% endif %}
+
                                         {% if g.details["User"]==False %}
 
 
@@ -578,7 +588,6 @@ function progressbar() {
                 <!--End side app-->
 
                 <!-- Right-sidebar-->
-
                 <div class="sidebar sidebar-right sidebar-animate">
                     <div class="tab-menu-heading siderbar-tabs border-0">
                         <div class="tabs-menu ">
@@ -781,8 +790,14 @@ function progressbar() {
                         margin-right: 35px;
                         margin-bottom: 20px;
                         margin-left: 35px;
+<<<<<<< HEAD
                         "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
                         <div class="row gutters-xs" style="padding-bottom: 2rem;justify-content: center;">
+=======
+
+                    "> برای کمک به سیستم فید لطفا مطالبی که برایتان جذاب است را انتخاب کنید. </h3>
+                        <div class="row gutters-xs" style="justify-content: center;">
+>>>>>>> master
 
                             {% for topic in g.survey_data.questions %}
                             {% set topic_image = g.survey_data.questions[topic]['topic_image'] %}
