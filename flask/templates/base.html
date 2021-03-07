@@ -523,6 +523,14 @@ function progressbar() {
                                                 font-size: 14px;
                                             "></i>   موزیک‌ ها       </a> {% endblock %}
 
+                                        {% if g.is_admin %}
+                                        <a class="upside-margin btn btn-primary " href="/Admin" style="
+                                        margin-right: 5px;    height: 100%; min-width: 90px;
+                                        "><i class="fa fa-cog" style="
+                                                font-size: 14px;
+                                            "></i>   ادمین       </a> 
+                                        {% endif %}
+
                                         {% if g.details["User"]==False %}
 
 

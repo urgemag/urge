@@ -85,6 +85,9 @@ def check_is_admin():
     if not Authentication(session).is_admin():
         abort(401)
 
+def is_it_admin():
+    g.is_admin = Authentication(session).is_admin()
+
 def is_it_production_mode():
     g.production = setting.production
 
@@ -95,6 +98,7 @@ admin_remove.before_request(check_is_admin)
 app.before_request(essential_user_details)
 app.before_request(survey_data)
 app.before_request(is_it_production_mode)
+app.before_request(is_it_admin)
 # registering blueprints
 for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music,tools):
     app.register_blueprint(blueprint)
