@@ -678,18 +678,18 @@ function progressbar() {
         }
     
         .survey-topic {
-            margin-top: 75%;
+            margin-top: auto;
             text-align: center;
             font-weight: normal !important;
             font-size: inherit;
             background-color: #0000006b;
-            /* margin-block-end: 81px; */
-            height: 25%;
+            height: auto;
             padding: 7px;
             padding-top: 5%;
             font-size: 18px;
             border-bottom-right-radius: 24px;
-            border-bottom-left-radius: 24px
+            border-bottom-left-radius: 24px;
+            margin-bottom: initial;
         }
         .gentle-act{
             -webkit-transition: 1.2s ease-in-out;
@@ -805,6 +805,7 @@ function progressbar() {
                                             border-radius: 25px;
                                             background-image: url({{topic_image}});
                                             background-size: cover;
+                                            display: grid;
                                             background-position: center;" class="colorinput-color bg-blue"> <!-- {{random_color}} !-->
                                         <p class="survey-topic">{{topic}}</p>
                                     </span>
@@ -841,8 +842,10 @@ function progressbar() {
                                                             border-radius: 25px;
                                                             background-image: url(تصویر);
                                                             background-size: cover;
+                                                            display: grid;
+                                                            margin-left: 3.45px;
                                                             background-position: center;" class="secSlideSurveyPopupOptionsImage colorinput-color bg-blue"> <!-- {{random_color}} !-->
-                                                        <p class="secSlideSurveyPopupOptionsText survey-topic">اپشن</p>
+                                                        <p class="secSlideSurveyPopupOptionsText survey-topic" style="background-color: #0000009f;">اپشن</p>
                                                     </span>
                                                 </label>
                                             </div>
