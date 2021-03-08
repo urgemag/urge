@@ -713,6 +713,12 @@ function progressbar() {
             .survey-topic{
                 font-size: 25px;
             }
+            .survey-popup{
+                top:4% !important
+            }
+            .submit-survey{
+                margin-top: 0px !important
+            }
         }
         @media (max-width: 502px) {
         .auto-resizer{
@@ -725,17 +731,29 @@ function progressbar() {
             .survey-topic{
                 font-size: 30px;
             }
+            .survey-popup{
+                top:2% !important
+            }
+            .secSurveyTitle{
+                font-size: 14px;
+            }
+            .secSurveyDescription{
+                font-size: 16px;
+            }
         }
-        @media (max-width: 300px) {
+        @media (max-width: 320px) {
             .auto-resizer{
             transform: scale(0.5);
-            margin-right: -47px !important;
-            margin-left: -47px !important;
-            margin-top: -47px !important;
-            margin-bottom: -47px !important;
+            margin-right: -49px !important;
+            margin-left: -49px !important;
+            margin-top: -49px !important;
+            margin-bottom: -49px !important;
             }
             .survey-topic{
                 font-size: 35px;
+            }
+            .survey-popup{
+                top:1% !important
             }
         }
         @media (max-width: 260px) {
@@ -746,8 +764,11 @@ function progressbar() {
             .survey-topic{
                 font-size: 46px;
             }
+            .survey-popup{
+                top:1% !important
+            }
         }
-        @media (max-width: 200px) {
+        @media (max-width: 212px) {
             .survey-popup{
                 opacity: 0;
             }
@@ -755,6 +776,7 @@ function progressbar() {
                 opacity: 0;
             }
         }
+
         
     
     </style>
@@ -851,8 +873,8 @@ function progressbar() {
 
                     <div id="secSlideSurveyPopup" style="display: None; opacity: 0;" class="gentle-act-faster form-group m-0">
                         <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
-                        <h5 id="secSlideSurveyPopupSubText" style="text-align: center;margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;"></h5>
-                        <h3 id="secSlideSurveyPopupText" style="text-align: center;text-align-last: center;margin-top: 12px;margin-right: 35px;margin-bottom: 20px;margin-left: 35px;"></h3>
+                        <h5 id="secSlideSurveyPopupSubText" class="secSurveyTitle" style="text-align: center;margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;"></h5>
+                        <h3 id="secSlideSurveyPopupText" class="secSurveyDescription" style="text-align: center;text-align-last: center;margin-top: 12px;margin-right: 35px;margin-bottom: 20px;margin-left: 35px;"></h3>
 
                         <form id='survey-form' method="POST">
                             <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -885,7 +907,7 @@ function progressbar() {
 
 
                         <div class="row gutters-xs" style="justify-content: center;">
-                            <a onclick="submitFormSurvey()" class="btn btn-success"style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
+                            <a onclick="submitFormSurvey()" class="submit-survey btn btn-success"style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
 
  
 
