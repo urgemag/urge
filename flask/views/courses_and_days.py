@@ -37,7 +37,7 @@ def log_in_auth(f):
 def all_courses():
     """ The Courses page. """
     courses_per_page = 10
-    courses = PageDetails(session).all_courses_page_info_html()
+    courses = PageDetails(session).all_courses_list()
     courses.reverse()
     page = request.args.get("page")
     last_page = len(courses)//courses_per_page
@@ -80,7 +80,7 @@ def info_course(slug):
     if data is False or "Intro" not in data:
         return redirect(url_for("courses_and_days.one_course", slug= slug))
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     return render_template(
@@ -101,7 +101,7 @@ def one_course(slug):
         abort(404)
     
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     return render_template(
@@ -121,7 +121,7 @@ def cart(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -146,7 +146,7 @@ def start_free_course(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -172,7 +172,7 @@ def success_page_course(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -198,7 +198,7 @@ def fail_page_course(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -226,7 +226,7 @@ def success_page_course_start(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -251,7 +251,7 @@ def buy_course_redirect(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -283,7 +283,7 @@ def start_course_redirect(slug):
     if data is False:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:
@@ -336,7 +336,7 @@ def sub_course(slug, day):
     except ValueError:
         abort(404)
     course = Database().get_courses_data_from_db(slug)
-    published_date = General().convert_timestamp(course["First_Created_TimeStamp"])[0] + course["Days_Till_Open"]
+    published_date = General().convert_timestamp_to_days(course["First_Created_TimeStamp"] + course["Days_Till_Open"]
     if published_date > General().days_passed_till_now():
         abort(404)
     try:

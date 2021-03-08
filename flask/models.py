@@ -511,7 +511,7 @@ class General:
         date = [int(x) for x in ((timestamp.split(" "))[0]).split("-")]
         delta_time = (
             General().milliseconds_passed_till_now()
-            - General().convert_timestamp(timestamp)[2]
+            - General().convert_timestamp_to_milliseconds(timestamp)
         )
         delta_time_minutes = delta_time / 1000 / 60
         delta_time_minutes = int(delta_time_minutes)
@@ -644,7 +644,7 @@ class General:
         return int(delta_date.days)
 
     def milliseconds_passed_till_now(self):
-        return General().convert_timestamp(General().timestamp())[2]
+        return General().convert_timestamp_to_milliseconds(General().timestamp())
 
     def days_passed_till_specific_date(self, year, month, day):
         specific_date = date(year, month, day)
@@ -2183,7 +2183,7 @@ class PageDetails:
         signed_in_email_data["User"] = True
         return signed_in_email_data
 
-    def all_courses_page_info_html(self):
+    def all_courses_list(self):
         """ To return all details that are needed at /Courses page. """
         courses_raw = Database().get_all_courses_data_from_db()
         courses = list()
@@ -2191,6 +2191,13 @@ class PageDetails:
             courses.append(course)
 
         return courses
+
+    def all_courses_list_sort_by_date(self):
+        courses_raw = Database().get_all_courses_data_from_db()
+        courses_milliseconds = dict()
+        for course in courses_raw:
+            pass
+        return courses_milliseconds
 
     def info_intro_course_page(self, slug):
         """ To return all details that are needed at /Course/<slug>/info page. """
@@ -2339,7 +2346,7 @@ class PageDetails:
             course["Now_Price"] = int(str(course["Now_Price"]).replace(",", ""))
             if (
                 General().days_passed_till_now()
-                >= General().convert_timestamp(course["First_Created_TimeStamp"])[0]
+                >= General().convert_timestamp_to_days(course["First_Created_TimeStamp"]
                 + course["Days_Till_Open"]
             ):
                 courses.append(course)
