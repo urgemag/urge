@@ -4,7 +4,12 @@
 <li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
 <li class="breadcrumb-item"><a href="/Course/{{course.Slug}}"> {{course.Name}} </a></li>
 <li class="breadcrumb-item active" aria-current="page">معرفی</li>
-{% endblock %} {% block body %}
+{% endblock %} 
+
+{% block image_in_metatag %}{{course.Cover}}{% endblock %}
+{% block description_in_metatag %}{{course.Description}}{% endblock %}
+
+{% block body %}
 <!-- row -->
 <div class="row ">
     <div class="col-md-12">
