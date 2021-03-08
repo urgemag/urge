@@ -2155,7 +2155,7 @@ class Database:
         self.database.courses.delete_many(my_query)
         return True
 
-
+import collections
 class PageDetails:
     """ All functions related to the pages details input ! """
 
@@ -2200,12 +2200,14 @@ class PageDetails:
 
         return courses
 
-    def all_courses_list_sort_by_date(self):
+    def all_courses_list_sorted_by_date(self):
         courses_raw = Database().get_all_courses_data_from_db()
-        courses_milliseconds = dict()
+        courses_dict_named_by_milliseconds = dict()
         for course in courses_raw:
-            pass
-        return courses_milliseconds
+            courses_dict_named_by_milliseconds[course["First_Created_TimeStamp"]] = course
+
+        courses_sorted = collections.OrderedDict(sorted(courses_dict_named_by_milliseconds.items()))
+        return courses_sorted
 
     def info_intro_course_page(self, slug):
         """ To return all details that are needed at /Course/<slug>/info page. """
@@ -2355,8 +2357,7 @@ class PageDetails:
             if (
                 General().days_passed_till_now()
                 >= General().convert_timestamp_to_days(course["First_Created_TimeStamp"]
-                + course["Days_Till_Open"]
-            ):
+                + course["Days_Till_Open"])):
                 courses.append(course)
         courses = sorted(courses, key=lambda k: k["Now_Price"])
         courses.reverse()
