@@ -3,6 +3,11 @@
 <li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
 <li class="breadcrumb-item active" aria-current="page">{{course.Name}}</li>
 {% endblock %}
+
+
+{% block image_in_metatag %}{{course.Cover}}{% endblock %}
+{% block description_in_metatag %}{{course.Description}}{% endblock %}
+
 {% block no_header %}{% endblock %}
 {% block main_css %}
 <link href="/static//assets/css/style_course.css" rel="stylesheet" />
