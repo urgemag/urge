@@ -7,6 +7,10 @@
 <li class="breadcrumb-item active" aria-current="page"> خرید </li>
 {% endblock %}
 {% block no_header %}{% endblock %}
+
+{% block image_in_metatag %}{{course.Cover}}{% endblock %}
+{% block description_in_metatag %}{{course.Description}}{% endblock %}
+
 {% block body %}
 <script>
     function have_to_login() {
