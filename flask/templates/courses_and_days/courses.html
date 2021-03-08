@@ -4,6 +4,10 @@
 <li class="breadcrumb-item active" aria-current="page">دوره ها </li>
 {% endblock %} 
 {% block no_header %}{% endblock %}
+
+{% block image_in_metatag %}{{courses[0].Cover}}{% endblock %}
+{% block description_in_metatag %} دوره‌های مربوط به موفقیت و توسعه فردی ارج | urge {% endblock %}
+
 {% block main_css %}
 <script src="/static/sweetalert/sweetalert2@10.js"></script>
 <link href="/static//assets/css/style_course.css" rel="stylesheet" /> {% endblock %}
