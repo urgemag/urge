@@ -672,6 +672,14 @@ class General:
         )
         return days_passed, milliseconds_passed, sum_milliseconds_passed
 
+    def convert_timestamp_to_milliseconds(self, timestamp):
+        milliseconds = General().convert_timestamp(timestamp)[2]
+        return milliseconds
+
+    def convert_timestamp_to_days(self, timestamp):
+        days = General().convert_timestamp(timestamp)[0]
+        return days
+
 
 class Authentication:
     """ Authentications of the urge panel ! """
