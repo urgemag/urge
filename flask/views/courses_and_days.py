@@ -37,7 +37,7 @@ def log_in_auth(f):
 def all_courses():
     """ The Courses page. """
     courses_per_page = 10
-    courses = PageDetails(session).all_courses_list()
+    courses = PageDetails(session).all_courses_list_sorted_by_date()
     courses.reverse()
     page = request.args.get("page")
     last_page = len(courses)//courses_per_page

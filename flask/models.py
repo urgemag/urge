@@ -2203,11 +2203,14 @@ class PageDetails:
     def all_courses_list_sorted_by_date(self):
         courses_raw = Database().get_all_courses_data_from_db()
         courses_dict_named_by_milliseconds = dict()
+        courses = []
         for course in courses_raw:
-            courses_dict_named_by_milliseconds[course["First_Created_TimeStamp"]] = course
-
-        courses_sorted = collections.OrderedDict(sorted(courses_dict_named_by_milliseconds.items()))
-        return courses_sorted
+            course_milliseconds = General().convert_timestamp_to_milliseconds(course["First_Created_TimeStamp"])
+            courses_dict_named_by_milliseconds[course_milliseconds] = course
+        courses_sorted = collections.OrderedDict(sorted(courses_dict_named_by_milliseconds.items())).items()
+        for milliseconds, course in courses_sorted:
+            courses.append(course)
+        return courses
 
     def info_intro_course_page(self, slug):
         """ To return all details that are needed at /Course/<slug>/info page. """
@@ -2355,9 +2358,7 @@ class PageDetails:
         for course in Database().get_all_courses_data_from_db():
             course["Now_Price"] = int(str(course["Now_Price"]).replace(",", ""))
             if (
-                General().days_passed_till_now()
-                >= General().convert_timestamp_to_days(course["First_Created_TimeStamp"]
-                + course["Days_Till_Open"])):
+                General().days_passed_till_now() >= General().convert_timestamp_to_days(course["First_Created_TimeStamp"]) + course["Days_Till_Open"]):
                 courses.append(course)
         courses = sorted(courses, key=lambda k: k["Now_Price"])
         courses.reverse()
