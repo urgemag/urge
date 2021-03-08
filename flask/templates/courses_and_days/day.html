@@ -3,7 +3,13 @@
 <li class="breadcrumb-item"><a href="/Courses"> دوره ها </a></li>
 <li class="breadcrumb-item"><a href="/Course/{{day.Slug}}"> {{course.Name}} </a></li>
 <li class="breadcrumb-item active" aria-current="page">روز {{day.Day}}</li>
-{% endblock %} {% block additional_in_head %}
+{% endblock %}
+
+
+{% block image_in_metatag %}{{course.Cover}}{% endblock %}
+{% block description_in_metatag %}{{course.Description}}{% endblock %}
+
+{% block additional_in_head %}
 <style>
     .plyr__progress input {
         direction: ltr !important;
