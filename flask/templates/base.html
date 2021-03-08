@@ -185,6 +185,7 @@ function progressbar() {
                 margin-right: -15px; 
 
             }
+
         }
 
         @media screen and (max-width: 767px) {
@@ -704,22 +705,49 @@ function progressbar() {
         @media (max-width: 688px) {
         .auto-resizer{
             transform: scale(0.75);
-            margin-right: -22px !important;
-            margin-left: -22px !important;
-            margin-top: -22px !important;
-            margin-bottom: -10px !important;
+            margin-right: -24px !important;
+            margin-left: -24px !important;
+            margin-top: -24px !important;
+            margin-bottom: -12px !important;
+            }
+            .survey-topic{
+                font-size: 25px;
             }
         }
         @media (max-width: 502px) {
         .auto-resizer{
             transform: scale(0.6);
-            margin-right: -37px !important;
-            margin-left: -37px !important;
-            margin-top: -37px !important;
-            margin-bottom: -25px !important;
+            margin-right: -39px !important;
+            margin-left: -39px !important;
+            margin-top: -39px !important;
+            margin-bottom: -27px !important;
+            }
+            .survey-topic{
+                font-size: 30px;
             }
         }
-        @media (max-width: 442px) {
+        @media (max-width: 300px) {
+            .auto-resizer{
+            transform: scale(0.5);
+            margin-right: -47px !important;
+            margin-left: -47px !important;
+            margin-top: -47px !important;
+            margin-bottom: -47px !important;
+            }
+            .survey-topic{
+                font-size: 35px;
+            }
+        }
+        @media (max-width: 260px) {
+            .auto-resizer{
+            transform: scale(0.4);
+            margin: -57px !important;
+            }
+            .survey-topic{
+                font-size: 46px;
+            }
+        }
+        @media (max-width: 200px) {
             .survey-popup{
                 opacity: 0;
             }
@@ -783,8 +811,9 @@ function progressbar() {
                      
                     <div id="firstSlideSurveyPopup" class="gentle-act-faster form-group m-0">
                         <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
-                        <h5 style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
+                        <h5 style="text-align: center;margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;">سلام. به پنل اِرج خوش‌اومدی!</h5>
                         <h3 style="
+                        text-align: center;
                         text-align-last: center;
                         margin-top: 12px;
                         margin-right: 35px;
@@ -822,8 +851,8 @@ function progressbar() {
 
                     <div id="secSlideSurveyPopup" style="display: None; opacity: 0;" class="gentle-act-faster form-group m-0">
                         <button onclick="hidePopup()" style="margin-top:15px;margin-right:15px; border-radius: 20px;" type="button" class="btn btn-icon"><i class="fa fa-close"></i></button>
-                        <h5 id="secSlideSurveyPopupSubText" style="margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;"></h5>
-                        <h3 id="secSlideSurveyPopupText" style="text-align-last: center;margin-top: 12px;margin-right: 35px;margin-bottom: 20px;margin-left: 35px;"></h3>
+                        <h5 id="secSlideSurveyPopupSubText" style="text-align: center;margin: 35px;text-align-last: center;margin-bottom: 0px;margin-top: -5px;font-weight: 500 !important;"></h5>
+                        <h3 id="secSlideSurveyPopupText" style="text-align: center;text-align-last: center;margin-top: 12px;margin-right: 35px;margin-bottom: 20px;margin-left: 35px;"></h3>
 
                         <form id='survey-form' method="POST">
                             <div class="col-sm-12 col-lg-12 col-xl-12">
