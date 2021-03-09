@@ -26,6 +26,23 @@ def first_visit(f):
     return decorated
 
 
+@basic.route("/")
+@basic.route("/Home")
+@basic.route("/home")
+@basic.route("/Dashboard")
+@basic.route("/dashboard")
+@first_visit
+def index():
+    """ The Dashboard """
+    return render_template(
+        "basic/main.html", 
+        number_of_courses = PageDetails().number_of_courses(),
+        top_courses = PageDetails().top_3_expensive_courses(),
+        quotes = PageDetails().random_quotes(),
+        random_blog_post = PageDetails().get_random_blog_post(),
+        survey = PageDetails().get_survey_json_data()
+        )
+
 @basic.route("/survey",methods=["POST"])
 @first_visit
 def survey_topics():
