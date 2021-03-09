@@ -296,6 +296,38 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">گوشه بالا - راست</label>
+                                    <input oninput="changeBoxBorderRadius()" required="required" id="borderRadiusTopRight" type="number" class="form-control" placeholder="20%" min="1" max="100" value="24">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">گوشه بالا - چپ</label>
+                                    <input oninput="changeBoxBorderRadius()" required="required" id="borderRadiusTopLeft" type="number" class="form-control" placeholder="20%" min="1" max="100" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">گوشه پایین - راست</label>
+                                    <input oninput="changeBoxBorderRadius()" required="required" id="borderRadiusButtomRight" type="number" class="form-control" placeholder="20%" min="1" max="100" value="24">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 ">
+                            <div class="form-group ">
+                                <div class="form-group ">
+                                    <label class="form-label ">گوشه پایین - چپ</label>
+                                    <input oninput="changeBoxBorderRadius()" required="required" id="borderRadiusButtomLeft" type="number" class="form-control" placeholder="20%" min="1" max="100" value="24">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 ">
                             <div class="form-group ">
                                 <div class="form-group ">
@@ -396,6 +428,28 @@
                     }
                     function changeFontsize(){
                         document.getElementById("main-text").style.fontSize = document.getElementById("font-size").value + "px"
+                    }
+                    function changeBoxBorderRadius(){
+                        borderRadiusTopRight = document.getElementById("borderRadiusTopRight").value
+                        borderRadiusTopLeft = document.getElementById("borderRadiusTopLeft").value
+                        borderRadiusButtomRight = document.getElementById("borderRadiusButtomRight").value
+                        borderRadiusButtomLeft = document.getElementById("borderRadiusButtomLeft").value
+
+                        elementBox = document.getElementsByClassName("main-image-page-intro")[0]
+                        elementBoxBlackCover = document.getElementsByClassName("black-cover")[0]
+
+
+
+                        elementBox.style.borderTopRightRadius = borderRadiusTopRight + "%";
+                        elementBox.style.borderTopLeftRadius = borderRadiusTopLeft + "%";
+                        elementBox.style.borderBottomRightRadius = borderRadiusButtomRight + "%";
+                        elementBox.style.borderBottomLeftRadius = borderRadiusButtomLeft + "%";
+
+                        elementBoxBlackCover.style.borderTopRightRadius = borderRadiusTopRight + "%";
+                        elementBoxBlackCover.style.borderTopLeftRadius = borderRadiusTopLeft + "%";
+                        elementBoxBlackCover.style.borderBottomRightRadius = borderRadiusButtomRight + "%";
+                        elementBoxBlackCover.style.borderBottomLeftRadius = borderRadiusButtomLeft + "%";
+
                     }
                 //     function changeShadowColor(){
                 //         if (document.getElementsByName("isShadowColorBlack")[0].checked) {
