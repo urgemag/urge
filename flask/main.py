@@ -1,5 +1,5 @@
 """The main"""
-from flask import Flask, g, session, abort, render_template
+from flask import Flask, g, session, abort, render_template, request
 from flask_compress import Compress
 import setting
 from flask_recaptcha import ReCaptcha
@@ -63,37 +63,46 @@ app.config.update(
 
 recaptcha = ReCaptcha(app=app)
 def essential_user_details():
-    g.details = PageDetails(session).index_data()
+    print (request.full_path)
+    if request.full_path.endswith(".jpg?") or not request.full_path.startswith("/static"):
+        g.details = PageDetails(session).index_data()
+
 def survey_data():
-    if Authentication(session).has_user_answered_survey() is True:
-        g.survey = False
-    else:
-        try:
-            survey_data_session = session["survey"]
-        except KeyError:
-            survey_data_session = 0
-            session["survey"] = survey_data_session
-            g.survey = True
-        if type(survey_data_session) == int:
-            if survey_data_session % 6 == 0:
-                g.survey = True
-            else:
-                g.survey = False
-            session["survey"] += 1 
+    if not request.full_path.startswith("/static"):
+
+        if Authentication(session).has_user_answered_survey() is True:
+            g.survey = False
         else:
-            session["survey"] = 1
-        
-    g.survey_data = PageDetails().get_survey_json_data()
+            try:
+                survey_data_session = session["survey"]
+            except KeyError:
+                survey_data_session = 0
+                session["survey"] = survey_data_session
+                g.survey = True
+            if type(survey_data_session) == int:
+                if survey_data_session % 6 == 0:
+                    g.survey = True
+                else:
+                    g.survey = False
+                session["survey"] += 1 
+            else:
+                g.survey = True
+                session["survey"] = 1
+            
+        g.survey_data = PageDetails().get_survey_json_data()
 
 def check_is_admin():
-    if not Authentication(session).is_admin():
-        abort(401)
+    if not request.full_path.startswith("/static"):
+        if not Authentication(session).is_admin():
+            abort(401)
 
 def is_it_admin():
-    g.is_admin = Authentication(session).is_admin()
+    if not request.full_path.startswith("/static"):
+        g.is_admin = Authentication(session).is_admin()
 
 def is_it_production_mode():
-    g.production = setting.production
+    if not request.full_path.startswith("/static"):
+        g.production = setting.production
 
 
 admin_add.before_request(check_is_admin)
