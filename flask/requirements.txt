@@ -10,4 +10,4 @@ jdatetime
 send2trash
 python-dotenv
 html2text
-Flask-gzip
+flask_compress

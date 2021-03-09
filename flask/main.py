@@ -1,6 +1,6 @@
 """The main"""
-from flask import Flask, g, session, abort
-from flask_gzip import Gzip
+from flask import Flask, g, session, abort, render_template
+from flask_compress import Compress
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General, PageDetails, Authentication
@@ -36,7 +36,10 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
-gzip = Gzip(app)
+
+app.config["COMPRESS_REGISTER"] = True  # disable default compression of all eligible requests
+compress = Compress()
+compress.init_app(app)
 
 app.logger.addHandler(file_handler_error_logs)
 app.logger.addHandler(file_handler_critical_logs)
@@ -56,6 +59,25 @@ app.config.update(
         "RECAPTCHA_SECRET_KEY": setting.recaptcha_secret_key,
     }
 )
+
+
+@basic.route("/")
+@basic.route("/Home")
+@basic.route("/home")
+@basic.route("/Dashboard")
+@basic.route("/dashboard")
+@compress.compressed()
+def index():
+    """ The Dashboard """
+    return render_template(
+        "basic/main.html", 
+        number_of_courses = PageDetails().number_of_courses(),
+        top_courses = PageDetails().top_3_expensive_courses(),
+        quotes = PageDetails().random_quotes(),
+        random_blog_post = PageDetails().get_random_blog_post(),
+        survey = PageDetails().get_survey_json_data()
+        )
+
 recaptcha = ReCaptcha(app=app)
 def essential_user_details():
     g.details = PageDetails(session).index_data()
