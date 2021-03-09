@@ -8,6 +8,6 @@ suds-py3
 requests
 jdatetime
 send2trash
-flask_analytics
 python-dotenv
 html2text
+Flask-gzip

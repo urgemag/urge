@@ -1,5 +1,6 @@
 """The main"""
 from flask import Flask, g, session, abort
+from flask_gzip import Gzip
 import setting
 from flask_recaptcha import ReCaptcha
 from models import General, PageDetails, Authentication
@@ -16,7 +17,6 @@ from views.admin.accesses_edit import admin_edit
 from views.blog import blog
 from views.music import music
 from views.tools import tools
-from flask_analytics import Analytics
 
 # end of importing views
 from logging import FileHandler, WARNING, CRITICAL, ERROR
@@ -36,8 +36,7 @@ app = Flask(
     template_folder=setting.template_folder,
     static_folder=setting.static_folder,
 )
-Analytics(app)
-app.config['ANALYTICS']['GAUGES']['SITE_ID'] = 'G-4QTVXWX8LF'
+gzip = Gzip(app)
 
 app.logger.addHandler(file_handler_error_logs)
 app.logger.addHandler(file_handler_critical_logs)
