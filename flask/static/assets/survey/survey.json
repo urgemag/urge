@@ -1,6 +1,7 @@
 {
     "questions": {
         "سحرخیزی":{   
+            "redirect":"/Course/magical-morning-course",
             "topic_image" : "https://cdn.dribbble.com/users/5029209/screenshots/14400954/media/6ffd4ea2bb76da2380cd6ff37c97bf3e.png?compress=1&resize=205x205",
             "secound_questions" : {
                 "title": "",
@@ -14,6 +15,7 @@
         },
 
         "قانون جذب":{ 
+            "redirect":"/Course/law-of-attraction",
             "topic_image" : "https://cdn.dribbble.com/users/518045/screenshots/14127393/media/e21fe0b76fd93b87cbee371108503b99.png?compress=1&resize=205x205",
             "secound_questions" : {
                 "title": "",
@@ -27,6 +29,7 @@
         },
         
         "هوش مالی":{  
+            "redirect":"/Course/financial-intelligence",
             "topic_image" : "https://cdn.dribbble.com/users/1626229/screenshots/10802257/media/75691f6399f58e18a48ca28e15abd756.jpg?compress=1&resize=205x205",
             "secound_questions" : {
                 "title": "",
@@ -42,6 +45,7 @@
         },
         
         "کارافرینی": {    
+            "redirect":"/Course/entrepreneurship",
             "topic_image" : "https://cdn.dribbble.com/users/1626229/screenshots/15021591/media/cebadbe7c5df1565621cf205c17483ad.jpg?compress=1&resize=205x205",
             "secound_questions" : {
                 "title": "",
@@ -55,6 +59,7 @@
         },
         
         "برندسازی":{      
+            "redirect":"/Course/branding",
             "topic_image" : "https://cdn.dribbble.com/users/2394977/screenshots/14645014/media/14d52d6a640b7aec85be9aeae29f0a56.jpg?compress=1&resize=205x205",
             "secound_questions" : {
                 "title": "",
@@ -68,6 +73,7 @@
         },
         
         "برنامه ریزی": {
+            "redirect":"/Course/planning",
             "topic_image" : "https://cdn.dribbble.com/users/1137072/screenshots/11957131/media/8ba20e5cc46f423d05fb8907ddd7dcd0.png?compress=1&resize=205x205",
             "secound_questions" : {
                 "title": "",
