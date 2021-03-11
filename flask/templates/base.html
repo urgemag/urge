@@ -907,7 +907,7 @@ function progressbar() {
 
 
                         <div class="row gutters-xs" style="justify-content: center;">
-                            <a onclick="submitFormSurvey()" class="submit-survey btn btn-success"style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
+                            <a onclick="submitFormSurveyAndRedirectToSuitableCourse()" class="submit-survey btn btn-success"style="margin:auto; width: 93%; font-weight: bold !important; color:#fff; margin-top: 30px; border-radius: 30px; margin-bottom: 20px;">تمام!</a>
 
  
 
@@ -953,6 +953,12 @@ function progressbar() {
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(topics_form));
             hidePopup()
+            return topics[chosenOne]
+        }
+        function submitFormSurveyAndRedirectToSuitableCourse(){
+            dataRelatedToChosenTopic = submitFormSurvey()
+            console.log(dataRelatedToChosenTopic)
+            window.location.replace(dataRelatedToChosenTopic["redirect"]);
         }
         function hidePopup(){
             document.getElementById("survey-popup").style.opacity = "0"
