@@ -1,6 +1,7 @@
 from flask import Blueprint, session, redirect, render_template, request, flash, url_for,abort
 from models import PageDetails, Database, General, Authentication
 from functools import wraps
+from validator_collection import *
 
 admin_add = Blueprint("admin_add", __name__)
 
