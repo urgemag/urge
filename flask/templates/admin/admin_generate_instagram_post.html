@@ -359,6 +359,17 @@
                                 </div>
                             </li>
                         </div>
+
+                        <div class="col-md-4" style="margin-top: 30px;">
+                            <li class="list-group-item">
+                                از بین بردن بودر ردیوس
+                                <div class="material-switch pull-right">
+                                    <input oninput="disableBorderRadius()" id="someSwitchOptionPrimary"
+                                        name="disableBorderRadius" type="checkbox">
+                                    <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                                </div>
+                            </li>
+                        </div>
                         <!-- <div class="col-md-4" style="margin-top: 30px;">
                             <li class="list-group-item">
                                 سایه های سیاه
@@ -449,6 +460,31 @@
                         elementBoxBlackCover.style.borderTopLeftRadius = borderRadiusTopLeft + "%";
                         elementBoxBlackCover.style.borderBottomRightRadius = borderRadiusButtomRight + "%";
                         elementBoxBlackCover.style.borderBottomLeftRadius = borderRadiusButtomLeft + "%";
+
+                    }
+                    function disableBorderRadius(){
+                        if (document.getElementsByName("disableBorderRadius")[0].checked){
+                            elementBox = document.getElementsByClassName("main-image-page-intro")[0]
+                            elementBoxBlackCover = document.getElementsByClassName("black-cover")[0]
+                            elementBox.style.borderRadius = 0 + "%";
+                            elementBoxBlackCover.style.borderRadius = 0 + "%";
+
+                            elementBox.style.width = "100%"
+                            elementBox.style.height = "100%"
+                            elementBox.style.marginTop = "0%"
+
+                            elementBoxBlackCover.style.width = "800px"
+                            elementBoxBlackCover.style.height = "800px"
+                        }
+                        else{
+                            changeBoxBorderRadius()
+                            elementBox.style.width = "91%"
+                            elementBox.style.height = "91%"
+                            elementBox.style.marginTop = "5%"
+
+                            elementBoxBlackCover.style.width = "728px"
+                            elementBoxBlackCover.style.height = "728px"
+                        }
 
                     }
                 //     function changeShadowColor(){
