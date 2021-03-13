@@ -78,31 +78,26 @@ def add_day_essential_main_data_admin():
         def form_handler(request):
             slug = request.form.get("slug")
             day = request.form.get("day")
-            
-            if request.form.get("slug") == "":
+            name_day = request.form.get("name_day")
+            description_status_existence = request.form.get("description-status")
+            description = request.form.get("description")
+            price_status = request.form.get("price-status")
+
+            if is_not_empty(slug):
                 return {"Result": False, "Message": "نام انگلیسی دوره را وارد کنید."}
-            if request.form.get("day") == "":
+            if is_not_empty(day) == "":
                 return {"Result": False, "Message": "روز دوره را وارد کنید."}
-            if request.form.get("name_day") == "":
+            if is_not_empty(name_day):
                 return {"Result": False, "Message": "اسم روز را وارد کنید."}
-            if request.form.get("description-status") == "With-Description" and request.form.get("description") == "":
+            if description_status_existence == "With-Description" and is_not_empty(description):
                 return {"Result": False, "Message": "توضیحات روز را وارد کنید."}
-            if (
-                request.form.get("price-status") != "None-Free"
-                and request.form.get("price-status") != "Free"
-            ):
-                return {
-                    "Result": False,
-                    "Message": "اطلاعات مربوط به هزینه صحیح وارد نشده است.",
-                }
-            if request.form.get("price-status") == "None-Free":
+
+            if price_status == "None-Free":
                 freeness = False
             else:
                 freeness = True
 
-            try:
-                int(request.form.get("day"))
-            except ValueError:
+            if is_numeric(day):
                 return {"Result": False, "Message": "روز دوره باید عدد باشد."}
             try:
                 uploaded_file = request.files["cover"]
