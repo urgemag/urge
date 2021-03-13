@@ -1,5 +1,5 @@
 """The main"""
-from flask import Flask, g, session, abort, render_template, request
+from flask import Flask, g, session, abort, render_template, request, redirect
 from flask_compress import Compress
 import setting
 from flask_recaptcha import ReCaptcha
@@ -103,6 +103,10 @@ def is_it_production_mode():
     if not request.full_path.startswith("/static"):
         g.production = setting.production
 
+def fix_extra_slash_at_the_end_of_the_url():
+    print(request.full_path)
+    if request.full_path.endswith("/?"):
+        return redirect(request.full_path[0:-2])
 
 admin_add.before_request(check_is_admin)
 admin_edit.before_request(check_is_admin)
@@ -111,6 +115,7 @@ app.before_request(essential_user_details)
 app.before_request(survey_data)
 app.before_request(is_it_production_mode)
 app.before_request(is_it_admin)
+app.before_request(fix_extra_slash_at_the_end_of_the_url)
 # registering blueprints
 for blueprint in (auths,basic,courses_and_days,errors,user,admin_add,admin_remove,admin_edit,blog,music,tools):
     app.register_blueprint(blueprint)
