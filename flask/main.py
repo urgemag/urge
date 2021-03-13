@@ -63,7 +63,6 @@ app.config.update(
 
 recaptcha = ReCaptcha(app=app)
 def essential_user_details():
-    print (request.full_path)
     if request.full_path.endswith(".jpg?") or not request.full_path.startswith("/static"):
         g.details = PageDetails(session).index_data()
 

@@ -1,6 +1,7 @@
 from flask import Blueprint, session, redirect, render_template, request, flash, url_for, abort
 from models import PageDetails, Database,Authentication, General
 from functools import wraps
+from validator_collection import *
 
 admin_remove = Blueprint("admin_remove", __name__)
 

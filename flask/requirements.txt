@@ -11,3 +11,4 @@ send2trash
 python-dotenv
 html2text
 flask_compress
+validator-collection
