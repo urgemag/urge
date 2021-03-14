@@ -793,8 +793,6 @@ class Database:
         )
 
     def get_users_access_data_from_db(self, email):
-        if email == "" or email is None or "@" not in email:
-            return []
         if (
             self.database.users.find_one(
                 {"Email": General().corect_form_of_email(email)}
@@ -916,49 +914,6 @@ class Database:
         accesses=dict(),
         cover=f"/static//assets/images/users/avatars/{random.randint(1, 30)}.png",
     ):
-        message = False
-        if General().valid_email(email) is False:
-            message = "فرمت ایمیل صحیح نمیباشد."
-        elif (
-            self.database.users.find_one(
-                {"Email": General().corect_form_of_email(email)}
-            )
-            is not None
-        ):
-            message = "ایمیل قبلا ثبت شده است."
-        elif password is None:
-            message = "پسوورد را وارد کنید."
-
-        if (birth_day is not None and birth_day != "") and message is False:
-            try:
-                birth_day = int(birth_day)
-                if int(birth_day) > 31 or int(birth_day) < 0:
-                    message = "روز تولد را صحیح وارد کنید."
-
-            except:
-                message = "روز تولد باید عدد باشد."
-
-        if (birth_month is not None and birth_month != "") and message is False:
-            try:
-                birth_month = int(birth_month)
-                if int(birth_month) > 12 or int(birth_month) < 0:
-                    message = "ماه تولد را صحیح وارد کنید."
-
-            except:
-                message = "ماه تولد باید عدد باشد."
-
-        if (birth_year is not None and birth_year != "") and message is False:
-            try:
-                birth_year = int(birth_year)
-                if int(birth_year) > 1400 or int(birth_year) < 1200:
-                    message = "سال تولد را صحیح وارد کنید."
-
-            except:
-                message = "سال تولد باید عدد باشد."
-
-        if message is not False:
-            return {"Result": False, "Message": message}
-
         self.database.users.insert_one(
             {
                 "Email": General().corect_form_of_email(email),
@@ -1037,30 +992,6 @@ class Database:
         free=False,
         soon=False,
     ):
-
-        if (
-            self.database.courses.find_one({"Slug": slug, "Main_Data": True})
-            is not None
-        ):
-            return {"Result": False, "Message": "نام انگلیسی دوره وجود دارد."}
-
-        if (free is not False and free is not True) or (
-            soon is not False and soon is not True
-        ):
-            return {
-                "Result": False,
-                "Message": "مشکلی در ساختار بعضی پارامترا پیش اومده.",
-            }
-
-        if (
-            slug == ""
-            or name == ""
-            or description == ""
-            or image_href == ""
-            or now_price == ""
-            or length_of_course == ""
-        ):
-            return {"Result": False, "Message": "تمامی موارد را وارد کنید."}
 
         self.database.courses.insert_one(
             {
@@ -1182,13 +1113,7 @@ class Database:
     def add_course_info_to_db(
         self, slug, introduction, speciality, importance, why, length, price, last_words
     ):
-
-        if slug is None or slug == "":
-            return {"Result": False, "Message": "دوره را انتخاب کنید."}
-
         my_query = {"Main_Data": True, "Slug": slug}
-        if self.database.courses.find_one(my_query) is None:
-            return {"Result": False, "Message": "دوره وجود ندارد."}
 
         intro = {
             "introduction": introduction,
@@ -1199,9 +1124,6 @@ class Database:
             "price": price,
             "last_words": last_words,
         }
-        for key, value in intro.items():
-            if value is None or value == "":
-                return {"Result": False, "Message": "فیلد ها نمیتوانند خالی باشند"}
 
         for key, value in {"Intro": intro,}.items():
             if value is not None and value != "":
@@ -1232,10 +1154,6 @@ class Database:
         podcast_description,
         free: bool,
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return False
         if self.database.courses.find_one(
             {"Slug": slug, "Sub_Course": True, "Day": int(day_num),}
         ) is not None or (free is not False and free is not True):
@@ -1270,18 +1188,6 @@ class Database:
         return True
 
     def create_a_none_day_of_course_data_in_db(self, course_name_slug, day_num):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
-
-        if (
-            self.database.courses.find_one(
-                {"Slug": course_name_slug, "Sub_Course": True, "Day": int(day_num),}
-            )
-            is not None
-        ):
-            return {"Result": False, "Message": "روز دوره وجود دارد."}
 
         self.database.courses.insert_one(
             {
@@ -1313,11 +1219,6 @@ class Database:
     def add_day_essential_data_to_db(
         self, course_name_slug, day_num, name_persian, description, image_path, freeness
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
-
         overwrite = False
         if (
             self.database.courses.find_one(
@@ -1346,22 +1247,16 @@ class Database:
             image_href=image_path,
             free=freeness,
         )
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
 
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
 
     def add_day_text_data_to_db(self, course_name_slug, day_num, text):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
 
         overwrite = False
         if (
@@ -1382,14 +1277,6 @@ class Database:
         response_edit_of_day = Database().edit_day_of_course_data_to_db(
             slug=course_name_slug, day_of_course=day_num, text=text
         )
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
-        if overwrite is True:
-            return {
-                "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
-            }
 
         return True
 
@@ -1431,10 +1318,6 @@ class Database:
         return True
 
     def add_day_todo_data_to_db(self, course_name_slug, day_num, todo):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
 
         overwrite = False
         if (
@@ -1455,22 +1338,15 @@ class Database:
         response_edit_of_day = Database().edit_day_of_course_data_to_db(
             slug=course_name_slug, day_of_course=day_num, to_do=todo
         )
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
 
     def add_day_quotes_data_to_db(self, course_name_slug, day_num, quotes):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
 
         overwrite = False
         if (
@@ -1491,13 +1367,10 @@ class Database:
         response_edit_of_day = Database().edit_day_of_course_data_to_db(
             slug=course_name_slug, day_of_course=day_num, quote=quotes
         )
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
@@ -1505,11 +1378,6 @@ class Database:
     def add_day_musics_data_to_db(
         self, course_name_slug, day_num, description, covers, musics, creators, names
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
-
         overwrite = False
         if (
             self.database.courses.find_one(
@@ -1527,16 +1395,6 @@ class Database:
                 day_data["Musics"] is not None and day_data["Musics"] != []
             ) or day_data["Musics_Description"] is not None:
                 overwrite = True
-
-        if not (
-            len(covers) == len(musics)
-            and len(covers) == len(creators)
-            and len(covers) == len(names)
-        ):
-            return {
-                "Result": False,
-                "Message": "همه اطلاعات رو وارد کنید و فیلدی رو خالی نزارید.",
-            }
 
         musics_data = []
         for index in range(len(musics)):
@@ -1565,13 +1423,10 @@ class Database:
             musics_description=description,
         )
 
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
@@ -1606,11 +1461,6 @@ class Database:
     def add_day_ted_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
-
         overwrite = False
         if (
             self.database.courses.find_one(
@@ -1629,12 +1479,6 @@ class Database:
             ) or day_data["Ted_Video_Description"] is not None:
                 overwrite = True
 
-        if not (len(urls) == len(qualities)):
-            return {
-                "Result": False,
-                "Message": "همه اطلاعات رو وارد کنید و فیلدی رو خالی نزارید.",
-            }
-
         teds_data = []
         for index in range(len(urls)):
             url = urls[index]
@@ -1650,13 +1494,10 @@ class Database:
             ted_video_description=description,
         )
 
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
@@ -1664,10 +1505,6 @@ class Database:
     def add_day_animation_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
 
         overwrite = False
         if (
@@ -1689,12 +1526,6 @@ class Database:
             ) or day_data["Animation_Description"] is not None:
                 overwrite = True
 
-        if not (len(urls) == len(qualities)):
-            return {
-                "Result": False,
-                "Message": "همه اطلاعات رو وارد کنید و فیلدی رو خالی نزارید.",
-            }
-
         teds_data = []
         for index in range(len(urls)):
             url = urls[index]
@@ -1709,14 +1540,10 @@ class Database:
             animation=teds_data,
             animation_description=description,
         )
-
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
@@ -1724,11 +1551,6 @@ class Database:
     def add_day_podcast_data_to_db(
         self, course_name_slug, day_num, description, url, name, creator, cover
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
-
         overwrite = False
         if (
             self.database.courses.find_one(
@@ -1748,12 +1570,6 @@ class Database:
             ) or day_data["Podcast_Description"] is not None:
                 overwrite = True
 
-        if url == "" or creator == "" or name == "":
-            return {
-                "Result": False,
-                "Message": "همه اطلاعات رو وارد کنید و فیلدی رو خالی نزارید.",
-            }
-
         podcast_cover_path = General().save_podcast_cover_of_day(
             course_name_slug, day_num, cover_bytes=cover.read()
         )
@@ -1770,14 +1586,10 @@ class Database:
             podcast=podcast_data,
             podcast_description=description,
         )
-
-        if response_edit_of_day is False:
-            return {"Result": False, "Message": "مشکلاتی در دیتابیس به وجود امده است."}
-
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
@@ -1785,10 +1597,6 @@ class Database:
     def add_day_movie_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities, cover
     ):
-        try:
-            int(day_num)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
 
         overwrite = False
         if (
@@ -1810,11 +1618,6 @@ class Database:
             ):
                 overwrite = True
 
-        if not (len(urls) == len(qualities)):
-            return {
-                "Result": False,
-                "Message": "همه اطلاعات رو وارد کنید و فیلدی رو خالی نزارید.",
-            }
 
         uploaded_image_bytes = cover.read()
 
@@ -1865,7 +1668,7 @@ class Database:
         if overwrite is True:
             return {
                 "Result": True,
-                "Message": "تغییرات با موفقیت انجام شد. دیتاها رونویسی شدند.",
+                "Message": "Overwritten!",
             }
 
         return True
@@ -2066,13 +1869,7 @@ class Database:
 
     def delete_day_of_course_data_to_db(self, slug, day):
 
-        try:
-            int(day)
-        except ValueError:
-            return {"Result": False, "Message": "روز وارد شده عدد نمیباشد."}
         my_query = {"Slug": slug, "Day": int(day), "Sub_Course": True}
-        if self.database.courses.find_one(my_query) is None:
-            return {"Result": False, "Message": "همچین روزی وجود ندارد."}
 
         self.database.courses.delete_many(my_query)
         return True
