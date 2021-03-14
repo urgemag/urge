@@ -1,4 +1,3 @@
-
 # pylint: disable=R0913
 import hashlib
 import random
@@ -23,8 +22,6 @@ import collections
 
 
 class General:
-    
-
     def __init__(self):
         self.special_characters = [
             "!",
@@ -82,12 +79,12 @@ class General:
 
     @classmethod
     def sha256_hash(cls, password):
-        
+
         result = hashlib.sha256(password.encode("utf-8"))
         return result.hexdigest()
 
     def sha256_hash_bytes(cls, file_bytes):
-        
+
         result = hashlib.sha256(file_bytes).hexdigest()
         return result
 
@@ -222,7 +219,7 @@ class General:
     def html_to_text(self, html):
         html_to_text = html2text.HTML2Text()
         html_to_text.ignore_links = True
-        return html_to_text.handle(html).replace("#",'').replace("*",'')
+        return html_to_text.handle(html).replace("#", "").replace("*", "")
 
     def image_resizer_using_pil(self, image_path, basewidth=1500):
 
@@ -278,7 +275,7 @@ class General:
         image_copy.save(image_path)
 
     def valid_email(self, email):
-        
+
         return bool(
             re.search(
                 r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$",
@@ -296,7 +293,7 @@ class General:
         return json_data
 
     def valid_email(self, email):
-        
+
         return bool(
             re.search(
                 r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$",
@@ -305,7 +302,7 @@ class General:
         )
 
     def corect_form_of_email(self, email):
-        
+
         email_correct = email.lower()
         email_seprated = email_correct.split("@")
         email_seprated[0] = email_seprated[0].replace(".", "")
@@ -510,9 +507,8 @@ class General:
 
     def status_date_published_post_blog(self, timestamp):
         date = [int(x) for x in ((timestamp.split(" "))[0]).split("-")]
-        delta_time = (
-            General().milliseconds_passed_till_now()
-            - General().convert_timestamp_to_milliseconds(timestamp)
+        delta_time = General().milliseconds_passed_till_now() - General().convert_timestamp_to_milliseconds(
+            timestamp
         )
         delta_time_minutes = delta_time / 1000 / 60
         delta_time_minutes = int(delta_time_minutes)
@@ -681,8 +677,8 @@ class General:
         days = General().convert_timestamp(timestamp)[0]
         return days
 
-class Authentication:
 
+class Authentication:
     def __init__(self, session=None):
         self.session = session
 
@@ -746,7 +742,7 @@ class Authentication:
             }
 
         return {"result": False, "message": " ایمیل یا پسوورد اشتباه است. "}
-    
+
     def is_user_account_registered(self, email):
         email = General().corect_form_of_email(email)
         if Database().get_users_data_from_db(email) is False:
@@ -762,7 +758,7 @@ class Authentication:
         if Authentication(self.session).is_signed_in() and self.session.get("admin"):
             return True
         return False
-    
+
     def user_answered_survey(self):
         try:
             self.session["Data"]
@@ -779,8 +775,8 @@ class Authentication:
         except:
             return False
 
-class Database:
 
+class Database:
     def __init__(self):
         self.database = pymongo.MongoClient(setting.mongodb_URI)["urge_panel"]
 
@@ -918,7 +914,7 @@ class Database:
         birth_year="",
         registered_with="urge",
         accesses=dict(),
-        cover=f"/static//assets/images/users/avatars/{random.randint(1, 30)}.png"
+        cover=f"/static//assets/images/users/avatars/{random.randint(1, 30)}.png",
     ):
         message = False
         if General().valid_email(email) is False:
@@ -971,7 +967,7 @@ class Database:
                 "Last_Name": last_name,
                 "Accesses": accesses,
                 "Profile_Photo": cover,
-                "Registered_With": registered_with
+                "Registered_With": registered_with,
             }
         )
         for key, value in {
@@ -991,7 +987,9 @@ class Database:
 
         return True
 
-    def add_user_survey_answer_to_db(self, user_ip_address, user_identity, user_survey_answer):
+    def add_user_survey_answer_to_db(
+        self, user_ip_address, user_identity, user_survey_answer
+    ):
         self.database.survey.insert_one(
             {
                 "ip_address": user_ip_address,
@@ -1519,9 +1517,7 @@ class Database:
             )
             is None
         ):
-            Database().create_a_none_day_of_course_data_in_db(
-                course_name_slug, day_num
-            )
+            Database().create_a_none_day_of_course_data_in_db(course_name_slug, day_num)
         # varrivle , if overwrite or not
         else:
             day_data = Database().get_one_day_data_of_courses_data_from_db(
@@ -1622,9 +1618,7 @@ class Database:
             )
             is None
         ):
-            Database().create_a_none_day_of_course_data_in_db(
-                course_name_slug, day_num
-            )
+            Database().create_a_none_day_of_course_data_in_db(course_name_slug, day_num)
         # varrivle , if overwrite or not
         else:
             day_data = Database().get_one_day_data_of_courses_data_from_db(
@@ -1682,10 +1676,8 @@ class Database:
             )
             is None
         ):
-            
-            Database().create_a_none_day_of_course_data_in_db(
-                course_name_slug, day_num
-            )
+
+            Database().create_a_none_day_of_course_data_in_db(course_name_slug, day_num)
         # varrivle , if overwrite or not
         else:
             day_data = Database().get_one_day_data_of_courses_data_from_db(
@@ -1744,10 +1736,8 @@ class Database:
             )
             is None
         ):
-            
-            Database().create_a_none_day_of_course_data_in_db(
-                course_name_slug, day_num
-            )
+
+            Database().create_a_none_day_of_course_data_in_db(course_name_slug, day_num)
         # varrivle , if overwrite or not
         else:
             day_data = Database().get_one_day_data_of_courses_data_from_db(
@@ -1807,9 +1797,7 @@ class Database:
             )
             is None
         ):
-            Database().create_a_none_day_of_course_data_in_db(
-                course_name_slug, day_num
-            )
+            Database().create_a_none_day_of_course_data_in_db(course_name_slug, day_num)
 
         else:
             day_data = Database().get_one_day_data_of_courses_data_from_db(
@@ -1981,7 +1969,7 @@ class Database:
         podcast_description="",
         free: bool = "",
     ):
-        
+
         try:
             if day_num != "":
                 day_num = int(day_num)
@@ -2028,7 +2016,7 @@ class Database:
     def delete_parts_of_day_of_course_data_in_db(
         self, slug, day_of_course, remove_parts_names: list
     ):
-        
+
         try:
             int(day_of_course)
         except ValueError:
@@ -2047,7 +2035,7 @@ class Database:
         return True
 
     def delete_users_data_from_db(self, email):
-        
+
         if (
             self.database.users.find_one(
                 {"Email": General().corect_form_of_email(email)}
@@ -2059,7 +2047,7 @@ class Database:
         return True
 
     def delete_courses_data_from_db(self, slug):
-        
+
         my_query = {"Slug": slug}
         if self.database.courses.find_one(my_query) is None:
             return False
@@ -2068,7 +2056,7 @@ class Database:
         return True
 
     def delete_post_blog_data_from_db(self, slug):
-        
+
         my_query = {"English_Name": slug}
         if self.database.blog.find_one(my_query) is None:
             return False
@@ -2077,7 +2065,7 @@ class Database:
         return True
 
     def delete_day_of_course_data_to_db(self, slug, day):
-        
+
         try:
             int(day)
         except ValueError:
@@ -2089,15 +2077,14 @@ class Database:
         self.database.courses.delete_many(my_query)
         return True
 
-class PageDetails:
-    
 
+class PageDetails:
     def __init__(self, session=None):
-        
+
         self.session = session
 
     def index_data(self):
-        
+
         try:
             email = self.session["Data"]["Email"]
         except:
@@ -2125,7 +2112,7 @@ class PageDetails:
         return signed_in_email_data
 
     def all_courses_list(self):
-        
+
         courses_raw = Database().get_all_courses_data_from_db()
         courses = list()
         for course in courses_raw:
@@ -2138,20 +2125,24 @@ class PageDetails:
         courses_dict_named_by_milliseconds = dict()
         courses = []
         for course in courses_raw:
-            course_milliseconds = General().convert_timestamp_to_milliseconds(course["First_Created_TimeStamp"])
+            course_milliseconds = General().convert_timestamp_to_milliseconds(
+                course["First_Created_TimeStamp"]
+            )
             courses_dict_named_by_milliseconds[course_milliseconds] = course
-        courses_sorted = collections.OrderedDict(sorted(courses_dict_named_by_milliseconds.items())).items()
+        courses_sorted = collections.OrderedDict(
+            sorted(courses_dict_named_by_milliseconds.items())
+        ).items()
         for milliseconds, course in courses_sorted:
             courses.append(course)
         return courses
 
     def info_intro_course_page(self, slug):
-        
+
         course = Database().get_courses_data_from_db(slug)
         return course
 
     def course_page_info(self, slug):
-        
+
         days_raw = Database().get_days_data_of_courses_data_from_db(slug)
         course = Database().get_courses_data_from_db(slug)
         days = list()
@@ -2171,7 +2162,7 @@ class PageDetails:
         return [course, days, intro]
 
     def sub_course_page_info_html(self, slug, day):
-        
+
         day = Database().get_one_day_data_of_courses_data_from_db(slug, day)
         return day
 
@@ -2256,7 +2247,7 @@ class PageDetails:
         return accesses
 
     def get_all_courses_info_categorized_by_info_existence(self):
-        
+
         courses_categorized = {"دوره ها": [], "دوره های همراه با اینفو": []}
         for course in Database().get_all_courses_data_from_db():
             if "info" not in course or course["info"] == []:
@@ -2273,12 +2264,17 @@ class PageDetails:
         return Database().get_all_courses_data_from_db().count()
 
     def top_3_expensive_courses(self):
-        
+
         courses = []  # .sort("Now_Price")
         for course in Database().get_all_courses_data_from_db():
             course["Now_Price"] = int(str(course["Now_Price"]).replace(",", ""))
             if (
-                General().days_passed_till_now() >= General().convert_timestamp_to_days(course["First_Created_TimeStamp"]) + course["Days_Till_Open"]):
+                General().days_passed_till_now()
+                >= General().convert_timestamp_to_days(
+                    course["First_Created_TimeStamp"]
+                )
+                + course["Days_Till_Open"]
+            ):
                 courses.append(course)
         courses = sorted(courses, key=lambda k: k["Now_Price"])
         courses.reverse()
@@ -2317,31 +2313,42 @@ class PageDetails:
     def get_survey_json_data(self):
         return General().open_json_file("static/assets/survey/survey.json")
 
-class Tools:
-    
 
+class Tools:
     def mbti_type_answer(self, user_answer: list):
         if len(user_answer) != 60:
             return False
 
-        answer_sheet = General().open_json_file("static/tools/mbti.json")["answer_sheet"]
-        user_result_based_on_isfp = [0,0,0,0]
+        answer_sheet = General().open_json_file("static/tools/mbti.json")[
+            "answer_sheet"
+        ]
+        user_result_based_on_isfp = [0, 0, 0, 0]
         for answer_analyse in answer_sheet:
             index = int(answer_analyse) - 1
             user_answer_to_this_question = user_answer[index]
             answer_sheet_to_this_question = answer_sheet[answer_analyse]
-            order_sample_result = ["i","s","f","p"]
-            for index_sample_answer in range (4):
-                if answer_sheet_to_this_question["plus"] == order_sample_result[index_sample_answer]:
-                    user_result_based_on_isfp[index_sample_answer] += int(user_answer_to_this_question)
+            order_sample_result = ["i", "s", "f", "p"]
+            for index_sample_answer in range(4):
+                if (
+                    answer_sheet_to_this_question["plus"]
+                    == order_sample_result[index_sample_answer]
+                ):
+                    user_result_based_on_isfp[index_sample_answer] += int(
+                        user_answer_to_this_question
+                    )
                     break
-                elif answer_sheet_to_this_question["minus"] == order_sample_result[index_sample_answer]:
-                    user_result_based_on_isfp[index_sample_answer] -= int(user_answer_to_this_question)
+                elif (
+                    answer_sheet_to_this_question["minus"]
+                    == order_sample_result[index_sample_answer]
+                ):
+                    user_result_based_on_isfp[index_sample_answer] -= int(
+                        user_answer_to_this_question
+                    )
                     break
 
         for parameter_index in range(len(user_result_based_on_isfp)):
             parameter = user_result_based_on_isfp[parameter_index]
-            user_result_based_on_isfp[parameter_index] = round(parameter/36*100)
+            user_result_based_on_isfp[parameter_index] = round(parameter / 36 * 100)
 
         isfp_opposite = "entj"
         isfp_default = "isfp"
@@ -2354,30 +2361,32 @@ class Tools:
                 user_mbti_type.append(isfp_default[parameter_index])
         final_type = ("".join(user_mbti_type)).upper()
         persian_names_parameters = {
-            "E" : "برونگرا",
-            "I" : "درونگرا",
-            "N" : "شهودی",
-            "S" : "حسی",
-            "T" : "منطقی",
-            "F" : "احساسی",
-            "P" : "ادراکی",
-            "J" : "قضاوتی"
-
+            "E": "برونگرا",
+            "I": "درونگرا",
+            "N": "شهودی",
+            "S": "حسی",
+            "T": "منطقی",
+            "F": "احساسی",
+            "P": "ادراکی",
+            "J": "قضاوتی",
         }
         user_uniqe_percent_answers = {}
         for parameter_index in range(len(user_result_based_on_isfp)):
             parameter_percent = user_result_based_on_isfp[parameter_index]
             if parameter_percent < 0:
-                parameter_percent*=-1
+                parameter_percent *= -1
             if parameter_percent < 50:
-                parameter_percent+=50
-            if parameter_percent==50:
-                parameter_percent+=1
+                parameter_percent += 50
+            if parameter_percent == 50:
+                parameter_percent += 1
             if parameter_percent > 100:
                 parameter_percent = 100
-            user_uniqe_percent_answers[persian_names_parameters[final_type[parameter_index]]] = parameter_percent
+            user_uniqe_percent_answers[
+                persian_names_parameters[final_type[parameter_index]]
+            ] = parameter_percent
 
-        return {"final_type" : final_type,
-                "answer_based_on_isfp" : user_result_based_on_isfp,
-                "answer_percent" : user_uniqe_percent_answers
-            }
+        return {
+            "final_type": final_type,
+            "answer_based_on_isfp": user_result_based_on_isfp,
+            "answer_percent": user_uniqe_percent_answers,
+        }
