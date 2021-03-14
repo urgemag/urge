@@ -1,4 +1,4 @@
-""" Functions of the !--Urge--! panel ! """
+
 # pylint: disable=R0913
 import hashlib
 import random
@@ -17,12 +17,13 @@ from datetime import *
 import html2text
 import jdatetime
 import send2trash
+import collections
 
 # it uses << imgp >> too
 
 
 class General:
-    """ These are the functions which will be used in others and they are general ! """
+    
 
     def __init__(self):
         self.special_characters = [
@@ -81,12 +82,12 @@ class General:
 
     @classmethod
     def sha256_hash(cls, password):
-        """ To hash passwords or others with sha256 method """
+        
         result = hashlib.sha256(password.encode("utf-8"))
         return result.hexdigest()
 
     def sha256_hash_bytes(cls, file_bytes):
-        """ To hash bytes with sha256 method """
+        
         result = hashlib.sha256(file_bytes).hexdigest()
         return result
 
@@ -277,7 +278,7 @@ class General:
         image_copy.save(image_path)
 
     def valid_email(self, email):
-        """ Check if an email is valid or not """
+        
         return bool(
             re.search(
                 r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$",
@@ -295,7 +296,7 @@ class General:
         return json_data
 
     def valid_email(self, email):
-        """ Check if an email is valid or not """
+        
         return bool(
             re.search(
                 r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$",
@@ -304,7 +305,7 @@ class General:
         )
 
     def corect_form_of_email(self, email):
-        """ return Email without Dots and uppercases """
+        
         email_correct = email.lower()
         email_seprated = email_correct.split("@")
         email_seprated[0] = email_seprated[0].replace(".", "")
@@ -680,18 +681,13 @@ class General:
         days = General().convert_timestamp(timestamp)[0]
         return days
 
-
 class Authentication:
-    """ Authentications of the urge panel ! """
 
     def __init__(self, session=None):
-        """ Get session to be used in some of the functions for the authentications. """
         self.session = session
 
     @classmethod
     def signup(cls, first_name, last_name, email, password):
-        """ To signup => check if Email is unique, password is suitable, email is correct. """
-
         if email == "" or email is None:
             return {"result": False, "message": " ایمیلتان را وارد کنید. "}
 
@@ -732,7 +728,6 @@ class Authentication:
 
     @classmethod
     def signin(cls, username_or_email, password):
-        """ To signin => check if username matches the password. """
         data = Database().get_users_data_from_db(
             General().corect_form_of_email(username_or_email)
         )
@@ -758,31 +753,12 @@ class Authentication:
             return False
         return True
 
-    def unique_username(self, username):
-        """ To check if the username is unique and not taken. """
-
-    def email_verification(self):
-        """ To send a random code to the email address and verify the email. """
-
-    def mobile_number_verification(self):
-        """ To send a random code to the phone number and verify the number. """
-
-    def forget_password_by_email(self):
-        """To send a random code to the email address and
-        after the verification, change the password."""
-
-    @classmethod
-    def change_password(cls):
-        """ To change the password. """
-
     def is_signed_in(self):
-        """ check the cookies out to see if the account is active and logged in or not. """
         if self.session.get("logged_in"):
             return True
         return False
 
     def is_admin(self):
-        """ check the cookies out to see if the account is admin or not. """
         if Authentication(self.session).is_signed_in() and self.session.get("admin"):
             return True
         return False
@@ -802,15 +778,13 @@ class Authentication:
                 return True
         except:
             return False
+
 class Database:
-    """ Every functions that work with database ( MongoDB ) ! """
 
     def __init__(self):
-        """ Get session to be used in some of the functions for the Database. """
         self.database = pymongo.MongoClient(setting.mongodb_URI)["urge_panel"]
 
     def get_users_data_from_db(self, email):
-        """ To get users data from the DataBase"""
         if (
             self.database.users.find_one(
                 {"Email": General().corect_form_of_email(email)}
@@ -823,7 +797,6 @@ class Database:
         )
 
     def get_users_access_data_from_db(self, email):
-        """ To get users accesses from the DataBase"""
         if email == "" or email is None or "@" not in email:
             return []
         if (
@@ -842,11 +815,9 @@ class Database:
         return []
 
     def get_all_courses_data_from_db(self):
-        """ To get courses data from the DataBase"""
         return self.database.courses.find({"Main_Data": True})
 
     def get_all_musics_data_from_db(self):
-        """ To get musics data from the DataBase"""
         all_posts = []
         for post in self.database.musics.find():
             all_posts.append(post)
@@ -854,21 +825,18 @@ class Database:
         return all_posts
 
     def get_all_slug_and_names_of_courses_from_db(self):
-        """ To get all accesses (slugs - name courses) data from the DataBase"""
         courses = []
         for course in Database().get_all_courses_data_from_db():
             courses.append({"Slug": course["Slug"], "Name": course["Name"]})
         return courses
 
     def get_courses_data_from_db(self, slug):
-        """ To get courses data from the DataBase"""
         if self.database.courses.find_one({"Slug": slug, "Main_Data": True}) is None:
             return False
 
         return self.database.courses.find_one({"Slug": slug, "Main_Data": True})
 
     def get_blog_posts_data_from_db(self):
-        """ To get blog posts data from the DataBase"""
         all_posts = []
         for post in self.database.blog.find():
             all_posts.append(post)
@@ -876,7 +844,6 @@ class Database:
         return all_posts
 
     def get_blog_post_data_from_db(self, english_name):
-        """ To get blog posts data from the DataBase"""
 
         post = self.database.blog.find_one({"English_Name": english_name})
         if post is None:
@@ -884,7 +851,6 @@ class Database:
         return post
 
     def get_days_data_of_courses_data_from_db(self, slug):
-        """ To get courses data from the DataBase"""
         course_data = self.database.courses.find_one({"Slug": slug, "Main_Data": True})
         if course_data is None:
             return False
@@ -901,7 +867,6 @@ class Database:
         return days_data
 
     def get_one_day_data_of_courses_data_from_db(self, slug, day):
-        """ To get courses data from the DataBase"""
         if self.database.courses.find_one({"Slug": slug, "Main_Data": True}) is None:
             return False
 
@@ -924,7 +889,6 @@ class Database:
         )
 
     def get_course_info_intro_data_from_db(self, slug):
-        """ To get course info (intro) data from the DataBase"""
         if self.database.courses.find_one({"Slug": slug, "Main_Data": True}) is None:
             return False
 
@@ -956,7 +920,6 @@ class Database:
         accesses=dict(),
         cover=f"/static//assets/images/users/avatars/{random.randint(1, 30)}.png"
     ):
-        """ To add users data to the DataBase"""
         message = False
         if General().valid_email(email) is False:
             message = "فرمت ایمیل صحیح نمیباشد."
@@ -1039,7 +1002,6 @@ class Database:
         return True
 
     def add_users_access_data_to_db(self, email, course_name):
-        """ To add users accesses to the DataBase"""
         user_data = accesses = self.database.users.find_one(
             {"Email": General().corect_form_of_email(email)}
         )
@@ -1077,7 +1039,6 @@ class Database:
         free=False,
         soon=False,
     ):
-        """ To add courses data to the DataBase"""
 
         if (
             self.database.courses.find_one({"Slug": slug, "Main_Data": True})
@@ -1129,11 +1090,9 @@ class Database:
         return True
 
     def get_payment_data(self, payment_id):
-        """ To get a payment data based on id from the DataBase"""
         return self.database.payments.find_one({"ID": payment_id})
 
     def add_payment_record_to_db(self, slug, price, buyer_email, payment_id):
-        """ To add a payment record to the DataBase"""
         self.database.payments.insert_one(
             {
                 "Slug": slug,
@@ -1146,7 +1105,6 @@ class Database:
         return True
 
     def get_all_tools_data_db(self):
-        """ To get all tools data from the DataBase"""
         all_posts = []
         for post in self.database.tools.find():
             all_posts.append(post)
@@ -1154,7 +1112,6 @@ class Database:
         return all_posts
 
     def get_tool_data_db(self, slug):
-        """ To get one tool data from the DataBase"""
         return self.database.tools.find_one({"Slug": slug})
 
     def add_tool_to_db(
@@ -1169,7 +1126,6 @@ class Database:
         soon,
         days_till_publish,
     ):
-        """ To add a tool to the DataBase"""
         self.database.tools.insert_one(
             {
                 "Slug": slug,
@@ -1187,21 +1143,18 @@ class Database:
         return True
 
     def change_payment_status_to_success_in_db(self, payment_id):
-        """ To change a payment status to Successful in the DataBase"""
         self.database.payments.update_one(
             {"ID": payment_id}, {"$set": {"Status": "Successful"}}
         )
         return True
 
     def change_payment_status_to_fail_in_db(self, payment_id):
-        """ To change a payment status to Failed in the DataBase"""
         self.database.payments.update_one(
             {"ID": payment_id}, {"$set": {"Status": "Failed"}}
         )
         return True
 
     def delete_payment_record_from_db(self, payment_id):
-        """ To add courses data to the DataBase"""
         my_query = {"ID": payment_id}
         try:
             self.database.payments.delete_many(my_query)
@@ -1210,7 +1163,6 @@ class Database:
         return True
 
     def delete_music_data_from_db(self, music_name):
-        """ To delete music data from the DataBase"""
         music_query = {"Music_Name": music_name}
         music_data = self.database.musics.find_one(music_query)
         if music_data is None:
@@ -1221,7 +1173,6 @@ class Database:
         return True
 
     def delete_tool_data_from_db(self, tool_slug):
-        """ To delete tool data from the DataBase"""
         tool_query = {"Slug": tool_slug}
         tool_data = self.database.tools.find_one(tool_query)
         if tool_data is None:
@@ -1233,7 +1184,6 @@ class Database:
     def add_course_info_to_db(
         self, slug, introduction, speciality, importance, why, length, price, last_words
     ):
-        """ To add courses info data from the DataBase"""
 
         if slug is None or slug == "":
             return {"Result": False, "Message": "دوره را انتخاب کنید."}
@@ -1284,7 +1234,6 @@ class Database:
         podcast_description,
         free: bool,
     ):
-        """ To add day of course data to the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1323,7 +1272,6 @@ class Database:
         return True
 
     def create_a_none_day_of_course_data_in_db(self, course_name_slug, day_num):
-        """ To create a none-data day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1367,7 +1315,6 @@ class Database:
     def add_day_essential_data_to_db(
         self, course_name_slug, day_num, name_persian, description, image_path, freeness
     ):
-        """ To add essential data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1413,7 +1360,6 @@ class Database:
         return True
 
     def add_day_text_data_to_db(self, course_name_slug, day_num, text):
-        """ To add main text to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1450,7 +1396,6 @@ class Database:
         return True
 
     def add_post_blog_to_db(self, persian_name, eng_name, cover_href, text):
-        """ To add post blog in the DataBase"""
         if self.database.blog.find_one({"English_Name": eng_name}) is not None:
             return False
 
@@ -1469,7 +1414,6 @@ class Database:
     def edit_post_blog_to_db(
         self, old_enlish_name, persian_name, eng_name, cover_href, text
     ):
-        """ To add post blog in the DataBase"""
         if self.database.blog.find_one({"English_Name": old_enlish_name}) is None:
             return False
 
@@ -1489,7 +1433,6 @@ class Database:
         return True
 
     def add_day_todo_data_to_db(self, course_name_slug, day_num, todo):
-        """ To add essential data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1526,7 +1469,6 @@ class Database:
         return True
 
     def add_day_quotes_data_to_db(self, course_name_slug, day_num, quotes):
-        """ To add quotes data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1565,7 +1507,6 @@ class Database:
     def add_day_musics_data_to_db(
         self, course_name_slug, day_num, description, covers, musics, creators, names
     ):
-        """ To add musics data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1640,7 +1581,6 @@ class Database:
         return True
 
     def add_music_data_to_db(self, cover, music, creator, name):
-        """ To add musics data to a day of course in the DataBase"""
         music_path = General().save_music(music)
         image_path = General().save_music_cover(
             cover_bytes=cover.read(), music_path=music_path["path"]
@@ -1670,7 +1610,6 @@ class Database:
     def add_day_ted_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities
     ):
-        """ To add ted videos data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1731,7 +1670,6 @@ class Database:
     def add_day_animation_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities
     ):
-        """ To add short film animation data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1794,7 +1732,6 @@ class Database:
     def add_day_podcast_data_to_db(
         self, course_name_slug, day_num, description, url, name, creator, cover
     ):
-        """ To add podcast data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1858,7 +1795,6 @@ class Database:
     def add_day_movie_data_to_db(
         self, course_name_slug, day_num, description, urls, qualities, cover
     ):
-        """ To add movie data to a day of course in the DataBase"""
         try:
             int(day_num)
         except ValueError:
@@ -1960,7 +1896,6 @@ class Database:
         birth_year="",
         new_password="",
     ):
-        """ To edit users data from the DataBase"""
         if (
             self.database.users.find_one(
                 {"Email": General().corect_form_of_email(old_email)}
@@ -2000,7 +1935,6 @@ class Database:
         length_of_course="",
         free="",
     ):
-        """ To edit courses data from the DataBase"""
 
         my_query = {"Main_Data": True, "Slug": slug}
         if self.database.courses.find_one(my_query) is not None or (
@@ -2047,7 +1981,7 @@ class Database:
         podcast_description="",
         free: bool = "",
     ):
-        """ To edit day data from the DataBase"""
+        
         try:
             if day_num != "":
                 day_num = int(day_num)
@@ -2094,7 +2028,7 @@ class Database:
     def delete_parts_of_day_of_course_data_in_db(
         self, slug, day_of_course, remove_parts_names: list
     ):
-        """ To remove specific parts of day data from the DataBase"""
+        
         try:
             int(day_of_course)
         except ValueError:
@@ -2113,7 +2047,7 @@ class Database:
         return True
 
     def delete_users_data_from_db(self, email):
-        """ To delete users data from the DataBase"""
+        
         if (
             self.database.users.find_one(
                 {"Email": General().corect_form_of_email(email)}
@@ -2125,7 +2059,7 @@ class Database:
         return True
 
     def delete_courses_data_from_db(self, slug):
-        """ To delete courses data from the DataBase"""
+        
         my_query = {"Slug": slug}
         if self.database.courses.find_one(my_query) is None:
             return False
@@ -2134,7 +2068,7 @@ class Database:
         return True
 
     def delete_post_blog_data_from_db(self, slug):
-        """ To delete post data from the DataBase"""
+        
         my_query = {"English_Name": slug}
         if self.database.blog.find_one(my_query) is None:
             return False
@@ -2143,7 +2077,7 @@ class Database:
         return True
 
     def delete_day_of_course_data_to_db(self, slug, day):
-        """ To add courses data to the DataBase"""
+        
         try:
             int(day)
         except ValueError:
@@ -2155,16 +2089,15 @@ class Database:
         self.database.courses.delete_many(my_query)
         return True
 
-import collections
 class PageDetails:
-    """ All functions related to the pages details input ! """
+    
 
     def __init__(self, session=None):
-        """ Get session to be used in some of the functions for the page details. """
+        
         self.session = session
 
     def index_data(self):
-        """ To return all details that are needed at index page. """
+        
         try:
             email = self.session["Data"]["Email"]
         except:
@@ -2192,7 +2125,7 @@ class PageDetails:
         return signed_in_email_data
 
     def all_courses_list(self):
-        """ To return all details that are needed at /Courses page. """
+        
         courses_raw = Database().get_all_courses_data_from_db()
         courses = list()
         for course in courses_raw:
@@ -2213,12 +2146,12 @@ class PageDetails:
         return courses
 
     def info_intro_course_page(self, slug):
-        """ To return all details that are needed at /Course/<slug>/info page. """
+        
         course = Database().get_courses_data_from_db(slug)
         return course
 
     def course_page_info(self, slug):
-        """ To return all details that are needed at /Course/<slug> page. """
+        
         days_raw = Database().get_days_data_of_courses_data_from_db(slug)
         course = Database().get_courses_data_from_db(slug)
         days = list()
@@ -2238,12 +2171,12 @@ class PageDetails:
         return [course, days, intro]
 
     def sub_course_page_info_html(self, slug, day):
-        """ To return all details that are needed at /Course/<course> page. ( Day data ) """
+        
         day = Database().get_one_day_data_of_courses_data_from_db(slug, day)
         return day
 
     def day_of_the_course(self):
-        """ To delete courses data from the DataBase. """
+        
 
     def all_day_parts_to_remove_in_admin_page(self):
         parts_raw = [
@@ -2326,7 +2259,7 @@ class PageDetails:
         return accesses
 
     def get_all_courses_info_categorized_by_info_existence(self):
-        """ To get all courses (slugs - name courses) data plus being categorized """
+        
         courses_categorized = {"دوره ها": [], "دوره های همراه با اینفو": []}
         for course in Database().get_all_courses_data_from_db():
             if "info" not in course or course["info"] == []:
@@ -2340,20 +2273,20 @@ class PageDetails:
         return courses_categorized
 
     def motivation_wall_page_info_html(self):
-        """ To return all details that are needed at /MotivationWall page. """
+        
 
     def profile_page_info_html(self):
-        """ To return all details that are needed at /Profile page. """
+        
 
     def mail_page_info_html(self):
-        """ To return all details that are needed at /Profile page. """
+        
 
     def number_of_courses(self):
-        """ To return count of courses that is needed at / page. """
+        
         return Database().get_all_courses_data_from_db().count()
 
     def top_3_expensive_courses(self):
-        """ To return top 3 courses that are needed at / page. """
+        
         courses = []  # .sort("Now_Price")
         for course in Database().get_all_courses_data_from_db():
             course["Now_Price"] = int(str(course["Now_Price"]).replace(",", ""))
@@ -2397,9 +2330,8 @@ class PageDetails:
     def get_survey_json_data(self):
         return General().open_json_file("static/assets/survey/survey.json")
 
-
 class Tools:
-    """ All tools functions """
+    
 
     def mbti_type_answer(self, user_answer: list):
         if len(user_answer) != 60:
