@@ -104,7 +104,8 @@ def is_it_production_mode():
         g.production = setting.production
 
 def fix_extra_slash_at_the_end_of_the_url():
-    if request.full_path.endswith("/?"):
+    print(request.full_path)
+    if request.full_path.count("/") != 1 and request.full_path.endswith("/?"):
         return redirect(request.full_path[0:-2])
 
 admin_add.before_request(check_is_admin)
