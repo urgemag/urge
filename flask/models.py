@@ -2175,9 +2175,6 @@ class PageDetails:
         day = Database().get_one_day_data_of_courses_data_from_db(slug, day)
         return day
 
-    def day_of_the_course(self):
-        
-
     def all_day_parts_to_remove_in_admin_page(self):
         parts_raw = [
             {"Slug": "Name", "Name": "اسم روز"},
@@ -2272,17 +2269,7 @@ class PageDetails:
                 )
         return courses_categorized
 
-    def motivation_wall_page_info_html(self):
-        
-
-    def profile_page_info_html(self):
-        
-
-    def mail_page_info_html(self):
-        
-
     def number_of_courses(self):
-        
         return Database().get_all_courses_data_from_db().count()
 
     def top_3_expensive_courses(self):
