@@ -3,6 +3,10 @@
 
 Urge is a beautiful, cloud-enabled, flask-powered, motivational and inspirational website.
 
+
+![](https://revisto.ir/static/projects-cover/urge.jpg)
+
+
 ## ✨ Features
 
 - Dashboard
